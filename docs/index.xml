@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pavinberg&#39;s Emacs Book</title>
+    <link>https://pavinberg.github.io/emacs-book/</link>
+    <description>Recent content on Pavinberg&#39;s Emacs Book</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://pavinberg.github.io/emacs-book/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>https://pavinberg.github.io/emacs-book/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/intro/</guid>
+      <description>Why Emacs To be edited...</description>
+    </item>
+    
+    <item>
+      <title>Basic operations</title>
+      <link>https://pavinberg.github.io/emacs-book/basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/basic/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>Buffer and mode</title>
+      <link>https://pavinberg.github.io/emacs-book/buffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/buffer/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>Configurations</title>
+      <link>https://pavinberg.github.io/emacs-book/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/configuration/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>Improve the native operations</title>
+      <link>https://pavinberg.github.io/emacs-book/optimization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/optimization/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>Optimize the workflow</title>
+      <link>https://pavinberg.github.io/emacs-book/enhancement/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/enhancement/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>IDE-like features</title>
+      <link>https://pavinberg.github.io/emacs-book/development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/development/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+  </channel>
+</rss>

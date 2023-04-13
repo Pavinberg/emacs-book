@@ -1,0 +1,52 @@
+# use the setting below to set multiple docs directories.
+# docSections = ["docs", "tutorials"]
+
+uniqueHomePage = false # change to false to add sidebar to homepage
+
+# blogDir = "blog" # can be posts, blog e.t.c
+
+repo = "https://github.com/Pavinberg/emacs-book"
+
+time_format_blog = "Wednesday, April 12, 2023"
+time_format_default = "April 12, 2023"
+enableDarkMode = false # set to false to disable darkmode by default # user will still have the option to use dark mode
+defaultLightingMode = "auto" # other possible values: "dark", "light"
+
+# sets the maximum number of lines per codeblock. The codeblock will however be scrollable and expandable.
+codeMaxLines = 16
+
+# show/hide line numbers by default. Switch to `true` if you'd rather have them on.
+showLineNumbers = false
+
+# By default the template will look for icons under the icons directory. In some situations you might wanna change that. edit the line below
+# iconsPath = 'icons/'
+
+otherSearchableFields = ["Tags", "Categories", "CustomField"] # As they appear in frontmatter
+
+# search
+[search]
+on = true
+global = true # turn to `true` to enable global search
+[search.algolia]
+enable = false # if false search will default to fusejs
+ 
+# Site logo
+[logo]
+  lightMode = "icons/emacs-book-logo-light.pdf"
+  darkMode = "icons/emacs-book-logo-dark.pdf"
+
+[lang]
+  iconLight = "icons/lang-light.svg"
+  iconDark = "icons/lang-dark.svg"	
+
+[source]
+  name = "GitHub"
+  iconLight = "icons/GitHubMarkLight.svg"
+  iconDark = "icons/GitHubMarkDark.svg"
+  url = "https://github.com/Pavinberg/emacs-book/"
+
+# optional
+# attribution. Feel free to delete this
+[author]
+  name = "Pavinberg"
+  url = "https://github.com/Pavinberg"

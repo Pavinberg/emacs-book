@@ -1,0 +1,32 @@
+[copy]
+  other = "复制"
+[copied]
+  other = "已复制"
+[docs_menu]
+  other = "文档菜单"
+[no_matches]
+  other = "未找到匹配项"
+[not_set]
+  other = "未设置"
+[resize_snippet]
+  other = "更改高度"
+[quick_links]
+  other = "快速链接"
+[search_field_placeholder]
+  other = "搜索 {{ .section }}"
+[search_results_label]
+  other = "搜索结果"
+[short_search_query]
+  other = "请求长度过短"
+[site]
+  other = "网站"
+[site_menu]
+  other = "网站菜单"
+[toggle_line_numbers]
+  other = "显示/隐藏行号"
+[toggle_line_wrap]
+  other = "单行/多行"
+[to_top]
+  other = "回到顶部"
+[type_to_search]
+  other = "输入以搜索"

@@ -1,0 +1,5 @@
+#  menu items
+[[main]]
+  name = "Donate"
+  weight = 5
+  url = "donate/"

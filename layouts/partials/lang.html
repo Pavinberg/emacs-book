@@ -1,0 +1,18 @@
+{{- $sp := .Site.Params }}
+{{ if .IsTranslated }}
+  {{ range .Translations }}
+  <!-- <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a> -->
+  <a class="nav-link nav_repo" href="{{ .Permalink }}">
+	{{ $repo := .Site.Params.source }}
+	{{ if $repo.iconLight }}
+	  {{- $litPath := absURL ($sp.lang.iconLight) }}
+	  {{- $darkPath := absURL ($sp.lang.iconDark) }}
+	  <picture data-lit="{{ $litPath }}" data-dark="{{ $darkPath }}">
+		<img src="{{ $litPath }}" alt="Language">
+	  </picture>
+	{{ else }}
+	  {{ $repo.name }}
+	{{ end }}	
+  </a>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,615 @@
+
+
+<!doctype html>
+<html lang="zh"
+  data-mode="auto"
+>
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
+<link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
+<link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
+<link rel="manifest" href='https://pavinberg.github.io/emacs-book/favicons/site.webmanifest'>
+<link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
+<link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
+<meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
+<title>多文件与模式 | 专业 Emacs 入门</title><meta property="og:title" content="多文件与模式" />
+<meta property="og:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
+Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
+Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
+Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
+Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
+Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
+Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
+Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/buffer/" /><meta property="article:section" content="" />
+
+<meta property="og:site_name" content="专业 Emacs 入门" />
+<meta itemprop="name" content="多文件与模式">
+<meta itemprop="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
+Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
+Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
+Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
+Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
+Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
+Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
+Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
+
+<meta itemprop="wordCount" content="597">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="多文件与模式"/>
+<meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
+Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
+Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
+Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
+Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
+Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
+Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
+Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。"/>
+
+
+<link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
+
+
+
+
+  <meta name="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
+Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
+Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
+Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
+Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
+Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
+Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
+Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
+
+
+</head>
+<body class="page-page" id="pagetop">
+  <header class="nav_header">
+<nav class="wrap nav menu">
+	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
+		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="专业 Emacs 入门 Logo">
+		</picture>
+		<label class="nav_toggle toggle" title='网站菜单' role="button">
+			<svg class="icon icon_harmburger">
+  <use xlink:href="#harmburger"></use>
+</svg>
+		</label>
+	</a>
+	<ul class="nav_body">
+		<li class="nav-item">
+
+<div class="search">
+  <label for="find" class="search_label"><svg class="icon icon_search">
+  <use xlink:href="#search"></use>
+</svg>
+  </label>
+  
+  
+    
+  
+  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
+  <div class="search_results results"></div>
+</div>
+
+
+
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
+		</li>
+		
+		<li class="nav-item nav_repo">
+			<a class="nav-link" href="https://github.com/Pavinberg/emacs-book/" target="_blank">
+				
+					<picture data-lit="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/GitHubMarkDark.svg">
+						<img src="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" alt="GitHub Repo">
+					</picture>
+				
+			</a>
+		</li>
+		<li class="nav-item">
+
+  
+  
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/buffer/">
+	
+	
+	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
+		<img src="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" alt="Language">
+	  </picture>
+		
+  </a>
+  
+
+</li>
+		<li class="nav-item"><div class="color_mode">
+  <label for="mode"></label>
+  <input type="checkbox" class="color_choice standardize-input" id="mode" title="Toggle Dark Mode">
+</div>
+</li>
+	</ul>
+</nav>
+
+  </header>
+  
+  <div class="main wrap pt-4">
+    
+    
+    
+      
+    <div class="grid-auto"><aside class="aside menu">
+  <div>
+    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
+  <use xlink:href="#carly"></use>
+</svg></label>
+  </div>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
+      <section class="" id="docs-专业-emacs-入门">
+        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
+    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
+    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
+    <li><a href="#其它-emacs">其它 Emacs</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#启动">启动</a></li>
+    <li><a href="#关于键盘操作">关于键盘操作</a></li>
+    <li><a href="#功能键">功能键</a></li>
+    <li><a href="#emacs-命令">Emacs 命令</a></li>
+    <li><a href="#基础快捷键">基础快捷键</a>
+      <ul>
+        <li><a href="#如何退出">如何退出</a></li>
+        <li><a href="#光标移动">光标移动</a></li>
+        <li><a href="#编辑操作">编辑操作</a></li>
+        <li><a href="#标记与跳转">标记与跳转</a></li>
+        <li><a href="#重复操作">重复操作</a></li>
+        <li><a href="#页面移动">页面移动</a></li>
+        <li><a href="#搜索文本">搜索文本</a></li>
+        <li><a href="#其它小操作">其它小操作</a></li>
+        <li><a href="#获得帮助">获得帮助</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link active"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初识界面">初识界面</a></li>
+    <li><a href="#文件与-buffer">文件与 Buffer</a>
+      <ul>
+        <li><a href="#打开多文件">打开多文件</a></li>
+        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
+        <li><a href="#文件备份">文件备份</a></li>
+      </ul>
+    </li>
+    <li><a href="#多-window">多 Window</a></li>
+    <li><a href="#多-frame">多 Frame</a></li>
+    <li><a href="#模式mode">模式（mode）</a>
+      <ul>
+        <li><a href="#主模式">主模式</a></li>
+        <li><a href="#次模式">次模式</a></li>
+        <li><a href="#mode-hook">Mode hook</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configuration/">基本配置</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
+      <ul>
+        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
+        <li><a href="#语法简介">语法简介</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础设置">基础设置</a>
+      <ul>
+        <li><a href="#现成的配置">现成的配置</a></li>
+        <li><a href="#基本结构">基本结构</a></li>
+        <li><a href="#最开始的配置">最开始的配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置快捷键">配置快捷键</a></li>
+    <li><a href="#melpa">MELPA</a></li>
+    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
+    <li><a href="#配置变量">配置变量</a></li>
+    <li><a href="#配置生效">配置生效</a></li>
+    <li><a href="#结尾">结尾</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents"></nav>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+  </section>
+      </section>
+  </section>
+</aside>
+
+  <main class="content">
+    <h1>多文件与模式</h1><p>本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。</p>
+<h2 id="初识界面">初识界面</h2>
+<p>首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。</p>
+<ul>
+<li>
+<p><strong>Frame</strong>：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。</p>
+</li>
+<li>
+<p><strong>Menu bar</strong>：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-`</code> 键（对应命令 <code>tmm-menu</code>）可以从下方展开互动界面打开菜单。</p>
+</li>
+<li>
+<p><strong>Tool bar</strong>：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在后续教程中详细介绍）。</p>
+</li>
+<li>
+<p><strong>Echo Area</strong>：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 <code>C-h C-a</code>，上一篇教程中也提及了这一命令。</p>
+</li>
+</ul>
+<p><img src="../../images/emacs-book/buffer/emacs-gui.png" alt="emacs-gui"></p>
+<ul>
+<li>
+<p><strong>Window</strong>：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。</p>
+</li>
+<li>
+<p><strong>Mode line</strong>：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 <em>GNU Emacs</em> 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 插件进行管理，后文将会更多介绍。</p>
+</li>
+<li>
+<p><strong>Scroll bar</strong>：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 <code>(when (display-graphic-p) (toggle-scroll-bar -1))</code> 表示在是用图形界面时关闭滚动条。</p>
+</li>
+<li>
+<p><strong>Cursor</strong>：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html">文档</a>中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。</p>
+</li>
+<li>
+<p><strong>Point</strong>：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。</p>
+</li>
+</ul>
+<h2 id="文件与-buffer">文件与 Buffer</h2>
+<p>前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。</p>
+<h3 id="打开多文件">打开多文件</h3>
+<p>之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code>（ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 <tab> 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
+<p>保存文件对应命令 <code>C-x C-s</code>。</p>
+
+<div class="tip">
+  开文件并只读不改：<code>C-x C-r</code>。 打开另一相近文件：<code>C-x C-v</code>，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式：<code>C-x C-q</code>。
+</div>
+
+<p>Emacs 可以打开多个文件，同样使用 <code>C-x C-f</code> 打开即可。 但是你如果打开了第二个文件，便会发现第一个文件就消失不见了，应当去哪里找呢？事实上，所有打开的文件都会被放入一个被称为 Buffer 的对象中，当打开了第二个文件时，第一个文件所在的 Buffer 会切入后台，而第二个文件的 Buffer 会占据当前的 Window。Buffer 的名字显示在 Mode line 中间，通常是文件名本身。</p>
+<p>Emacs 也可以用这个方式打开目录（文件夹），会显示出目录内的文件（此即 Linux 的设计理念，一切皆为文件，即使是目录也本质上是一个文件），可以用光标选择想打开的文件。</p>
+<h3 id="buffer-的切换">Buffer 的切换</h3>
+<p>切换 Buffer 有三类方法，简短的方法是使用 <code>C-x b</code>，输入 Buffer 的名字后按回车即可切换。 Echo area 中会提示你，如果什么也不输直接按回车，可以跳转到当前默认的 Buffer 中，这样方便在两个文件中来回切换。</p>
+<p>显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法，<code>C-x C-b</code>，此时会弹出一个 Window，名为 &quot;<em>Buffer List</em>&quot; ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “<em>Messages</em>” 是 Emacs 的一些输出信息。“<em>scratch</em>” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
+
+<div class="tip">
+  如果当前光标没有在 &quot;<em>Buffer List</em>&quot; 中可以用 <code>C-x o</code> 键切换过去。
+</div>
+
+<p><img src="../../images/emacs-book/buffer/buffer-list.png" alt="emacs-buffer-list"></p>
+<p>可以通过光标选择切换到某个 Buffer。同时在这个 &quot;<em>Buffer List</em>&quot; 中有很多功能可以使用。按问号（<code>?</code>）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭，<code>s</code> 标记一个 Buffer 打算保存，<code>u</code> 取消标记，<code>x</code> 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code>，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
+<p>想要关闭当前的 Buffer？直接在当前的 Buffer 处按下 <code>C-x k</code> 即可。</p>
+<p>此外，第三种方法是使用 <code>C-mouse-1</code> （<code>mouse-1</code> 表示鼠标左键）然后用鼠标菜单切换 Buffer 。</p>
+
+<div class="tip">
+  事实上，在输入 <code>M-x</code> 后、<code>C-x b</code> 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
+</div>
+
+<h3 id="文件备份">文件备份</h3>
+<p>使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code>， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置：<code>(setq make-backup-files nil)</code>）。</p>
+<h2 id="多-window">多 Window</h2>
+<p>想要同时打开两个文件相互参照对比是一个再常见不过的需求了，Emacs 自然可以做到。</p>
+<ul>
+<li><code>C-x 2</code> ：上下分割出两个 Window。</li>
+<li><code>C-x 3</code>：左右分割出两个 Window。</li>
+<li><code>C-x 0</code>：关闭光标所在处的 Window。</li>
+<li><code>C-x 1</code>：只保留光标所在处的 Window，关闭其它 Window。其它 Window 的 Buffer 依然没有关闭，可以通过 &quot;<em>Buffer List</em>&quot; 查看。</li>
+<li><code>C-x o</code>：将光标切换到下一个 Window。</li>
+</ul>
+<p>分割后，默认会把当前的 Buffer 也显示到新的 Window，即显示了两个一样的 Window。再次强调一下，Buffer 对应真正打开的文件，而 Window 是把 Buffer 显示出来的元件，所以一个文件只会开一个 Buffer，但可以有多个 Window 显示。于是，在新的 Window 里用 <code>C-x C-f</code> 打开另一个文件即可看到两个文件了，当然也可以正常用上面所说的 Buffer 切换。</p>
+<p>那么既然开一个新的窗口并打开新的文件这个需求很常见，对此如果只有以上快捷键，需要先 <code>C-x 3</code> 分割出一个窗口，<code>C-x o</code> 切换到新窗口，<code>C-x C-f</code> 打开新文件，过于繁琐。所以 Emacs 提供了一个快捷键：</p>
+<p><code>C-x 4 f</code> 来达到“在另一个窗口打开新的文件，如果只有一个窗口就分割成两个”的效果。</p>
+<p>此外，还有 <code>C-x 4 b</code> 表示“在另一个窗口切换到另一 Buffer，如果只有一个窗口就分割成两个” 。<code>C-x 4 d</code> 表示 “在另一个窗口打开目录，如果只有一个窗口就分割成两个”。</p>
+<p>可以总结出 <code>C-x 4</code> 为前缀时，就表达“在另一个窗口做……“。</p>
+<p>在打开两个窗口时，如果我们光标在第一个窗口，而希望第二个窗口翻页，那么就可以用 <code>C-M-v</code> 向下翻页。用 <code>C-M-S-v</code> （同时按下 <code>Control</code>，<code>Meta</code>， <code>Shift</code> 和 <code>v</code>）向上翻页。</p>
+<p>那么如果在已经分割之后再分割呢？Emacs 会继续做二等分，变成 3 个、4 个等窗口。此时窗口的切换和关闭就没有那么方便了。插件 <a href="https://github.com/abo-abo/ace-window">ace-window</a> 可以辅助这一过程，后面详细介绍。</p>
+<h2 id="多-frame">多 Frame</h2>
+<p>既然能多 Window，自然能多个 Frame。打开一个新的 Frame 可以使用快捷键 <code>C-x 5 2</code>； 在一个新的 Frame 打开文件，可以使用快捷键 <code>C-x 5 f</code>。<code>C-x 5</code> 和 <code>C-x 4</code> 基本类似，只是前者在 Frame 间操作，后者在 Window 间操作。</p>
+<p>笔者的日常使用中，对多文件的打开更偏爱在单个 Frame 中用多个 Window，很少在多 Frame 中间频繁切换。</p>
+<h2 id="模式mode">模式（mode）</h2>
+<p>Emacs 的核心要素之一就是模式（mode）。一个模式就对应着一组环境，不同模式可以分别进行配置，应对不同的场景。例如，编写 C++ 代码时就对应 <code>c++-mode</code>，编写 Python时使用 <code>python-mode</code>。在不同的语言的 mode 中，编译、执行的方式都是不同的，这样只要事先定义好 mode，就可以在使用过程中方便切换各种需求场景。</p>
+<p>Emacs mode 分两类，主模式（Major mode）和次模式（Minor mode）。</p>
+<h3 id="主模式">主模式</h3>
+<p>主模式默认根据 Buffer 的文件类型来选择，一个 Buffer 只能对应一个主模式。例如，Emacs 发现你打开了 <code>.cpp</code> 为后缀的文件，就会把 Buffer 自动设置成 <code>c++-mode</code>，发现你打开了 <code>.py</code> 后缀的文件，就把相应 Buffer 自动设置为 <code>python-mode</code>，最直观的区别是 Emacs 为不同语言的源码提供了不同的语法高亮。 主模式的名字会显示在 Mode line 上。</p>
+<p>我们也可以手动切换主模式，只需要按下 <code>M-x</code> ，输入相应的模式名称即可。通常来说其实我们不需要手动设置。</p>
+
+<div class="tip">
+  最基本的主模式是 Fundamental mode，就是没有进行任何配置的模式 。
+</div>
+
+<h3 id="次模式">次模式</h3>
+<p>同一个 Buffer 可以有多个次模式，次模式可以进一步调整、增加一些配置。通常来说，插件都是靠次模式来起作用的。当我们安装插件时，插件的官网会提示如何设置这个插件，其中大多都会使用次模式。</p>
+<p>官网中列出了一些<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html">常用次模式</a>。下一篇教程的配置中，笔者会直接列出其中常用的几个是如何设置的。</p>
+<h3 id="mode-hook">Mode hook</h3>
+<p>每一个主模式都对应着一个 Mode hook，hook 是挂钩的意思，Mode hook 的作用就是当启动一个主模式时，自动执行一些已经“挂钩”到这个主模式的函数或次模式。由此，我们可以自由地向一个主模式上挂上各种功能，在启动这个主模式时就可以自动跟随着一起启动。</p>
+<p>Mode hook 的名字通常就是“主模式名-hook”。例如，我们希望在主模式“文本文件模式” <code>text-mode</code> 时启动次模式“检查拼写” <code>flyspell-mode</code> ，我们就可以这样写配置：</p>
+<p>(add-hook 'text-mode-hook 'flyspell-mode)
+这样当我们打开 txt 文件时，会自动开启检查拼写功能。</p>
+<p><code>text-mode</code> 是基于文本的文件的一个主模式，有一些其它主模式是由它派生，例如 <code>html-mode</code>。而相对的，还有编程模式 <code>prog-mode</code>，各种编程语言对应的主模式都是由它派生，包括我们上文提到的 <code>c++-mode</code> 和 <code>python-mode</code>。那么如果我们希望在任何编程语言时都有一些共同需要的功能，例如编程时我们希望有代码块折叠功能，就为 <code>prog-mode-hook</code> 挂上相应功能就好。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span>
+</span></span></code></pre></div><p>在下一篇教程中，我们会进一步讨论这些应该如何配置更好。</p>
+<h2 id="总结">总结</h2>
+<p>以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。</p>
+<h2 id="命令列表">命令列表</h2>
+<table>
+<thead>
+<tr>
+<th>操作描述</th>
+<th>快捷键</th>
+<th>命令名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下拉菜单栏</td>
+<td><f10></td>
+<td>menu-bar-open</td>
+</tr>
+<tr>
+<td>互动菜单栏</td>
+<td>M-`</td>
+<td>tmm-menubar</td>
+</tr>
+<tr>
+<td>打开文件</td>
+<td>C-x C-f</td>
+<td>find-file</td>
+</tr>
+<tr>
+<td>保存文件</td>
+<td>C-x C-s</td>
+<td>save-buffer</td>
+</tr>
+<tr>
+<td>打开并只读文件</td>
+<td>C-x C-r</td>
+<td>find-file-read-only</td>
+</tr>
+<tr>
+<td>打开另一相近文件</td>
+<td>C-x C-v</td>
+<td>find-alternate-file</td>
+</tr>
+<tr>
+<td>只读模式</td>
+<td>C-x C-q</td>
+<td>read-only-mode</td>
+</tr>
+<tr>
+<td>切换到 Buffer</td>
+<td>C-x b</td>
+<td>switch-to-buffer</td>
+</tr>
+<tr>
+<td>列出 Buffer</td>
+<td>C-x C-b</td>
+<td>list-buffers</td>
+</tr>
+<tr>
+<td>关闭 Buffer</td>
+<td>C-x k</td>
+<td>kill-buffer</td>
+</tr>
+<tr>
+<td>鼠标列出 Buffer</td>
+<td>C-mouse-1</td>
+<td>mouse-buffer-menu</td>
+</tr>
+<tr>
+<td>上下分割出 Window</td>
+<td>C-x 2</td>
+<td>split-window-below</td>
+</tr>
+<tr>
+<td>左右分割出 Window</td>
+<td>C-x 3</td>
+<td>split-window-right</td>
+</tr>
+<tr>
+<td>关闭当前 Window</td>
+<td>C-x 0</td>
+<td>delete-window</td>
+</tr>
+<tr>
+<td>只保留当前 Window</td>
+<td>C-x 1</td>
+<td>delete-other-windows</td>
+</tr>
+<tr>
+<td>切换到另一 Window</td>
+<td>C-x o</td>
+<td>other-window</td>
+</tr>
+<tr>
+<td>在另一 Window 中打开文件</td>
+<td>C-x 4 f</td>
+<td>find-file-other-window</td>
+</tr>
+<tr>
+<td>在另一 Window 中切换 Buffer</td>
+<td>C-x 4 b</td>
+<td>switch-to-buffer-other-window</td>
+</tr>
+<tr>
+<td>在另一 Window 中打开目录</td>
+<td>C-x 4 d</td>
+<td>dired-other-window</td>
+</tr>
+<tr>
+<td>创建新的 Frame</td>
+<td>C-x 5 2</td>
+<td>make-frame-command</td>
+</tr>
+<tr>
+<td>在另一 Frame 中打开文件</td>
+<td>C-x 5 f</td>
+<td>find-file-other-frame</td>
+</tr>
+<tr>
+<td>让另一 Window 向下翻页</td>
+<td>C-M-v</td>
+<td>scroll-other-window</td>
+</tr>
+<tr>
+<td>让另一 Window 向上翻页</td>
+<td>C-M-S-v</td>
+<td>scroll-other-window-down</td>
+</tr>
+</tbody>
+</table>
+
+    <div class="pager">
+  
+    
+    <div class="pager_item prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/basic/" class="pager_link button" title="基础操作" rel="prev">
+        <span class="pager_label">基础操作</span>
+      </a>
+    </div>
+    
+  
+
+  
+    
+    <div class="pager_item next">
+      <a href="https://pavinberg.github.io/emacs-book/zh/configuration/" class="pager_link button" title="基本配置" rel="next">
+        <span class="pager_label">基本配置</span>
+      </a>
+    </div>
+    
+  
+</div>
+  </main>
+</div>
+</div>
+  
+<footer class="pt-2 pb-2">
+  <div class="wrap">
+    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <a href="#pagetop" id="toTop" title=回到顶部></a>
+  </div>
+</footer>
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492.004 492.004" id="next">
+    <path d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999" id="search">
+    <path d="M508.874 478.708L360.142 329.976c28.21-34.827 45.191-79.103 45.191-127.309C405.333 90.917 314.416 0 202.666 0S0 90.917 0 202.667s90.917 202.667 202.667 202.667c48.206 0 92.482-16.982 127.309-45.191l148.732 148.732c4.167 4.165 10.919 4.165 15.086 0l15.081-15.082c4.165-4.166 4.165-10.92-.001-15.085zM202.667 362.667c-88.229 0-160-71.771-160-160s71.771-160 160-160 160 71.771 160 160-71.771 160-160 160z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241 179" id="harmburger">
+    <path d="M1 10C1 4.477 5.477 0 11 0h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11C5.477 20 1 15.523 1 10zm0 80c0-5.523 4.477-10 10-10h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11c-5.523 0-10-4.477-10-10zm9 69c-5.523 0-10 4.477-10 10s4.477 10 10 10h220c5.523 0 10-4.477 10-10s-4.477-10-10-10H10z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.998 401.998" id="sort">
+    <path d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"></path>
+  </symbol>
+</svg>
+
+<svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="arrow">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol aria-hidden="true" viewBox="0 0 24 24" id="carly">
+    <path fill="currentColor" d="M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="copy">
+    <path d="m366.905 108.016h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.048 0 20.003-8.955 20.003-20.003s-8.956-20.003-20.003-20.003z"></path>
+    <path d="m366.905 188.027h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.047 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m286.004 268.039h-61.009c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h61.009c11.048 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m448.028 272.039c11.048 0 20.003-8.955 20.003-20.003v-172.024c0-44.119-35.894-80.012-80.012-80.012h-184.027c-44.094 0-79.971 35.853-80.012 79.938-44.118 0-80.012 35.893-80.012 80.012v272.039c0 44.118 35.893 80.012 80.012 80.012h194.028c44.118 0 80.012-35.893 80.012-80.012v-.608c39.414-4.938 70.01-38.662 70.01-79.389 0-11.048-8.955-20.003-20.003-20.003s-20.003 8.955-20.003 20.003c0 22.054-17.942 40.001-39.996 40.006l-184.027.045h-.009c-10.685 0-20.73-4.16-28.285-11.715-7.558-7.556-11.721-17.604-11.721-28.291v-272.025c0-22.059 17.947-40.006 40.006-40.006h184.028c22.059 0 40.006 17.947 40.006 40.006v172.025c-.001 11.047 8.954 20.002 20.002 20.002zm-244.036 160.008h.02l154.002-.038c-.012 22.049-17.954 39.984-40.006 39.984h-194.027c-22.059 0-40.006-17.947-40.006-40.006v-272.039c0-22.059 17.947-40.006 40.006-40.006v232.094c0 21.375 8.325 41.471 23.441 56.583 15.113 15.11 35.2 23.428 56.57 23.428z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="youtube">
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.016 512" id="expand">
+    <path d="m240 426.675781h-181.332031c-32.363281 0-58.667969-26.304687-58.667969-58.667969v-309.332031c0-32.363281 26.304688-58.6679685 58.667969-58.6679685h309.332031c32.363281 0 58.667969 26.3046875 58.667969 58.6679685v181.332031c0 8.832032-7.167969 16-16 16s-16-7.167968-16-16v-181.332031c0-14.699219-11.96875-26.667969-26.667969-26.667969h-309.332031c-14.699219 0-26.667969 11.96875-26.667969 26.667969v309.332031c0 14.699219 11.96875 26.667969 26.667969 26.667969h181.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812h-138.667969c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-16 16-16h122.667969v-122.667968c0-8.832032 7.167969-16 16-16s16 7.167968 16 16v138.667968c0 8.832032-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812c-4.097656 0-8.191406-1.558593-11.308594-4.691406l-181.332031-181.335937c-6.25-6.25-6.25-16.382813 0-22.632813s16.382813-6.25 22.636719 0l181.332031 181.332032c6.25 6.25 6.25 16.382812 0 22.636718-3.136719 3.132813-7.230469 4.691406-11.328125 4.691406zm0 0"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="order">
+    <path d="m492 236h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 86h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 386h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <circle cx="27" cy="106" r="27"></circle>
+    <circle cx="27" cy="256" r="27"></circle>
+    <circle cx="27" cy="406" r="27"></circle>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" fill="#666" viewBox="0 0 512 512" id="check">
+    <path d="M99.941 293.748a21.78 21.78 0 0 1-7.175-16.153c0-11.938 9.823-21.765 21.764-21.765a21.772 21.772 0 0 1 15.737 6.733l85.958 83.825 164.42-194.504c18.463-21.833 51.574 6.326 33.213 28.125L234.276 392.324l-1.032 1.135c-8.327 8.55-22.218 8.74-30.773.412L99.941 293.748z"></path>
+  </symbol>
+</svg>
+
+<script>
+  "use strict";const doc=document.documentElement,toggle_id="toggle",show_id="show",menu="menu",active="active";let root_url="/";root_url=root_url.startsWith("http")?root_url:window.location.origin;const go_back_class="button_back",line_class=".line",code_block_config=JSON.parse('{"maximum":16,"show":false}'),iconsPath=`icons/`,copy_text="Copy",copied_text="Copied",toggle_line_numbers_text="Toggle line numbers",toggle_line_wrap_text="Toggle line wrap",resize_snippet="Resize snippet height",not_set="not set",shell_based=["sh","shell","zsh","bash"],body=elem("body"),max_lines=code_block_config.maximum,show_lines=code_block_config.show,copy_id="panel_copy",wrap_id="panel_wrap",lines_id="panel_lines",panel_expand="panel_expand",panel_expanded="panel_expanded",panel_box="panel_box",panel_hide="panel_hide",panel_from="panel_from",full_height="initial",highlight="highlight",highlight_wrap="highlight_wrap",hash="#",light="light",dark="dark",storageKey="colorMode",key="--color-mode",mode_data="data-mode",bank=window.localStorage;function isObj(e){return!!(e&&typeof e=="object"&&e!==null)}function createEl(e="div"){return document.createElement(e)}function emptyEl(e){for(;e.firstChild;)e.removeChild(e.firstChild)}function elem(e,t=document){let n=!!isObj(t)&&t.querySelector(e);return n||!1}function elems(e,t=document){return isObj(t)?t.querySelectorAll(e):[]}function pushClass(e,t){if(isObj(e)&&t){let n=e.classList;!n.contains(t)&&n.add(t)}}function deleteClass(e,t){if(isObj(e)&&t){let n=e.classList;!!n.contains(t)&&n.remove(t)}}function modifyClass(e,t){if(isObj(e)&&t){const n=e.classList;n.contains(t)?n.remove(t):n.add(t)}}function containsClass(e,t){if(isObj(e)&&t&&e!==document)return!!e.classList.contains(t)}function isChild(e,t){let n=isObj(e)&&t&&typeof t=="string";return!!(n&&e.closest(t))}function elemAttribute(e,t,n=null){if(n)e.setAttribute(t,n);else return n=e.getAttribute(t),n||!1}function deleteChars(e,t){let n=e;if(Array.isArray(t))for(let e=0;e<t.length;e++)n=n.replace(t[e],"");else n=n.replace(t,"");return n}function isBlank(e){return!e||e.trim().length===0}function isMatch(e,t){if(isObj(e)){if(t.isArray){let n=t.map(function(t){return e.matches(t)});return n.includes(!0)}return e.matches(t)}}function closestInt(e,t){return t.reduce(function(t,n){return Math.abs(n-e)<Math.abs(t-e)?n:t})}function hasClasses(e){if(isObj(e)){const t=e.classList;return t.length}}function wrapEl(e,t){e.parentNode.insertBefore(t,e),t.appendChild(e)}function wrapText(e,t,n="mark"){let s=`<${n}>`,o=`</${n}>`,r=`%3C${n}%3E`,c=`%3C/${n}%3E`;function i(t){let n=t.innerHTML,a=new RegExp(e,"gi"),i=e.length?n.match(a):null;if(i){i.forEach(function(e){n=n.replaceAll(e,`${s}${e}${o}`),t.innerHTML=n});const e=elems("img",t);e&&e.forEach(e=>{e.src=e.src.replaceAll(s,"").replaceAll(o,"").replaceAll(r,"").replaceAll(c,"")})}}const l=["h1","h2","h3","h4","h5","h6","p","code","td"];l.forEach(function(e){const n=elems(e,t);n.length&&n.forEach(function(e){e.children.length>=1?(Array.from(e.children).forEach(function(e){i(e)}),i(e)):i(e)})});const a=elems("a");a&&a.forEach(function(e){e.href=e.href.replaceAll(encodeURI(s),"").replaceAll(encodeURI(o),"")})}function parseBoolean(e=""){switch(e=e.trim().toLowerCase(),e){case"true":return!0;case"false":return!1;default:return void 0}}function loadSvg(e,t){t.innerHTML=`
+  <svg class="icon_${e}">
+    <use xlink:href="#${e}"></use>
+  </svg>`}function copyToClipboard(e){let t,n,s;t=createEl("textarea"),t.value=e,t.setAttribute("readonly",""),t.style.position="absolute",t.style.left="-9999px",n=document.getSelection(),doc.appendChild(t),s=n.rangeCount>0&&n.getRangeAt(0),t.select(),document.execCommand("copy"),doc.removeChild(t),s&&(n.removeAllRanges(),n.addRange(s))}const snippet_actions=[{icon:"copy",id:"copy",title:copy_text,show:!0},{icon:"order",id:"lines",title:toggle_line_numbers_text,show:!0},{icon:"carly",id:"wrap",title:toggle_line_wrap_text,show:!1},{icon:"expand",id:"expand",title:resize_snippet,show:!1}];function addLines(e){let t=e.textContent;const n=[];t.includes(`
+`)&&e.closest("pre")&&!e.children.length&&(t=t.split(`
+`),t.forEach((t,s)=>{if(t.trim().length){const o=`
+        <span class="line line-flex">
+          <span class="ln">${s+1}</span>
+          <span class="cl">${t.trim()}</span>
+        </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
+</script>
+
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+
+
+</body>
+</html>

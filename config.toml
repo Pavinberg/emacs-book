@@ -1,0 +1,21 @@
+baseURL = "https://pavinberg.github.io/emacs-book/"
+enableRobotsTXT = true
+publishDir = "docs"
+
+defaultContentLanguage = "en"
+
+[Languages]
+[Languages.en]
+title = "Pavinberg's Emacs Book"
+weight = 1
+languageName = "English"
+contentDir = "content/en"
+
+[Languages.zh]
+title = "专业 Emacs 入门"
+weight = 2
+languageName = "中文"
+contentDir = "content/zh"
+
+[outputs]
+  home = ["HTML", "RSS","JSON"]

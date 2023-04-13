@@ -1,0 +1,7 @@
+<div>
+  <ul class="language-list">
+    {{ range $.Site.Home.AllTranslations }}
+    <li><a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a></li>
+    {{ end }}
+  </ul>
+</div>

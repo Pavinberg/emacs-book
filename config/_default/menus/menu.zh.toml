@@ -1,0 +1,5 @@
+#  menu items
+[[main]]
+  name = "赞赏"
+  weight = 5
+  url = "donate/"

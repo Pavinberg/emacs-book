@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>专业 Emacs 入门</title>
+    <link>https://pavinberg.github.io/emacs-book/zh/</link>
+    <description>Recent content on 专业 Emacs 入门</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://pavinberg.github.io/emacs-book/zh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>入门介绍</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/intro/</guid>
+      <description>为什么学习 Emacs Emacs 是一个文本编辑器系列，包含有多个分支，其中最主流的一支是 GNU Emacs，大多数情况下所说的 Emacs 都是指 GNU Emacs，本教程也使用 Emacs 指代 GNU Emacs。Emacs 这一名字最早来源于 “Editor MACroS”，后来也有人称它集合了五个主要功能键的首字母 Esc、Meta、Alt、Ctrl、Shift。
+Emacs 与 Vi 共同被称为最古老的 Unix 编辑器，一代代程序员对 Emacs 和 Vi （尤其后来出现的 Vim）产生了无休止的争论。Emacs 诞生已有近五十年时间，是世界上最古老而依然活跃（截止 2021 年）的开源软件之一。
+Emacs 的主要思路是大量依赖组合快捷键实现高效编辑，这直接导致了想要流畅使用 Emacs 必须要记忆 Emacs 的大量快捷键，需要相当一段时间熟悉。此外，Emacs 编辑器本身所使用的编程语言是 Emacs Lisp 语言，Lisp 语言的方言之一。Lisp 语言是诞生于 1958 年的世上第二古老高级程序设计语言，其语言以“列表”（List）作为语法和核心数据结构，由于其具备强大的宏系统，可以创造各式方言，Emacs Lisp 就是其中之一。这个语言相对于我们常见的编程语言来说，晦涩难懂，同样增加了 Emacs 的学习难度。网上流传着一个有趣的形容各个编辑器学习曲线的图片：
+那么，既然如此，为什么要学习这个难以学习的编辑器呢？就为了高效+全面+高度定制化。
+高效：Emacs 将快捷键使用到极致，凡事都尽可能使用快捷键来解决。这样一来，程序员需要记忆繁多的快捷键，但一旦形成了肌肉记忆，将能得到极高的效率。笔者根据自己的体验，在熟练使用 Emacs 的快捷键后，使用任何常规编辑器都会觉得效率低下。即使是使用如 Visual Studio Code 或 JetBrains IDE 系列辅以 Emacs 键位，由于其功能不全，体验也很差。 全面：除了基本的编辑功能，可以与其它各种工具相结合，完成编译、调试、版本管理等各类开发任务，可以说如果你想，可以将它打造为一个功能强大的 IDE。 可扩展与定制化：网络上有着非常大量的 Emacs 插件可供自由搭配选择，你很难想到一个需求是别人没有解决过的，更有大量的功能是你不接触 Emacs 可能永远想不到的。你可以根据你的需求安装插件，而不必安装你不需要的功能，最终你的 Emacs 会是为你自己高度定制化的一个编辑器。Emacs 插件涉及的功能非常广泛，一种调侃 Emacs 的说法是，Emacs 不是一个编辑器，而是一个操作系统，其中甚至有一些游戏、还能让 Emacs 成为一个功能完整的浏览器。下图是一个 xkcd 网站上的漫画 Real Programmers，调侃了 Emacs 可以让蝴蝶扇动翅膀，利用蝴蝶效应引发内存上的一个比特翻转，由此来进行编程，表现了 Emacs 功能的丰富。此外，你可以使用 Emacs Lisp 进行编程，实现你独特的需求。 特别的，在 Linux/macOS 系统的终端中，是可以使用部分 Emacs 快捷键的；在 macOS 系统中的各种文本编辑框，如备忘录、浏览器搜索框等等也都支持 Emacs 光标移动快捷键。因此可以说，掌握 Emacs 快捷键，在各种操作系统中都可以享受到其带来的方便快捷。</description>
+    </item>
+    
+    <item>
+      <title>基础操作</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/basic/</guid>
+      <description>本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
+文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
+另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
+安装 截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
+更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。 图形界面在官网下载安装包进行安装。
+此外还可以用正常包管理工具来进行安装。
+macOS:
+1$ brew install emacs Debian/Ubuntu:
+1$ sudo apt-get install emacs 稍老一些的 Ubuntu 可能不能直接这样安装最新版本的 Emacs，需要自行去下载最新版本安装包安装。
+其它系统类似，安装操作网上资源较多，在此不做赘述。
+启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
+1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。</description>
+    </item>
+    
+    <item>
+      <title>多文件与模式</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/buffer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/buffer/</guid>
+      <description>本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
+Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
+Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
+Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
+Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
+Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
+Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
+Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。</description>
+    </item>
+    
+    <item>
+      <title>基本配置</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/configuration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/configuration/</guid>
+      <description>本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
+语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
+Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。</description>
+    </item>
+    
+    <item>
+      <title>插件：功能优化类</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/optimization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/optimization/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>插件：功能增强类</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/enhancement/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/enhancement/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+    <item>
+      <title>插件：编程开发类</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/development/</guid>
+      <description>To be edited...</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,637 @@
+
+
+<!doctype html>
+<html lang="zh"
+  data-mode="auto"
+>
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
+<link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
+<link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
+<link rel="manifest" href='https://pavinberg.github.io/emacs-book/favicons/site.webmanifest'>
+<link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
+<link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
+<meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
+<title>基本配置 | 专业 Emacs 入门</title><meta property="og:title" content="基本配置" />
+<meta property="og:description" content="本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
+语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
+Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/configuration/" /><meta property="article:section" content="" />
+
+<meta property="og:site_name" content="专业 Emacs 入门" />
+<meta itemprop="name" content="基本配置">
+<meta itemprop="description" content="本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
+语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
+Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。">
+
+<meta itemprop="wordCount" content="1191">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基本配置"/>
+<meta name="twitter:description" content="本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
+语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
+Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。"/>
+
+
+<link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
+
+
+
+
+  <meta name="description" content="本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
+语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
+Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。">
+
+
+</head>
+<body class="page-page" id="pagetop">
+  <header class="nav_header">
+<nav class="wrap nav menu">
+	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
+		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="专业 Emacs 入门 Logo">
+		</picture>
+		<label class="nav_toggle toggle" title='网站菜单' role="button">
+			<svg class="icon icon_harmburger">
+  <use xlink:href="#harmburger"></use>
+</svg>
+		</label>
+	</a>
+	<ul class="nav_body">
+		<li class="nav-item">
+
+<div class="search">
+  <label for="find" class="search_label"><svg class="icon icon_search">
+  <use xlink:href="#search"></use>
+</svg>
+  </label>
+  
+  
+    
+  
+  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
+  <div class="search_results results"></div>
+</div>
+
+
+
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
+		</li>
+		
+		<li class="nav-item nav_repo">
+			<a class="nav-link" href="https://github.com/Pavinberg/emacs-book/" target="_blank">
+				
+					<picture data-lit="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/GitHubMarkDark.svg">
+						<img src="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" alt="GitHub Repo">
+					</picture>
+				
+			</a>
+		</li>
+		<li class="nav-item">
+
+  
+  
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/configuration/">
+	
+	
+	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
+		<img src="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" alt="Language">
+	  </picture>
+		
+  </a>
+  
+
+</li>
+		<li class="nav-item"><div class="color_mode">
+  <label for="mode"></label>
+  <input type="checkbox" class="color_choice standardize-input" id="mode" title="Toggle Dark Mode">
+</div>
+</li>
+	</ul>
+</nav>
+
+  </header>
+  
+  <div class="main wrap pt-4">
+    
+    
+    
+      
+    <div class="grid-auto"><aside class="aside menu">
+  <div>
+    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
+  <use xlink:href="#carly"></use>
+</svg></label>
+  </div>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
+      <section class="" id="docs-专业-emacs-入门">
+        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
+    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
+    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
+    <li><a href="#其它-emacs">其它 Emacs</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#启动">启动</a></li>
+    <li><a href="#关于键盘操作">关于键盘操作</a></li>
+    <li><a href="#功能键">功能键</a></li>
+    <li><a href="#emacs-命令">Emacs 命令</a></li>
+    <li><a href="#基础快捷键">基础快捷键</a>
+      <ul>
+        <li><a href="#如何退出">如何退出</a></li>
+        <li><a href="#光标移动">光标移动</a></li>
+        <li><a href="#编辑操作">编辑操作</a></li>
+        <li><a href="#标记与跳转">标记与跳转</a></li>
+        <li><a href="#重复操作">重复操作</a></li>
+        <li><a href="#页面移动">页面移动</a></li>
+        <li><a href="#搜索文本">搜索文本</a></li>
+        <li><a href="#其它小操作">其它小操作</a></li>
+        <li><a href="#获得帮助">获得帮助</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初识界面">初识界面</a></li>
+    <li><a href="#文件与-buffer">文件与 Buffer</a>
+      <ul>
+        <li><a href="#打开多文件">打开多文件</a></li>
+        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
+        <li><a href="#文件备份">文件备份</a></li>
+      </ul>
+    </li>
+    <li><a href="#多-window">多 Window</a></li>
+    <li><a href="#多-frame">多 Frame</a></li>
+    <li><a href="#模式mode">模式（mode）</a>
+      <ul>
+        <li><a href="#主模式">主模式</a></li>
+        <li><a href="#次模式">次模式</a></li>
+        <li><a href="#mode-hook">Mode hook</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link active"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configuration/">基本配置</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
+      <ul>
+        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
+        <li><a href="#语法简介">语法简介</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础设置">基础设置</a>
+      <ul>
+        <li><a href="#现成的配置">现成的配置</a></li>
+        <li><a href="#基本结构">基本结构</a></li>
+        <li><a href="#最开始的配置">最开始的配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置快捷键">配置快捷键</a></li>
+    <li><a href="#melpa">MELPA</a></li>
+    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
+    <li><a href="#配置变量">配置变量</a></li>
+    <li><a href="#配置生效">配置生效</a></li>
+    <li><a href="#结尾">结尾</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents"></nav>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+  </section>
+      </section>
+  </section>
+</aside>
+
+  <main class="content">
+    <h1>基本配置</h1><p>本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：</p>
+<ul>
+<li>简单的 Emacs Lisp 语言知识——让你在配置时游刃有余</li>
+<li>配置文件的知识——模块化的写法</li>
+<li>一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中</li>
+<li>一些基础配置——开启部分 Emacs 功能</li>
+<li>介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰</li>
+<li>快捷键、变量的设置——迈出你的自定义脚步</li>
+</ul>
+<h2 id="emacs-lisp-简介">Emacs Lisp 简介</h2>
+<h3 id="为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</h3>
+<p>Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的<a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html">入门介绍</a>和<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html">参考手册</a>。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。</p>
+<p>学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。</p>
+<p>当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。</p>
+<h3 id="语法简介">语法简介</h3>
+<blockquote>
+<p>以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。</p>
+</blockquote>
+<p>Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 <a href="https://github.com/abo-abo/swiper">ivy 插件</a>）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">ivy-set-prompt</span> <span class="p">(</span><span class="nv">caller</span> <span class="nv">prompt-fn</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">ivy--prompts-list</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">        <span class="p">(</span><span class="nv">plist-put</span> <span class="nv">ivy--prompts-list</span> <span class="nv">caller</span> <span class="nv">prompt-fn</span><span class="p">)))</span>
+</span></span></code></pre></div><p>Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。</p>
+<p>例如，<code>2+3+4</code> 在 Lisp 中写为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">+</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+</span></span></code></pre></div><p>因为 <code>+</code> 就是个函数，后面是它的参数。 再如 <code>4+(3-2)</code> 写为：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">+</span> <span class="mi">4</span> <span class="p">(</span><span class="nf">-</span> <span class="mi">3</span> <span class="mi">2</span><span class="p">))</span>
+</span></span></code></pre></div><p>那么在 Emacs 中基本都是做一些定义函数、变量等操作的 ，定义函数就用 <code>defun</code> 关键字， 设置变量的值用 <code>setq</code> 关键字。</p>
+<p>所以上面展示的那段 Emacs Lisp 代码可以约等于如下 C 语言代码（类型名是笔者杜撰的）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="ln">1</span><span class="cl"><span class="kt">void</span> <span class="nf">ivy_set_prompt</span><span class="p">(</span><span class="n">CallerType</span> <span class="n">caller</span><span class="p">,</span> <span class="n">FnType</span> <span class="n">prompt_fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="n">ivy__prompts_list</span> <span class="o">=</span> <span class="nf">plist_put</span><span class="p">(</span><span class="n">ivy__prompts_list</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span> <span class="n">prompt_fn</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>约等于如下 Python 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">def</span> <span class="nf">ivy_set_prompt</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span> <span class="n">prompt_fn</span><span class="p">):</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="n">ivy__prompts_list</span> <span class="o">=</span> <span class="n">plist_put</span><span class="p">(</span><span class="n">ivy__prompts_list</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span> <span class="n">prompt_fn</span><span class="p">)</span>
+</span></span></code></pre></div><p>注意这里笔者把所有的连字符替换成了下划线。这里就可以看出，Lisp 的变量名、函数名要比 C/C++、Python、Java 等主流语言的变量名的要求更宽松，Lisp 的变量名可以包含许多字符，所以如果看到了一些奇奇怪怪的名字，不要感到惊讶，就是变量名。</p>
+<p>还有一些常见关键字如 <code>let</code> 为一组变量圈出一个作用域、<code>if</code> / <code>when</code> / <code>unless</code> 表示条件语句。 <code>t</code> 表示 true，<code>nil</code> 表示空（相当于 C 语言的 <code>NULL</code>、Python 的 <code>None</code>）。</p>
+<p>另外有一些不起眼的字符在 Lisp 中也是有意义的，例如单引号表达了后面的元素不进行执行而直接返回它本身：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="nv">Tom</span> <span class="nv">Amy</span> <span class="nv">John</span><span class="p">)</span>
+</span></span></code></pre></div><p>当括号前面有一个单引号时，表达了一个包含了三个元素的“数组”，而不是在执行一个叫 Tom 的函数。而</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="ss">&#39;ivy-set-prompt</span>
+</span></span></code></pre></div><p>表示把 <code>ivy-set-prompt</code> 这个函数作为一个对象传递给其它部分，也没有执行这个函数。</p>
+
+<div class="tip">
+  反引号（`）backquote（或称 backtick、grave accent）在 Lisp 中也有含义，和单引号类似，读者只需要知道有这回事就好，基本上不需要我们去编写这些内容。
+</div>
+
+<p>Emacs Lisp 源码文件的后缀名是 <code>.el</code>。</p>
+<p>分号（;）以后的内容都是注释。</p>
+<p>由于 Lisp 的整个语言结构就是列表的嵌套，所以它设定了一个非常强大的宏系统，可以用代码生成代码，甚至定义出一个与之前不太一样的新语言，常被称为方言。Emacs Lisp 就是这样诞生的。再加上其变量名可使用的字符很多，所以读者如果发现了一些不同寻常的写法，例如下文提到的 <code>use-package</code>，不要觉得惊讶，也请记住 Lisp 的语法本质始终都是列表。</p>
+<p>配置文件</p>
+<p>在介绍了 Emacs Lisp 的基本语法后，我们来正式开始学习 Emacs 的配置相关的知识。</p>
+<p>配置文件是一个包含了 Emacs Lisp 源码的文件，描述了 Emacs 应当以什么样的方式启动。在 Emacs 启动的时候会执行其中的代码，可以理解为启动时刻运行的脚本。</p>
+<p>当启动 Emacs 时，Emacs 会自动依次寻找以下几个文件之一作为配置文件：</p>
+<pre tabindex="0"><code>~/.emacs
+~/.emacs.el
+~/.emacs.d/init.el
+~/.config/emacs/init.el
+</code></pre><p>如果想用其它位置的自定义配置文件详见文档。
+可以预见，随着我们需要的功能越来越复杂，配置源码会越来越长，我们会希望能够分多个源文件进行不同功能的管理。所以<strong>使用 <code>~/.emacs.d/init.el</code> 作为配置文件是最为常见的</strong>。 我们可以将其它各种源文件都放置在 <code>~/.emacs.d</code> 目录下，方便管理。</p>
+<h2 id="基础设置">基础设置</h2>
+<h3 id="现成的配置">现成的配置</h3>
+<p>读者如果阅读过其它 Emacs 相关建议，一定见过很多人建议初学者直接使用一些 Emacs 大牛的配置。笔者的观点是大牛的配置自然要借鉴，但一定要慢慢学习大体了解其中的内容，不能盲目地使用，否则想要改配置的时候就不知所措了。</p>
+<blockquote>
+<p>笔者在最开始其实是完全自己配置的，虽然比较辛苦也走过很多弯路，但倒也是一个学习的过程。</p>
+</blockquote>
+<p>笔者最开始借鉴的就是 <a href="https://github.com/purcell/emacs.d">Steve Purcell 的配置</a>。<a href="https://www.emacswiki.org/emacs/StevePurcell">Steve Purcell</a> 是 <a href="https://melpa.org/">MELPA</a> 的维护者（MELPA 是什么下文将会介绍）。读者可以 clone 下来后把文件夹命名为 <code>~/.emacs.d</code>，之后启动 Emacs 时会自动安装 Steve Purcell 配好的插件。</p>
+<p>笔者作为一个代码强迫症患者，对于这种“不知道它给我安装了什么插件”的情况感到十分不快，所以我会进行自己的修改。之后的教程会尽可能介绍如何去配置、用到了什么插件。笔者会借鉴一部分 Steve Purcell 的配置来为大家讲解，读者可以在 Steve Purcell 的配置基础上自己修改，也可以从零开始一步步按照笔者的说明来进行探索。</p>
+<h3 id="基本结构">基本结构</h3>
+<p>首先，请使用 Emacs 打开 <code>~/.emacs.d/init.el</code> 文件。一开始如果没有这个文件，我们创建它就好。</p>
+<p>根据 Emacs Lisp 的规范，所有的源码文件的开头最好写好 docstring，也就是一些关于这个文件的说明，即使是 <code>init.el</code> 也不例外。以 Steve Purcell 的 <code>init.el</code> 为例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">;;; init.el --- Load the full configuration -*- lexical-binding: t -*-</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">;;; Commentary:</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">;; This file bootstraps the configuration, which is divided into</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">;; a number of other files.</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">;;; Code:</span>
+</span></span></code></pre></div><p>按照习惯，三个分号开头的注释表示“节”，两个分号开头的注释表示“段落”。（一个分号开头的是一行代码后面的行内注释）。<code>;;; Code:</code> 后面就开始 Emacs Lisp 的代码了。同时，文件的结尾要是：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">;;; init.el ends here</span>
+</span></span></code></pre></div><p>Steve Purcell 的配置的前 34 行几乎可以照抄，除了其中一行 <code>(require 'init-benchmarking)</code>中使用了他定义在 <code>~/.emacs.d/lisp/init_benchmarking.el</code> 中的逻辑来测量启动时间，读者酌情加入 ：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">minver</span> <span class="s">&#34;25.1&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">version&lt;</span> <span class="nv">emacs-version</span> <span class="nv">minver</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="p">(</span><span class="kt">error</span> <span class="s">&#34;Your Emacs is too old -- this config requires v%s or higher&#34;</span> <span class="nv">minver</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">version&lt;</span> <span class="nv">emacs-version</span> <span class="s">&#34;26.1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nv">message</span> <span class="s">&#34;Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible.&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;load-path</span> <span class="p">(</span><span class="nv">expand-file-name</span> <span class="s">&#34;lisp&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span> <span class="c1">; 设定源码加载路径</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">;; (require &#39;init-benchmarking) ;; Measure startup time</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">(</span><span class="nv">defconst</span> <span class="vg">*spell-check-support-enabled*</span> <span class="no">nil</span><span class="p">)</span> <span class="c1">;; Enable with t if you prefer</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">(</span><span class="nv">defconst</span> <span class="vg">*is-a-mac*</span> <span class="p">(</span><span class="nf">eq</span> <span class="nv">system-type</span> <span class="ss">&#39;darwin</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">;; Adjust garbage collection thresholds during startup, and thereafter</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">normal-gc-cons-threshold</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">20</span> <span class="mi">1024</span> <span class="mi">1024</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">      <span class="p">(</span><span class="nv">init-gc-cons-threshold</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">128</span> <span class="mi">1024</span> <span class="mi">1024</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">init-gc-cons-threshold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;emacs-startup-hook</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">            <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">gc-cons-threshold</span> <span class="nv">normal-gc-cons-threshold</span><span class="p">))))</span>
+</span></span></code></pre></div><p>涉及一些基本的启动要素，例如检查版本、设定源码加载路径、通过修改垃圾回收的内存上限来提高 Emacs 启动速度等等。其中，“设定源码加载路径” 这句代码是指将 <code>~/.emacs.d/lisp/</code> 目录作为源码加载路径，这样你可以将功能需求拆分成多个文件放置在这个目录中，供 <code>init.el</code> 使用。</p>
+<p>那么拆分出去的功能怎么使用呢？如果你使用的是 Steve Purcell 的配置，可以看到许多的 <code>(require 'xxx)</code>，这个可以理解为“导入并执行”，基本类似于 Python 的 <code>import</code>。 也就是导入刚刚说的放置在了 <code>~/.emacs.d/lisp/</code> 目录下的某个源码文件，并运行了其中的代码使得内部的设置和函数定义生效。</p>
+<p>举个例子，我们可以创建一个文件 <code>~/.emacs.d/lisp/hello.el</code>，包含如下代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">;;; hello -- Echo &#34;Hello, world!&#34;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1">;;; Commentary:</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">;;; Code:</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">hello-world</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">message</span> <span class="s">&#34;Hello, world!&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">(</span><span class="nf">provide</span> <span class="ss">&#39;hello</span><span class="p">)</span> <span class="c1">; 意为“导出本模块，名为 hello”。这样就可以在其它地方进行 require </span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">;;; hello.el ends here</span>
+</span></span></code></pre></div><p>在 init.el 中，加上一句代码 <code>(require 'hello)</code>，重启 Emacs，此时 Emacs 就会多了一条名为 <code>hello-world</code> 的命令。读者此时可以按下 <code>M-x</code>，输入 hello-world，就可以看到回显区 Echo area 中出现了 &quot;Hello, world!&quot;。尽管这个函数不在 <code>init.el</code> 中定义，但通过这种方式导入就可以顺利执行成功！</p>
+<p>观察 Steve Purcell 的 <code>init.el</code>，几乎通篇都是 <code>(require 'xxx)</code>，这种模块化风格值得学习。</p>
+<h3 id="最开始的配置">最开始的配置</h3>
+<p>对于一个刚打开的“白板”编辑器来说，有不少功能是我们亟需开启的，在此做简要归纳：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">confirm-kill-emacs</span> <span class="nf">#&#39;yes-or-no-p</span><span class="p">)</span>      <span class="c1">; 在关闭 Emacs 前询问是否确认关闭，防止误触</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nv">electric-pair-mode</span> <span class="no">t</span><span class="p">)</span>                       <span class="c1">; 自动补全括号</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">show-paren-mode</span><span class="p">)</span> <span class="c1">; 编程模式下，光标在括号上时高亮另一个括号</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nv">column-number-mode</span> <span class="no">t</span><span class="p">)</span>                       <span class="c1">; 在 Mode line 上显示列号</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nv">global-auto-revert-mode</span> <span class="no">t</span><span class="p">)</span>                  <span class="c1">; 当另一程序修改了文件时，让 Emacs 及时刷新 Buffer</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="p">(</span><span class="nv">delete-selection-mode</span> <span class="no">t</span><span class="p">)</span>                    <span class="c1">; 选中文本后输入文本会替换文本（更符合我们习惯了的其它编辑器的逻辑）</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">inhibit-startup-message</span> <span class="no">t</span><span class="p">)</span>             <span class="c1">; 关闭启动 Emacs 时的欢迎界面</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">make-backup-files</span> <span class="no">nil</span><span class="p">)</span>                 <span class="c1">; 关闭文件自动备份</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span>   <span class="c1">; 编程模式下，可以折叠代码块</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">(</span><span class="nv">global-display-line-numbers-mode</span> <span class="mi">1</span><span class="p">)</span>         <span class="c1">; 在 Window 显示行号</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">(</span><span class="nv">tool-bar-mode</span> <span class="mi">-1</span><span class="p">)</span>                           <span class="c1">; （熟练后可选）关闭 Tool bar</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span> <span class="p">(</span><span class="nv">toggle-scroll-bar</span> <span class="mi">-1</span><span class="p">))</span> <span class="c1">; 图形界面时关闭滚动条</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">(</span><span class="nv">savehist-mode</span> <span class="mi">1</span><span class="p">)</span>                            <span class="c1">; （可选）打开 Buffer 历史记录保存</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">display-line-numbers-type</span> <span class="ss">&#39;relative</span><span class="p">)</span>   <span class="c1">; （可选）显示相对行号</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;default-frame-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">width</span> <span class="o">.</span> <span class="mi">90</span><span class="p">))</span>  <span class="c1">; （可选）设定启动图形界面时的初始 Frame 宽度（字符数）</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;default-frame-alist</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">height</span> <span class="o">.</span> <span class="mi">55</span><span class="p">))</span> <span class="c1">; （可选）设定启动图形界面时的初始 Frame 高度（字符数）</span>
+</span></span></code></pre></div><h2 id="配置快捷键">配置快捷键</h2>
+<p>首先介绍一下如何配置全局的快捷键：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="nv">&lt;KEY&gt;</span><span class="p">)</span> <span class="nv">&lt;FUNCTION&gt;</span><span class="p">)</span>
+</span></span></code></pre></div><p>其中 <code>&lt;KEY&gt;</code> 和 <code>&lt;FUNCTION&gt;</code> 替换为你想要设置的快捷键和功能。例如一个常见设置是修改回车键为“新起一行并做缩进”：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;RET&#34;</span><span class="p">)</span> <span class="ss">&#39;newline-and-indent</span><span class="p">)</span>
+</span></span></code></pre></div><p>其它设置示例：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-w&#34;</span><span class="p">)</span> <span class="ss">&#39;kill-region</span><span class="p">)</span>              <span class="c1">; 交换 M-w 和 C-w，M-w 为剪切</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-w&#34;</span><span class="p">)</span> <span class="ss">&#39;kill-ring-save</span><span class="p">)</span>           <span class="c1">; 交换 M-w 和 C-w，C-w 为复制</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-a&#34;</span><span class="p">)</span> <span class="ss">&#39;back-to-indentation</span><span class="p">)</span>      <span class="c1">; 交换 C-a 和 M-m，C-a 为到缩进后的行首</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-m&#34;</span><span class="p">)</span> <span class="ss">&#39;move-beginning-of-line</span><span class="p">)</span>   <span class="c1">; 交换 C-a 和 M-m，M-m 为到真正的行首</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c &#39;&#34;</span><span class="p">)</span> <span class="ss">&#39;comment-or-uncomment-region</span><span class="p">)</span> <span class="c1">; 为选中的代码加注释/去注释</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">;; 自定义两个函数</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">;; Faster move cursor</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">next-ten-lines</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="s">&#34;Move cursor to next 10 lines.&#34;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nv">next-line</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">previous-ten-lines</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="s">&#34;Move cursor to previous 10 lines.&#34;</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">(</span><span class="nv">previous-line</span> <span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1">;; 绑定到快捷键</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-n&#34;</span><span class="p">)</span> <span class="ss">&#39;next-ten-lines</span><span class="p">)</span>            <span class="c1">; 光标向下移动 10 行</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-p&#34;</span><span class="p">)</span> <span class="ss">&#39;previous-ten-lines</span><span class="p">)</span>        <span class="c1">; 光标向上移动 10 行</span>
+</span></span></code></pre></div><p>读者使用 Emacs 期间应当已经发现规律，Emacs 的常见快捷键前缀是 <code>C-x</code> 和 <code>C-c</code>，笔者有一些个人操作：解绑本来的 <code>C-j</code> 快捷键（本来功能为 <code>electric-newline-and-maybe-indent</code>），让 <code>C-j</code> 也成为了一个前缀：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-j&#34;</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">;; 删去光标所在行（在图形界面时可以用 &#34;C-S-&lt;DEL&gt;&#34;，终端常会拦截这个按法)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-j C-k&#34;</span><span class="p">)</span> <span class="ss">&#39;kill-whole-line</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="melpa">MELPA</h2>
+<p>那么插件从哪里安装呢？Emacs 的插件都被放在了一些固定的仓库网站上，就好像手机的应用商店一样，区别是 Emacs 所使用的仓库是可以自由配置的，我们只需要把仓库的地址告诉 Emacs 就可以了。Emacs 最大的插件仓库就是 MELPA 了，也就是上文提到的 Steve Purcell 所维护的项目。此外也有一个默认仓库 GNU ELPA。</p>
+<p><a href="https://melpa.org/#/getting-started">MELPA 的官网</a>有直接介绍如何配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;package</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;package-archives</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;melpa&#34;</span> <span class="o">.</span> <span class="s">&#34;https://melpa.org/packages/&#34;</span><span class="p">)</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
+</span></span></code></pre></div><p>只需这三行，就可以把仓库地址 <code>https://melpa.org/packages/</code> 存储到 <code>package-archives</code> 列表中，并命名为 “melpa”。</p>
+<p>由于国内网络问题，直接访问速度较慢，有如下两个方案。</p>
+<ol>
+<li>使用代理</li>
+</ol>
+<p>把下面的代码加在配置文件中，修改为自己的代理服务器 IP 和代理服务器端口号。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">gnutls-algorithm-priority</span> <span class="s">&#34;NORMAL:-VERS-TLS1.3&#34;</span><span class="p">)</span> <span class="c1">; 不加这一句可能有问题，建议读者尝试一下</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">url-proxy-services</span> <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;no_proxy&#34;</span> <span class="o">.</span> <span class="s">&#34;^\\(192\\.168\\..*\\)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">                           <span class="p">(</span><span class="s">&#34;http&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">			   <span class="p">(</span><span class="s">&#34;https&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)))</span>
+</span></span></code></pre></div><ol start="2">
+<li>使用国内镜像</li>
+</ol>
+<p>腾讯镜像：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;package</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="k">setq</span> <span class="nv">package-archives</span> <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;gnu&#34;</span>   <span class="o">.</span> <span class="s">&#34;http://mirrors.cloud.tencent.com/elpa/gnu/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">                         <span class="p">(</span><span class="s">&#34;melpa&#34;</span> <span class="o">.</span> <span class="s">&#34;http://mirrors.cloud.tencent.com/elpa/melpa/&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">(</span><span class="nv">package-initialize</span><span class="p">)</span>
+</span></span></code></pre></div>
+<div class="tip">
+  腾讯镜像中，除了 MELPA，第一条的 &quot;gnu&quot; 对应着的就是默认的 GNU ELPA，部分包是只在 GNU ELPA 上 的。这里的配置意为：设置了两个插件仓库，一个叫 <code>gnu</code>，一个叫 <code>melpa</code>。
+</div>
+
+<p>随后重启 Emacs 后，输入命令 <code>package-list-packages</code> 就可以列出来仓库中的所有插件，可以选中相应的插件，会弹出介绍的界面和安装按钮。此外，还可以直接通过命令 <code>package-install</code> ，按下回车后，输入插件名就可以安装相应插件。</p>
+
+<div class="tip">
+  package-list-packages 列表界面下，可以按 h 显示帮助。在这个视图下可以批量操作，类似 Buffer List。例如可以按 U 检查所有已安装插件是否有新版本，如果有就会标注更新。按 i 可以标记想要安装。最后按下 x 就可以执行更新操作。
+</div>
+
+<p>默认情况下，插件会被安装到 <code>~/.emacs.d/elpa/</code> 目录下。</p>
+<p>想要删除已安装的插件，输入命令 <code>package-delete</code> ，然后输入已安装的插件名即可。</p>
+<h2 id="插件设置-use-package">插件设置 (use-package)</h2>
+<p>通常各种插件都会发布到 GitHub 上，一般在上面都会介绍如何配置这个插件。但插件逐渐多了我们会发现，不同插件的使用、配置常常不同，一一配置会使得配置文件很乱，且不易管理，并且缺少一些自动化的配置机制。Steve Purcell 的配置中，他在 <code>init-elpa.el</code> 中定义了一些辅助函数 <code>require-package</code> 等实现了插件的自动安装。</p>
+<p>笔者则使用了一个更为方便的插件 <code>use-package</code> 来进行管理。</p>
+<p>首先安装 <code>use-package</code>。输入命令 <code>package-install</code> 按下回车后输入 &quot;use-package&quot;，回车。在 <code>init.el</code> 较靠前的位置（或其它你认为合适的文件中）写上：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">eval-when-compile</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;use-package</span><span class="p">))</span>
+</span></span></code></pre></div><p>这样，我们就在启动 Emacs 的时候首先加载 <code>use-package</code> 插件。随后我们再使用 <code>use-package</code> 插件来管理所有其它插件。</p>
+<p><code>use-package</code> 官网提供了一些教程，其使用方法很简单，假设我们希望使用一个叫 <code>foo</code> 的插件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">foo</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="ss">:init</span>                  <span class="c1">; 在加载插件前执行一些命令</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">foo-variable</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="ss">:config</span>                <span class="c1">; 在加载插件后执行一些命令</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">foo-mode</span> <span class="mi">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>所有的冒号开头的词是 <code>use-package</code> 的一些设置关键词。上面的代码表示使用名为 <code>foo</code> 的插件，在加载插件之前设置变量 <code>foo-variable</code> 为 <code>t</code> （即 true）。并在加载之后启动 <code>foo-mode</code> 。</p>
+<p>例如，我们在后面会介绍的一个 Emacs 补全功能增强插件 <code>ivy</code>，只需编写如下配置（这里只是示例，单纯粘贴此段代码会有报错，请查看后面的教程中更详细的说明）：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">ivy</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="ss">:ensure</span> <span class="no">t</span>                          <span class="c1">; 确认安装，如果没有安装过 ivy 就自动安装    </span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="ss">:config</span>                            <span class="c1">; 在加载插件后执行一些命令</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="p">(</span><span class="nv">ivy-mode</span> <span class="mi">1</span><span class="p">)</span>                       <span class="c1">; 加载后启动 ivy-mode</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">ivy-use-virtual-buffers</span> <span class="no">t</span><span class="p">)</span>   <span class="c1">; 一些官网提供的固定配置</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="k">setq</span> <span class="nv">ivy-count-format</span> <span class="s">&#34;(%d/%d) &#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="ss">:bind</span>                              <span class="c1">; 以下为绑定快捷键</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-s&#34;</span> <span class="o">.</span> <span class="ss">&#39;swiper-isearch</span><span class="p">)</span>          <span class="c1">; 绑定快捷键 C-s 为 swiper-search，替换原本的搜索功能</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="s">&#34;M-x&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-M-x</span><span class="p">)</span>             <span class="c1">; 使用 counsel 替换命令输入，给予更多提示</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-x C-f&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-find-file</span><span class="p">)</span>   <span class="c1">; 使用 counsel 做文件打开操作，给予更多提示</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="s">&#34;M-y&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-yank-pop</span><span class="p">)</span>        <span class="c1">; 使用 counsel 做历史剪贴板粘贴，可以展示历史</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-x b&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-switch-buffer</span><span class="p">)</span>     <span class="c1">; 使用 ivy 做 buffer 切换，给予更多提示</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c v&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-push-view</span><span class="p">)</span>         <span class="c1">; 记录当前 buffer 的信息</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c s&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-switch-view</span><span class="p">)</span>       <span class="c1">; 切换到记录过的 buffer 位置</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c V&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-pop-view</span><span class="p">)</span>          <span class="c1">; 移除 buffer 记录</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-x C-SPC&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-mark-ring</span><span class="p">)</span> <span class="c1">; 使用 counsel 记录 mark 的位置</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;f1&gt; f&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-describe-function</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;f1&gt; v&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-describe-variable</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;f1&gt; i&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-info-lookup-symbol</span><span class="p">))</span>
+</span></span></code></pre></div><p>这样，所有有关 <code>ivy</code> 插件的配置就都整合在了一个 (use-package ...) 中，并且只需要加上 <code>:ensure t</code> 就可以检查安装情况、自动安装，十分方便管理。</p>
+<p>这里出现的语法看似和我们之前了解的不同，但其实本质一样。虽然 <code>:ensure</code>、<code>:bind</code> 等写法看起来好像很奇怪，但正如我们上文学到的，Lisp 的变量名十分灵活，且语言特性使得它具有非常强大的宏，可以自定义一些语法。<code>use-package</code> 就是自己设定了这样的一种写法。
+此外，也可以轻松地设定上一篇教程中提到的模式的 hook。例如，我们希望在编程模式 <code>prog-mode</code> 下使用代码语法检查工具 <code>flycheck</code>，只需要使用 <code>:hook</code> 进行设置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">use-package</span> <span class="nv">flycheck</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="ss">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="ss">:hook</span>                        <span class="c1">; 为模式设置 hook</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">flycheck-mode</span><span class="p">))</span>
+</span></span></code></pre></div><h2 id="配置变量">配置变量</h2>
+<p>除了使用配置文件，Emacs 还提供了一个更为方便的办法管理一些变量（customizable variables），或称用户选项（user options）。</p>
+<p><img src="../../images/emacs-book/configuration/customize.png" alt="M-x customize"></p>
+<p>最简单的进入办法，就是按下 <code>M-x</code> 输入 <code>customize</code> 后回车确认。</p>
+<p>变量是分组（group）管理的，只需要点进去寻找或搜索相关的变量就可以进行设置。对于每一个变量，点左侧的箭头展开内容，可以看到有的变量是 Toggle 按钮表示可以设定 true/false，有的则是取值列表，可以设定值。修改后，State 会显示已编辑。最后点击上方的 Apply 就是应用更改。点击 Revert 就可以放弃更改等。按 <code>q</code> 退出。</p>
+<p><img src="../../images/emacs-book/configuration/customize-var.png" alt="配置变量"></p>
+<p>当设置了变量后，事实上 Emacs 会自动将一些配置代码加入到 <code>init.el</code> 中，或是加入到自定义的文件中（比如 Steve Purcell 就自定义了这个文件）。</p>
+<p>此外，使用 Emacs 的过程中也可以临时修改某个变量的值，<code>M-x</code> <code>set-variable</code> 就可以输入变量名、回车、输入值、回车。还可以用 <code>C-h v</code> 输入变量名来查看变量的含义。</p>
+<p>因此总结来说，想要设定变量有三种途径：</p>
+<ol>
+<li>配置文件中使用 (setq name value)</li>
+<li>customize 中设定</li>
+<li>运行过程中临时修改 <code>M-x</code> <code>set-variable</code></li>
+</ol>
+<p>最后笔者还想再强调一下，一定要区分好命令和变量 。这里笔者所指的”命令“是带有 (interactive) 的函数。例如上文举例的 <code>hello-world</code> 函数，这种函数可以通过 <code>M-x</code> 输入函数名调用，本教程姑且称之为“命令“。命令是可以执行的，而变量只是保存一个值，是不可执行的。在 Emacs Lisp 中二者的命名规则是一致的，看起来十分相似，对于初学者容易混淆。</p>
+<h2 id="配置生效">配置生效</h2>
+<p>最简单让配置生效的办法就是重启 Emacs。</p>
+<p>此外，如果你在频繁的改一些配置，尤其是调整一些参数等，频繁的重启很麻烦。事实上 Emacs Lisp 语言是逐句执行的。所以例如我们新加入了一段配置，我们便可以直接选中这部分代码，然后按下 <code>M-x</code> <code>eval-region</code> ，表达了“运行选中的这部分代码”的含义，这样这段代码立刻就会生效了。当然，还有 <code>M-x</code> <code>eval-buffer</code> 可以直接重新执行一下当前 Buffer 的所有代码。</p>
+<h2 id="结尾">结尾</h2>
+<p>最后，配置文件的结尾要有一句：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">provide</span> <span class="ss">&#39;init</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">;;; init.el ends here</span>
+</span></span></code></pre></div>
+    <div class="pager">
+  
+    
+    <div class="pager_item prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/buffer/" class="pager_link button" title="多文件与模式" rel="prev">
+        <span class="pager_label">多文件与模式</span>
+      </a>
+    </div>
+    
+  
+
+  
+    
+    <div class="pager_item next">
+      <a href="https://pavinberg.github.io/emacs-book/zh/optimization/" class="pager_link button" title="插件：功能优化类" rel="next">
+        <span class="pager_label">插件：功能优化类</span>
+      </a>
+    </div>
+    
+  
+</div>
+  </main>
+</div>
+</div>
+  
+<footer class="pt-2 pb-2">
+  <div class="wrap">
+    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <a href="#pagetop" id="toTop" title=回到顶部></a>
+  </div>
+</footer>
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492.004 492.004" id="next">
+    <path d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999" id="search">
+    <path d="M508.874 478.708L360.142 329.976c28.21-34.827 45.191-79.103 45.191-127.309C405.333 90.917 314.416 0 202.666 0S0 90.917 0 202.667s90.917 202.667 202.667 202.667c48.206 0 92.482-16.982 127.309-45.191l148.732 148.732c4.167 4.165 10.919 4.165 15.086 0l15.081-15.082c4.165-4.166 4.165-10.92-.001-15.085zM202.667 362.667c-88.229 0-160-71.771-160-160s71.771-160 160-160 160 71.771 160 160-71.771 160-160 160z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241 179" id="harmburger">
+    <path d="M1 10C1 4.477 5.477 0 11 0h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11C5.477 20 1 15.523 1 10zm0 80c0-5.523 4.477-10 10-10h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11c-5.523 0-10-4.477-10-10zm9 69c-5.523 0-10 4.477-10 10s4.477 10 10 10h220c5.523 0 10-4.477 10-10s-4.477-10-10-10H10z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.998 401.998" id="sort">
+    <path d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"></path>
+  </symbol>
+</svg>
+
+<svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="arrow">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol aria-hidden="true" viewBox="0 0 24 24" id="carly">
+    <path fill="currentColor" d="M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="copy">
+    <path d="m366.905 108.016h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.048 0 20.003-8.955 20.003-20.003s-8.956-20.003-20.003-20.003z"></path>
+    <path d="m366.905 188.027h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.047 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m286.004 268.039h-61.009c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h61.009c11.048 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m448.028 272.039c11.048 0 20.003-8.955 20.003-20.003v-172.024c0-44.119-35.894-80.012-80.012-80.012h-184.027c-44.094 0-79.971 35.853-80.012 79.938-44.118 0-80.012 35.893-80.012 80.012v272.039c0 44.118 35.893 80.012 80.012 80.012h194.028c44.118 0 80.012-35.893 80.012-80.012v-.608c39.414-4.938 70.01-38.662 70.01-79.389 0-11.048-8.955-20.003-20.003-20.003s-20.003 8.955-20.003 20.003c0 22.054-17.942 40.001-39.996 40.006l-184.027.045h-.009c-10.685 0-20.73-4.16-28.285-11.715-7.558-7.556-11.721-17.604-11.721-28.291v-272.025c0-22.059 17.947-40.006 40.006-40.006h184.028c22.059 0 40.006 17.947 40.006 40.006v172.025c-.001 11.047 8.954 20.002 20.002 20.002zm-244.036 160.008h.02l154.002-.038c-.012 22.049-17.954 39.984-40.006 39.984h-194.027c-22.059 0-40.006-17.947-40.006-40.006v-272.039c0-22.059 17.947-40.006 40.006-40.006v232.094c0 21.375 8.325 41.471 23.441 56.583 15.113 15.11 35.2 23.428 56.57 23.428z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="youtube">
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.016 512" id="expand">
+    <path d="m240 426.675781h-181.332031c-32.363281 0-58.667969-26.304687-58.667969-58.667969v-309.332031c0-32.363281 26.304688-58.6679685 58.667969-58.6679685h309.332031c32.363281 0 58.667969 26.3046875 58.667969 58.6679685v181.332031c0 8.832032-7.167969 16-16 16s-16-7.167968-16-16v-181.332031c0-14.699219-11.96875-26.667969-26.667969-26.667969h-309.332031c-14.699219 0-26.667969 11.96875-26.667969 26.667969v309.332031c0 14.699219 11.96875 26.667969 26.667969 26.667969h181.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812h-138.667969c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-16 16-16h122.667969v-122.667968c0-8.832032 7.167969-16 16-16s16 7.167968 16 16v138.667968c0 8.832032-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812c-4.097656 0-8.191406-1.558593-11.308594-4.691406l-181.332031-181.335937c-6.25-6.25-6.25-16.382813 0-22.632813s16.382813-6.25 22.636719 0l181.332031 181.332032c6.25 6.25 6.25 16.382812 0 22.636718-3.136719 3.132813-7.230469 4.691406-11.328125 4.691406zm0 0"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="order">
+    <path d="m492 236h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 86h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 386h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <circle cx="27" cy="106" r="27"></circle>
+    <circle cx="27" cy="256" r="27"></circle>
+    <circle cx="27" cy="406" r="27"></circle>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" fill="#666" viewBox="0 0 512 512" id="check">
+    <path d="M99.941 293.748a21.78 21.78 0 0 1-7.175-16.153c0-11.938 9.823-21.765 21.764-21.765a21.772 21.772 0 0 1 15.737 6.733l85.958 83.825 164.42-194.504c18.463-21.833 51.574 6.326 33.213 28.125L234.276 392.324l-1.032 1.135c-8.327 8.55-22.218 8.74-30.773.412L99.941 293.748z"></path>
+  </symbol>
+</svg>
+
+<script>
+  "use strict";const doc=document.documentElement,toggle_id="toggle",show_id="show",menu="menu",active="active";let root_url="/";root_url=root_url.startsWith("http")?root_url:window.location.origin;const go_back_class="button_back",line_class=".line",code_block_config=JSON.parse('{"maximum":16,"show":false}'),iconsPath=`icons/`,copy_text="Copy",copied_text="Copied",toggle_line_numbers_text="Toggle line numbers",toggle_line_wrap_text="Toggle line wrap",resize_snippet="Resize snippet height",not_set="not set",shell_based=["sh","shell","zsh","bash"],body=elem("body"),max_lines=code_block_config.maximum,show_lines=code_block_config.show,copy_id="panel_copy",wrap_id="panel_wrap",lines_id="panel_lines",panel_expand="panel_expand",panel_expanded="panel_expanded",panel_box="panel_box",panel_hide="panel_hide",panel_from="panel_from",full_height="initial",highlight="highlight",highlight_wrap="highlight_wrap",hash="#",light="light",dark="dark",storageKey="colorMode",key="--color-mode",mode_data="data-mode",bank=window.localStorage;function isObj(e){return!!(e&&typeof e=="object"&&e!==null)}function createEl(e="div"){return document.createElement(e)}function emptyEl(e){for(;e.firstChild;)e.removeChild(e.firstChild)}function elem(e,t=document){let n=!!isObj(t)&&t.querySelector(e);return n||!1}function elems(e,t=document){return isObj(t)?t.querySelectorAll(e):[]}function pushClass(e,t){if(isObj(e)&&t){let n=e.classList;!n.contains(t)&&n.add(t)}}function deleteClass(e,t){if(isObj(e)&&t){let n=e.classList;!!n.contains(t)&&n.remove(t)}}function modifyClass(e,t){if(isObj(e)&&t){const n=e.classList;n.contains(t)?n.remove(t):n.add(t)}}function containsClass(e,t){if(isObj(e)&&t&&e!==document)return!!e.classList.contains(t)}function isChild(e,t){let n=isObj(e)&&t&&typeof t=="string";return!!(n&&e.closest(t))}function elemAttribute(e,t,n=null){if(n)e.setAttribute(t,n);else return n=e.getAttribute(t),n||!1}function deleteChars(e,t){let n=e;if(Array.isArray(t))for(let e=0;e<t.length;e++)n=n.replace(t[e],"");else n=n.replace(t,"");return n}function isBlank(e){return!e||e.trim().length===0}function isMatch(e,t){if(isObj(e)){if(t.isArray){let n=t.map(function(t){return e.matches(t)});return n.includes(!0)}return e.matches(t)}}function closestInt(e,t){return t.reduce(function(t,n){return Math.abs(n-e)<Math.abs(t-e)?n:t})}function hasClasses(e){if(isObj(e)){const t=e.classList;return t.length}}function wrapEl(e,t){e.parentNode.insertBefore(t,e),t.appendChild(e)}function wrapText(e,t,n="mark"){let s=`<${n}>`,o=`</${n}>`,r=`%3C${n}%3E`,c=`%3C/${n}%3E`;function i(t){let n=t.innerHTML,a=new RegExp(e,"gi"),i=e.length?n.match(a):null;if(i){i.forEach(function(e){n=n.replaceAll(e,`${s}${e}${o}`),t.innerHTML=n});const e=elems("img",t);e&&e.forEach(e=>{e.src=e.src.replaceAll(s,"").replaceAll(o,"").replaceAll(r,"").replaceAll(c,"")})}}const l=["h1","h2","h3","h4","h5","h6","p","code","td"];l.forEach(function(e){const n=elems(e,t);n.length&&n.forEach(function(e){e.children.length>=1?(Array.from(e.children).forEach(function(e){i(e)}),i(e)):i(e)})});const a=elems("a");a&&a.forEach(function(e){e.href=e.href.replaceAll(encodeURI(s),"").replaceAll(encodeURI(o),"")})}function parseBoolean(e=""){switch(e=e.trim().toLowerCase(),e){case"true":return!0;case"false":return!1;default:return void 0}}function loadSvg(e,t){t.innerHTML=`
+  <svg class="icon_${e}">
+    <use xlink:href="#${e}"></use>
+  </svg>`}function copyToClipboard(e){let t,n,s;t=createEl("textarea"),t.value=e,t.setAttribute("readonly",""),t.style.position="absolute",t.style.left="-9999px",n=document.getSelection(),doc.appendChild(t),s=n.rangeCount>0&&n.getRangeAt(0),t.select(),document.execCommand("copy"),doc.removeChild(t),s&&(n.removeAllRanges(),n.addRange(s))}const snippet_actions=[{icon:"copy",id:"copy",title:copy_text,show:!0},{icon:"order",id:"lines",title:toggle_line_numbers_text,show:!0},{icon:"carly",id:"wrap",title:toggle_line_wrap_text,show:!1},{icon:"expand",id:"expand",title:resize_snippet,show:!1}];function addLines(e){let t=e.textContent;const n=[];t.includes(`
+`)&&e.closest("pre")&&!e.children.length&&(t=t.split(`
+`),t.forEach((t,s)=>{if(t.trim().length){const o=`
+        <span class="line line-flex">
+          <span class="ln">${s+1}</span>
+          <span class="cl">${t.trim()}</span>
+        </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
+</script>
+
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+
+
+</body>
+</html>
