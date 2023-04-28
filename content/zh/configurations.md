@@ -385,13 +385,13 @@ package-list-packages 列表界面下，可以按 h 显示帮助。在这个视�
 除了使用配置文件，Emacs 还提供了一个更为方便的办法管理一些变量（customizable variables），或称用户选项（user options）。
 
 
-![M-x customize](../../images/emacs-book/configuration/customize.png)
+![M-x customize](../../images/emacs-book/configurations/customize.png)
 
 最简单的进入办法，就是按下 `M-x` 输入 `customize` 后回车确认。
 
 变量是分组（group）管理的，只需要点进去寻找或搜索相关的变量就可以进行设置。对于每一个变量，点左侧的箭头展开内容，可以看到有的变量是 Toggle 按钮表示可以设定 true/false，有的则是取值列表，可以设定值。修改后，State 会显示已编辑。最后点击上方的 Apply 就是应用更改。点击 Revert 就可以放弃更改等。按 `q` 退出。
 
-![配置变量](../../images/emacs-book/configuration/customize-var.png)
+![配置变量](../../images/emacs-book/configurations/customize-var.png)
 
 当设置了变量后，事实上 Emacs 会自动将一些配置代码加入到 `init.el` 中，或是加入到自定义的文件中（比如 Steve Purcell 就自定义了这个文件）。
 
