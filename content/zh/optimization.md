@@ -152,7 +152,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 
 ##  ace-window
 
-[主页](https:/github.com/abo-abo/ace-window)
+[主页](https://github.com/abo-abo/ace-window)
 
 这又是一个 abo-abo（Oleh Krehel）的项目。我们用 Emacs 多窗口时，window 超过 3 个后就很难使用 `C-x o` 进行切换了。`ace-window` 对 `C-x o` 重新绑定，使用时可以为每个 window 编个号，用编号进行跳转。
 
@@ -168,7 +168,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 
 ## mwim
 
-[主页](https:/github.com/alezost/mwim.el)
+[主页](https://github.com/alezost/mwim.el)
 
 还记得我们提到 `C-a` 对应了 `move-beginning-of-line`，`M-m` 对应了 `back-to-indentation`。当代码有缩进时，前者会把光标移动到行首（到空格之前），后者会移动到代码文字的开头（到空格之后）。那么实际中这两个按法差别较大，且不易区分，使用起来不方便。`mwim` 就将二者合并，覆盖 `C-a` 为 `mwim-beginning-of-code-or-line`，这样按一次 `C-a` 时移动到代码文字开头，再按一次则是移动到整行的行首，如此反复。
 
@@ -184,7 +184,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 
 ## undo-tree
 
-[主页](https:/www.emacswiki.org/emacs/UndoTree)
+[主页](https://www.emacswiki.org/emacs/UndoTree)
 
 还记得 Emacs 令人头疼的撤销和重做操作吗？`C-x u` 对应了 `undo` 命令，而 `redo` 则需要先 `C-g` 让历史记录环方向转换，再进行 `undo` 表示 `redo`。 事实上这一设定的原理也很直白，有一个表情包吐槽了这一设定：
 
@@ -200,7 +200,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 
 undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了国内镜像，一定要把 GNU ELPA 加入到包管理链接中，详见[上一篇教程的 MELPA 章节](../configurations#melpa)。
 
-配置方面，简单的使用只需要如下配置。最后的 `:custom` 中设置了变量 `undo-tree-auto-save-history` 为空，因为其默认会为每个文件生成一个隐藏文件用来保存之前的历史记录，这对项目是个污染。笔者直接取消了这个保存功能。此外，也可以将所有的 `undo-tree` 历史记录保存到一个专门的文件夹，需要通过变量 `undo-tree-history-directory-alist` 来设置，读者详见文档。 
+配置方面，简单的使用只需要如下配置。然而其默认会为每个文件生成一个隐藏文件用来保存之前的历史记录，这对项目是个污染。因此，最后的 `:custom` 中设置了变量 `undo-tree-auto-save-history` 为空，就是关闭了这个保存功能。此外，也可以将所有的 `undo-tree` 历史记录保存到一个专门的文件夹，需要通过变量 `undo-tree-history-directory-alist` 来设置，读者详见文档。 
 
 ```elisp
 (use-package undo-tree
@@ -212,7 +212,7 @@ undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了
 
 ## smart-mode-line（可选）
 
-[主页](https:/github.com/Malabarba/smart-mode-line)
+[主页](https://github.com/Malabarba/smart-mode-line)
 
 一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置：
     
@@ -224,7 +224,7 @@ undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了
 
 ## good-scroll （可选）
 
-[主页](https:/github.com/io12/good-scroll.el)
+[主页](https://github.com/io12/good-scroll.el)
 
 在现代图形界面操作系统中，光标在上下移动、翻页的时候 Emacs 会直接刷新界面，滚动时也是按行滚动，比较粗糙。`good-scroll` 提供了平滑滚动，并且支持变速滚动，更加顺手。
 

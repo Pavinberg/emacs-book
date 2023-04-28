@@ -372,7 +372,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">amx-mode</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="ace-window">ace-window</h2>
-<p><a href="https:/github.com/abo-abo/ace-window">主页</a></p>
+<p><a href="https://github.com/abo-abo/ace-window">主页</a></p>
 <p>这又是一个 abo-abo（Oleh Krehel）的项目。我们用 Emacs 多窗口时，window 超过 3 个后就很难使用 <code>C-x o</code> 进行切换了。<code>ace-window</code> 对 <code>C-x o</code> 重新绑定，使用时可以为每个 window 编个号，用编号进行跳转。</p>
 <p><img src="../../images/emacs-book/optimization/ace-window.png" alt="ace-window"></p>
 <p>配置：</p>
@@ -380,7 +380,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-x o&#34;</span> <span class="o">.</span> <span class="ss">&#39;ace-window</span><span class="p">)))</span>
 </span></span></code></pre></div><h2 id="mwim">mwim</h2>
-<p><a href="https:/github.com/alezost/mwim.el">主页</a></p>
+<p><a href="https://github.com/alezost/mwim.el">主页</a></p>
 <p>还记得我们提到 <code>C-a</code> 对应了 <code>move-beginning-of-line</code>，<code>M-m</code> 对应了 <code>back-to-indentation</code>。当代码有缩进时，前者会把光标移动到行首（到空格之前），后者会移动到代码文字的开头（到空格之后）。那么实际中这两个按法差别较大，且不易区分，使用起来不方便。<code>mwim</code> 就将二者合并，覆盖 <code>C-a</code> 为 <code>mwim-beginning-of-code-or-line</code>，这样按一次 <code>C-a</code> 时移动到代码文字开头，再按一次则是移动到整行的行首，如此反复。</p>
 <p>同时，更有意义的是，它还可以覆盖 <code>C-e</code> <code>move-end-of-line</code> 为 <code>mwim-end-of-code-or-line</code>，当本行代码结尾有注释时，第一次按 <code>C-e</code> 将光标移动到代码尾部、注释之前。再按一次则是移动到整行的行尾。 这就大大提高了写代码的效率。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">mwim</span>
@@ -389,7 +389,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 </span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-a&#34;</span> <span class="o">.</span> <span class="nv">mwim-beginning-of-code-or-line</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-e&#34;</span> <span class="o">.</span> <span class="nv">mwim-end-of-code-or-line</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="undo-tree">undo-tree</h2>
-<p><a href="https:/www.emacswiki.org/emacs/UndoTree">主页</a></p>
+<p><a href="https://www.emacswiki.org/emacs/UndoTree">主页</a></p>
 <p>还记得 Emacs 令人头疼的撤销和重做操作吗？<code>C-x u</code> 对应了 <code>undo</code> 命令，而 <code>redo</code> 则需要先 <code>C-g</code> 让历史记录环方向转换，再进行 <code>undo</code> 表示 <code>redo</code>。 事实上这一设定的原理也很直白，有一个表情包吐槽了这一设定：</p>
 <p><img src="../../images/emacs-book/optimization/undo-the-undo.jpeg" alt="undo-tree-meme"></p>
 <p>翻译一下就是：想要撤销之前的撤销？你如果撤销，然后再做一个没有任何内容编辑的行动，之后下一个撤销就会撤销刚刚的撤销，于是形成了一个重做。<code>C-g</code> 就是起到其中“没有任何内容编辑的行动”的作用。</p>
@@ -397,20 +397,20 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 <p><img src="../../images/emacs-book/optimization/undo-tree.png" alt="undo-tree"></p>
 <p>所有的编辑都会成为 undo-tree 上的一个节点。当按下 <code>C-x u</code> 时就会显示出这棵树。当你撤销时，只需要向上寻找历史节点。而当你又做了其它编辑，这棵树就会分叉。也就意味着，你之前的记录依然被保留，你随时可以反悔，也不用担心不小心编辑了内容导致无法重做。</p>
 <p>undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了国内镜像，一定要把 GNU ELPA 加入到包管理链接中，详见<a href="../configurations#melpa">上一篇教程的 MELPA 章节</a>。</p>
-<p>配置方面，简单的使用只需要如下配置。最后的 <code>:custom</code> 中设置了变量 <code>undo-tree-auto-save-history</code> 为空，因为其默认会为每个文件生成一个隐藏文件用来保存之前的历史记录，这对项目是个污染。笔者直接取消了这个保存功能。此外，也可以将所有的 <code>undo-tree</code> 历史记录保存到一个专门的文件夹，需要通过变量 <code>undo-tree-history-directory-alist</code> 来设置，读者详见文档。</p>
+<p>配置方面，简单的使用只需要如下配置。然而其默认会为每个文件生成一个隐藏文件用来保存之前的历史记录，这对项目是个污染。因此，最后的 <code>:custom</code> 中设置了变量 <code>undo-tree-auto-save-history</code> 为空，就是关闭了这个保存功能。此外，也可以将所有的 <code>undo-tree</code> 历史记录保存到一个专门的文件夹，需要通过变量 <code>undo-tree-history-directory-alist</code> 来设置，读者详见文档。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">undo-tree</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:custom</span>
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">undo-tree-auto-save-history</span> <span class="no">nil</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="smart-mode-line可选">smart-mode-line（可选）</h2>
-<p><a href="https:/github.com/Malabarba/smart-mode-line">主页</a></p>
+<p><a href="https://github.com/Malabarba/smart-mode-line">主页</a></p>
 <p>一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smart-mode-line</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">sml/setup</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="good-scroll-可选">good-scroll （可选）</h2>
-<p><a href="https:/github.com/io12/good-scroll.el">主页</a></p>
+<p><a href="https://github.com/io12/good-scroll.el">主页</a></p>
 <p>在现代图形界面操作系统中，光标在上下移动、翻页的时候 Emacs 会直接刷新界面，滚动时也是按行滚动，比较粗糙。<code>good-scroll</code> 提供了平滑滚动，并且支持变速滚动，更加顺手。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">good-scroll</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
