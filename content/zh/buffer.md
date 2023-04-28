@@ -142,6 +142,30 @@ Mode hook 的名字通常就是“主模式名-hook”。例如，我们希望�
 
 在下一篇教程中，我们会进一步讨论这些应该如何配置更好。
 
+## 目录（文件夹）操作
+
+[Dired](https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html)，即 Directory Editor，是 Emacs 自带的用以处理目录和文件的功能。常见的操作例如删除文件、将文件从一处拷贝至另一处，更高级的操作如对比两个文件的异同、更改权限、链接文件等等，都可以通过 Dired 实现。
+
+启动 Dired 非常简单，只需要按下 `C-x C-f`，输入一个目录（文件夹）而非文件，就会进入 Dired。更标准的方式是按 `C-x d` 或调用 `M-x` `dired` 命令然后输入一个目录的名字启动，但前者与打开文件的快捷键相同，更易记忆。
+
+![emacs-buffer-list](../../images/emacs-book/buffer/dired.png)
+
+当已经打开了一个文件时，输入 `C-x C-j` 可以打开当前文件所在的目录。
+
+Dired 会把目录下的文件都列出来，随后用户可以对文件进行操作。此时可以按下 `h` （Help）来打开帮助，读者可以翻到下面的 "Keybindings"，里面列出了所有在 Dired 中可以使用的命令。
+
+Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 `Control` 而直接按 `p` 和 `n` 就可以上下移动光标）到相应文件上，按下一个命令快捷键来对该文件调用命令。想要批量操作，只需要按 `m` （Mark）就可以选择，按 `u`（Unmark） 来取消选择。批量删除时，按 `d`（Delete）标记删除，按 `x`（Execute）执行删除。
+
+可以执行的命令全都在 "Keybindings" 中罗列，读者只需要自行查阅即可。
+
+这里举一个简单的例子，我们想要将 `a.txt` 和 `b.txt` 文件挪到 `subdir` 中，首先我们可以对 `subdir` 按下 `i` 来展开这个子目录， 随后对两个文本文件按下 `m` 标记， 然后按下 `R`（Rename） ，在回显区输入 `~/Code/Emacs/Test/subdir/`，按下回车。
+
+{{< tip >}}
+这里熟悉 Linux 的读者应该清楚， 移动文件的本质就是重命名（Rename），所以 Dired 里没有所谓的”移动“这个操作，而只有重命名。
+{{< /tip >}}
+
+![emacs-buffer-list](../../images/emacs-book/buffer/dired-2.png)
+
 ## 总结
 
 以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。

@@ -38,7 +38,7 @@ Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，�
 Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
 Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
 
-<meta itemprop="wordCount" content="597">
+<meta itemprop="wordCount" content="669">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="多文件与模式"/>
 <meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
@@ -118,7 +118,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 
   
   
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/buffer/">
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/buffer/" title="Toggle language">
 	
 	
 	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
@@ -203,6 +203,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
         <li><a href="#mode-hook">Mode hook</a></li>
       </ul>
     </li>
+    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
     <li><a href="#总结">总结</a></li>
     <li><a href="#命令列表">命令列表</a></li>
   </ul>
@@ -348,6 +349,21 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 <p><code>text-mode</code> 是基于文本的文件的一个主模式，有一些其它主模式是由它派生，例如 <code>html-mode</code>。而相对的，还有编程模式 <code>prog-mode</code>，各种编程语言对应的主模式都是由它派生，包括我们上文提到的 <code>c++-mode</code> 和 <code>python-mode</code>。那么如果我们希望在任何编程语言时都有一些共同需要的功能，例如编程时我们希望有代码块折叠功能，就为 <code>prog-mode-hook</code> 挂上相应功能就好。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span>
 </span></span></code></pre></div><p>在下一篇教程中，我们会进一步讨论这些应该如何配置更好。</p>
+<h2 id="目录文件夹操作">目录（文件夹）操作</h2>
+<p><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a>，即 Directory Editor，是 Emacs 自带的用以处理目录和文件的功能。常见的操作例如删除文件、将文件从一处拷贝至另一处，更高级的操作如对比两个文件的异同、更改权限、链接文件等等，都可以通过 Dired 实现。</p>
+<p>启动 Dired 非常简单，只需要按下 <code>C-x C-f</code>，输入一个目录（文件夹）而非文件，就会进入 Dired。更标准的方式是按 <code>C-x d</code> 或调用 <code>M-x</code> <code>dired</code> 命令然后输入一个目录的名字启动，但前者与打开文件的快捷键相同，更易记忆。</p>
+<p><img src="../../images/emacs-book/buffer/dired.png" alt="emacs-buffer-list"></p>
+<p>当已经打开了一个文件时，输入 <code>C-x C-j</code> 可以打开当前文件所在的目录。</p>
+<p>Dired 会把目录下的文件都列出来，随后用户可以对文件进行操作。此时可以按下 <code>h</code> （Help）来打开帮助，读者可以翻到下面的 &quot;Keybindings&quot;，里面列出了所有在 Dired 中可以使用的命令。</p>
+<p>Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 <code>Control</code> 而直接按 <code>p</code> 和 <code>n</code> 就可以上下移动光标）到相应文件上，按下一个命令快捷键来对该文件调用命令。想要批量操作，只需要按 <code>m</code> （Mark）就可以选择，按 <code>u</code>（Unmark） 来取消选择。批量删除时，按 <code>d</code>（Delete）标记删除，按 <code>x</code>（Execute）执行删除。</p>
+<p>可以执行的命令全都在 &quot;Keybindings&quot; 中罗列，读者只需要自行查阅即可。</p>
+<p>这里举一个简单的例子，我们想要将 <code>a.txt</code> 和 <code>b.txt</code> 文件挪到 <code>subdir</code> 中，首先我们可以对 <code>subdir</code> 按下 <code>i</code> 来展开这个子目录， 随后对两个文本文件按下 <code>m</code> 标记， 然后按下 <code>R</code>（Rename） ，在回显区输入 <code>~/Code/Emacs/Test/subdir/</code>，按下回车。</p>
+
+<div class="tip">
+  这里熟悉 Linux 的读者应该清楚， 移动文件的本质就是重命名（Rename），所以 Dired 里没有所谓的”移动“这个操作，而只有重命名。
+</div>
+
+<p><img src="../../images/emacs-book/buffer/dired-2.png" alt="emacs-buffer-list"></p>
 <h2 id="总结">总结</h2>
 <p>以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。</p>
 <h2 id="命令列表">命令列表</h2>

@@ -17,8 +17,9 @@
 <meta property="og:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
-安装 截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
-更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。 图形界面在官网下载安装包进行安装。
+安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
+图形界面在官网下载安装包进行安装。
 此外还可以用正常包管理工具来进行安装。
 macOS:
 1$ brew install emacs Debian/Ubuntu:
@@ -26,7 +27,8 @@ macOS:
 其它系统类似，安装操作网上资源较多，在此不做赘述。
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
-1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。" />
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
+启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/basic/" /><meta property="article:section" content="" />
 
@@ -35,8 +37,9 @@ macOS:
 <meta itemprop="description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
-安装 截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
-更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。 图形界面在官网下载安装包进行安装。
+安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
+图形界面在官网下载安装包进行安装。
 此外还可以用正常包管理工具来进行安装。
 macOS:
 1$ brew install emacs Debian/Ubuntu:
@@ -44,16 +47,18 @@ macOS:
 其它系统类似，安装操作网上资源较多，在此不做赘述。
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
-1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。">
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
+启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
 
-<meta itemprop="wordCount" content="801">
+<meta itemprop="wordCount" content="796">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="基础操作"/>
 <meta name="twitter:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
-安装 截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
-更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。 图形界面在官网下载安装包进行安装。
+安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
+图形界面在官网下载安装包进行安装。
 此外还可以用正常包管理工具来进行安装。
 macOS:
 1$ brew install emacs Debian/Ubuntu:
@@ -61,7 +66,8 @@ macOS:
 其它系统类似，安装操作网上资源较多，在此不做赘述。
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
-1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。"/>
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
+启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。"/>
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -72,8 +78,9 @@ macOS:
   <meta name="description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
-安装 截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
-更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。 图形界面在官网下载安装包进行安装。
+安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
+图形界面在官网下载安装包进行安装。
 此外还可以用正常包管理工具来进行安装。
 macOS:
 1$ brew install emacs Debian/Ubuntu:
@@ -81,7 +88,8 @@ macOS:
 其它系统类似，安装操作网上资源较多，在此不做赘述。
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
-1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。">
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
+启动后可以看到这样的界面，可以看到其中有一个 &amp;quot;Emacs tutorial&amp;quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
 
 
 </head>
@@ -134,7 +142,7 @@ macOS:
 
   
   
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/basic/">
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/basic/" title="Toggle language">
 	
 	
 	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
@@ -219,6 +227,7 @@ macOS:
         <li><a href="#mode-hook">Mode hook</a></li>
       </ul>
     </li>
+    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
     <li><a href="#总结">总结</a></li>
     <li><a href="#命令列表">命令列表</a></li>
   </ul>
@@ -259,15 +268,11 @@ macOS:
   <main class="content">
     <h1>基础操作</h1><p>本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。</p>
 <p>文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。</p>
-<p>另外不要忘了官网的 <a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是<a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作卡片</a>，另一个是更为简洁的“<a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。可以打印出来放在一边。</p>
+<p>另外不要忘了官网的 <a href="https://www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是<a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作卡片</a>，另一个是更为简洁的“<a href="https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。可以打印出来放在一边。</p>
 <h2 id="安装">安装</h2>
-<p>截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。</p>
-
-<div class="tip">
-  更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。
-</div>
-
-<p>图形界面在<a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/">官网</a>下载安装包进行安装。</p>
+<p>截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。</p>
+<p>特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。</p>
+<p>图形界面在<a href="https://www.gnu.org/software/emacs/">官网</a>下载安装包进行安装。</p>
 <p>此外还可以用正常包管理工具来进行安装。</p>
 <p>macOS:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew install emacs
@@ -309,7 +314,7 @@ macOS:
 <div class="tip">
   可以看到， <code>Control</code> 键是 Emacs 程序员键盘的“重灾区”，按 <code>Control</code> 键的小指也是 Emacs 程序员最易出问题的部位，因此笔者强烈建议，在你正式使用 Emacs 后改变键盘键位保护手指。
 例如笔者将 <code>Control</code> 键改到了大小写锁定键上（读者可以调换两个键，但考虑到实际很少用大小写锁定键，笔者索性不要大小写锁定键了）。也可以将 PC 键盘上的 <code>Win</code> 键、Mac 键盘上 的 <code>Command</code> 键与 <code>Control</code> 调换，这样使用强壮的大拇指也没有问题。如果不想全局改变，也可以只在 Emacs 内部进行，后面会提到。
-笔者作为 Mac 用户，推荐一款改键软件 <a href="https://link.zhihu.com/?target=https%3A//karabiner-elements.pqrs.org/">Karabiner-Elements</a>，它甚至可以将 Emacs 常用键位完全拓展到全局。
+笔者作为 Mac 用户，推荐一款改键软件 <a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements</a>，它甚至可以将 Emacs 常用键位完全拓展到全局。
 </div>
 
 <p>在 Emacs 中，我们经常需要自定义快捷键，那么需要一种方式来表示快捷键，这样才能写到配置文件里。Emacs 使用一个单独的字母表达功能键，见下表。</p>

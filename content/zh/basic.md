@@ -7,17 +7,15 @@ weight: 2
 
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 
-另外不要忘了官网的 [Emacs Reference Card](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/index.html)：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是[基本操作卡片](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)，另一个是更为简洁的“[生存卡片](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/survival.pdf)”。可以打印出来放在一边。
+另外不要忘了官网的 [Emacs Reference Card](https://www.gnu.org/software/emacs/refcards/index.html)：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是[基本操作卡片](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)，另一个是更为简洁的“[生存卡片](https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf)”。可以打印出来放在一边。
 
 ## 安装
 
-截止本文书写日期（2021.8.24）Emacs 的稳定版本为 27.2。建议使用新一些的版本，最好是 Emacs 27 或 Emacs 26，因为一些插件需要 Emacs 更高版本的支持。
+截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
 
-{{< tip >}}
-更新（2022.4.6）： Emacs 28.1 正式发布，新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装 Emacs 28。
-{{< /tip >}}
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
 
-图形界面在[官网](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/)下载安装包进行安装。
+图形界面在[官网](https://www.gnu.org/software/emacs/)下载安装包进行安装。
 
 此外还可以用正常包管理工具来进行安装。
 
@@ -91,7 +89,7 @@ Emacs 中有五个功能键： `Control`、 `Meta`、 `Shift`、 `Super`、 `Hyp
 {{< tip >}}
 可以看到， `Control` 键是 Emacs 程序员键盘的“重灾区”，按 `Control` 键的小指也是 Emacs 程序员最易出问题的部位，因此笔者强烈建议，在你正式使用 Emacs 后改变键盘键位保护手指。
 例如笔者将 `Control` 键改到了大小写锁定键上（读者可以调换两个键，但考虑到实际很少用大小写锁定键，笔者索性不要大小写锁定键了）。也可以将 PC 键盘上的 `Win` 键、Mac 键盘上 的 `Command` 键与 `Control` 调换，这样使用强壮的大拇指也没有问题。如果不想全局改变，也可以只在 Emacs 内部进行，后面会提到。
-笔者作为 Mac 用户，推荐一款改键软件 [Karabiner-Elements](https://link.zhihu.com/?target=https%3A//karabiner-elements.pqrs.org/)，它甚至可以将 Emacs 常用键位完全拓展到全局。
+笔者作为 Mac 用户，推荐一款改键软件 [Karabiner-Elements](https://karabiner-elements.pqrs.org/)，它甚至可以将 Emacs 常用键位完全拓展到全局。
 {{< /tip >}}
 
 在 Emacs 中，我们经常需要自定义快捷键，那么需要一种方式来表示快捷键，这样才能写到配置文件里。Emacs 使用一个单独的字母表达功能键，见下表。
