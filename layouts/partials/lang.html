@@ -2,7 +2,7 @@
 {{ if .IsTranslated }}
   {{ range .Translations }}
   <!-- <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a> -->
-  <a class="nav-link nav_repo" href="{{ .Permalink }}">
+  <a class="nav-link nav_repo" href="{{ .Permalink }}" title="Toggle language">
 	{{ $repo := .Site.Params.source }}
 	{{ if $repo.iconLight }}
 	  {{- $litPath := absURL ($sp.lang.iconLight) }}
