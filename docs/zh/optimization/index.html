@@ -14,18 +14,39 @@
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
 <title>插件：功能优化类 | 专业 Emacs 入门</title><meta property="og:title" content="插件：功能优化类" />
-<meta property="og:description" content="To be edited..." />
+<meta property="og:description" content="接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。
+由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：
+功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性 功能增强类：大大提升 Emacs 体验与效率 编程类：和编程相关的插件配置 外观类：配置颜色、主题、屏保等。 值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。
+在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 Github 中提出 Pull Request。
+第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。
+本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 ivy，和它相关的命令就都是 ivy-* 这样的命名。所以读者在安装 ivy 后可以首先 M-x ivy- 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 ivy-push-view，那就先 C-g 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 C-h f ivy-push-view 就可以显示这个命令的介绍了。 ivy 简介 主页
+首先要介绍的当属 ivy 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell Bash，功能是全的，但是使用的友好度差了点。ivy 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 oh-my-zsh 的 zsh。
+打开 ivy 的链接，会发现其实这个仓库名为 swiper，里面包含了 ivy、counsel 和 swiper 三部分。它们三个分别加强了 Emacs 的三个方面： 补全系统 、 部分常用命令 、 搜索功能 。由于是作者 abo-abo（Oleh Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/optimization/" /><meta property="article:section" content="" />
 
 <meta property="og:site_name" content="专业 Emacs 入门" />
 <meta itemprop="name" content="插件：功能优化类">
-<meta itemprop="description" content="To be edited...">
+<meta itemprop="description" content="接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。
+由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：
+功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性 功能增强类：大大提升 Emacs 体验与效率 编程类：和编程相关的插件配置 外观类：配置颜色、主题、屏保等。 值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。
+在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 Github 中提出 Pull Request。
+第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。
+本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 ivy，和它相关的命令就都是 ivy-* 这样的命名。所以读者在安装 ivy 后可以首先 M-x ivy- 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 ivy-push-view，那就先 C-g 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 C-h f ivy-push-view 就可以显示这个命令的介绍了。 ivy 简介 主页
+首先要介绍的当属 ivy 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell Bash，功能是全的，但是使用的友好度差了点。ivy 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 oh-my-zsh 的 zsh。
+打开 ivy 的链接，会发现其实这个仓库名为 swiper，里面包含了 ivy、counsel 和 swiper 三部分。它们三个分别加强了 Emacs 的三个方面： 补全系统 、 部分常用命令 、 搜索功能 。由于是作者 abo-abo（Oleh Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。">
 
-<meta itemprop="wordCount" content="3">
+<meta itemprop="wordCount" content="660">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="插件：功能优化类"/>
-<meta name="twitter:description" content="To be edited..."/>
+<meta name="twitter:description" content="接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。
+由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：
+功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性 功能增强类：大大提升 Emacs 体验与效率 编程类：和编程相关的插件配置 外观类：配置颜色、主题、屏保等。 值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。
+在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 Github 中提出 Pull Request。
+第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。
+本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 ivy，和它相关的命令就都是 ivy-* 这样的命名。所以读者在安装 ivy 后可以首先 M-x ivy- 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 ivy-push-view，那就先 C-g 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 C-h f ivy-push-view 就可以显示这个命令的介绍了。 ivy 简介 主页
+首先要介绍的当属 ivy 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell Bash，功能是全的，但是使用的友好度差了点。ivy 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 oh-my-zsh 的 zsh。
+打开 ivy 的链接，会发现其实这个仓库名为 swiper，里面包含了 ivy、counsel 和 swiper 三部分。它们三个分别加强了 Emacs 的三个方面： 补全系统 、 部分常用命令 、 搜索功能 。由于是作者 abo-abo（Oleh Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。"/>
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -33,7 +54,14 @@
 
 
 
-  <meta name="description" content="To be edited...">
+  <meta name="description" content="接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。
+由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：
+功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性 功能增强类：大大提升 Emacs 体验与效率 编程类：和编程相关的插件配置 外观类：配置颜色、主题、屏保等。 值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。
+在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 Github 中提出 Pull Request。
+第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。
+本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 ivy，和它相关的命令就都是 ivy-* 这样的命名。所以读者在安装 ivy 后可以首先 M-x ivy- 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 ivy-push-view，那就先 C-g 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 C-h f ivy-push-view 就可以显示这个命令的介绍了。 ivy 简介 主页
+首先要介绍的当属 ivy 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell Bash，功能是全的，但是使用的友好度差了点。ivy 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 oh-my-zsh 的 zsh。
+打开 ivy 的链接，会发现其实这个仓库名为 swiper，里面包含了 ivy、counsel 和 swiper 三部分。它们三个分别加强了 Emacs 的三个方面： 补全系统 、 部分常用命令 、 搜索功能 。由于是作者 abo-abo（Oleh Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。">
 
 
 </head>
@@ -176,7 +204,7 @@
     <li><a href="#命令列表">命令列表</a></li>
   </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configuration/">基本配置</a></h3><nav id="TableOfContents">
+        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
   <ul>
     <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
       <ul>
@@ -199,7 +227,24 @@
     <li><a href="#结尾">结尾</a></li>
   </ul>
 </nav>
-        <h3 class="section_link active"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link active"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ivy">ivy</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#配置流程">配置流程</a></li>
+        <li><a href="#效果">效果</a></li>
+        <li><a href="#同类插件">同类插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#amx">amx</a></li>
+    <li><a href="#ace-window">ace-window</a></li>
+    <li><a href="#mwim">mwim</a></li>
+    <li><a href="#undo-tree">undo-tree</a></li>
+    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
+    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
+  </ul>
+</nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents"></nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents"></nav>
   <section class="section aside_inner">
@@ -210,13 +255,176 @@
 </aside>
 
   <main class="content">
-    <h1>插件：功能优化类</h1><p>To be edited...</p>
+    <h1>插件：功能优化类</h1><p>接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。</p>
+<p>由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：</p>
+<ol>
+<li>功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性</li>
+<li>功能增强类：大大提升 Emacs 体验与效率</li>
+<li>编程类：和编程相关的插件配置</li>
+<li>外观类：配置颜色、主题、屏保等。</li>
+</ol>
+<p>值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。</p>
+<blockquote>
+<p>在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 <a href="https://github.com/Pavinberg/emacs-book">Github</a> 中提出 Pull Request。</p>
+</blockquote>
+<p>第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。</p>
+
+<div class="tip">
+  本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 <code>ivy</code>，和它相关的命令就都是 <code>ivy-*</code> 这样的命名。所以读者在安装 <code>ivy</code> 后可以首先 <code>M-x</code> <code>ivy-</code> 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 <code>ivy-push-view</code>，那就先 <code>C-g</code> 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 <code>C-h f</code> <code>ivy-push-view</code> 就可以显示这个命令的介绍了。
+</div>
+
+<h2 id="ivy">ivy</h2>
+<h3 id="简介">简介</h3>
+<p><a href="https://github.com/abo-abo/swiper">主页</a></p>
+<p>首先要介绍的当属 <code>ivy</code> 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell
+Bash，功能是全的，但是使用的友好度差了点。<code>ivy</code> 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 <code>oh-my-zsh</code> 的 zsh。</p>
+<p>打开 <code>ivy</code> 的链接，会发现其实这个仓库名为 swiper，里面包含了 <code>ivy</code>、<code>counsel</code> 和 <code>swiper</code> 三部分。它们三个分别加强了 Emacs 的三个方面： <strong>补全系统</strong> 、 <strong>部分常用命令</strong> 、 <strong>搜索功能</strong> 。由于是作者 abo-abo（Oleh
+Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。</p>
+<h3 id="配置流程">配置流程</h3>
+<p>接下来，通过 <code>ivy</code> 来让读者熟悉一下 Emacs 安装插件的流程：</p>
+<ol>
+<li><strong>得知插件</strong> ：首先我们会通过一些渠道听说某个插件很好用（比如通过本系列教程），于是我们找到它的主页（绝大多数情况都是一个 GitHub 仓库，我们可以 Google 一下或者直接在 GitHub 上搜索）。</li>
+<li><strong>阅读主页</strong> ：一个好用且用户数量大的插件的主页一定是非常完善的，包括了插件的功能介绍、安装、配置，以及 Issue （Issue 指使用中上报发现的问题和漏洞）和如何贡献等等。对于我们 Emacs 初级用户而言，我们主要关注前半部分，也就是功能、安装、配置。</li>
+<li><strong>安装</strong> ：尽管该仓库包含了三部分，但它们都合并到了一个 package，也就是相当于是一个插件，名为 <code>ivy</code>。于是我们看 <code>ivy</code>的主页的 “Installation” 一节中写着：</li>
+</ol>
+<blockquote>
+<p>Install the ivy package from GNU ELPA or MELPA.</p>
+</blockquote>
+<p>很多插件都会用这样的一句话一笔带过安装方式。那么这就是对应了<a href="../configurations#melpa">上一篇教程中提到的 MELPA</a> 的相关内容了。根据上一篇的介绍，MELPA 是一个插件仓库，那么只要我们的配置文件中写好了相应的链接配置，就可以通过输入 <code>M-x</code> <code>package-install</code> <code>&lt;RET&gt;</code> <code>ivy</code> <code>&lt;RET&gt;</code> 来安装插件了。</p>
+<p>但此外，在上一篇教程中还提到了，我们有一个更方便的方式来管理插件—— <code>use-package</code> 插件。因此读者需要首先按照上一篇教程中的指导安装好 <code>use-package</code> 插件。于是我们可以直接在配置文件（例如 <code>~/.emacs.d/init.el</code>）中写上：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">ivy</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
+</span></span></code></pre></div><p>表示了希望确保 <code>ivy</code> 这个 package 已被安装，否则就下载安装 ivy。然后可以通过重启 Emacs 生效，或者直接运行这句刚加入的配置代码：首先选中要运行的这部分代码，然后输入 <code>M-x</code> <code>eval-region</code> ，或者光标在括号内时按下 <code>C-M-x</code> （eval-defun 执行函数）。之后 <code>use-package</code> 就会自动为你安装好 <code>ivy</code>。</p>
+<ol start="4">
+<li><strong>配置</strong> ：主页上提供了完整的配置文档，同时也提供了一个简单的配置，那么一开始我们就直接使用它提供好的典型配置就好。但注意，它的写法是没有使用 <code>use-package</code> 的，有的插件会提供 <code>use-package</code> 的写法，而有的不会，这一点纯粹是依靠文档编写者的喜好。因此我们要填入我们自己的 <code>use-package</code> 中。事实上这个过程非常简单，我们首先看一下它提供的配置（笔者加入了一些注解）：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">;; ---- 执行了一个函数启动 ivy mode ----</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nv">ivy-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">;; ---- 设置两个变量为 True，还有一个可选的 ---</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">ivy-use-virtual-buffers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">enable-recursive-minibuffers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">;; enable this if you want `swiper&#39; to use it</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">;; (setq search-default-mode #&#39;char-fold-to-regexp)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1">;; ---- 绑定快捷键 ----</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="s">&#34;C-s&#34;</span> <span class="ss">&#39;swiper</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c C-r&#34;</span><span class="p">)</span> <span class="ss">&#39;ivy-resume</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f6&gt;&#34;</span><span class="p">)</span> <span class="ss">&#39;ivy-resume</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-x&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-M-x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x C-f&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-find-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f1&gt; f&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-describe-function</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f1&gt; v&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-describe-variable</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f1&gt; o&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-describe-symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f1&gt; l&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-find-library</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f2&gt; i&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-info-lookup-symbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;f2&gt; u&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-unicode-char</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c g&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-git</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c j&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-git-grep</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c k&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-ag</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-x l&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-locate</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-S-o&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-rhythmbox</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">(</span><span class="nf">define-key</span> <span class="nv">minibuffer-local-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-r&#34;</span><span class="p">)</span> <span class="ss">&#39;counsel-minibuffer-history</span><span class="p">)</span>
+</span></span></code></pre></div><p>那么想要转移到 <code>use-package</code> ，只需要把这些代码根据逻辑抄一遍就好了。还记得我们说 <code>use-package</code> 中 <code>:init</code> 标签表示加载插件前执行的逻辑（如，启动 <code>ivy-mode</code>），<code>:config</code> 表示加载后执行的逻辑（如，设置一些变量，这显然是加载插件后的逻辑，因此写在 <code>:config</code> 后面）。至于绑定快捷键，只需要照抄一下。最后一行的配置涉及到了 keymap，keymap 就是指在某一模式下的键盘输入事件的集合。例如我们平时输 <code>C-x</code> 后 Emacs 并不会进行任何操作，而是等待你输入下一个快捷键，原因就在于 <code>C-x</code> 是当前 keymap 的一个快捷键前缀，尚未形成一个命令，所以要继续等待。最后一行的配置表示在 <code>minibuffer-local-map</code> 这个 keymap 内重新定义 <code>C-r</code>。在 <code>use-package</code> 这个也是可以同样配置的。</p>
+<p>特别的，注意到官网 <a href="https://github.com/abo-abo/swiper#counsel">Counsel</a> 中提示了可以直接通过执行 <code>counsel-mode</code> 来绑定快捷键，所以我们当然也可以利用起来，最后的代码只需要这样：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">counsel</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">ivy</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">ivy-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">counsel-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">ivy-use-virtual-buffers</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">search-default-mode</span> <span class="nf">#&#39;</span><span class="nv">char-fold-to-regexp</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">ivy-count-format</span> <span class="s">&#34;(%d/%d) &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-s&#34;</span> <span class="o">.</span> <span class="ss">&#39;swiper</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-x b&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-switch-buffer</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c v&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-push-view</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c s&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-switch-view</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c V&#34;</span> <span class="o">.</span> <span class="ss">&#39;ivy-pop-view</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-x C-@&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-mark-ring</span><span class="p">)</span><span class="c1">; 在某些终端上 C-x C-SPC 会被映射为 C-x C-@，比如在 macOS 上，所以要手动设置</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-x C-SPC&#34;</span> <span class="o">.</span> <span class="ss">&#39;counsel-mark-ring</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">   <span class="nb">:map</span> <span class="nv">minibuffer-local-map</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-r&#34;</span> <span class="o">.</span> <span class="nv">counsel-minibuffer-history</span><span class="p">)))</span>
+</span></span></code></pre></div><p>将以上代码写在 <code>init.el</code> 中，就可以加载 <code>ivy</code> 包（如未安装就下载安装），在加载前（<code>:init</code> 标签）启动 <code>ivy-mode</code>、<code>counsel-mode</code>，加载后（<code>:config</code> 标签）设置三个变量的值、绑定一些额外的快捷键（<code>:bind</code> 标签）并针对 keymap 设定（ <code>:bind</code> 标签内的 <code>:map</code> 标签）。</p>
+
+<div class="tip">
+  直接使用 use-package 来安装 ivy、counsel 和 swiper 可能存在一些依赖问题，笔者暂未解决。对此可以手动安装，例如 <code>M-x</code> <code>package-install</code> <code>counsel</code>。
+</div>
+
+<h3 id="效果">效果</h3>
+<p><img src="../../images/emacs-book/optimization/ivy-find-file.png" alt="ivy"></p>
+<p>例如，按下 <code>C-x C-f</code> 时，我们不再调用的是 <code>find-file</code> ，而是 <code>counsel-find-file</code>，最主要的区别便是会把当前目录下所有文件列表显示在一个新的 Minibuffer 中，当你想到上一级目录时，也只需要按下一次 <code>&lt;backspace&gt;</code> ，而不用像之前一样要删除一个词。 此外，还可以模糊输入文件名就可以找到相应的文件，若按下 <code>C-r</code> 则可以显示之前调用 <code>counsel-find-file</code> 打开过的历史记录。</p>
+<p>同样的，<code>M-x</code> 也被替换为了 <code>counsel-M-x</code>，会将命令也列表显示出来，同样也可以模糊输入命令。</p>
+<p><code>C-x b</code>切换 Buffer 、<code>C-s</code> 搜索、<code>M-y</code> 使用剪贴板历史等等，都会提供类似的补全功能，读者可以自行多尝试尝试！</p>
+
+<div class="tip">
+  在执行 <code>counsel-find-file</code> 过程中，当输入了一个文件名前缀时，<code>ivy</code> 会自动为你补全最接近的文件名，这在想要创建文件时反而引入了麻烦。例如上图中我们已经有了 <code>names.txt</code> 文件，此时如果想要创建一个名为 <code>names</code> 的文件的话，输入 <code>names</code> 后按下回车，<code>ivy</code> 会认为你在找 <code>names.txt</code> 而直接打开它。 对于这种情况，需要按下 <code>C-M-j</code> （<code>ivy-immediate-done</code> 命令），就会直接创建名为 <code>names</code> 的文件而不触发补全。
+</div>
+
+<h3 id="同类插件">同类插件</h3>
+<p>和 <code>ivy</code> 功能基本类似的插件有 <a href="https://emacs-helm.github.io/helm/">helm</a> 和 <a href="https://github.com/DarwinAwardWinner/ido-completing-read-plus">ido</a> ， 读者可以自己选择自己更为喜爱的。</p>
+<h2 id="amx">amx</h2>
+<p><a href="https://github.com/DarwinAwardWinner/amx">主页</a></p>
+<p>这个插件可以记录我们每次调用 <code>M-x</code> 时输入的命令历史，然后每次将最常用的显示在前面，这对于我们短时间希望频繁输入某几个命令的场景非常有用。<code>amx</code> 的配置十分简单：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">amx</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">amx-mode</span><span class="p">))</span>
+</span></span></code></pre></div><h2 id="ace-window">ace-window</h2>
+<p><a href="https:/github.com/abo-abo/ace-window">主页</a></p>
+<p>这又是一个 abo-abo（Oleh Krehel）的项目。我们用 Emacs 多窗口时，window 超过 3 个后就很难使用 <code>C-x o</code> 进行切换了。<code>ace-window</code> 对 <code>C-x o</code> 重新绑定，使用时可以为每个 window 编个号，用编号进行跳转。</p>
+<p><img src="../../images/emacs-book/optimization/ace-window.png" alt="ace-window"></p>
+<p>配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">ace-window</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-x o&#34;</span> <span class="o">.</span> <span class="ss">&#39;ace-window</span><span class="p">)))</span>
+</span></span></code></pre></div><h2 id="mwim">mwim</h2>
+<p><a href="https:/github.com/alezost/mwim.el">主页</a></p>
+<p>还记得我们提到 <code>C-a</code> 对应了 <code>move-beginning-of-line</code>，<code>M-m</code> 对应了 <code>back-to-indentation</code>。当代码有缩进时，前者会把光标移动到行首（到空格之前），后者会移动到代码文字的开头（到空格之后）。那么实际中这两个按法差别较大，且不易区分，使用起来不方便。<code>mwim</code> 就将二者合并，覆盖 <code>C-a</code> 为 <code>mwim-beginning-of-code-or-line</code>，这样按一次 <code>C-a</code> 时移动到代码文字开头，再按一次则是移动到整行的行首，如此反复。</p>
+<p>同时，更有意义的是，它还可以覆盖 <code>C-e</code> <code>move-end-of-line</code> 为 <code>mwim-end-of-code-or-line</code>，当本行代码结尾有注释时，第一次按 <code>C-e</code> 将光标移动到代码尾部、注释之前。再按一次则是移动到整行的行尾。 这就大大提高了写代码的效率。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">mwim</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-a&#34;</span> <span class="o">.</span> <span class="nv">mwim-beginning-of-code-or-line</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-e&#34;</span> <span class="o">.</span> <span class="nv">mwim-end-of-code-or-line</span><span class="p">))</span>
+</span></span></code></pre></div><h2 id="undo-tree">undo-tree</h2>
+<p><a href="https:/www.emacswiki.org/emacs/UndoTree">主页</a></p>
+<p>还记得 Emacs 令人头疼的撤销和重做操作吗？<code>C-x u</code> 对应了 <code>undo</code> 命令，而 <code>redo</code> 则需要先 <code>C-g</code> 让历史记录环方向转换，再进行 <code>undo</code> 表示 <code>redo</code>。 事实上这一设定的原理也很直白，有一个表情包吐槽了这一设定：</p>
+<p><img src="../../images/emacs-book/optimization/undo-the-undo.jpeg" alt="undo-tree-meme"></p>
+<p>翻译一下就是：想要撤销之前的撤销？你如果撤销，然后再做一个没有任何内容编辑的行动，之后下一个撤销就会撤销刚刚的撤销，于是形成了一个重做。<code>C-g</code> 就是起到其中“没有任何内容编辑的行动”的作用。</p>
+<p>事实上这也的确让很多人头疼。于是自有人写了插件来弥补。只需一张图，你即可了解 undo-tree 的用法：</p>
+<p><img src="../../images/emacs-book/optimization/undo-tree.png" alt="undo-tree"></p>
+<p>所有的编辑都会成为 undo-tree 上的一个节点。当按下 <code>C-x u</code> 时就会显示出这棵树。当你撤销时，只需要向上寻找历史节点。而当你又做了其它编辑，这棵树就会分叉。也就意味着，你之前的记录依然被保留，你随时可以反悔，也不用担心不小心编辑了内容导致无法重做。</p>
+<p>undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了国内镜像，一定要把 GNU ELPA 加入到包管理链接中，详见<a href="../configurations#melpa">上一篇教程的 MELPA 章节</a>。</p>
+<p>配置方面，简单的使用只需要如下配置。最后的 <code>:custom</code> 中设置了变量 <code>undo-tree-auto-save-history</code> 为空，因为其默认会为每个文件生成一个隐藏文件用来保存之前的历史记录，这对项目是个污染。笔者直接取消了这个保存功能。此外，也可以将所有的 <code>undo-tree</code> 历史记录保存到一个专门的文件夹，需要通过变量 <code>undo-tree-history-directory-alist</code> 来设置，读者详见文档。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">undo-tree</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">undo-tree-auto-save-history</span> <span class="no">nil</span><span class="p">))</span>
+</span></span></code></pre></div><h2 id="smart-mode-line可选">smart-mode-line（可选）</h2>
+<p><a href="https:/github.com/Malabarba/smart-mode-line">主页</a></p>
+<p>一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smart-mode-line</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">sml/setup</span><span class="p">))</span>
+</span></span></code></pre></div><h2 id="good-scroll-可选">good-scroll （可选）</h2>
+<p><a href="https:/github.com/io12/good-scroll.el">主页</a></p>
+<p>在现代图形界面操作系统中，光标在上下移动、翻页的时候 Emacs 会直接刷新界面，滚动时也是按行滚动，比较粗糙。<code>good-scroll</code> 提供了平滑滚动，并且支持变速滚动，更加顺手。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">good-scroll</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:if</span> <span class="nf">window-system</span>          <span class="c1">; 在图形化界面时才使用这个插件</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">good-scroll-mode</span><span class="p">))</span>
+</span></span></code></pre></div><hr>
+<p>经过了以上介绍，相信读者应该能够感受到 Emacs 的不少痛点被解决了，现在开始 Emacs
+应当是一个可以顺畅使用的现代编辑器了。下一篇笔者将介绍一些功能增强类插件，开始真正释放 Emacs 的强大。</p>
 
     <div class="pager">
   
     
     <div class="pager_item prev">
-      <a href="https://pavinberg.github.io/emacs-book/zh/configuration/" class="pager_link button" title="基本配置" rel="prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/configurations/" class="pager_link button" title="基本配置" rel="prev">
         <span class="pager_label">基本配置</span>
       </a>
     </div>

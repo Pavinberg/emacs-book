@@ -50,16 +50,16 @@
                 href="https://pavinberg.github.io/emacs-book/zh/buffer/"
                 />
   </url><url>
-    <loc>https://pavinberg.github.io/emacs-book/zh/configuration/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/zh/configurations/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://pavinberg.github.io/emacs-book/configuration/"
+                href="https://pavinberg.github.io/emacs-book/configurations/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://pavinberg.github.io/emacs-book/zh/configuration/"
+                href="https://pavinberg.github.io/emacs-book/zh/configurations/"
                 />
   </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/optimization/</loc>

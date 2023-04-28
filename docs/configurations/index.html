@@ -1,7 +1,7 @@
 
 
 <!doctype html>
-<html lang="zh"
+<html lang="en"
   data-mode="auto"
 >
 <head><meta charset="utf-8">
@@ -13,18 +13,18 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>插件：编程开发类 | 专业 Emacs 入门</title><meta property="og:title" content="插件：编程开发类" />
+<title>Configurations | Pavinberg&#39;s Emacs Book</title><meta property="og:title" content="Configurations" />
 <meta property="og:description" content="To be edited..." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/development/" /><meta property="article:section" content="" />
+<meta property="og:url" content="https://pavinberg.github.io/emacs-book/configurations/" /><meta property="article:section" content="" />
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="插件：编程开发类">
+<meta property="og:site_name" content="Pavinberg&#39;s Emacs Book" />
+<meta itemprop="name" content="Configurations">
 <meta itemprop="description" content="To be edited...">
 
 <meta itemprop="wordCount" content="3">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="插件：编程开发类"/>
+<meta name="twitter:title" content="Configurations"/>
 <meta name="twitter:description" content="To be edited..."/>
 
 
@@ -40,11 +40,11 @@
 <body class="page-page" id="pagetop">
   <header class="nav_header">
 <nav class="wrap nav menu">
-	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
+	<a href='https://pavinberg.github.io/emacs-book/' class="nav_brand">
 		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
-			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="专业 Emacs 入门 Logo">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="Pavinberg&#39;s Emacs Book Logo">
 		</picture>
-		<label class="nav_toggle toggle" title='网站菜单' role="button">
+		<label class="nav_toggle toggle" title='Site Menu' role="button">
 			<svg class="icon icon_harmburger">
   <use xlink:href="#harmburger"></use>
 </svg>
@@ -62,7 +62,7 @@
   
     
   
-  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
+  <input type="search" class="search_field  standardize-input" placeholder="Search site" id="find" autocomplete="off"  data-scope=''>
   <div class="search_results results"></div>
 </div>
 
@@ -70,7 +70,7 @@
 
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/donate/"><span>Donate</span></a>
 		</li>
 		
 		<li class="nav-item nav_repo">
@@ -86,7 +86,7 @@
 
   
   
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/development/" title="Toggle language">
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/zh/configurations/" title="Toggle language">
 	
 	
 	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
@@ -114,132 +114,53 @@
       
     <div class="grid-auto"><aside class="aside menu">
   <div>
-    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
+    <label class="aside_toggle toggle" title='Docs Menu' role="button">Docs Menu <svg class="icon icon_carly">
   <use xlink:href="#carly"></use>
 </svg></label>
   </div>
   <section class="section aside_inner">
-    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
-      <section class="" id="docs-专业-emacs-入门">
-        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/" class="group">Pavinberg&#39;s Emacs Book</a></h2>
+      <section class="" id="docs-pavinbergs-emacs-book">
+        <h3 class="section_link"><a id="docs-introduction" href="https://pavinberg.github.io/emacs-book/intro/">Introduction</a></h3><nav id="TableOfContents">
   <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
+    <li><a href="#why-emacs">Why Emacs</a></li>
   </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents"></nav>
-        <h3 class="section_link active"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-basic-operations" href="https://pavinberg.github.io/emacs-book/basic/">Basic operations</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link active"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3><nav id="TableOfContents"></nav>
   <section class="section aside_inner">
-    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
   </section>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>插件：编程开发类</h1><p>To be edited...</p>
+    <h1>Configurations</h1><p>To be edited...</p>
 
     <div class="pager">
   
     
     <div class="pager_item prev">
-      <a href="https://pavinberg.github.io/emacs-book/zh/enhancement/" class="pager_link button" title="插件：功能增强类" rel="prev">
-        <span class="pager_label">插件：功能增强类</span>
+      <a href="https://pavinberg.github.io/emacs-book/buffer/" class="pager_link button" title="Buffer and mode" rel="prev">
+        <span class="pager_label">Buffer and mode</span>
       </a>
     </div>
     
   
 
+  
+    
+    <div class="pager_item next">
+      <a href="https://pavinberg.github.io/emacs-book/optimization/" class="pager_link button" title="Improve the native operations" rel="next">
+        <span class="pager_label">Improve the native operations</span>
+      </a>
+    </div>
+    
   
 </div>
   </main>
@@ -249,7 +170,7 @@
 <footer class="pt-2 pb-2">
   <div class="wrap">
     <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
-    <a href="#pagetop" id="toTop" title=回到顶部></a>
+    <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
   </div>
 </footer>
 <svg width="0" height="0" class="hidden">

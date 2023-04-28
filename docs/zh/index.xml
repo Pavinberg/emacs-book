@@ -60,10 +60,10 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
     
     <item>
       <title>基本配置</title>
-      <link>https://pavinberg.github.io/emacs-book/zh/configuration/</link>
+      <link>https://pavinberg.github.io/emacs-book/zh/configurations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://pavinberg.github.io/emacs-book/zh/configuration/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/zh/configurations/</guid>
       <description>本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
 简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
 学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
@@ -79,7 +79,14 @@ Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://pavinberg.github.io/emacs-book/zh/optimization/</guid>
-      <description>To be edited...</description>
+      <description>接下来的部分，我们会开始介绍一些实用插件，让 Emacs 变得强大起来。在开始之前读者需要阅读完上一篇教程，知道如何进行 Emacs 的配置。
+由于插件数量众多，本教程将分类进行介绍。大体分为如下几类：
+功能优化类：对 Emacs 自身的一些不够完美的功能进行替换，解决一些痛点，提高操作便利性 功能增强类：大大提升 Emacs 体验与效率 编程类：和编程相关的插件配置 外观类：配置颜色、主题、屏保等。 值得一提的是，在众多插件中，其实相同的功能可能有好几个插件来实现，最典型的就是有两个知名度很高的插件做的是几乎同一件事。类比一下正如 Emacs 和 Vim、肯德基和麦当劳。本教程将重点介绍其中的一个笔者常使用的插件，对另一个插件（如果笔者了解的话）会做一点提及，读者可以自行进一步了解并根据自己的偏好进行选择。
+在这部分插件篇中，如果读者有除了文章中提到的插件以外的相关插件想要推荐给大家使用、对文章作出补充，欢迎在 Github 中提出 Pull Request。
+第一个插件笔者会详细介绍一下每一步的细节，后面的插件会逐步省略。
+本教程对插件的功能介绍大部分局限于核心功能，其它功能会省略，主要目的还是希望读者能抓住重点，不必劳烦记住所有繁琐的功能。在读者使用的过程中，可以自行探索插件的其它功能，一是可以查阅插件的文档，二是可以直接在 Emacs 内查看函数的文档。插件相关的命名都是会使用插件名作为前缀，例如马上要介绍的插件 ivy，和它相关的命令就都是 ivy-* 这样的命名。所以读者在安装 ivy 后可以首先 M-x ivy- 然后就可以看到一系列以此为前缀的命令，想要查询其中某一个的功能例如 ivy-push-view，那就先 C-g 回到正常 Buffer 内，然后输入我们第二篇教程就介绍的命令 C-h f ivy-push-view 就可以显示这个命令的介绍了。 ivy 简介 主页
+首先要介绍的当属 ivy 了。读者在前面使用 Emacs 时，可能多少会感到就像一开始使用 Linux 中的初始 shell Bash，功能是全的，但是使用的友好度差了点。ivy 就为 Emacs 带来了使用体验上的巨大提升，就好像用了 oh-my-zsh 的 zsh。
+打开 ivy 的链接，会发现其实这个仓库名为 swiper，里面包含了 ivy、counsel 和 swiper 三部分。它们三个分别加强了 Emacs 的三个方面： 补全系统 、 部分常用命令 、 搜索功能 。由于是作者 abo-abo（Oleh Krehel）开发的三个模块，现在都整合到了一起，我们一并安装就好。顺带一提的是，这位作者非常厉害，我们后面提到的好几个插件都由他发起和编写。</description>
     </item>
     
     <item>
