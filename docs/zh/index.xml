@@ -117,7 +117,13 @@ which-key（可选） 主页
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://pavinberg.github.io/emacs-book/zh/development/</guid>
-      <description>To be edited...</description>
+      <description>经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
+编辑器最基本需要三大方面的功能：
+对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
+自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &amp;#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 + 一个数字选择相应标号的备选项。
+此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .</description>
     </item>
     
   </channel>
