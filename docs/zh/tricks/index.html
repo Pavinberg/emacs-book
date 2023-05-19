@@ -1,0 +1,637 @@
+
+
+<!doctype html>
+<html lang="zh"
+  data-mode="auto"
+>
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
+<link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
+<link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
+<link rel="manifest" href='https://pavinberg.github.io/emacs-book/favicons/site.webmanifest'>
+<link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
+<link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
+<meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
+<title>实用小技巧 | 专业 Emacs 入门</title><meta property="og:title" content="实用小技巧" />
+<meta property="og:description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
+笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
+程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
+因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
+无需任何配置，打开 .md 文件就会自动使用 markdown-mode，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 M-x markdown-insert-gfm-code-block 然后输入想要输入的编程语言名字即可，其快捷键是 C-c C-s C。所有相关命令都是以 markdown-insert- 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。
+此外还有一些方便跳转的快捷键，例如：
+C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/tricks/" /><meta property="article:section" content="" />
+
+<meta property="og:site_name" content="专业 Emacs 入门" />
+<meta itemprop="name" content="实用小技巧">
+<meta itemprop="description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
+笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
+程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
+因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
+无需任何配置，打开 .md 文件就会自动使用 markdown-mode，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 M-x markdown-insert-gfm-code-block 然后输入想要输入的编程语言名字即可，其快捷键是 C-c C-s C。所有相关命令都是以 markdown-insert- 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。
+此外还有一些方便跳转的快捷键，例如：
+C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。">
+
+<meta itemprop="wordCount" content="779">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="实用小技巧"/>
+<meta name="twitter:description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
+笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
+程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
+因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
+无需任何配置，打开 .md 文件就会自动使用 markdown-mode，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 M-x markdown-insert-gfm-code-block 然后输入想要输入的编程语言名字即可，其快捷键是 C-c C-s C。所有相关命令都是以 markdown-insert- 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。
+此外还有一些方便跳转的快捷键，例如：
+C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。"/>
+
+
+<link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
+
+
+
+
+  <meta name="description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
+笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
+程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
+因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
+无需任何配置，打开 .md 文件就会自动使用 markdown-mode，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 M-x markdown-insert-gfm-code-block 然后输入想要输入的编程语言名字即可，其快捷键是 C-c C-s C。所有相关命令都是以 markdown-insert- 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。
+此外还有一些方便跳转的快捷键，例如：
+C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。">
+
+
+</head>
+<body class="page-page" id="pagetop">
+  <header class="nav_header">
+<nav class="wrap nav menu">
+	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
+		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="专业 Emacs 入门 Logo">
+		</picture>
+		<label class="nav_toggle toggle" title='网站菜单' role="button">
+			<svg class="icon icon_harmburger">
+  <use xlink:href="#harmburger"></use>
+</svg>
+		</label>
+	</a>
+	<ul class="nav_body">
+		<li class="nav-item">
+
+<div class="search">
+  <label for="find" class="search_label"><svg class="icon icon_search">
+  <use xlink:href="#search"></use>
+</svg>
+  </label>
+  
+  
+    
+  
+  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
+  <div class="search_results results"></div>
+</div>
+
+
+
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
+		</li>
+		
+		<li class="nav-item nav_repo">
+			<a class="nav-link" href="https://github.com/Pavinberg/emacs-book/" target="_blank">
+				
+					<picture data-lit="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/GitHubMarkDark.svg">
+						<img src="https://pavinberg.github.io/emacs-book/icons/GitHubMarkLight.svg" alt="GitHub Repo">
+					</picture>
+				
+			</a>
+		</li>
+		<li class="nav-item">
+
+</li>
+		<li class="nav-item"><div class="color_mode">
+  <label for="mode"></label>
+  <input type="checkbox" class="color_choice standardize-input" id="mode" title="Toggle Dark Mode">
+</div>
+</li>
+	</ul>
+</nav>
+
+  </header>
+  
+  <div class="main wrap pt-4">
+    
+    
+    
+      
+    <div class="grid-auto"><aside class="aside menu">
+  <div>
+    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
+  <use xlink:href="#carly"></use>
+</svg></label>
+  </div>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
+      <section class="" id="docs-专业-emacs-入门">
+        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
+    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
+    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
+    <li><a href="#其它-emacs">其它 Emacs</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#启动">启动</a></li>
+    <li><a href="#关于键盘操作">关于键盘操作</a></li>
+    <li><a href="#功能键">功能键</a></li>
+    <li><a href="#emacs-命令">Emacs 命令</a></li>
+    <li><a href="#基础快捷键">基础快捷键</a>
+      <ul>
+        <li><a href="#如何退出">如何退出</a></li>
+        <li><a href="#光标移动">光标移动</a></li>
+        <li><a href="#编辑操作">编辑操作</a></li>
+        <li><a href="#标记与跳转">标记与跳转</a></li>
+        <li><a href="#重复操作">重复操作</a></li>
+        <li><a href="#页面移动">页面移动</a></li>
+        <li><a href="#搜索文本">搜索文本</a></li>
+        <li><a href="#其它小操作">其它小操作</a></li>
+        <li><a href="#获得帮助">获得帮助</a></li>
+      </ul>
+    </li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初识界面">初识界面</a></li>
+    <li><a href="#文件与-buffer">文件与 Buffer</a>
+      <ul>
+        <li><a href="#打开多文件">打开多文件</a></li>
+        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
+        <li><a href="#文件备份">文件备份</a></li>
+      </ul>
+    </li>
+    <li><a href="#多-window">多 Window</a></li>
+    <li><a href="#多-frame">多 Frame</a></li>
+    <li><a href="#模式mode">模式（mode）</a>
+      <ul>
+        <li><a href="#主模式">主模式</a></li>
+        <li><a href="#次模式">次模式</a></li>
+        <li><a href="#mode-hook">Mode hook</a></li>
+      </ul>
+    </li>
+    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#命令列表">命令列表</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
+      <ul>
+        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
+        <li><a href="#语法简介">语法简介</a></li>
+      </ul>
+    </li>
+    <li><a href="#基础设置">基础设置</a>
+      <ul>
+        <li><a href="#现成的配置">现成的配置</a></li>
+        <li><a href="#基本结构">基本结构</a></li>
+        <li><a href="#最开始的配置">最开始的配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置快捷键">配置快捷键</a></li>
+    <li><a href="#melpa">MELPA</a></li>
+    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
+    <li><a href="#配置变量">配置变量</a></li>
+    <li><a href="#配置生效">配置生效</a></li>
+    <li><a href="#结尾">结尾</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ivy">ivy</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#配置流程">配置流程</a></li>
+        <li><a href="#效果">效果</a></li>
+        <li><a href="#同类插件">同类插件</a></li>
+      </ul>
+    </li>
+    <li><a href="#amx">amx</a></li>
+    <li><a href="#ace-window">ace-window</a></li>
+    <li><a href="#mwim">mwim</a></li>
+    <li><a href="#undo-tree">undo-tree</a></li>
+    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
+    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#book-marks">Book marks</a></li>
+    <li><a href="#ivy-view">ivy view</a></li>
+    <li><a href="#which-key可选">which-key（可选）</a></li>
+    <li><a href="#avy">avy</a>
+      <ul>
+        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
+        <li><a href="#基本用法">基本用法</a></li>
+        <li><a href="#进阶用法">进阶用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#marginalia">marginalia</a></li>
+    <li><a href="#embark可选">embark（可选）</a></li>
+    <li><a href="#hydra">hydra</a></li>
+    <li><a href="#multiple-cursors">multiple-cursors</a></li>
+    <li><a href="#dashboard">dashboard</a></li>
+    <li><a href="#tiny">tiny</a></li>
+    <li><a href="#highlight-symbol">highlight-symbol</a></li>
+    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
+    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#自动补全">自动补全</a>
+      <ul>
+        <li><a href="#基本配置">基本配置</a></li>
+        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
+        <li><a href="#代码片段模板">代码片段模板</a></li>
+        <li><a href="#文本展开">文本展开</a></li>
+      </ul>
+    </li>
+    <li><a href="#语法检查">语法检查</a></li>
+    <li><a href="#代码分析">代码分析</a></li>
+    <li><a href="#代码调试">代码调试</a></li>
+    <li><a href="#项目管理">项目管理</a></li>
+    <li><a href="#局部变量">局部变量</a></li>
+    <li><a href="#环境变量">环境变量</a></li>
+    <li><a href="#版本管理">版本管理</a></li>
+    <li><a href="#语言相关配置">语言相关配置</a>
+      <ul>
+        <li><a href="#cc">C/C++</a></li>
+        <li><a href="#rust">Rust</a></li>
+        <li><a href="#python">Python</a></li>
+      </ul>
+    </li>
+    <li><a href="#工作区管理">工作区管理</a></li>
+    <li><a href="#终端">终端</a></li>
+    <li><a href="#远程访问">远程访问</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初识配置-face">初识配置 Face</a></li>
+    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
+    <li><a href="#配置主题">配置主题</a></li>
+    <li><a href="#配置图标">配置图标</a></li>
+    <li><a href="#mode-line">mode-line</a></li>
+  </ul>
+</nav>
+        <h3 class="section_link active"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#笔记">笔记</a>
+      <ul>
+        <li><a href="#markdown">Markdown</a></li>
+        <li><a href="#latex">LaTeX</a></li>
+        <li><a href="#中文支持">中文支持</a></li>
+        <li><a href="#org-mode">org-mode</a></li>
+      </ul>
+    </li>
+    <li><a href="#计算器">计算器</a></li>
+    <li><a href="#emacs-server">Emacs server</a></li>
+    <li><a href="#chatgpt">ChatGPT</a></li>
+    <li><a href="#google-this">google-this</a></li>
+  </ul>
+</nav>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+  </section>
+      </section>
+  </section>
+</aside>
+
+  <main class="content">
+    <h1>实用小技巧</h1><p>本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：</p>
+<ul>
+<li>笔记类任务：Markdown、LaTeX、<code>org-mode</code> 及中文编辑</li>
+<li>计算器： <code>calc</code></li>
+<li>Emacs server</li>
+<li>ChatGPT 协作</li>
+</ul>
+<blockquote>
+<p>本文可能会不断更新。</p>
+</blockquote>
+<h2 id="笔记">笔记</h2>
+<h3 id="markdown">Markdown</h3>
+<p>笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。</p>
+
+<div class="tip">
+  程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。
+</div>
+
+<p>Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 <code>README.md</code> 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。</p>
+<p>因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 <code>markdown-mode</code>。</p>
+<p>无需任何配置，打开 <code>.md</code> 文件就会自动使用 <code>markdown-mode</code>，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 <code>M-x</code> <code>markdown-insert-gfm-code-block</code> 然后输入想要输入的编程语言名字即可，其快捷键是 <code>C-c C-s C</code>。所有相关命令都是以 <code>markdown-insert-</code> 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。</p>
+<p><img src="../../images/emacs-book/tricks/markdown.png" alt="markdown"></p>
+<p>此外还有一些方便跳转的快捷键，例如：</p>
+<ul>
+<li><code>C-c C-n</code> 调用 <code>markdown-outline-next</code> 可以快速跳到下节，<code>C-c C-u</code> 调用 <code>markdown-outline-up</code> 跳到上一节。</li>
+<li><code>C-c C-f</code> 调用 <code>markdown-outline-next-same-level</code> 跳到下一个同级章节，<code>C-c C-b</code> 调用 <code>markdown-outline-previous-same-level</code> 跳到上一个同级章节。</li>
+</ul>
+<p>其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。</p>
+<p>想要预览 Markdown，可以输入 <code>M-x</code> <code>markdown-live-preview-mode</code> 或输入快捷键 <code> C-c C-c l</code> 就可以在另一个窗口里预览 。这个功能应当至少需要 Emacs &gt;= 26 的版本（未完全确认）。笔者认为自带的预览功能比较一般，所以只适合轻度使用。</p>
+<p>如果确实认为自带的功能很简陋，读者可以尝试 <a href="https://wikemacs.org/wiki/Markdown#Live_preview_as_you_type">Wiki</a> 中提及的 <code>impatient-mode</code>、<code>livedown-mode</code> 和 <code>realtime-preview</code>。<code>impatient-mode</code> 根据介绍是一个基于 Emacs Lisp 的为 HTML 提供预览的工具，但可以稍微改造一下用于 Markdown 的预览。 其它两个模式分别需要依赖 <code>Node.js</code> 和 <code>Ruby</code> 这类外部工具，读者按需选择就好。</p>
+<h3 id="latex">LaTeX</h3>
+<p>LaTeX 是一个功能极其强大的排版系统，一般来说日常无需使用如此重量级的工具，笔者仅在写一些比较重要的报告和论文时才会使用。如果没有这类需求可直接略过本节。</p>
+
+<div class="tip">
+  事实上 LaTeX 的编辑器也很多，包括 VSCode 也可以提供良好的体验。笔者使用 Emacs 作为 LaTeX 编辑器其实更多是为了结合下文提到的“中文支持”功能，用以编写中文的 LaTeX。其余功能与 VSCode 大同小异。
+</div>
+
+<p>首先应当正常手动安装好 LaTeX 并保证能正常使用。Emacs 中则需要安装 AUCTeX，一个专门的包。可以通过 <code>M-x</code> <code>package-install</code> <code>&lt;RET&gt;</code> <code>auctex</code> 安装。</p>
+<p>随后打开 <code>.tex</code> 文件时会进入 <code>TeX-mode</code>（大小写敏感）， 提供了语法高亮。一些可以辅助插入特定格式的快捷键以 <code>latex-</code> 为前缀，读者自行探索就好。</p>
+<p>LaTeX 编译成的 PDF 也可以在 Emacs 中打开。需要安装 <a href="https://github.com/vedang/pdf-tools">pdf-tools</a> 插件。依然建议从 MELPA 安装比较方便，可使用如下配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">pdf-tools</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="p">(</span><span class="nv">pdf-loader-install</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;pdf-view-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">display-line-numbers-mode</span> <span class="mi">-1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">pdf-view-kill-rmn-ring-save</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="s">&#34;Copy the region to the </span><span class="ss">`kill-ring&#39;</span><span class="s"> after remove all newline characters.&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nv">pdf-view-assert-active-region</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">txt</span> <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">&#34;\n&#34;</span> <span class="s">&#34; &#34;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="p">(</span><span class="nf">car</span> <span class="p">(</span><span class="nv">pdf-view-active-region-text</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="p">(</span><span class="nv">pdf-view-deactivate-region</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	<span class="p">(</span><span class="nv">kill-new</span> <span class="nv">txt</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">pdf-view-mode</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c C-w&#34;</span> <span class="o">.</span> <span class="nv">pdf-view-kill-rmn-ring-save</span><span class="p">))</span>
+</span></span></code></pre></div><p>安装后即可在 Emacs 中打开 PDF 文件，同时笔者定义了一个函数 <code>pdf-view-kill-rmn-ring-save</code> 并绑定到快捷键 <code>C-c C-w</code> 上，该命令可以在选中 PDF 的一段文字后将其复制出来，同时去掉其中的回车。</p>
+<p><code>pdf-tools</code> 提供了很多可以快速浏览 PDF 的快捷键，可参考<a href="https://github.com/vedang/pdf-tools#keybindings-for-navigating-pdf-documents">官方主页</a>。</p>
+<p>编译 LaTeX 可以在 <code>.tex</code> 文件上按下 <code>C-c C-c</code> 然后选择 &quot;LaTeX&quot;。选择 &quot;BibTeX&quot; 或 “Biber” 可以编译引文 <code>.bib</code>。切换编译引擎可以设置 <code>TeX-engine</code> 变量，其变量文档中有列出可选值，如 “xetex” 可以切换成 XeLaTeX。由于编译是直接编译当前 TeX 文件，对于有多个 <code>.tex</code> 文件的项目，可以设置一个主 TeX 文件，对应 <code>TeX-master</code> 变量。这些可以利用<a href="../development#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F">插件：编程开发</a>提到的局部变量来进行设置。例如这样的 <code>.dir-locals.el</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">;;; Directory Local Variables</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">;;; For more information see (info &#34;(emacs) Directory Variables&#34;)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">((</span><span class="nv">latex-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nv">TeX-engine</span> <span class="o">.</span> <span class="nv">xetex</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">		<span class="p">(</span><span class="nv">TeX-master</span> <span class="o">.</span> <span class="s">&#34;/path/to/main/tex&#34;</span><span class="p">))))</span>
+</span></span></code></pre></div><h3 id="中文支持">中文支持</h3>
+<p>这里主要是指对中文内容提供两点支持：</p>
+<ol>
+<li>中文分词：Emacs 可以做到 <code>M-b</code>、<code>M-f</code> 来按中文词进行光标移动。这种支持对于快速编辑中文、保持 Emacs 的操作一致性非常重要。默认情况下，对一段中文文本按下 <code>M-b</code>/<code>M-f</code> 会直接跳到上一个/下一个标点符号，失去了以词为单位移动的意义。</li>
+<li>中英文符号的自定义切换。如果读者写过带公式、代码块的中文 Markdown/LaTeX，一定会发现有一件事非常非常令人厌烦，就是中英文输入法的切换。在输入内容和标点时需要中文字符，但在输入符号时需要英文字符，经常写起来会被这些切换搞得头脑混乱。虽然可以利用编辑器的快捷键缓解问题，但不具有通用性，不尽如人意。</li>
+</ol>
+<p><strong>解决分词问题</strong> 笔者使用了 [emacs-chinese-word-segmentation](<a href="https://github.com/kanglmf/emacs-">https://github.com/kanglmf/emacs-</a>
+chinese-word-segmentation) 工具。该工具借助 jieba 分词实现了分词功能。这个插件没有放到 MELPA 等仓库，需要手动
+clone 安装，参见其主页即可。</p>
+<p>笔者建议在 <code>~/.emacs.d/chinese/</code> 等目录下 clone 该项目，然后按照其主页的命令使用 make 进行编译。随后把其主页的配置内容放到合适的配置文件中去。在想要使用这个中文分词时，手动调用 <code>cns-mode</code> 就可以了。如果想要在某个特定项目中使用，那么可以加入到局部变量 <code>.dir-locals.el</code> 中，如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">((</span><span class="nv">markdown-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nf">eval</span> <span class="o">.</span> <span class="p">(</span><span class="nv">cns-mode</span><span class="p">)))))</span>
+</span></span></code></pre></div>
+<div class="tip">
+  Emacs 还有一个 <a href="https://elpa.gnu.org/packages/pyim.html">pyim</a> 插件，是一个内部中文输入法，能支持五笔、双拼等，安装了它后，也可以获得分词功能。但是 <code>pyim</code> 体验一般，而且毕竟是独立于系统的输入法的，在 Emacs 内外切换两个输入法不是很舒适，用户完全可以使用外部的选择众多的功能强大的输入法搭配 <code>cns-mode</code>，因此笔者并不推荐 <code>pyim</code>。
+</div>
+
+<p>而 <strong>解决输入法切换问题</strong> ，可直接利用 Emacs 的 <a href="https://ftp.gnu.org/old-gnu/Manuals/emacs-20.7/html_node/emacs_457.html">keyboard-translate</a> 功能，该功能可以实现把一个符号映射成另一个符号。笔者针对 Markdown 使用了如下设置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;markdown-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">			        <span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?¥</span> <span class="sc">?$</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?·</span> <span class="sc">?`</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?～</span> <span class="sc">?~</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">                                <span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?、</span> <span class="sc">?\\</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?｜</span> <span class="sc">?、</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?\「</span> <span class="sc">?{</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?\」</span> <span class="sc">?}</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?\《</span> <span class="sc">?&lt;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">				<span class="p">(</span><span class="nv">keyboard-translate</span> <span class="sc">?\》</span> <span class="sc">?&gt;</span><span class="p">)))</span>
+</span></span></code></pre></div><p>思路就是一些几乎不使用的中文字符直接映射成英文字符，以方便编写 Markdown。例如第一句，把人民币 <code>¥</code> 映射成美元 <code>$</code>，这样在中文输入时也可以直接按 <code>shift+4</code> 来输入 <code>$</code> 符号，从而输入内联公式。同样的， <code>·</code> 也被映射为 ``` `` 由此方便输入行内代码。 为了能够方便输入反斜杠，把顿号 <code>、</code> 映射为 <code>\</code> 而把 <code>｜</code> 映射会 顿号 <code>、</code>（读者如果不喜欢这样操作可以去掉相应代码）。以此类推。</p>
+<p>这里的语法就是“问号+字符”，部分字符需要用反斜杠转义。</p>
+<h3 id="org-mode">org-mode</h3>
+<p><a href="https://orgmode.org/">org-mode</a> 其实是 Emacs 中非常强大的笔记模式，在 Emacs 中使用的体验、功能的强大远超 Markdown。但笔者目前使用较少，后续会更多尝试。<code>org-mode</code> 的主要缺点是一方面需要一定的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享。但笔者认为有必要向读者简单介绍这个功能，因为喜欢 <code>org-mode</code> 的人爱不释手，甚至有人使用 Emacs 就是为了 <code>org-mode</code>，读者可以自己判断是否适合自己。</p>
+<p>读者可以把 <code>org-mode</code> 理解成一个 Emacs 内的高级 Markdown，可以带很多复杂的逻辑，然后 Emacs 为它提供了很多方便的功能，例如：</p>
+<ul>
+<li>章节折叠、跳转</li>
+<li>方便的多状态、多层级 Todo List</li>
+<li>丰富多样的链接引用功能</li>
+<li>表格操作（甚至可以像 Excel 一样输入公式自动计算）</li>
+<li>插入代码</li>
+<li>导出成各种格式（Markdown、HTML、LaTeX 等）</li>
+<li>利用 Emacs 的扩展性扩展更多丰富的功能</li>
+</ul>
+<p>只要打开后缀名为 <code>.org</code> 的文件就会自动启动 <code>org-mode</code>。 主要可以用来做 Todo List、项目记录等。此外，通过安装一些插件和使用内置的一些功能，可以得到更为完整的笔记体验，例如 Zettelkasten 笔记法等。可以类比一下比较有名的笔记软件例如 Notion、Obsidian 等。</p>
+<p>具体如何使用笔者就不信口开河了，建议读者查看官方文档。</p>
+<h2 id="计算器">计算器</h2>
+<p>写程序也是偶尔需要计算器的，例如算一算字节数、传输速率、做一做十六进制转化等。Emacs 内置了一个非常强大的计算器：<a href="https://www.gnu.org/software/emacs/manual/html_node/calc/index.html">calc</a>。除了常见普通计算器的功能，还包括：</p>
+<ul>
+<li>复数运算</li>
+<li>2～36 进制运算</li>
+<li>质因数分解</li>
+<li>线性代数、矩阵运算</li>
+<li>微积分</li>
+<li>方程求解</li>
+<li>逆波兰表达式</li>
+<li>与 GNUPLOT 对接画图</li>
+</ul>
+<p>事实上笔者基本用不到多么高级的功能，主要是加减乘除、幂运算、进制转换等。本文就简要介绍一下基本使用逻辑。</p>
+<p>输入命令 <code>M-x</code> <code>calc</code> 启动计算器。 按 <code>h</code> <code>T</code> 可以打开教程。</p>
+<p>默认使用 RPN（Reverse Polish Notation，逆波兰表达式或称后缀表达式）。所谓 RPN 就是数字会以栈的形式依次放入，在输入运算符时数字出栈、计算、再把结果入栈。如果读者从未听说过后缀表达式，甚至连栈也没有听说过，那么直接只用普通的算数表达式就好。先输入单引号 <code>'</code>，然后就可以在 Minibuffer 中输入正常的表达式了。至于逆波兰表达式的学习，读者可以参考《数据结构》课程。</p>
+<p>如果是使用 RPN，那么例如计算 $ 2 + 3 \times 4 $ 时需要依次输入：<code>2</code>、<code>3</code>、<code>4</code>、<code>*</code>、<code>+</code>。 Emacs 会维护一个栈供用户查看，如下图左侧，从下到上依次是栈底到栈顶。右侧可简单理解为历史记录。</p>
+<p><img src="../../images/emacs-book/tricks/calc.png" alt="clac"></p>
+<p>特别的，按 <code>&lt;backspace&gt;</code> 可以移除栈顶元素，按 <code>&lt;TAB&gt;</code> 可以交换栈顶的两个元素，按 <code>M-&lt;TAB&gt;</code> 可以把第三个元素拿出来重新放入栈顶，<code>U</code> 可以撤销操作。很多运算符也都有含义，例如 <code>&amp;</code> 取倒数 ，<code>^</code> 取幂等。</p>
+<p>人们的第一反应一般是觉得 RPN 非常的反常识，肯定不好用，但事实上，RPN 作为 <code>calc</code> 的默认模式还是有一定道理的，至少从笔者日常的体验来说，适应之后似乎确实更省事，毕竟也可以交换栈顶元素，每次可以只考虑局部的运算，然后一步步算出最终结果。普通的算式的话，则需要来回加小括号，或者把结果保存到临时变量中去以备使用。</p>
+<p>想要输入十六进制的数，例如 <code>0xFE</code>，只需要输入 <code>16#fe</code> ，其它进制也一样，N 进制就输入 <code>N#</code> 开头，后接数字即可。 N 的取值是 2～36（笔者推测之所以止步于三十六进制是因为 10 个数字+26 个字母共计 36 个字符）。</p>
+<p>运算结果默认显示为十进制，想要显示为 N 进制，输入 <code>d</code> <code>r</code> N。 此外，还有快捷输入：</p>
+<ul>
+<li>显示为十进制：<code>d</code> <code>0</code></li>
+<li>显示为二进制：<code>d</code> <code>2</code></li>
+<li>显示为十六进制：<code>d</code> <code>6</code></li>
+<li>显示为八进制：<code>d</code> <code>8</code></li>
+</ul>
+<h2 id="emacs-server">Emacs server</h2>
+<p>由于 Emacs 的启动较慢，在命令行使用 Emacs 时，频繁启动关闭非常不方便。一种方式是启动后按 <code>C-z</code> 挂起 Emacs 回到 Shell，之后再输入命令 <code>fg</code> （Foreground 的缩写）回到 Emacs。</p>
+<p>这里介绍另一种方式。Emacs 为用户提供了一个 client-server 模式，用户可以设置开机启动 Emacs server 的守护进程，然后在需要使用 Emacs 编辑文件时，通过 Emacs client 打开 Emacs。由于 Emacs 已在后台启动，client 可以秒开 Emacs。</p>
+<p>手动启动，在 Shell 中输入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs --daemon
+</span></span></code></pre></div><p>Emacs 就会在后台加载好，称为一个守护进程。</p>
+<p>之后想要打开文件 <code>test.c</code> 时，输入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="nv">$</span> <span class="nv">emacsclient</span> <span class="nv">test.c</span>
+</span></span></code></pre></div><p>如果希望开机自动启动 Emacs 守护进程，需要修改操作系统的启动项。Linux 上可使用 <code>systemd</code>，macOS 使用 <code>launchctl</code>，
+Windows 也可支持。读者直接参照 Wiki 中的 “<a href="https://wikemacs.org/wiki/Emacs_server#Adding_To_OS_Startup">Adding To OS Startup</a>” 小节就好。</p>
+<p>图形界面的话，一般没必要使用这一功能，直接打开程序后不关闭就好了。</p>
+<h2 id="chatgpt">ChatGPT</h2>
+<p><a href="https://github.com/xenodium/chatgpt-shell">chatgpt-shell</a> 可以在 Emacs 内通过交互式界面与 ChatGPT 通信。其使用方式非常简单，只需要根据其主页导入插件并设置 OpenAI key：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">chatgpt-shell</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">((</span><span class="nv">chatgpt-shell-openai-key</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">      <span class="p">(</span><span class="s">&#34;abcdefg&#34;</span><span class="p">)))))</span>
+</span></span></code></pre></div><p>然而这里 <strong>直接把密钥写进配置文件并不是一个好选择</strong> ，因为大家通常会在云端备份自己的 Emacs 配置，会暴露自己的密钥。所以更推荐使用密码管理器，例如 Unix 平台上可以使用 <a href="https://www.passwordstore.org/">pass</a>，将密钥保存到
+<code>pass</code> 中并进行这样的配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">chatgpt-shell</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">((</span><span class="nv">chatgpt-shell-openai-key</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">      <span class="p">(</span><span class="nv">auth-source-pass-get</span> <span class="ss">&#39;secret</span> <span class="s">&#34;openai-key&#34;</span><span class="p">)))))</span>
+</span></span></code></pre></div><p>对于 macOS 来说，则可以利用自带的钥匙串。首先打开终端输入如下命令，其中把 &quot;abcdefg&quot; 换成你自己的 OpenAI Key：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ security add-generic-password -a <span class="s2">&#34;openai key&#34;</span> -w <span class="s2">&#34;abcdefg&#34;</span> -s <span class="s2">&#34;api.openai.com&#34;</span>
+</span></span></code></pre></div><p>然后定义一个读取钥匙串的辅助函数并进行配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">when</span> <span class="vg">*is-a-mac*</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">osx-get-keychain-password</span> <span class="p">(</span><span class="nv">account-name</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">	<span class="s">&#34;Gets ACCOUNT-NAME keychain password from OS X Keychain.&#34;</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">	<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">cmd</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;security 2&gt;&amp;1 &gt;/dev/null find-generic-password -ga &#39;&#34;</span> <span class="nv">account-name</span> <span class="s">&#34;&#39;&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	  <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">passwd</span> <span class="p">(</span><span class="nv">shell-command-to-string</span> <span class="nv">cmd</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">		<span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nf">string-match</span> <span class="p">(</span><span class="nb">rx</span> <span class="s">&#34;\&#34;&#34;</span> <span class="p">(</span><span class="nv">group</span> <span class="p">(</span><span class="nv">0+</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nf">1+</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nv">any</span> <span class="s">&#34;\&#34;&#34;</span> <span class="s">&#34;\\&#34;</span><span class="p">)))</span> <span class="p">(</span><span class="nv">seq</span> <span class="s">&#34;\\&#34;</span> <span class="nv">anything</span><span class="p">))))</span> <span class="s">&#34;\&#34;&#34;</span><span class="p">)</span> <span class="nv">passwd</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">		  <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">passwd</span><span class="p">))))))</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">(</span><span class="nb">when</span> <span class="vg">*is-a-mac*</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">chatgpt-shell</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	<span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="p">((</span><span class="nv">chatgpt-shell-openai-key</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">          <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">            <span class="c1">;; Here the openai-key should be the proxy service key.</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">	    <span class="p">(</span><span class="nv">osx-get-keychain-password</span> <span class="s">&#34;openai key&#34;</span><span class="p">))))))</span>
+</span></span></code></pre></div><p>这里引用它的主页的动图展示一下效果。</p>
+<p><img src="../../images/emacs-book/tricks/chatgpt-shell-demo.gif" alt="clac"></p>
+<h2 id="google-this">google-this</h2>
+<p><a href="https://github.com/Malabarba/emacs-google-this">主页</a></p>
+<p>在 Emacs 内选中一段文本，按下 <code>C-c / t</code> 触发 <code>google-this</code>，即可搜索这段文本。注意这个插件一般是在本地机器才会使用，不适合在服务器上用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">google-this</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nv">google-this-mode</span><span class="p">))</span> 
+</span></span></code></pre></div>
+    <div class="pager">
+  
+    
+    <div class="pager_item prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/theme/" class="pager_link button" title="外观与主题" rel="prev">
+        <span class="pager_label">外观与主题</span>
+      </a>
+    </div>
+    
+  
+
+  
+</div>
+  </main>
+</div>
+</div>
+  
+<footer class="pt-2 pb-2">
+  <div class="wrap">
+    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <a href="#pagetop" id="toTop" title=回到顶部></a>
+  </div>
+</footer>
+<svg width="0" height="0" class="hidden">
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 492.004 492.004" id="next">
+    <path d="M484.14 226.886L306.46 49.202c-5.072-5.072-11.832-7.856-19.04-7.856-7.216 0-13.972 2.788-19.044 7.856l-16.132 16.136c-5.068 5.064-7.86 11.828-7.86 19.04 0 7.208 2.792 14.2 7.86 19.264L355.9 207.526H26.58C11.732 207.526 0 219.15 0 234.002v22.812c0 14.852 11.732 27.648 26.58 27.648h330.496L252.248 388.926c-5.068 5.072-7.86 11.652-7.86 18.864 0 7.204 2.792 13.88 7.86 18.948l16.132 16.084c5.072 5.072 11.828 7.836 19.044 7.836 7.208 0 13.968-2.8 19.04-7.872l177.68-177.68c5.084-5.088 7.88-11.88 7.86-19.1.016-7.244-2.776-14.04-7.864-19.12z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999" id="search">
+    <path d="M508.874 478.708L360.142 329.976c28.21-34.827 45.191-79.103 45.191-127.309C405.333 90.917 314.416 0 202.666 0S0 90.917 0 202.667s90.917 202.667 202.667 202.667c48.206 0 92.482-16.982 127.309-45.191l148.732 148.732c4.167 4.165 10.919 4.165 15.086 0l15.081-15.082c4.165-4.166 4.165-10.92-.001-15.085zM202.667 362.667c-88.229 0-160-71.771-160-160s71.771-160 160-160 160 71.771 160 160-71.771 160-160 160z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 241 179" id="harmburger">
+    <path d="M1 10C1 4.477 5.477 0 11 0h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11C5.477 20 1 15.523 1 10zm0 80c0-5.523 4.477-10 10-10h220c5.523 0 10 4.477 10 10s-4.477 10-10 10H11c-5.523 0-10-4.477-10-10zm9 69c-5.523 0-10 4.477-10 10s4.477 10 10 10h220c5.523 0 10-4.477 10-10s-4.477-10-10-10H10z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.998 401.998" id="sort">
+    <path d="M73.092 164.452h255.813c4.949 0 9.233-1.807 12.848-5.424 3.613-3.616 5.427-7.898 5.427-12.847s-1.813-9.229-5.427-12.85L213.846 5.424C210.232 1.812 205.951 0 200.999 0s-9.233 1.812-12.85 5.424L60.242 133.331c-3.617 3.617-5.424 7.901-5.424 12.85 0 4.948 1.807 9.231 5.424 12.847 3.621 3.617 7.902 5.424 12.85 5.424zm255.813 73.097H73.092c-4.952 0-9.233 1.808-12.85 5.421-3.617 3.617-5.424 7.898-5.424 12.847s1.807 9.233 5.424 12.848L188.149 396.57c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428l127.907-127.906c3.613-3.614 5.427-7.898 5.427-12.848 0-4.948-1.813-9.229-5.427-12.847-3.614-3.616-7.899-5.42-12.848-5.42z"></path>
+  </symbol>
+</svg>
+
+<svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="arrow">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol aria-hidden="true" viewBox="0 0 24 24" id="carly">
+    <path fill="currentColor" d="M4 19h6v-2H4v2zM20 5H4v2h16V5zm-3 6H4v2h13.25c1.1 0 2 .9 2 2s-.9 2-2 2H15v-2l-3 3l3 3v-2h2c2.21 0 4-1.79 4-4s-1.79-4-4-4z"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="copy">
+    <path d="m366.905 108.016h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.048 0 20.003-8.955 20.003-20.003s-8.956-20.003-20.003-20.003z"></path>
+    <path d="m366.905 188.027h-141.91c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h141.91c11.047 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m286.004 268.039h-61.009c-11.048 0-20.003 8.955-20.003 20.003s8.955 20.003 20.003 20.003h61.009c11.048 0 20.003-8.955 20.003-20.003s-8.955-20.003-20.003-20.003z"></path>
+    <path d="m448.028 272.039c11.048 0 20.003-8.955 20.003-20.003v-172.024c0-44.119-35.894-80.012-80.012-80.012h-184.027c-44.094 0-79.971 35.853-80.012 79.938-44.118 0-80.012 35.893-80.012 80.012v272.039c0 44.118 35.893 80.012 80.012 80.012h194.028c44.118 0 80.012-35.893 80.012-80.012v-.608c39.414-4.938 70.01-38.662 70.01-79.389 0-11.048-8.955-20.003-20.003-20.003s-20.003 8.955-20.003 20.003c0 22.054-17.942 40.001-39.996 40.006l-184.027.045h-.009c-10.685 0-20.73-4.16-28.285-11.715-7.558-7.556-11.721-17.604-11.721-28.291v-272.025c0-22.059 17.947-40.006 40.006-40.006h184.028c22.059 0 40.006 17.947 40.006 40.006v172.025c-.001 11.047 8.954 20.002 20.002 20.002zm-244.036 160.008h.02l154.002-.038c-.012 22.049-17.954 39.984-40.006 39.984h-194.027c-22.059 0-40.006-17.947-40.006-40.006v-272.039c0-22.059 17.947-40.006 40.006-40.006v232.094c0 21.375 8.325 41.471 23.441 56.583 15.113 15.11 35.2 23.428 56.57 23.428z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="youtube">
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.016 512" id="expand">
+    <path d="m240 426.675781h-181.332031c-32.363281 0-58.667969-26.304687-58.667969-58.667969v-309.332031c0-32.363281 26.304688-58.6679685 58.667969-58.6679685h309.332031c32.363281 0 58.667969 26.3046875 58.667969 58.6679685v181.332031c0 8.832032-7.167969 16-16 16s-16-7.167968-16-16v-181.332031c0-14.699219-11.96875-26.667969-26.667969-26.667969h-309.332031c-14.699219 0-26.667969 11.96875-26.667969 26.667969v309.332031c0 14.699219 11.96875 26.667969 26.667969 26.667969h181.332031c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812h-138.667969c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-16 16-16h122.667969v-122.667968c0-8.832032 7.167969-16 16-16s16 7.167968 16 16v138.667968c0 8.832032-7.167969 16-16 16zm0 0"></path>
+    <path d="m496 512.007812c-4.097656 0-8.191406-1.558593-11.308594-4.691406l-181.332031-181.335937c-6.25-6.25-6.25-16.382813 0-22.632813s16.382813-6.25 22.636719 0l181.332031 181.332032c6.25 6.25 6.25 16.382812 0 22.636718-3.136719 3.132813-7.230469 4.691406-11.328125 4.691406zm0 0"></path>
+  </symbol>
+  <symbol enable-background="new 0 0 512 512" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="order">
+    <path d="m492 236h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 86h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <path d="m492 386h-347.738c-11.046 0-20 8.954-20 20s8.954 20 20 20h347.738c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+    <circle cx="27" cy="106" r="27"></circle>
+    <circle cx="27" cy="256" r="27"></circle>
+    <circle cx="27" cy="406" r="27"></circle>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" fill="#666" viewBox="0 0 512 512" id="check">
+    <path d="M99.941 293.748a21.78 21.78 0 0 1-7.175-16.153c0-11.938 9.823-21.765 21.764-21.765a21.772 21.772 0 0 1 15.737 6.733l85.958 83.825 164.42-194.504c18.463-21.833 51.574 6.326 33.213 28.125L234.276 392.324l-1.032 1.135c-8.327 8.55-22.218 8.74-30.773.412L99.941 293.748z"></path>
+  </symbol>
+</svg>
+
+<script>
+  "use strict";const doc=document.documentElement,toggle_id="toggle",show_id="show",menu="menu",active="active";let root_url="/";root_url=root_url.startsWith("http")?root_url:window.location.origin;const go_back_class="button_back",line_class=".line",code_block_config=JSON.parse('{"maximum":16,"show":false}'),iconsPath=`icons/`,copy_text="Copy",copied_text="Copied",toggle_line_numbers_text="Toggle line numbers",toggle_line_wrap_text="Toggle line wrap",resize_snippet="Resize snippet height",not_set="not set",shell_based=["sh","shell","zsh","bash"],body=elem("body"),max_lines=code_block_config.maximum,show_lines=code_block_config.show,copy_id="panel_copy",wrap_id="panel_wrap",lines_id="panel_lines",panel_expand="panel_expand",panel_expanded="panel_expanded",panel_box="panel_box",panel_hide="panel_hide",panel_from="panel_from",full_height="initial",highlight="highlight",highlight_wrap="highlight_wrap",hash="#",light="light",dark="dark",storageKey="colorMode",key="--color-mode",mode_data="data-mode",bank=window.localStorage;function isObj(e){return!!(e&&typeof e=="object"&&e!==null)}function createEl(e="div"){return document.createElement(e)}function emptyEl(e){for(;e.firstChild;)e.removeChild(e.firstChild)}function elem(e,t=document){let n=!!isObj(t)&&t.querySelector(e);return n||!1}function elems(e,t=document){return isObj(t)?t.querySelectorAll(e):[]}function pushClass(e,t){if(isObj(e)&&t){let n=e.classList;!n.contains(t)&&n.add(t)}}function deleteClass(e,t){if(isObj(e)&&t){let n=e.classList;!!n.contains(t)&&n.remove(t)}}function modifyClass(e,t){if(isObj(e)&&t){const n=e.classList;n.contains(t)?n.remove(t):n.add(t)}}function containsClass(e,t){if(isObj(e)&&t&&e!==document)return!!e.classList.contains(t)}function isChild(e,t){let n=isObj(e)&&t&&typeof t=="string";return!!(n&&e.closest(t))}function elemAttribute(e,t,n=null){if(n)e.setAttribute(t,n);else return n=e.getAttribute(t),n||!1}function deleteChars(e,t){let n=e;if(Array.isArray(t))for(let e=0;e<t.length;e++)n=n.replace(t[e],"");else n=n.replace(t,"");return n}function isBlank(e){return!e||e.trim().length===0}function isMatch(e,t){if(isObj(e)){if(t.isArray){let n=t.map(function(t){return e.matches(t)});return n.includes(!0)}return e.matches(t)}}function closestInt(e,t){return t.reduce(function(t,n){return Math.abs(n-e)<Math.abs(t-e)?n:t})}function hasClasses(e){if(isObj(e)){const t=e.classList;return t.length}}function wrapEl(e,t){e.parentNode.insertBefore(t,e),t.appendChild(e)}function wrapText(e,t,n="mark"){let s=`<${n}>`,o=`</${n}>`,r=`%3C${n}%3E`,c=`%3C/${n}%3E`;function i(t){let n=t.innerHTML,a=new RegExp(e,"gi"),i=e.length?n.match(a):null;if(i){i.forEach(function(e){n=n.replaceAll(e,`${s}${e}${o}`),t.innerHTML=n});const e=elems("img",t);e&&e.forEach(e=>{e.src=e.src.replaceAll(s,"").replaceAll(o,"").replaceAll(r,"").replaceAll(c,"")})}}const l=["h1","h2","h3","h4","h5","h6","p","code","td"];l.forEach(function(e){const n=elems(e,t);n.length&&n.forEach(function(e){e.children.length>=1?(Array.from(e.children).forEach(function(e){i(e)}),i(e)):i(e)})});const a=elems("a");a&&a.forEach(function(e){e.href=e.href.replaceAll(encodeURI(s),"").replaceAll(encodeURI(o),"")})}function parseBoolean(e=""){switch(e=e.trim().toLowerCase(),e){case"true":return!0;case"false":return!1;default:return void 0}}function loadSvg(e,t){t.innerHTML=`
+  <svg class="icon_${e}">
+    <use xlink:href="#${e}"></use>
+  </svg>`}function copyToClipboard(e){let t,n,s;t=createEl("textarea"),t.value=e,t.setAttribute("readonly",""),t.style.position="absolute",t.style.left="-9999px",n=document.getSelection(),doc.appendChild(t),s=n.rangeCount>0&&n.getRangeAt(0),t.select(),document.execCommand("copy"),doc.removeChild(t),s&&(n.removeAllRanges(),n.addRange(s))}const snippet_actions=[{icon:"copy",id:"copy",title:copy_text,show:!0},{icon:"order",id:"lines",title:toggle_line_numbers_text,show:!0},{icon:"carly",id:"wrap",title:toggle_line_wrap_text,show:!1},{icon:"expand",id:"expand",title:resize_snippet,show:!1}];function addLines(e){let t=e.textContent;const n=[];t.includes(`
+`)&&e.closest("pre")&&!e.children.length&&(t=t.split(`
+`),t.forEach((t,s)=>{if(t.trim().length){const o=`
+        <span class="line line-flex">
+          <span class="ln">${s+1}</span>
+          <span class="cl">${t.trim()}</span>
+        </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
+</script>
+
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+
+
+</body>
+</html>
