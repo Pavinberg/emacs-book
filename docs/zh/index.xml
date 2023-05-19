@@ -66,7 +66,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
       <guid>https://pavinberg.github.io/emacs-book/zh/configurations/</guid>
       <description>本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
 简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
-学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
 当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
 语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。
 Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
@@ -95,7 +95,20 @@ Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://pavinberg.github.io/emacs-book/zh/enhancement/</guid>
-      <description>To be edited...</description>
+      <description>上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
+Book marks Book marks - EmacsWiki
+这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：
+C-x r m （bookmark-set） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
+C-x r b（bookmark-jump，如果在上一篇教程中安装了 counsel，应当已被覆盖为 counsel-bookmark）：跳转到书签。
+C-x r l （bookmark-bmenu-list）：列出已有书签。
+M-x bookmark-delete ：删除书签。
+这在阅读代码的时候可是个十分方便的功能。
+ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能——ivy view。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
+ivy-push-view：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v。
+ivy-switch-view：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 C-c s。
+ivy-pop-view ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c V。
+which-key（可选） 主页
+这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 hs-minor-mode 后，我们正常可以通过 C-c @ C-h 折叠代码块、用 C-c @ C-s 来展开代码块。但这个快捷键很长，时常记不住，那么有了 which-key 后我们可以先按下 C-c @ ，此时 which-key 就会提示我们接下来可以按的键：</description>
     </item>
     
     <item>

@@ -50,7 +50,7 @@ macOS:
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
 启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
 
-<meta itemprop="wordCount" content="796">
+<meta itemprop="wordCount" content="797">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="基础操作"/>
 <meta name="twitter:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
@@ -273,7 +273,29 @@ macOS:
     <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
   </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents"></nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#book-marks">Book marks</a></li>
+    <li><a href="#ivy-view">ivy view</a></li>
+    <li><a href="#which-key可选">which-key（可选）</a></li>
+    <li><a href="#avy">avy</a>
+      <ul>
+        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
+        <li><a href="#基本用法">基本用法</a></li>
+        <li><a href="#进阶用法">进阶用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#marginalia">marginalia</a></li>
+    <li><a href="#embark可选">embark（可选）</a></li>
+    <li><a href="#hydra">hydra</a></li>
+    <li><a href="#multiple-cursors">multiple-cursors</a></li>
+    <li><a href="#dashboard">dashboard</a></li>
+    <li><a href="#tiny">tiny</a></li>
+    <li><a href="#highlight-symbol">highlight-symbol</a></li>
+    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
+    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
+  </ul>
+</nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents"></nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
@@ -380,7 +402,7 @@ macOS:
 </div>
 
 <h2 id="emacs-命令">Emacs 命令</h2>
-<p>在介绍具体的快捷键之前，要先说明 Emacs 的主体逻辑。与其它编辑器类似，Emacs 也是通过命令进行交互的。而所谓命令，就是 Emacs 中使用 Elisp 语言定义的一些函数。这些函数可以完成一些功能。例如，即使是最最简单的“将光标上移一行”，也对应着命令 <code>previouse-line</code> 。一切操作都对应一个命令，而快捷键的本质是在调用这些命令。</p>
+<p>在介绍具体的快捷键之前，要先说明 Emacs 的主体逻辑。与其它编辑器类似，Emacs 也是通过命令进行交互的。而所谓命令，就是 Emacs 中使用 Elisp 语言定义的一些函数。这些函数可以完成一些功能。例如，即使是最最简单的“将光标上移一行”，也对应着命令 <code>previous-line</code> 。一切操作都对应一个命令，而快捷键的本质是在调用这些命令。</p>
 <p>对 Emacs 输入命令需要先按下 <code>M-x</code>，此时你会看到 Emacs 最下面的空行上出现了 &quot;M-x &quot;，然后等待你的输入，随后你便可以输入一个函数名。这一快捷键可以说是最重要的一个快捷键了，只要有它，即使你忘记了其它快捷键，也可以输入函数名进行调用。</p>
 <p>命令名的传统是有连字符连接的多个有意义的英文单词。在输入时可以用空格代替连字符。也可以使用 <code>&lt;tab&gt;</code> 键自动补全。</p>
 
@@ -415,7 +437,7 @@ macOS:
 </div>
 
 <h3 id="编辑操作">编辑操作</h3>
-<p>删除字符：删除一个字符与正常一样，按下删除键（在 Emacs 中删除键写为 <code>&lt;DEL&gt;</code> ）即可删掉光标左侧的字符。如果想要删掉右侧的字符，就按下 <code>C-d</code> 键。
+<p>删除字符：删除一个字符与正常一样，按下删除键（在 Emacs 中删除键写为 <code>&lt;DEL&gt;</code> 或 <code>&lt;backspace&gt;</code>）即可删掉光标左侧的字符。如果想要删掉右侧的字符，就按下 <code>C-d</code> 键。
 移除词：M-d 移除光标右边一整个词。<code>M-&lt;DEL&gt;</code> 移除光标左侧一整个词。
 移除右侧直到句子结尾： <code>M-k</code>。
 移除右侧直到行结尾： <code>C-k</code> 。

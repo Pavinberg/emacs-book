@@ -18,7 +18,7 @@ weight: 4
 
 Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的[入门介绍](https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html)和[参考手册](https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html)。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
 
-学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也显得更加专业，加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
+学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
 
 当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
 
@@ -50,7 +50,7 @@ Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，�
 
 那么在 Emacs 中基本都是做一些定义函数、变量等操作的 ，定义函数就用 `defun` 关键字， 设置变量的值用 `setq` 关键字。
 
-所以上面展示的那段 Emacs Lisp 代码可以约等于如下 C 语言代码（类型名是笔者杜撰的）：
+所以上面展示的那段 Emacs Lisp 代码可以约等于如下 C/C++ 语言代码（类型名是笔者杜撰的）：
 
 ```c
 void ivy_set_prompt(CallerType caller, FnType prompt_fn) {
@@ -190,6 +190,10 @@ Steve Purcell 的配置的前 34 行几乎可以照抄，除了其中一行 `(re
 ```
 
 在 init.el 中，加上一句代码 `(require 'hello)`，重启 Emacs，此时 Emacs 就会多了一条名为 `hello-world` 的命令。读者此时可以按下 `M-x`，输入 hello-world，就可以看到回显区 Echo area 中出现了 "Hello, world!"。尽管这个函数不在 `init.el` 中定义，但通过这种方式导入就可以顺利执行成功！
+
+{{< tip >}}
+`(interactive)` 这句代码意为“让这个函数可以通过 `M-x`  手动调用，否则按下 `M-x` 时会发现找不到 `hello-world` 这个命令。 没有 `(interactive)` 的函数就是指不对用户直接暴露的函数，是用于内部调用的。
+{{< /tip >}}
 
 观察 Steve Purcell 的 `init.el`，几乎通篇都是 `(require 'xxx)`，这种模块化风格值得学习。
 
