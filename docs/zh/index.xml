@@ -126,5 +126,19 @@ which-key（可选） 主页
 1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .</description>
     </item>
     
+    <item>
+      <title>外观与主题</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/theme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/theme/</guid>
+      <description>本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
+初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &amp;quot;cursor&amp;quot;，就得到了类似下图所示的界面。
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
+除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。</description>
+    </item>
+    
   </channel>
 </rss>

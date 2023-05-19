@@ -214,7 +214,7 @@ undo-tree 被放在了 GNU ELPA 上，并不是 MELPA，所以读者如果用了
 
 [主页](https://github.com/Malabarba/smart-mode-line)
 
-一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置：
+一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置，在教程的[外观与主题](../theme#mode-line)中会额外介绍一部分配置：
     
 ```elisp
 (use-package smart-mode-line

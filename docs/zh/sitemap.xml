@@ -98,6 +98,8 @@
                 href="https://pavinberg.github.io/emacs-book/zh/development/"
                 />
   </url><url>
+    <loc>https://pavinberg.github.io/emacs-book/zh/theme/</loc>
+  </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/donate/</loc>
     <priority>0</priority>
     <xhtml:link

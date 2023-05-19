@@ -297,6 +297,15 @@
     <li><a href="#远程访问">远程访问</a></li>
   </ul>
 </nav>
+        <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#初识配置-face">初识配置 Face</a></li>
+    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
+    <li><a href="#配置主题">配置主题</a></li>
+    <li><a href="#配置图标">配置图标</a></li>
+    <li><a href="#mode-line">mode-line</a></li>
+  </ul>
+</nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
@@ -455,7 +464,7 @@ Krehel）开发的三个模块，现在都整合到了一起，我们一并安�
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">undo-tree-auto-save-history</span> <span class="no">nil</span><span class="p">))</span>
 </span></span></code></pre></div><h2 id="smart-mode-line可选">smart-mode-line（可选）</h2>
 <p><a href="https://github.com/Malabarba/smart-mode-line">主页</a></p>
-<p>一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置：</p>
+<p>一个让 mode line 更加漂亮、方便管理的插件，可以自动做一些模式的隐藏等等，也可以选择多种主题。具体读者可以自行探索。这里给个基础配置，在教程的<a href="../theme#mode-line">外观与主题</a>中会额外介绍一部分配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smart-mode-line</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">sml/setup</span><span class="p">))</span>

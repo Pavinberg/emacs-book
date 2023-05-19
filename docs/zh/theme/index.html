@@ -13,43 +13,34 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>多文件与模式 | 专业 Emacs 入门</title><meta property="og:title" content="多文件与模式" />
-<meta property="og:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
-初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。" />
+<title>外观与主题 | 专业 Emacs 入门</title><meta property="og:title" content="外观与主题" />
+<meta property="og:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
+初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
+除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/buffer/" /><meta property="article:section" content="" />
+<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/theme/" /><meta property="article:section" content="" />
 
 <meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="多文件与模式">
-<meta itemprop="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
-初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
+<meta itemprop="name" content="外观与主题">
+<meta itemprop="description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
+初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
+除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
 
-<meta itemprop="wordCount" content="669">
+<meta itemprop="wordCount" content="546">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="多文件与模式"/>
-<meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
-初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。"/>
+<meta name="twitter:title" content="外观与主题"/>
+<meta name="twitter:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
+初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
+除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。"/>
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -57,15 +48,12 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 
 
 
-  <meta name="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
-初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
+  <meta name="description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
+初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &amp;quot;cursor&amp;quot;，就得到了类似下图所示的界面。
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
+除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
 
 
 </head>
@@ -115,18 +103,6 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 			</a>
 		</li>
 		<li class="nav-item">
-
-  
-  
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/buffer/" title="Toggle language">
-	
-	
-	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
-		<img src="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" alt="Language">
-	  </picture>
-		
-  </a>
-  
 
 </li>
 		<li class="nav-item"><div class="color_mode">
@@ -184,7 +160,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
     <li><a href="#命令列表">命令列表</a></li>
   </ul>
 </nav>
-        <h3 class="section_link active"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
   <ul>
     <li><a href="#初识界面">初识界面</a></li>
     <li><a href="#文件与-buffer">文件与 Buffer</a>
@@ -301,7 +277,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
     <li><a href="#远程访问">远程访问</a></li>
   </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
+        <h3 class="section_link active"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
   <ul>
     <li><a href="#初识配置-face">初识配置 Face</a></li>
     <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
@@ -318,277 +294,117 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 </aside>
 
   <main class="content">
-    <h1>多文件与模式</h1><p>本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。</p>
-<h2 id="初识界面">初识界面</h2>
-<p>首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。</p>
-<ul>
-<li>
-<p><strong>Frame</strong>：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。</p>
-</li>
-<li>
-<p><strong>Menu bar</strong>：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-`</code> 键（对应命令 <code>tmm-menu</code>）可以从下方展开互动界面打开菜单。</p>
-</li>
-<li>
-<p><strong>Tool bar</strong>：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在后续教程中详细介绍）。</p>
-</li>
-<li>
-<p><strong>Echo Area</strong>：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 <code>C-h C-a</code>，上一篇教程中也提及了这一命令。</p>
-</li>
-</ul>
-<p><img src="../../images/emacs-book/buffer/emacs-gui.png" alt="emacs-gui"></p>
-<ul>
-<li>
-<p><strong>Window</strong>：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。</p>
-</li>
-<li>
-<p><strong>Mode line</strong>：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 <em>GNU Emacs</em> 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 插件进行管理，后文将会更多介绍。</p>
-</li>
-<li>
-<p><strong>Scroll bar</strong>：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 <code>(when (display-graphic-p) (toggle-scroll-bar -1))</code> 表示在是用图形界面时关闭滚动条。</p>
-</li>
-<li>
-<p><strong>Cursor</strong>：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html">文档</a>中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。</p>
-</li>
-<li>
-<p><strong>Point</strong>：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。</p>
-</li>
-</ul>
-<h2 id="文件与-buffer">文件与 Buffer</h2>
-<p>前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。</p>
-<h3 id="打开多文件">打开多文件</h3>
-<p>之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code>（ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 <tab> 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
-<p>保存文件对应命令 <code>C-x C-s</code>。</p>
+    <h1>外观与主题</h1><p>本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。</p>
+<p>本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。</p>
+<h2 id="初识配置-face">初识配置 Face</h2>
+<p>Emacs 中掌管显示的专用名词是 <a href="https://www.emacswiki.org/emacs/Face%23face">Face</a>，例如对文字来说，其字体、字号、颜色、背景都称为 Face。</p>
+<p>想要配置 Face，输入命令 <code>M-x</code> <code>customize-face</code> 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 <code>M-x</code> <code>list-faces-display</code> 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。</p>
+<p><img src="../../images/emacs-book/theme/cursor-face.png" alt="cursor-face"></p>
+<p>这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。</p>
+<p>除了使用<code>M-x</code> <code>list-faces-display</code> 列出当前界面所有的 Face 外，还可以使用快捷键 <code>C-u C-x =</code> 调用带前缀参数的 <code>what-cursor-position</code> 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。</p>
+<p>更通用的设置方式则是直接使用 Customization 进行搜索查找。强调一下，Customization 本身并不只包含关于 Face 的设置，各种变量都可以用它更改。进入 Customization 对首页可以输入命令 <code>M-x</code> <code>customize</code>，可以点选其中的 “Face” 进入关于 Face 的设置，其中有罗列所有的 Face 分类。例如对于背景颜色这种设置，可以直接选 “Basic Faces“，里面的 “Default face” 的 “Background” 就是控制 Emacs 背景的属性了。读者当然也可以直接用搜索框直接搜索。</p>
 
 <div class="tip">
-  开文件并只读不改：<code>C-x C-r</code>。 打开另一相近文件：<code>C-x C-v</code>，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式：<code>C-x C-q</code>。
+  读者在使用命令行 Emacs 时，可能并没有很多可以选择的颜色，这很可能是因为读者所使用的终端不支持显示很多颜色。建议读者首先使用较为现代的终端程序，并且打开其中的色彩选项，例如 ”xterm-256“ 之类的。
 </div>
 
-<p>Emacs 可以打开多个文件，同样使用 <code>C-x C-f</code> 打开即可。 但是你如果打开了第二个文件，便会发现第一个文件就消失不见了，应当去哪里找呢？事实上，所有打开的文件都会被放入一个被称为 Buffer 的对象中，当打开了第二个文件时，第一个文件所在的 Buffer 会切入后台，而第二个文件的 Buffer 会占据当前的 Window。Buffer 的名字显示在 Mode line 中间，通常是文件名本身。</p>
-<p>Emacs 也可以用这个方式打开目录（文件夹），会显示出目录内的文件（此即 Linux 的设计理念，一切皆为文件，即使是目录也本质上是一个文件），可以用光标选择想打开的文件。</p>
-<h3 id="buffer-的切换">Buffer 的切换</h3>
-<p>切换 Buffer 有三类方法，简短的方法是使用 <code>C-x b</code>，输入 Buffer 的名字后按回车即可切换。 Echo area 中会提示你，如果什么也不输直接按回车，可以跳转到当前默认的 Buffer 中，这样方便在两个文件中来回切换。</p>
-<p>显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法，<code>C-x C-b</code>，此时会弹出一个 Window，名为 &quot;<em>Buffer List</em>&quot; ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “<em>Messages</em>” 是 Emacs 的一些输出信息。“<em>scratch</em>” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
-
-<div class="tip">
-  如果当前光标没有在 &quot;<em>Buffer List</em>&quot; 中可以用 <code>C-x o</code> 键切换过去。
-</div>
-
-<p><img src="../../images/emacs-book/buffer/buffer-list.png" alt="emacs-buffer-list"></p>
-<p>可以通过光标选择切换到某个 Buffer。同时在这个 &quot;<em>Buffer List</em>&quot; 中有很多功能可以使用。按问号（<code>?</code>）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭，<code>s</code> 标记一个 Buffer 打算保存，<code>u</code> 取消标记，<code>x</code> 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code>，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
-<p>想要关闭当前的 Buffer？直接在当前的 Buffer 处按下 <code>C-x k</code> 即可。</p>
-<p>此外，第三种方法是使用 <code>C-mouse-1</code> （<code>mouse-1</code> 表示鼠标左键）然后用鼠标菜单切换 Buffer 。</p>
-
-<div class="tip">
-  事实上，在输入 <code>M-x</code> 后、<code>C-x b</code> 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
-</div>
-
-<h3 id="文件备份">文件备份</h3>
-<p>使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code>， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置：<code>(setq make-backup-files nil)</code>）。</p>
-<h2 id="多-window">多 Window</h2>
-<p>想要同时打开两个文件相互参照对比是一个再常见不过的需求了，Emacs 自然可以做到。</p>
-<ul>
-<li><code>C-x 2</code> ：上下分割出两个 Window。</li>
-<li><code>C-x 3</code>：左右分割出两个 Window。</li>
-<li><code>C-x 0</code>：关闭光标所在处的 Window。</li>
-<li><code>C-x 1</code>：只保留光标所在处的 Window，关闭其它 Window。其它 Window 的 Buffer 依然没有关闭，可以通过 &quot;<em>Buffer List</em>&quot; 查看。</li>
-<li><code>C-x o</code>：将光标切换到下一个 Window。</li>
-</ul>
-<p>分割后，默认会把当前的 Buffer 也显示到新的 Window，即显示了两个一样的 Window。再次强调一下，Buffer 对应真正打开的文件，而 Window 是把 Buffer 显示出来的元件，所以一个文件只会开一个 Buffer，但可以有多个 Window 显示。于是，在新的 Window 里用 <code>C-x C-f</code> 打开另一个文件即可看到两个文件了，当然也可以正常用上面所说的 Buffer 切换。</p>
-<p>那么既然开一个新的窗口并打开新的文件这个需求很常见，对此如果只有以上快捷键，需要先 <code>C-x 3</code> 分割出一个窗口，<code>C-x o</code> 切换到新窗口，<code>C-x C-f</code> 打开新文件，过于繁琐。所以 Emacs 提供了一个快捷键：</p>
-<p><code>C-x 4 f</code> 来达到“在另一个窗口打开新的文件，如果只有一个窗口就分割成两个”的效果。</p>
-<p>此外，还有 <code>C-x 4 b</code> 表示“在另一个窗口切换到另一 Buffer，如果只有一个窗口就分割成两个” 。<code>C-x 4 d</code> 表示 “在另一个窗口打开目录，如果只有一个窗口就分割成两个”。</p>
-<p>可以总结出 <code>C-x 4</code> 为前缀时，就表达“在另一个窗口做……“。</p>
-<p>在打开两个窗口时，如果我们光标在第一个窗口，而希望第二个窗口翻页，那么就可以用 <code>C-M-v</code> 向下翻页。用 <code>C-M-S-v</code> （同时按下 <code>Control</code>，<code>Meta</code>， <code>Shift</code> 和 <code>v</code>）向上翻页。</p>
-<p>那么如果在已经分割之后再分割呢？Emacs 会继续做二等分，变成 3 个、4 个等窗口。此时窗口的切换和关闭就没有那么方便了。插件 <a href="https://github.com/abo-abo/ace-window">ace-window</a> 可以辅助这一过程，后面详细介绍。</p>
-<h2 id="多-frame">多 Frame</h2>
-<p>既然能多 Window，自然能多个 Frame。打开一个新的 Frame 可以使用快捷键 <code>C-x 5 2</code>； 在一个新的 Frame 打开文件，可以使用快捷键 <code>C-x 5 f</code>。<code>C-x 5</code> 和 <code>C-x 4</code> 基本类似，只是前者在 Frame 间操作，后者在 Window 间操作。</p>
-<p>笔者的日常使用中，对多文件的打开更偏爱在单个 Frame 中用多个 Window，很少在多 Frame 中间频繁切换。</p>
-<h2 id="模式mode">模式（mode）</h2>
-<p>Emacs 的核心要素之一就是模式（mode）。一个模式就对应着一组环境，不同模式可以分别进行配置，应对不同的场景。例如，编写 C++ 代码时就对应 <code>c++-mode</code>，编写 Python时使用 <code>python-mode</code>。在不同的语言的 mode 中，编译、执行的方式都是不同的，这样只要事先定义好 mode，就可以在使用过程中方便切换各种需求场景。</p>
-<p>Emacs mode 分两类，主模式（Major mode）和次模式（Minor mode）。</p>
-<h3 id="主模式">主模式</h3>
-<p>主模式默认根据 Buffer 的文件类型来选择，一个 Buffer 只能对应一个主模式。例如，Emacs 发现你打开了 <code>.cpp</code> 为后缀的文件，就会把 Buffer 自动设置成 <code>c++-mode</code>，发现你打开了 <code>.py</code> 后缀的文件，就把相应 Buffer 自动设置为 <code>python-mode</code>，最直观的区别是 Emacs 为不同语言的源码提供了不同的语法高亮。 主模式的名字会显示在 Mode line 上。</p>
-<p>我们也可以手动切换主模式，只需要按下 <code>M-x</code> ，输入相应的模式名称即可。通常来说其实我们不需要手动设置。</p>
-
-<div class="tip">
-  最基本的主模式是 Fundamental mode，就是没有进行任何配置的模式 。
-</div>
-
-<h3 id="次模式">次模式</h3>
-<p>同一个 Buffer 可以有多个次模式，次模式可以进一步调整、增加一些配置。通常来说，插件都是靠次模式来起作用的。当我们安装插件时，插件的官网会提示如何设置这个插件，其中大多都会使用次模式。</p>
-<p>官网中列出了一些<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html">常用次模式</a>。下一篇教程的配置中，笔者会直接列出其中常用的几个是如何设置的。</p>
-<h3 id="mode-hook">Mode hook</h3>
-<p>每一个主模式都对应着一个 Mode hook，hook 是挂钩的意思，Mode hook 的作用就是当启动一个主模式时，自动执行一些已经“挂钩”到这个主模式的函数或次模式。由此，我们可以自由地向一个主模式上挂上各种功能，在启动这个主模式时就可以自动跟随着一起启动。</p>
-<p>Mode hook 的名字通常就是“主模式名-hook”。例如，我们希望在主模式“文本文件模式” <code>text-mode</code> 时启动次模式“检查拼写” <code>flyspell-mode</code> ，我们就可以这样写配置：</p>
-<p>(add-hook 'text-mode-hook 'flyspell-mode)
-这样当我们打开 txt 文件时，会自动开启检查拼写功能。</p>
-<p><code>text-mode</code> 是基于文本的文件的一个主模式，有一些其它主模式是由它派生，例如 <code>html-mode</code>。而相对的，还有编程模式 <code>prog-mode</code>，各种编程语言对应的主模式都是由它派生，包括我们上文提到的 <code>c++-mode</code> 和 <code>python-mode</code>。那么如果我们希望在任何编程语言时都有一些共同需要的功能，例如编程时我们希望有代码块折叠功能，就为 <code>prog-mode-hook</code> 挂上相应功能就好。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span>
-</span></span></code></pre></div><p>在下一篇教程中，我们会进一步讨论这些应该如何配置更好。</p>
-<h2 id="目录文件夹操作">目录（文件夹）操作</h2>
-<p><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a>，即 Directory Editor，是 Emacs 自带的用以处理目录和文件的功能。常见的操作例如删除文件、将文件从一处拷贝至另一处，更高级的操作如对比两个文件的异同、更改权限、链接文件等等，都可以通过 Dired 实现。</p>
-<p>启动 Dired 非常简单，只需要按下 <code>C-x C-f</code>，输入一个目录（文件夹）而非文件，就会进入 Dired。更标准的方式是按 <code>C-x d</code> 或调用 <code>M-x</code> <code>dired</code> 命令然后输入一个目录的名字启动，但前者与打开文件的快捷键相同，更易记忆。</p>
-<p><img src="../../images/emacs-book/buffer/dired.png" alt="emacs-buffer-list"></p>
-<p>当已经打开了一个文件时，输入 <code>C-x C-j</code> 可以打开当前文件所在的目录。</p>
-<p>Dired 会把目录下的文件都列出来，随后用户可以对文件进行操作。此时可以按下 <code>h</code> （Help）来打开帮助，读者可以翻到下面的 &quot;Keybindings&quot;，里面列出了所有在 Dired 中可以使用的命令。</p>
-<p>Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 <code>Control</code> 而直接按 <code>p</code> 和 <code>n</code> 就可以上下移动光标）到相应文件上，按下一个命令快捷键来对该文件调用命令。想要批量操作，只需要按 <code>m</code> （Mark）就可以选择，按 <code>u</code>（Unmark） 来取消选择。批量删除时，按 <code>d</code>（Delete）标记删除，按 <code>x</code>（Execute）执行删除。</p>
-<p>可以执行的命令全都在 &quot;Keybindings&quot; 中罗列，读者只需要自行查阅即可。</p>
-<p>这里举一个简单的例子，我们想要将 <code>a.txt</code> 和 <code>b.txt</code> 文件挪到 <code>subdir</code> 中，首先我们可以对 <code>subdir</code> 按下 <code>i</code> 来展开这个子目录， 随后对两个文本文件按下 <code>m</code> 标记， 然后按下 <code>R</code>（Rename） ，在回显区输入 <code>~/Code/Emacs/Test/subdir/</code>，按下回车。</p>
-
-<div class="tip">
-  这里熟悉 Linux 的读者应该清楚， 移动文件的本质就是重命名（Rename），所以 Dired 里没有所谓的”移动“这个操作，而只有重命名。
-</div>
-
-<p><img src="../../images/emacs-book/buffer/dired-2.png" alt="emacs-buffer-list"></p>
-<h2 id="总结">总结</h2>
-<p>以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。</p>
-<h2 id="命令列表">命令列表</h2>
-<table>
-<thead>
-<tr>
-<th>操作描述</th>
-<th>快捷键</th>
-<th>命令名</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>下拉菜单栏</td>
-<td><f10></td>
-<td>menu-bar-open</td>
-</tr>
-<tr>
-<td>互动菜单栏</td>
-<td>M-`</td>
-<td>tmm-menubar</td>
-</tr>
-<tr>
-<td>打开文件</td>
-<td>C-x C-f</td>
-<td>find-file</td>
-</tr>
-<tr>
-<td>保存文件</td>
-<td>C-x C-s</td>
-<td>save-buffer</td>
-</tr>
-<tr>
-<td>打开并只读文件</td>
-<td>C-x C-r</td>
-<td>find-file-read-only</td>
-</tr>
-<tr>
-<td>打开另一相近文件</td>
-<td>C-x C-v</td>
-<td>find-alternate-file</td>
-</tr>
-<tr>
-<td>只读模式</td>
-<td>C-x C-q</td>
-<td>read-only-mode</td>
-</tr>
-<tr>
-<td>切换到 Buffer</td>
-<td>C-x b</td>
-<td>switch-to-buffer</td>
-</tr>
-<tr>
-<td>列出 Buffer</td>
-<td>C-x C-b</td>
-<td>list-buffers</td>
-</tr>
-<tr>
-<td>关闭 Buffer</td>
-<td>C-x k</td>
-<td>kill-buffer</td>
-</tr>
-<tr>
-<td>鼠标列出 Buffer</td>
-<td>C-mouse-1</td>
-<td>mouse-buffer-menu</td>
-</tr>
-<tr>
-<td>上下分割出 Window</td>
-<td>C-x 2</td>
-<td>split-window-below</td>
-</tr>
-<tr>
-<td>左右分割出 Window</td>
-<td>C-x 3</td>
-<td>split-window-right</td>
-</tr>
-<tr>
-<td>关闭当前 Window</td>
-<td>C-x 0</td>
-<td>delete-window</td>
-</tr>
-<tr>
-<td>只保留当前 Window</td>
-<td>C-x 1</td>
-<td>delete-other-windows</td>
-</tr>
-<tr>
-<td>切换到另一 Window</td>
-<td>C-x o</td>
-<td>other-window</td>
-</tr>
-<tr>
-<td>在另一 Window 中打开文件</td>
-<td>C-x 4 f</td>
-<td>find-file-other-window</td>
-</tr>
-<tr>
-<td>在另一 Window 中切换 Buffer</td>
-<td>C-x 4 b</td>
-<td>switch-to-buffer-other-window</td>
-</tr>
-<tr>
-<td>在另一 Window 中打开目录</td>
-<td>C-x 4 d</td>
-<td>dired-other-window</td>
-</tr>
-<tr>
-<td>创建新的 Frame</td>
-<td>C-x 5 2</td>
-<td>make-frame-command</td>
-</tr>
-<tr>
-<td>在另一 Frame 中打开文件</td>
-<td>C-x 5 f</td>
-<td>find-file-other-frame</td>
-</tr>
-<tr>
-<td>让另一 Window 向下翻页</td>
-<td>C-M-v</td>
-<td>scroll-other-window</td>
-</tr>
-<tr>
-<td>让另一 Window 向上翻页</td>
-<td>C-M-S-v</td>
-<td>scroll-other-window-down</td>
-</tr>
-</tbody>
-</table>
+<h2 id="配置-custom-文件">配置 Custom 文件</h2>
+<p>那么我们的自定义设置究竟是保存到了哪里呢？当读者保存了上述自定义配置后，默认会在你的初始化文件（如 <code>~/.emacs.d/init.el</code>）的末尾添加一段代码，类似：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="c1">;; custom-set-variables was added by Custom.</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">;; Your init file should contain only one such instance.</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nv">custom-set-faces</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="c1">;; custom-set-faces was added by Custom.</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="c1">;; Your init file should contain only one such instance.</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="c1">; 一些 Face 配置</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">))</span>
+</span></span></code></pre></div><p>正如注释中所言，这段代码是由 Custom 系统自动维护的，读者轻易不要手动修改，否则会导致混乱。但是也可以看出，这里说到底也就是普通的 Emacs Lisp 代码，如果读者熟悉 Emacs Lisp，也不用对此非常畏惧。</p>
+<p>部分读者可能会提出，Custom 如此修改初始化文件，把初始化文件弄的不美观了；或者如果用户有时候在本机使用图形界面 Emacs，有时候在服务器上使用命令行 Emacs，二者希望进行不同的 Custom 设置但又不想维护两组 Emacs 配置，该如何操作呢？</p>
+<p>事实上，这段配置可以单独放在一个文件中，比如建一个 <code>~/.emacs.d/custom.el</code> 文件，把上方的代码块完全剪切到其中，然后在配置文件如 <code>~/.emacs.d/init.el</code> 中写入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="s">&#34;~/.emacs.d/custom.el&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span>
+</span></span></code></pre></div><p>这里设置变量 <code>custom-file</code> 改成我们自定义的文件名，然后加载这个文件，即可让 Custom 不再干扰我们的 <code>~/.emacs.d/init.el</code> 文件，而把改动都写入 <code>~/.emacs.d/custom.el</code>。</p>
+<p>读者更可以利用前面所学的模块化配置的方法，新建一个 <code>~/.emacs.d/lisp/init-theme.el</code> 文件，把这两句代码写进去后，在 <code>~/.emacs.d/init.el</code> 中 require 导入。</p>
+<p>对于想要区分多个场景下的 Custom 配置，可以参考如下 <code>init-theme.el</code> 的配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-nw-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;custom-nw.el&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-gui-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;custom-gui.el&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="p">(</span><span class="nb">progn</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	  <span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="nv">custom-gui-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">          <span class="c1">; (add-to-list &#39;default-frame-alist &#39;(ns-appearance . dark)) ; macOS 下让窗口使用暗色主题</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	  <span class="c1">;; other settings</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">progn</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="nv">custom-nw-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="c1">;; other settings</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="p">))</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span>
+</span></span></code></pre></div><p>如此在图形界面时使用 <code>~/.emacs.d/custom-gui.el</code> 而在命令行时使用 <code>~/.emacs.d/custom-gui.el</code>。</p>
+<h2 id="配置主题">配置主题</h2>
+<p>Emacs 的主题非常多，读者只需要在搜索引擎中搜索 “Emacs 主题”，或在国外搜索引擎中搜索 “Emacs themes” 就能得到非常多的结果。比较全的网站有 <a href="https://emacsthemes.com/">Emacs Themes Gallery</a> 和 <a href="https://github.com/topics/emacs-theme">GitHub Topics：emacs-theme</a>。</p>
+<p>举个例子，笔者比较喜欢 Dracula 主题，通过 Gallery 网站找到 <a href="https://draculatheme.com/emacs">Dracula 的主页</a>。其中写着只需要输入命令 <code>M-x</code> <code>package-install</code> <code>&lt;RET&gt;</code> <code>dracula-theme</code> 即可安装。随后在配置文件 <code>~/.emacs.d/init-themes.el</code> 的合适位置写入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;dracula</span> <span class="no">t</span><span class="p">)</span>
+</span></span></code></pre></div><p>就可以使用 Dracula 主题了。</p>
+<p>此外，笔者也非常喜欢 Doom Emacs 的主题，本教程虽然使用的是 Vanilla Emacs， 但也有插件把 Doom Emacs 的主题借鉴了过来。不仅如此，诸如 Atom、Monokai 也都有相应的实现，读者只需要寻找相应的主页进行安装即可。</p>
+<p>在此分享一下笔者所使用的 Doom Emacs 主题，用到了 <a href="https://github.com/doomemacs/themes">doom-themes</a>
+包，笔者选择了 <code>doom-monokai-octagon</code> 主题：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">doom-themes</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="c1">;; Global settings (defaults)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">doom-themes-enable-bold</span> <span class="no">nil</span>    <span class="c1">; if nil, bold is universally disabled</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">	<span class="nv">doom-themes-enable-italic</span> <span class="no">t</span><span class="p">)</span> <span class="c1">; if nil, italics is universally disabled</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;doom-monokai-octagon</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="p">(</span><span class="nv">doom-themes-treemacs-config</span><span class="p">))</span>
+</span></span></code></pre></div><p><code>doom-themes</code> 中本身就有很多主题可选，读者可以根据喜好选择。 注意最好搭配下文的 <code>all-the-icons</code> 一同使用。</p>
+<h2 id="配置图标">配置图标</h2>
+<p>图形界面的 Emacs 可以安装一个 [all-the-icons](<a href="https://github.com/domtronn/all-the-">https://github.com/domtronn/all-the-</a>
+icons.el) 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来说如果终端能够支持这些图标字体，也是可以使用的。首先添加配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">all-the-icons</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:if</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">))</span>
+</span></span></code></pre></div><p>重启 Emacs 后安装字体：<code>M-x</code> <code>all-the-icons-install-fonts</code>。</p>
+<p>这些图标可以用在许多地方，例如自动补全框、文件列表等等，有些搭配相应的主题，如上文的 <code>doom-themes</code> 插件可以自动配置图标，其它可参考插件的 <a href="https://github.com/domtronn/all-the-icons.el/wiki">Wiki</a>，读者可根据需要自行配置合适的图标。</p>
+<h2 id="mode-line">mode-line</h2>
+<p>mode-line 的显示非常见仁见智，有的人喜欢花哨的，有的人喜欢简约的。笔者属于后者，所以没有配置很复杂的图形显示。mode-line 可以使用 <a href="https://github.com/milkypostman/powerline">powerline</a>、<a href="https://github.com/TheBB/spaceline">spaceline</a> 等。<code>powerline</code> 在 zsh 里比较流行，<code>spaceline</code> 则是从 Spacemacs 衍生出来的。</p>
+<p>这里再次提一下在<a href="../optimization#smart-mode-line%E5%8F%AF%E9%80%89">插件：功能优化类</a>里提及的插件 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 的额外配置。mode-line 由于会显示出当前的所有次模式（minor mode），很混乱，而 <code>smart-mode-line</code> 可以规整 mode-line， 但用起来还是会发现经常一些不太重要的 minor mode 被显示出来，重要的反而被排在了后面。这时候我们可以隐藏一部分 minor mode。</p>
+<p>隐藏 minor mode 实际上是由另一个插件 <a href="https://github.com/Malabarba/rich-minority">rich-minority</a> 来完成的，但安装了 <code>smart-mode-line</code> 之后已经被一起安装好了。还有一个类似功能的插件是 <a href="https://github.com/myrjola/diminish.el">diminish</a>，读者可以自行选择其中之一。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smart-mode-line</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">; (setq sml/no-confirm-load-theme t)  ; avoid asking when startup</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nv">sml/setup</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">rm-blacklist</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;^ \\(%s\\)$&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="p">(</span><span class="nf">mapconcat</span> <span class="nf">#&#39;identity</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;Projectile.*&#34;</span> <span class="s">&#34;company.*&#34;</span> <span class="s">&#34;Google&#34;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">	  <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">         <span class="s">&#34;\\|&#34;</span><span class="p">))))</span>
+</span></span></code></pre></div><p>相比之前，就是添加了一个 config，把一些不想被显示的 minor mode 加入黑名单。看起来有些复杂但其实读者无需关心细节，这里的 <code>format</code> 和 <code>mapconcat</code> 只是在做字符串操作，设法把用户罗列的 minor mode 名字拼接成一整个字符串。读者只需要修改其中的那个列表：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;Projectile.*&#34;</span> <span class="s">&#34;company.*&#34;</span> <span class="s">&#34;Google&#34;</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><p>其中每个字符串可以是一个正则表达式，列出不希望显示在 mode-line 的 minor mode 名字即可。这里想要隐藏的分别是：<code>projectile</code>、<code>company</code>、<code>google-this</code>、<code>undo-tree</code>、<code>counsel</code>、<code>ivy</code>、<code>yasnippet</code> 和 <code>which-key</code> 。</p>
+<hr>
+<p>不得不承认，对于图形显示来说，Doom Emacs 和 Spacemacs 有更为丰富的实践，本文的 Vanilla Emacs
+需要向它们多多取经。读者也可以多关注一下两个发行版的优秀插件。</p>
 
     <div class="pager">
   
     
     <div class="pager_item prev">
-      <a href="https://pavinberg.github.io/emacs-book/zh/basic/" class="pager_link button" title="基础操作" rel="prev">
-        <span class="pager_label">基础操作</span>
+      <a href="https://pavinberg.github.io/emacs-book/zh/development/" class="pager_link button" title="插件：编程开发类" rel="prev">
+        <span class="pager_label">插件：编程开发类</span>
       </a>
     </div>
     
   
 
-  
-    
-    <div class="pager_item next">
-      <a href="https://pavinberg.github.io/emacs-book/zh/configurations/" class="pager_link button" title="基本配置" rel="next">
-        <span class="pager_label">基本配置</span>
-      </a>
-    </div>
-    
   
 </div>
   </main>
