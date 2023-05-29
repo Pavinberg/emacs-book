@@ -5,7 +5,7 @@ weight: 9
 
 本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
 
-  * 笔记类任务：Markdown、LaTeX、`org-mode` 及中文编辑
+  * 笔记类任务：Markdown、LaTeX 中文编辑
   * 计算器： `calc`
   * Emacs server
   * ChatGPT 协作
@@ -132,21 +132,7 @@ Emacs 还有一个 [pyim](https://elpa.gnu.org/packages/pyim.html) 插件，是�
 
 ### org-mode
 
-[org-mode](https://orgmode.org/) 其实是 Emacs 中非常强大的笔记模式，在 Emacs 中使用的体验、功能的强大远超 Markdown。但笔者目前使用较少，后续会更多尝试。`org-mode` 的主要缺点是一方面需要一定的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享。但笔者认为有必要向读者简单介绍这个功能，因为喜欢 `org-mode` 的人爱不释手，甚至有人使用 Emacs 就是为了 `org-mode`，读者可以自己判断是否适合自己。
-
-读者可以把 `org-mode` 理解成一个 Emacs 内的高级 Markdown，可以带很多复杂的逻辑，然后 Emacs 为它提供了很多方便的功能，例如：
-
-- 章节折叠、跳转
-- 方便的多状态、多层级 Todo List
-- 丰富多样的链接引用功能
-- 表格操作（甚至可以像 Excel 一样输入公式自动计算）
-- 插入代码
-- 导出成各种格式（Markdown、HTML、LaTeX 等）
-- 利用 Emacs 的扩展性扩展更多丰富的功能
-
-只要打开后缀名为 `.org` 的文件就会自动启动 `org-mode`。 主要可以用来做 Todo List、项目记录等。此外，通过安装一些插件和使用内置的一些功能，可以得到更为完整的笔记体验，例如 Zettelkasten 笔记法等。可以类比一下比较有名的笔记软件例如 Notion、Obsidian 等。
-
-具体如何使用笔者就不信口开河了，建议读者查看官方文档。
+[org-mode](https://orgmode.org/) 其实是 Emacs 中非常强大的笔记模式，在 Emacs 中使用的体验、功能的强大远超 Markdown。`org-mode` 的主要缺点是一方面需要一定的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享。`org-mode` 具有非常独特的优势，建议读者了解一下，[下一篇教程](../orgmode)会为大家详细地抛砖引玉。
 
 ## 计算器
 

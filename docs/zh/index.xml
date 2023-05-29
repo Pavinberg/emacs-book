@@ -147,13 +147,29 @@ which-key（可选） 主页
       
       <guid>https://pavinberg.github.io/emacs-book/zh/tricks/</guid>
       <description>本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
-笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记类任务：Markdown、LaTeX 中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
 笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
 程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
 因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
 无需任何配置，打开 .md 文件就会自动使用 markdown-mode，Emacs 会提供一些语法高亮，还有一些语法的快捷键。例如插入代码块可以输入命令 M-x markdown-insert-gfm-code-block 然后输入想要输入的编程语言名字即可，其快捷键是 C-c C-s C。所有相关命令都是以 markdown-insert- 做前缀的， 读者按需记几个常用的就好，毕竟 Markdown 语法已经很简单了，也没必要记太多快捷键。
 此外还有一些方便跳转的快捷键，例如：
 C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。</description>
+    </item>
+    
+    <item>
+      <title>笔记系统 org-mode</title>
+      <link>https://pavinberg.github.io/emacs-book/zh/orgmode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pavinberg.github.io/emacs-book/zh/orgmode/</guid>
+      <description>org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
+章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。
+读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
+基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
+只要打开后缀名为 .org 的文件就会自动启动 org-mode。 语法和 Markdown 类似，只不过星号（*）开头是节，或可以说是标题：
+* 一级标题 ** 二级标题 *** 三级标题 通过按 &amp;lt;TAB&amp;gt; 和 S-&amp;lt;TAB&amp;gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+[[https://zhihu.com][知乎]] #+ 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar。属性主要用于为 org-mode 提供高级功能。
+#+foo:bar org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据基本配置中的内容将 org-mode 相关配置单独放到一个文件中（例如 ~/.</description>
     </item>
     
   </channel>

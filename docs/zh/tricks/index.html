@@ -15,7 +15,7 @@
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
 <title>实用小技巧 | 专业 Emacs 入门</title><meta property="og:title" content="实用小技巧" />
 <meta property="og:description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
-笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记类任务：Markdown、LaTeX 中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
 笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
 程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
 因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
@@ -28,7 +28,7 @@ C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 m
 <meta property="og:site_name" content="专业 Emacs 入门" />
 <meta itemprop="name" content="实用小技巧">
 <meta itemprop="description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
-笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记类任务：Markdown、LaTeX 中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
 笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
 程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
 因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
@@ -36,11 +36,11 @@ C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 m
 此外还有一些方便跳转的快捷键，例如：
 C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 markdown-outline-up 跳到上一节。 C-c C-f 调用 markdown-outline-next-same-level 跳到下一个同级章节，C-c C-b 调用 markdown-outline-previous-same-level 跳到上一个同级章节。 其它功能的命令也都以 markdown- 为前缀，读者可以自行探索。">
 
-<meta itemprop="wordCount" content="779">
+<meta itemprop="wordCount" content="741">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="实用小技巧"/>
 <meta name="twitter:description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
-笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记类任务：Markdown、LaTeX 中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
 笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
 程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
 因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
@@ -55,7 +55,7 @@ C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 m
 
 
   <meta name="description" content="本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：
-笔记类任务：Markdown、LaTeX、org-mode 及中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
+笔记类任务：Markdown、LaTeX 中文编辑 计算器： calc Emacs server ChatGPT 协作 本文可能会不断更新。
 笔记 Markdown 笔记类任务现在比较流行 Markdown，一种非常简单易学的标记语言。
 程序员们经常与 Markdown 打交道，所以如果你是一位新人程序员还不了解 Markdown，强烈建议你学习一下。 Markdown 如今已十分流行，Markdown 编辑器数不胜数，各具特色。要说 Emacs 有什么能完全胜出其它 Markdown 编辑器的优势，笔者认为可能只有下文提到的“中文支持”功能。此外，对于大部分程序开发而言，Markdown 主要是参与写一些 README.md 等文档，这样如果代码都是在 Emacs 中编写和浏览，文档也用 Emacs 来写会更为方便、操作更为统一。
 因此，笔者对 Emacs 中的 Markdown 的态度是轻度使用，不希望费力配置，甚至不想记太多操作，所以本文只介绍 Emacs 自带的功能 markdown-mode。
@@ -310,6 +310,20 @@ C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 m
     <li><a href="#google-this">google-this</a></li>
   </ul>
 </nav>
+        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础结构">基础结构</a></li>
+    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
+    <li><a href="#任务管理">任务管理</a>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#配置">配置</a></li>
+        <li><a href="#快速添加任务">快速添加任务</a></li>
+      </ul>
+    </li>
+    <li><a href="#论文笔记">论文笔记</a></li>
+  </ul>
+</nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
@@ -320,7 +334,7 @@ C-c C-n 调用 markdown-outline-next 可以快速跳到下节，C-c C-u 调用 m
   <main class="content">
     <h1>实用小技巧</h1><p>本文将介绍一些除编程本身外 Emacs 作为一个代码编辑器还能为开发者做什么样的事情，包括：</p>
 <ul>
-<li>笔记类任务：Markdown、LaTeX、<code>org-mode</code> 及中文编辑</li>
+<li>笔记类任务：Markdown、LaTeX 中文编辑</li>
 <li>计算器： <code>calc</code></li>
 <li>Emacs server</li>
 <li>ChatGPT 协作</li>
@@ -414,19 +428,7 @@ clone 安装，参见其主页即可。</p>
 </span></span></code></pre></div><p>思路就是一些几乎不使用的中文字符直接映射成英文字符，以方便编写 Markdown。例如第一句，把人民币 <code>¥</code> 映射成美元 <code>$</code>，这样在中文输入时也可以直接按 <code>shift+4</code> 来输入 <code>$</code> 符号，从而输入内联公式。同样的， <code>·</code> 也被映射为 ``` `` 由此方便输入行内代码。 为了能够方便输入反斜杠，把顿号 <code>、</code> 映射为 <code>\</code> 而把 <code>｜</code> 映射会 顿号 <code>、</code>（读者如果不喜欢这样操作可以去掉相应代码）。以此类推。</p>
 <p>这里的语法就是“问号+字符”，部分字符需要用反斜杠转义。</p>
 <h3 id="org-mode">org-mode</h3>
-<p><a href="https://orgmode.org/">org-mode</a> 其实是 Emacs 中非常强大的笔记模式，在 Emacs 中使用的体验、功能的强大远超 Markdown。但笔者目前使用较少，后续会更多尝试。<code>org-mode</code> 的主要缺点是一方面需要一定的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享。但笔者认为有必要向读者简单介绍这个功能，因为喜欢 <code>org-mode</code> 的人爱不释手，甚至有人使用 Emacs 就是为了 <code>org-mode</code>，读者可以自己判断是否适合自己。</p>
-<p>读者可以把 <code>org-mode</code> 理解成一个 Emacs 内的高级 Markdown，可以带很多复杂的逻辑，然后 Emacs 为它提供了很多方便的功能，例如：</p>
-<ul>
-<li>章节折叠、跳转</li>
-<li>方便的多状态、多层级 Todo List</li>
-<li>丰富多样的链接引用功能</li>
-<li>表格操作（甚至可以像 Excel 一样输入公式自动计算）</li>
-<li>插入代码</li>
-<li>导出成各种格式（Markdown、HTML、LaTeX 等）</li>
-<li>利用 Emacs 的扩展性扩展更多丰富的功能</li>
-</ul>
-<p>只要打开后缀名为 <code>.org</code> 的文件就会自动启动 <code>org-mode</code>。 主要可以用来做 Todo List、项目记录等。此外，通过安装一些插件和使用内置的一些功能，可以得到更为完整的笔记体验，例如 Zettelkasten 笔记法等。可以类比一下比较有名的笔记软件例如 Notion、Obsidian 等。</p>
-<p>具体如何使用笔者就不信口开河了，建议读者查看官方文档。</p>
+<p><a href="https://orgmode.org/">org-mode</a> 其实是 Emacs 中非常强大的笔记模式，在 Emacs 中使用的体验、功能的强大远超 Markdown。<code>org-mode</code> 的主要缺点是一方面需要一定的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享。<code>org-mode</code> 具有非常独特的优势，建议读者了解一下，<a href="../orgmode">下一篇教程</a>会为大家详细地抛砖引玉。</p>
 <h2 id="计算器">计算器</h2>
 <p>写程序也是偶尔需要计算器的，例如算一算字节数、传输速率、做一做十六进制转化等。Emacs 内置了一个非常强大的计算器：<a href="https://www.gnu.org/software/emacs/manual/html_node/calc/index.html">calc</a>。除了常见普通计算器的功能，还包括：</p>
 <ul>
@@ -519,6 +521,14 @@ Windows 也可支持。读者直接参照 Wiki 中的 “<a href="https://wikema
     
   
 
+  
+    
+    <div class="pager_item next">
+      <a href="https://pavinberg.github.io/emacs-book/zh/orgmode/" class="pager_link button" title="笔记系统 org-mode" rel="next">
+        <span class="pager_label">笔记系统 org-mode</span>
+      </a>
+    </div>
+    
   
 </div>
   </main>
