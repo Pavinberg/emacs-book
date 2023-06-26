@@ -32,7 +32,7 @@ org-mode 的[文档](https://orgmode.org/manual/index.html)非常简短，建议
 通过按 `<TAB>` 和 `S-<TAB>` 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
 
 ```
-[[https://zhihu.com][知乎]]
+[[https://github.com][GitHub]]
 ```
 
 `#+` 开头的是该文件的属性，例如下面定义了 `foo` 属性的值为 `bar`。属性主要用于为 org-mode 提供高级功能。

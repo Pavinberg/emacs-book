@@ -333,7 +333,7 @@ Emacs 的主要思路是大量依赖组合快捷键实现高效编辑，这直�
 
   <main class="content">
     <h1>入门介绍</h1><h2 id="为什么学习-emacs">为什么学习 Emacs</h2>
-<p>Emacs 是一个文本编辑器系列，包含有多个分支，其中最主流的一支是 <a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/">GNU Emacs</a>，大多数情况下所说的 Emacs 都是指 GNU Emacs，本教程也使用 Emacs 指代 GNU Emacs。Emacs 这一名字最早来源于 “Editor MACroS”，后来也有人称它集合了五个主要功能键的首字母 Esc、Meta、Alt、Ctrl、Shift。</p>
+<p>Emacs 是一个文本编辑器系列，包含有多个分支，其中最主流的一支是 <a href="https://www.gnu.org/software/emacs/">GNU Emacs</a>，大多数情况下所说的 Emacs 都是指 GNU Emacs，本教程也使用 Emacs 指代 GNU Emacs。Emacs 这一名字最早来源于 “Editor MACroS”，后来也有人称它集合了五个主要功能键的首字母 Esc、Meta、Alt、Ctrl、Shift。</p>
 <p>Emacs 与 Vi 共同被称为最古老的 Unix 编辑器，一代代程序员对 Emacs 和 Vi （尤其后来出现的 Vim）产生了无休止的争论。Emacs 诞生已有近五十年时间，是世界上最古老而依然活跃（截止 2021 年）的开源软件之一。</p>
 <p>Emacs 的主要思路是大量依赖组合快捷键实现高效编辑，这直接导致了想要流畅使用 Emacs 必须要记忆 Emacs 的大量快捷键，需要相当一段时间熟悉。此外，Emacs 编辑器本身所使用的编程语言是 Emacs Lisp 语言，Lisp 语言的方言之一。Lisp 语言是诞生于 1958 年的世上第二古老高级程序设计语言，其语言以“列表”（List）作为语法和核心数据结构，由于其具备强大的宏系统，可以创造各式方言，Emacs Lisp 就是其中之一。这个语言相对于我们常见的编程语言来说，晦涩难懂，同样增加了 Emacs 的学习难度。网上流传着一个有趣的形容各个编辑器学习曲线的图片：</p>
 <p><img src="../../images/emacs-book/intro/learningCurve.jpg" alt="emacs-learning-curve"></p>
@@ -346,17 +346,17 @@ Emacs 的主要思路是大量依赖组合快捷键实现高效编辑，这直�
 <p><img src="../../images/emacs-book/intro/realProgrammers.png" alt="real-programmers"></p>
 <p>特别的，在 Linux/macOS 系统的终端中，是可以使用部分 Emacs 快捷键的；在 macOS 系统中的各种文本编辑框，如备忘录、浏览器搜索框等等也都支持 Emacs 光标移动快捷键。因此可以说，掌握 Emacs 快捷键，在各种操作系统中都可以享受到其带来的方便快捷。</p>
 <h2 id="emacs-的主要相关资料">Emacs 的主要相关资料</h2>
-<p><a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/">Emacs 主页</a>：可在此下载安装包，还有文档、Wiki 等的入口。</p>
-<p><a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/manual/html_node/emacs/index.html">Emacs 官方文档</a>：最准确、最全面。有能力可以直接按照官方文档进行学习。</p>
-<p><a href="https://link.zhihu.com/?target=https%3A//www.emacswiki.org/">Emacs Wiki</a>：关于 Emacs 插件、Emacs Lisp 的一些使用方法。</p>
-<p><a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/manual/html_node/eintr/">Emacs Lisp 教程</a>：Emacs Lisp 的完整教程。</p>
-<p><a href="https://link.zhihu.com/?target=https%3A//emacs.stackexchange.com/">Emacs StackExchange 问答论坛</a>：Emacs 的 StackExchange，有着大量关于 Emacs 的提问和精品回答。</p>
-<p><a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，<a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作</a>卡片和“<a href="https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。</p>
+<p><a href="https://www.gnu.org/software/emacs/">Emacs 主页</a>：可在此下载安装包，还有文档、Wiki 等的入口。</p>
+<p><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html">Emacs 官方文档</a>：最准确、最全面。有能力可以直接按照官方文档进行学习。</p>
+<p><a href="https://www.emacswiki.org/">Emacs Wiki</a>：关于 Emacs 插件、Emacs Lisp 的一些使用方法。</p>
+<p><a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/">Emacs Lisp 教程</a>：Emacs Lisp 的完整教程。</p>
+<p><a href="https://emacs.stackexchange.com/">Emacs StackExchange 问答论坛</a>：Emacs 的 StackExchange，有着大量关于 Emacs 的提问和精品回答。</p>
+<p><a href="https://www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，<a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作</a>卡片和“<a href="https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。</p>
 <h2 id="对-vim-用户">对 Vim 用户</h2>
-<p>Emacs 有一个 <a href="https://link.zhihu.com/?target=https%3A//github.com/emacs-evil/evil">evil</a> 插件可以在 Emacs 中直接使用 Vim 的快捷键，这对 Vim 转 Emacs 用户而言非常友好，降低了转换成本。所以我们常能在社区看到许多 Vim 转 Emacs 的用户。此外，对于不想花过多时间配置的读者，可以使用下一小节中提到的 “Emacs 发行版”。</p>
+<p>Emacs 有一个 <a href="https://github.com/emacs-evil/evil">evil</a> 插件可以在 Emacs 中直接使用 Vim 的快捷键，这对 Vim 转 Emacs 用户而言非常友好，降低了转换成本。所以我们常能在社区看到许多 Vim 转 Emacs 的用户。此外，对于不想花过多时间配置的读者，可以使用下一小节中提到的 “Emacs 发行版”。</p>
 <h2 id="其它-emacs">其它 Emacs</h2>
-<p>本教程所讨论的 GNU Emacs 是最原始的 Emacs，需要从 0 开始配置。部分用户会觉得这样过于枯燥，于是有一些 “Emacs 发行版”，预装了很多插件。这样的 Emacs 有两个：<a href="https://link.zhihu.com/?target=https%3A//github.com/hlissner/doom-emacs">Doom Emacs</a> 和 <a href="https://link.zhihu.com/?target=https%3A//www.spacemacs.org/">Spacemacs</a>，它们尤其对 Vim 转到 Emacs 的用户比较友好，因为它们预装了 <a href="https://link.zhihu.com/?target=https%3A//github.com/emacs-evil/evil">evil</a> 插件，可以在 Emacs 上使用 Vi 的操作。但本文只讲解原生 Emacs，也被称为 Vanilla Emacs。</p>
-<p>此外还有一个专门适配 macOS 的 <a href="https://link.zhihu.com/?target=https%3A//aquamacs.org/">Aquamacs</a>，对 macOS 的一些特点进行了适配，例如用 Cmd+O 来替代 C-x C-f 打开文件。但笔者更偏爱 GNU Emacs，毕竟它在所有平台上的操作方式都是一致的。</p>
+<p>本教程所讨论的 GNU Emacs 是最原始的 Emacs，需要从 0 开始配置。部分用户会觉得这样过于枯燥，于是有一些 “Emacs 发行版”，预装了很多插件。这样的 Emacs 有两个：<a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> 和 <a href="https://www.spacemacs.org/">Spacemacs</a>，它们尤其对 Vim 转到 Emacs 的用户比较友好，因为它们预装了 <a href="https://github.com/emacs-evil/evil">evil</a> 插件，可以在 Emacs 上使用 Vi 的操作。但本文只讲解原生 Emacs，也被称为 Vanilla Emacs。</p>
+<p>此外还有一个专门适配 macOS 的 <a href="https://aquamacs.org/">Aquamacs</a>，对 macOS 的一些特点进行了适配，例如用 Cmd+O 来替代 C-x C-f 打开文件。但笔者更偏爱 GNU Emacs，毕竟它在所有平台上的操作方式都是一致的。</p>
 
     <div class="pager pager_lean">
   

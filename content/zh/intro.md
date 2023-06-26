@@ -5,7 +5,7 @@ weight: 1
 
 ## 为什么学习 Emacs
 
-Emacs 是一个文本编辑器系列，包含有多个分支，其中最主流的一支是 [GNU Emacs](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/)，大多数情况下所说的 Emacs 都是指 GNU Emacs，本教程也使用 Emacs 指代 GNU Emacs。Emacs 这一名字最早来源于 “Editor MACroS”，后来也有人称它集合了五个主要功能键的首字母 Esc、Meta、Alt、Ctrl、Shift。
+Emacs 是一个文本编辑器系列，包含有多个分支，其中最主流的一支是 [GNU Emacs](https://www.gnu.org/software/emacs/)，大多数情况下所说的 Emacs 都是指 GNU Emacs，本教程也使用 Emacs 指代 GNU Emacs。Emacs 这一名字最早来源于 “Editor MACroS”，后来也有人称它集合了五个主要功能键的首字母 Esc、Meta、Alt、Ctrl、Shift。
 
 Emacs 与 Vi 共同被称为最古老的 Unix 编辑器，一代代程序员对 Emacs 和 Vi （尤其后来出现的 Vim）产生了无休止的争论。Emacs 诞生已有近五十年时间，是世界上最古老而依然活跃（截止 2021 年）的开源软件之一。
 
@@ -25,25 +25,25 @@ Emacs 的主要思路是大量依赖组合快捷键实现高效编辑，这直�
 
 ## Emacs 的主要相关资料
 
-[Emacs 主页](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/)：可在此下载安装包，还有文档、Wiki 等的入口。
+[Emacs 主页](https://www.gnu.org/software/emacs/)：可在此下载安装包，还有文档、Wiki 等的入口。
 
-[Emacs 官方文档](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/manual/html_node/emacs/index.html)：最准确、最全面。有能力可以直接按照官方文档进行学习。
+[Emacs 官方文档](https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html)：最准确、最全面。有能力可以直接按照官方文档进行学习。
 
-[Emacs Wiki](https://link.zhihu.com/?target=https%3A//www.emacswiki.org/)：关于 Emacs 插件、Emacs Lisp 的一些使用方法。
+[Emacs Wiki](https://www.emacswiki.org/)：关于 Emacs 插件、Emacs Lisp 的一些使用方法。
 
-[Emacs Lisp 教程](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/manual/html_node/eintr/)：Emacs Lisp 的完整教程。
+[Emacs Lisp 教程](https://www.gnu.org/software/emacs/manual/html_node/eintr/)：Emacs Lisp 的完整教程。
 
-[Emacs StackExchange 问答论坛](https://link.zhihu.com/?target=https%3A//emacs.stackexchange.com/)：Emacs 的 StackExchange，有着大量关于 Emacs 的提问和精品回答。
+[Emacs StackExchange 问答论坛](https://emacs.stackexchange.com/)：Emacs 的 StackExchange，有着大量关于 Emacs 的提问和精品回答。
 
-[Emacs Reference Card](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/index.html)：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，[基本操作](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)卡片和“[生存卡片](https://link.zhihu.com/?target=https%3A//www.gnu.org/software/emacs/refcards/pdf/survival.pdf)”。
+[Emacs Reference Card](https://www.gnu.org/software/emacs/refcards/index.html)：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，[基本操作](https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf)卡片和“[生存卡片](https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf)”。
 
 ## 对 Vim 用户
 
-Emacs 有一个 [evil](https://link.zhihu.com/?target=https%3A//github.com/emacs-evil/evil) 插件可以在 Emacs 中直接使用 Vim 的快捷键，这对 Vim 转 Emacs 用户而言非常友好，降低了转换成本。所以我们常能在社区看到许多 Vim 转 Emacs 的用户。此外，对于不想花过多时间配置的读者，可以使用下一小节中提到的 “Emacs 发行版”。
+Emacs 有一个 [evil](https://github.com/emacs-evil/evil) 插件可以在 Emacs 中直接使用 Vim 的快捷键，这对 Vim 转 Emacs 用户而言非常友好，降低了转换成本。所以我们常能在社区看到许多 Vim 转 Emacs 的用户。此外，对于不想花过多时间配置的读者，可以使用下一小节中提到的 “Emacs 发行版”。
 
 ## 其它 Emacs
 
-本教程所讨论的 GNU Emacs 是最原始的 Emacs，需要从 0 开始配置。部分用户会觉得这样过于枯燥，于是有一些 “Emacs 发行版”，预装了很多插件。这样的 Emacs 有两个：[Doom Emacs](https://link.zhihu.com/?target=https%3A//github.com/hlissner/doom-emacs) 和 [Spacemacs](https://link.zhihu.com/?target=https%3A//www.spacemacs.org/)，它们尤其对 Vim 转到 Emacs 的用户比较友好，因为它们预装了 [evil](https://link.zhihu.com/?target=https%3A//github.com/emacs-evil/evil) 插件，可以在 Emacs 上使用 Vi 的操作。但本文只讲解原生 Emacs，也被称为 Vanilla Emacs。
+本教程所讨论的 GNU Emacs 是最原始的 Emacs，需要从 0 开始配置。部分用户会觉得这样过于枯燥，于是有一些 “Emacs 发行版”，预装了很多插件。这样的 Emacs 有两个：[Doom Emacs](https://github.com/hlissner/doom-emacs) 和 [Spacemacs](https://www.spacemacs.org/)，它们尤其对 Vim 转到 Emacs 的用户比较友好，因为它们预装了 [evil](https://github.com/emacs-evil/evil) 插件，可以在 Emacs 上使用 Vi 的操作。但本文只讲解原生 Emacs，也被称为 Vanilla Emacs。
 
-此外还有一个专门适配 macOS 的 [Aquamacs](https://link.zhihu.com/?target=https%3A//aquamacs.org/)，对 macOS 的一些特点进行了适配，例如用 Cmd+O 来替代 C-x C-f 打开文件。但笔者更偏爱 GNU Emacs，毕竟它在所有平台上的操作方式都是一致的。
+此外还有一个专门适配 macOS 的 [Aquamacs](https://aquamacs.org/)，对 macOS 的一些特点进行了适配，例如用 Cmd+O 来替代 C-x C-f 打开文件。但笔者更偏爱 GNU Emacs，毕竟它在所有平台上的操作方式都是一致的。
 
