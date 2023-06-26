@@ -4,6 +4,10 @@ author: "Pavinberg"
 weight: 1
 ---
 
-To be edited...
+This book is a walkthrough of Emacs which tries to introduce the core functions and some popular extensions of Emacs to let one start from the very beginning. The book provides some typical workflows and examples to make Emacs ready for development and daily use, which could be a good starting point for the beginners (at least in my opinion). Notice that there are many ways to achieve the same goal in Emacs so please always feel free to explore the others.
+
+As a guide book, it is not appropriate to make people think Emacs is difficult to learn but it actually is. Emacs is a powerful tool but it takes a lot of practice to get used to it. So it is better that the reader is a developer, an editor or anyone who is able to use Emacs daily. Besides, experience in programming could help a lot to understand part of the book, for example, the configurations and extensions about programming. 
+
+If you are ready, lets start!
 
 {{< button "./intro" "Start the tutorial" >}}
