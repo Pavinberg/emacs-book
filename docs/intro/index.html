@@ -14,18 +14,21 @@
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
 <title>Introduction | Pavinberg&#39;s Emacs Book</title><meta property="og:title" content="Introduction" />
-<meta property="og:description" content="Why Emacs To be edited..." />
+<meta property="og:description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &quot;Emacs&quot; comes from &quot;Editor MACroS&quot; and it includes the first letter of the five function keys, Esc, Meta, Alt, Ctrl and Shift.
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pavinberg.github.io/emacs-book/intro/" /><meta property="article:section" content="" />
 
 <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book" />
 <meta itemprop="name" content="Introduction">
-<meta itemprop="description" content="Why Emacs To be edited...">
+<meta itemprop="description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &quot;Emacs&quot; comes from &quot;Editor MACroS&quot; and it includes the first letter of the five function keys, Esc, Meta, Alt, Ctrl and Shift.
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
 
-<meta itemprop="wordCount" content="5">
+<meta itemprop="wordCount" content="491">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Introduction"/>
-<meta name="twitter:description" content="Why Emacs To be edited..."/>
+<meta name="twitter:description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &quot;Emacs&quot; comes from &quot;Editor MACroS&quot; and it includes the first letter of the five function keys, Esc, Meta, Alt, Ctrl and Shift.
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency."/>
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -33,7 +36,8 @@
 
 
 
-  <meta name="description" content="Why Emacs To be edited...">
+  <meta name="description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &amp;quot;Emacs&amp;quot; comes from &amp;quot;Editor MACroS&amp;quot; and it includes the first letter of the five function keys, Esc, Meta, Alt, Ctrl and Shift.
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
 
 
 </head>
@@ -124,6 +128,9 @@
         <h3 class="section_link active"><a id="docs-introduction" href="https://pavinberg.github.io/emacs-book/intro/">Introduction</a></h3><nav id="TableOfContents">
   <ul>
     <li><a href="#why-emacs">Why Emacs</a></li>
+    <li><a href="#emacs-references">Emacs References</a></li>
+    <li><a href="#for-vim-users">For Vim Users</a></li>
+    <li><a href="#emacs-distributions">Emacs distributions</a></li>
   </ul>
 </nav>
         <h3 class="section_link"><a id="docs-basic-operations" href="https://pavinberg.github.io/emacs-book/basic/">Basic operations</a></h3><nav id="TableOfContents"></nav>
@@ -141,7 +148,30 @@
 
   <main class="content">
     <h1>Introduction</h1><h2 id="why-emacs">Why Emacs</h2>
-<p>To be edited...</p>
+<p>Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to <a href="https://www.gnu.org/software/emacs/">GNU Emacs</a>, which is also the Emacs in this book. The name &quot;Emacs&quot; comes from &quot;Editor MACroS&quot; and it includes the first letter of the five function keys, <code>Esc</code>, <code>Meta</code>, <code>Alt</code>, <code>Ctrl</code> and <code>Shift</code>.</p>
+<p>Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &quot;list&quot; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting <a href="https://www.reddit.com/r/ProgrammerHumor/comments/9d3j49/text_editor_learning_curves/">meme</a> that shows how hard it is:</p>
+<p><img src="../images/emacs-book/intro/learningCurve.jpg" alt="emacs-learning-curve"></p>
+<p>Then why do we use the old and hard-to-learn Emacs? The answer is: Emacs is highly efficient and extensible.</p>
+<ul>
+<li><strong>Efficient.</strong> Emacs uses a lot of keyboard shortcuts to do things. It will be extremely efficient when you have the muscle memory. Though other editors can also binds functions with shortcuts, they don't push you as Emacs does.</li>
+<li><strong>Extensible</strong>. Actually this is the one true killing feature of Emacs. Unlike other editors, the Emacs kernel does not impose any restrictions on users and technically you can build anything in Emacs. There are a large number of extensions on the Internet for Emacs with almost all the features you want. You can build your own extensions if they don't meet your needs. Emacs can be light with only basic functions or can be configured as an IDE, and more. There is a joke saying Emacs is not an editor, but an operating system. Here is a <a href="https://xkcd.com/378/">meme</a> from xkcd:</li>
+</ul>
+<p><img src="../images/emacs-book/intro/realProgrammers.png" alt="real-programmers"></p>
+<p>Additionally, the shell of Linux and macOS supports some Emacs shortcuts by default. macOS also supports Emacs shortcuts across the system. So it is worth learning the shortcusts of Emacs anyway.</p>
+<h2 id="emacs-references">Emacs References</h2>
+<ul>
+<li><a href="https://www.gnu.org/software/emacs/">Homepage</a></li>
+<li><a href="(https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html)">Emacs docs</a></li>
+<li><a href="https://www.emacswiki.org/">Emacs Wiki</a></li>
+<li><a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/">Emacs Lisp manual</a></li>
+<li><a href="https://emacs.stackexchange.com/">StackExchange</a></li>
+<li><a href="https://www.gnu.org/software/emacs/refcards/index.html">Reference Card</a></li>
+</ul>
+<h2 id="for-vim-users">For Vim Users</h2>
+<p>Emacs has an extension <a href="https://github.com/emacs-evil/evil">evil</a> that implements Vim modal editing in Emacs. It makes it easy for Vim user to transfer to Emacs. There are also some Emacs distributions that combines <code>evil</code> by default as introduced in the next section.</p>
+<h2 id="emacs-distributions">Emacs distributions</h2>
+<p>GNU Emacs is also called vanilla Emacs that has nothing at the beginning. If you find it boring to configure everything from scratch, there are Emacs distributions for you: <a href="https://github.com/hlissner/doom-emacs">Doom Emacs</a> and <a href="https://www.spacemacs.org/">Spacemacs</a>. Both of them combines <a href="https://github.com/emacs-evil/evil">evil</a> by default which is especially friendly to Vim users. However, this book only discusses vanilla Emacs.</p>
+<p>There is also a distribution integrated with macOS named <a href="https://aquamacs.org/">Aquamacs</a>. It offers the similar interfaces as the other applications on macOS. But honestly speaking, I don't think this is necessary and it breaks the cross-platform operations to some extent.</p>
 
     <div class="pager pager_lean">
   
