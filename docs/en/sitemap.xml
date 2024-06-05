@@ -99,7 +99,6 @@
                 />
   </url><url>
     <loc>https://pavinberg.github.io/emacs-book/donate/</loc>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"

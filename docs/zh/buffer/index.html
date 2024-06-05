@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,43 +13,25 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>多文件与模式 | 专业 Emacs 入门</title><meta property="og:title" content="多文件与模式" />
-<meta property="og:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+<title>多文件与模式 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/buffer/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="多文件与模式">
+  <meta property="og:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/buffer/" /><meta property="article:section" content="" />
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="多文件与模式">
-<meta itemprop="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+  <meta itemprop="name" content="多文件与模式">
+  <meta itemprop="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
-
-<meta itemprop="wordCount" content="669">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="多文件与模式"/>
-<meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+  <meta itemprop="wordCount" content="716">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="多文件与模式">
+  <meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。"/>
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -59,13 +41,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 
   <meta name="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。
-Menu bar：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-` 键（对应命令 tmm-menu）可以从下方展开互动界面打开菜单。
-Tool bar：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。
-Echo Area：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a，上一篇教程中也提及了这一命令。
-Window：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。
-Mode line：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。
-Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。">
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
 
 
 </head>
@@ -154,325 +130,545 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link active"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>多文件与模式</h1><p>本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。</p>
-<h2 id="初识界面">初识界面</h2>
-<p>首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。</p>
+    <h1>多文件与模式</h1>
+<p>
+本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+初识界面
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。</p>
 <ul>
-<li>
-<p><strong>Frame</strong>：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。</p>
-</li>
-<li>
-<p><strong>Menu bar</strong>：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-`</code> 键（对应命令 <code>tmm-menu</code>）可以从下方展开互动界面打开菜单。</p>
-</li>
-<li>
-<p><strong>Tool bar</strong>：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在后续教程中详细介绍）。</p>
-</li>
-<li>
-<p><strong>Echo Area</strong>：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 <code>C-h C-a</code>，上一篇教程中也提及了这一命令。</p>
-</li>
+<li><strong>Frame</strong> ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。</li>
+<li><strong>Menu bar</strong> ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-\tilde{}</code> 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。</li>
+<li><strong>Tool bar</strong> ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在后续教程中详细介绍）。</li>
+<li><strong>Echo Area</strong> ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 <code>C-h C-a</code> ，上一篇教程中也提及了这一命令。</li>
 </ul>
-<p><img src="../../images/emacs-book/buffer/emacs-gui.png" alt="emacs-gui"></p>
+<p><img src="../../images/emacs-book/buffer/emacs-gui.png" alt="../../images/emacs-book/buffer/emacs-gui.png" title="../../images/emacs-book/buffer/emacs-gui.png" /></p>
 <ul>
-<li>
-<p><strong>Window</strong>：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。</p>
-</li>
-<li>
-<p><strong>Mode line</strong>：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%--F1 <em>GNU Emacs</em> 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 插件进行管理，后文将会更多介绍。</p>
-</li>
-<li>
-<p><strong>Scroll bar</strong>：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 <code>(when (display-graphic-p) (toggle-scroll-bar -1))</code> 表示在是用图形界面时关闭滚动条。</p>
-</li>
-<li>
-<p><strong>Cursor</strong>：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html">文档</a>中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。</p>
-</li>
-<li>
-<p><strong>Point</strong>：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。</p>
-</li>
+<li><strong>Window</strong> ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。</li>
+<li><strong>Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs</strong> 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 插件进行管理，后文将会更多介绍。</li>
+<li><strong>Scroll bar</strong> ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 <code>(when (display-graphic-p) (toggle-scroll-bar -1))</code> 表示在是用图形界面时关闭滚动条。</li>
+<li><strong>Cursor</strong> ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html">文档</a>中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。</li>
+<li><strong>Point</strong> ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。</li>
 </ul>
-<h2 id="文件与-buffer">文件与 Buffer</h2>
-<p>前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。</p>
-<h3 id="打开多文件">打开多文件</h3>
-<p>之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code>（ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 <tab> 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
-<p>保存文件对应命令 <code>C-x C-s</code>。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+文件与 Buffer
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。</p>
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+打开多文件
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>
+之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code> （ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 &lt;tab&gt; 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
+<p>
+保存文件对应命令 <code>C-x C-s</code> 。</p>
+<p>
 
 <div class="tip">
-  开文件并只读不改：<code>C-x C-r</code>。 打开另一相近文件：<code>C-x C-v</code>，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式：<code>C-x C-q</code>。
+  开文件并只读不改：~C-x C-r~ 。 打开另一相近文件：~C-x C-v~ ，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式：~C-x C-q~ 。
 </div>
-
-<p>Emacs 可以打开多个文件，同样使用 <code>C-x C-f</code> 打开即可。 但是你如果打开了第二个文件，便会发现第一个文件就消失不见了，应当去哪里找呢？事实上，所有打开的文件都会被放入一个被称为 Buffer 的对象中，当打开了第二个文件时，第一个文件所在的 Buffer 会切入后台，而第二个文件的 Buffer 会占据当前的 Window。Buffer 的名字显示在 Mode line 中间，通常是文件名本身。</p>
-<p>Emacs 也可以用这个方式打开目录（文件夹），会显示出目录内的文件（此即 Linux 的设计理念，一切皆为文件，即使是目录也本质上是一个文件），可以用光标选择想打开的文件。</p>
-<h3 id="buffer-的切换">Buffer 的切换</h3>
-<p>切换 Buffer 有三类方法，简短的方法是使用 <code>C-x b</code>，输入 Buffer 的名字后按回车即可切换。 Echo area 中会提示你，如果什么也不输直接按回车，可以跳转到当前默认的 Buffer 中，这样方便在两个文件中来回切换。</p>
-<p>显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法，<code>C-x C-b</code>，此时会弹出一个 Window，名为 &quot;<em>Buffer List</em>&quot; ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “<em>Messages</em>” 是 Emacs 的一些输出信息。“<em>scratch</em>” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
+</p>
+<p>
+Emacs 可以打开多个文件，同样使用 <code>C-x C-f</code> 打开即可。 但是你如果打开了第二个文件，便会发现第一个文件就消失不见了，应当去哪里找呢？事实上，所有打开的文件都会被放入一个被称为 Buffer 的对象中，当打开了第二个文件时，第一个文件所在的 Buffer 会切入后台，而第二个文件的 Buffer 会占据当前的 Window。Buffer 的名字显示在 Mode line 中间，通常是文件名本身。</p>
+<p>
+Emacs 也可以用这个方式打开目录（文件夹），会显示出目录内的文件（此即 Linux 的设计理念，一切皆为文件，即使是目录也本质上是一个文件），可以用光标选择想打开的文件。</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+Buffer 的切换
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p>
+切换 Buffer 有三类方法，简短的方法是使用 <code>C-x b</code> ，输入 Buffer 的名字后按回车即可切换。 Echo area 中会提示你，如果什么也不输直接按回车，可以跳转到当前默认的 Buffer 中，这样方便在两个文件中来回切换。</p>
+<p>
+显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法，~C-x C-b~ ，此时会弹出一个 Window，名为 &#34;<strong>Buffer List</strong>&#34; ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “*Messages*” 是 Emacs 的一些输出信息。“*scratch*” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
+<p>
 
 <div class="tip">
-  如果当前光标没有在 &quot;<em>Buffer List</em>&quot; 中可以用 <code>C-x o</code> 键切换过去。
+  如果当前光标没有在 &#34;<strong>Buffer List</strong>&#34; 中可以用 <code>C-x o</code> 键切换过去。
 </div>
-
-<p><img src="../../images/emacs-book/buffer/buffer-list.png" alt="emacs-buffer-list"></p>
-<p>可以通过光标选择切换到某个 Buffer。同时在这个 &quot;<em>Buffer List</em>&quot; 中有很多功能可以使用。按问号（<code>?</code>）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭，<code>s</code> 标记一个 Buffer 打算保存，<code>u</code> 取消标记，<code>x</code> 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code>，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
-<p>想要关闭当前的 Buffer？直接在当前的 Buffer 处按下 <code>C-x k</code> 即可。</p>
-<p>此外，第三种方法是使用 <code>C-mouse-1</code> （<code>mouse-1</code> 表示鼠标左键）然后用鼠标菜单切换 Buffer 。</p>
+</p>
+<p><img src="../../images/emacs-book/buffer/buffer-list.png" alt="../../images/emacs-book/buffer/buffer-list.png" title="../../images/emacs-book/buffer/buffer-list.png" /></p>
+<p>
+可以通过光标选择切换到某个 Buffer。同时在这个 &#34;<strong>Buffer List</strong>&#34; 中有很多功能可以使用。按问号（~?~ ）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭，~s~ 标记一个 Buffer 打算保存，~u~ 取消标记，~x~ 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code> ，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
+<p>
+想要关闭当前的 Buffer？直接在当前的 Buffer 处按下 <code>C-x k</code> 即可。</p>
+<p>
+此外，第三种方法是使用 <code>C-mouse-1</code> （~mouse-1~ 表示鼠标左键）然后用鼠标菜单切换 Buffer 。</p>
+<p>
 
 <div class="tip">
-  事实上，在输入 <code>M-x</code> 后、<code>C-x b</code> 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
+  事实上，在输入 <code>M-x</code> 后、~C-x b~ 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
 </div>
-
-<h3 id="文件备份">文件备份</h3>
-<p>使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code>， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置：<code>(setq make-backup-files nil)</code>）。</p>
-<h2 id="多-window">多 Window</h2>
-<p>想要同时打开两个文件相互参照对比是一个再常见不过的需求了，Emacs 自然可以做到。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-4">
+<h4 id="headline-5">
+文件备份
+</h4>
+<div id="outline-text-headline-5" class="outline-text-4">
+<p>
+使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code> ， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置：~(setq make-backup-files nil)~ ）。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+多 Window
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+想要同时打开两个文件相互参照对比是一个再常见不过的需求了，Emacs 自然可以做到。</p>
 <ul>
 <li><code>C-x 2</code> ：上下分割出两个 Window。</li>
-<li><code>C-x 3</code>：左右分割出两个 Window。</li>
-<li><code>C-x 0</code>：关闭光标所在处的 Window。</li>
-<li><code>C-x 1</code>：只保留光标所在处的 Window，关闭其它 Window。其它 Window 的 Buffer 依然没有关闭，可以通过 &quot;<em>Buffer List</em>&quot; 查看。</li>
-<li><code>C-x o</code>：将光标切换到下一个 Window。</li>
+<li><code>C-x 3</code> ：左右分割出两个 Window。</li>
+<li><code>C-x 0</code> ：关闭光标所在处的 Window。</li>
+<li><code>C-x 1</code> ：只保留光标所在处的 Window，关闭其它 Window。其它 Window 的 Buffer 依然没有关闭，可以通过 &#34;<strong>Buffer List</strong>&#34; 查看。</li>
+<li><code>C-x o</code> ：将光标切换到下一个 Window。</li>
 </ul>
 <p>分割后，默认会把当前的 Buffer 也显示到新的 Window，即显示了两个一样的 Window。再次强调一下，Buffer 对应真正打开的文件，而 Window 是把 Buffer 显示出来的元件，所以一个文件只会开一个 Buffer，但可以有多个 Window 显示。于是，在新的 Window 里用 <code>C-x C-f</code> 打开另一个文件即可看到两个文件了，当然也可以正常用上面所说的 Buffer 切换。</p>
-<p>那么既然开一个新的窗口并打开新的文件这个需求很常见，对此如果只有以上快捷键，需要先 <code>C-x 3</code> 分割出一个窗口，<code>C-x o</code> 切换到新窗口，<code>C-x C-f</code> 打开新文件，过于繁琐。所以 Emacs 提供了一个快捷键：</p>
-<p><code>C-x 4 f</code> 来达到“在另一个窗口打开新的文件，如果只有一个窗口就分割成两个”的效果。</p>
-<p>此外，还有 <code>C-x 4 b</code> 表示“在另一个窗口切换到另一 Buffer，如果只有一个窗口就分割成两个” 。<code>C-x 4 d</code> 表示 “在另一个窗口打开目录，如果只有一个窗口就分割成两个”。</p>
-<p>可以总结出 <code>C-x 4</code> 为前缀时，就表达“在另一个窗口做……“。</p>
-<p>在打开两个窗口时，如果我们光标在第一个窗口，而希望第二个窗口翻页，那么就可以用 <code>C-M-v</code> 向下翻页。用 <code>C-M-S-v</code> （同时按下 <code>Control</code>，<code>Meta</code>， <code>Shift</code> 和 <code>v</code>）向上翻页。</p>
-<p>那么如果在已经分割之后再分割呢？Emacs 会继续做二等分，变成 3 个、4 个等窗口。此时窗口的切换和关闭就没有那么方便了。插件 <a href="https://github.com/abo-abo/ace-window">ace-window</a> 可以辅助这一过程，后面详细介绍。</p>
-<h2 id="多-frame">多 Frame</h2>
-<p>既然能多 Window，自然能多个 Frame。打开一个新的 Frame 可以使用快捷键 <code>C-x 5 2</code>； 在一个新的 Frame 打开文件，可以使用快捷键 <code>C-x 5 f</code>。<code>C-x 5</code> 和 <code>C-x 4</code> 基本类似，只是前者在 Frame 间操作，后者在 Window 间操作。</p>
-<p>笔者的日常使用中，对多文件的打开更偏爱在单个 Frame 中用多个 Window，很少在多 Frame 中间频繁切换。</p>
-<h2 id="模式mode">模式（mode）</h2>
-<p>Emacs 的核心要素之一就是模式（mode）。一个模式就对应着一组环境，不同模式可以分别进行配置，应对不同的场景。例如，编写 C++ 代码时就对应 <code>c++-mode</code>，编写 Python时使用 <code>python-mode</code>。在不同的语言的 mode 中，编译、执行的方式都是不同的，这样只要事先定义好 mode，就可以在使用过程中方便切换各种需求场景。</p>
-<p>Emacs mode 分两类，主模式（Major mode）和次模式（Minor mode）。</p>
-<h3 id="主模式">主模式</h3>
-<p>主模式默认根据 Buffer 的文件类型来选择，一个 Buffer 只能对应一个主模式。例如，Emacs 发现你打开了 <code>.cpp</code> 为后缀的文件，就会把 Buffer 自动设置成 <code>c++-mode</code>，发现你打开了 <code>.py</code> 后缀的文件，就把相应 Buffer 自动设置为 <code>python-mode</code>，最直观的区别是 Emacs 为不同语言的源码提供了不同的语法高亮。 主模式的名字会显示在 Mode line 上。</p>
-<p>我们也可以手动切换主模式，只需要按下 <code>M-x</code> ，输入相应的模式名称即可。通常来说其实我们不需要手动设置。</p>
+<p>
+那么既然开一个新的窗口并打开新的文件这个需求很常见，对此如果只有以上快捷键，需要先 <code>C-x 3</code> 分割出一个窗口，~C-x o~ 切换到新窗口，~C-x C-f~ 打开新文件，过于繁琐。所以 Emacs 提供了一个快捷键：</p>
+<p>
+<code>C-x 4 f</code> 来达到“在另一个窗口打开新的文件，如果只有一个窗口就分割成两个”的效果。</p>
+<p>
+此外，还有 <code>C-x 4 b</code> 表示“在另一个窗口切换到另一 Buffer，如果只有一个窗口就分割成两个” 。~C-x 4 d~ 表示 “在另一个窗口打开目录，如果只有一个窗口就分割成两个”。</p>
+<p>
+可以总结出 <code>C-x 4</code> 为前缀时，就表达“在另一个窗口做……“。</p>
+<p>
+在打开两个窗口时，如果我们光标在第一个窗口，而希望第二个窗口翻页，那么就可以用 <code>C-M-v</code> 向下翻页。用 <code>C-M-S-v</code> （同时按下 <code>Control</code> ，~Meta~ ， <code>Shift</code> 和 <code>v</code> ）向上翻页。</p>
+<p>
+那么如果在已经分割之后再分割呢？Emacs 会继续做二等分，变成 3 个、4 个等窗口。此时窗口的切换和关闭就没有那么方便了。插件 <a href="https://github.com/abo-abo/ace-window">ace-window</a> 可以辅助这一过程，后面详细介绍。</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-3">
+<h3 id="headline-7">
+多 Frame
+</h3>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>
+既然能多 Window，自然能多个 Frame。打开一个新的 Frame 可以使用快捷键 <code>C-x 5 2</code> ； 在一个新的 Frame 打开文件，可以使用快捷键 <code>C-x 5 f</code> 。~C-x 5~ 和 <code>C-x 4</code> 基本类似，只是前者在 Frame 间操作，后者在 Window 间操作。</p>
+<p>
+笔者的日常使用中，对多文件的打开更偏爱在单个 Frame 中用多个 Window，很少在多 Frame 中间频繁切换。</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-3">
+<h3 id="headline-8">
+模式（mode）
+</h3>
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>
+Emacs 的核心要素之一就是模式（mode）。一个模式就对应着一组环境，不同模式可以分别进行配置，应对不同的场景。例如，编写 C++ 代码时就对应 <code>c++-mode</code> ，编写 Python时使用 <code>python-mode</code> 。在不同的语言的 mode 中，编译、执行的方式都是不同的，这样只要事先定义好 mode，就可以在使用过程中方便切换各种需求场景。</p>
+<p>
+Emacs mode 分两类，主模式（Major mode）和次模式（Minor mode）。</p>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
+主模式
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<p>
+主模式默认根据 Buffer 的文件类型来选择，一个 Buffer 只能对应一个主模式。例如，Emacs 发现你打开了 <code>.cpp</code> 为后缀的文件，就会把 Buffer 自动设置成 <code>c++-mode</code> ，发现你打开了 <code>.py</code> 后缀的文件，就把相应 Buffer 自动设置为 <code>python-mode</code> ，最直观的区别是 Emacs 为不同语言的源码提供了不同的语法高亮。 主模式的名字会显示在 Mode line 上。</p>
+<p>
+我们也可以手动切换主模式，只需要按下 <code>M-x</code> ，输入相应的模式名称即可。通常来说其实我们不需要手动设置。</p>
+<p>
 
 <div class="tip">
   最基本的主模式是 Fundamental mode，就是没有进行任何配置的模式 。
 </div>
-
-<h3 id="次模式">次模式</h3>
-<p>同一个 Buffer 可以有多个次模式，次模式可以进一步调整、增加一些配置。通常来说，插件都是靠次模式来起作用的。当我们安装插件时，插件的官网会提示如何设置这个插件，其中大多都会使用次模式。</p>
-<p>官网中列出了一些<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html">常用次模式</a>。下一篇教程的配置中，笔者会直接列出其中常用的几个是如何设置的。</p>
-<h3 id="mode-hook">Mode hook</h3>
-<p>每一个主模式都对应着一个 Mode hook，hook 是挂钩的意思，Mode hook 的作用就是当启动一个主模式时，自动执行一些已经“挂钩”到这个主模式的函数或次模式。由此，我们可以自由地向一个主模式上挂上各种功能，在启动这个主模式时就可以自动跟随着一起启动。</p>
-<p>Mode hook 的名字通常就是“主模式名-hook”。例如，我们希望在主模式“文本文件模式” <code>text-mode</code> 时启动次模式“检查拼写” <code>flyspell-mode</code> ，我们就可以这样写配置：</p>
-<p>(add-hook 'text-mode-hook 'flyspell-mode)
-这样当我们打开 txt 文件时，会自动开启检查拼写功能。</p>
-<p><code>text-mode</code> 是基于文本的文件的一个主模式，有一些其它主模式是由它派生，例如 <code>html-mode</code>。而相对的，还有编程模式 <code>prog-mode</code>，各种编程语言对应的主模式都是由它派生，包括我们上文提到的 <code>c++-mode</code> 和 <code>python-mode</code>。那么如果我们希望在任何编程语言时都有一些共同需要的功能，例如编程时我们希望有代码块折叠功能，就为 <code>prog-mode-hook</code> 挂上相应功能就好。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lisp" data-lang="lisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span>
-</span></span></code></pre></div><p>在下一篇教程中，我们会进一步讨论这些应该如何配置更好。</p>
-<h2 id="目录文件夹操作">目录（文件夹）操作</h2>
-<p><a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a>，即 Directory Editor，是 Emacs 自带的用以处理目录和文件的功能。常见的操作例如删除文件、将文件从一处拷贝至另一处，更高级的操作如对比两个文件的异同、更改权限、链接文件等等，都可以通过 Dired 实现。</p>
-<p>启动 Dired 非常简单，只需要按下 <code>C-x C-f</code>，输入一个目录（文件夹）而非文件，就会进入 Dired。更标准的方式是按 <code>C-x d</code> 或调用 <code>M-x</code> <code>dired</code> 命令然后输入一个目录的名字启动，但前者与打开文件的快捷键相同，更易记忆。</p>
-<p><img src="../../images/emacs-book/buffer/dired.png" alt="emacs-buffer-list"></p>
-<p>当已经打开了一个文件时，输入 <code>C-x C-j</code> 可以打开当前文件所在的目录。</p>
-<p>Dired 会把目录下的文件都列出来，随后用户可以对文件进行操作。此时可以按下 <code>h</code> （Help）来打开帮助，读者可以翻到下面的 &quot;Keybindings&quot;，里面列出了所有在 Dired 中可以使用的命令。</p>
-<p>Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 <code>Control</code> 而直接按 <code>p</code> 和 <code>n</code> 就可以上下移动光标）到相应文件上，按下一个命令快捷键来对该文件调用命令。想要批量操作，只需要按 <code>m</code> （Mark）就可以选择，按 <code>u</code>（Unmark） 来取消选择。批量删除时，按 <code>d</code>（Delete）标记删除，按 <code>x</code>（Execute）执行删除。</p>
-<p>可以执行的命令全都在 &quot;Keybindings&quot; 中罗列，读者只需要自行查阅即可。</p>
-<p>这里举一个简单的例子，我们想要将 <code>a.txt</code> 和 <code>b.txt</code> 文件挪到 <code>subdir</code> 中，首先我们可以对 <code>subdir</code> 按下 <code>i</code> 来展开这个子目录， 随后对两个文本文件按下 <code>m</code> 标记， 然后按下 <code>R</code>（Rename） ，在回显区输入 <code>~/Code/Emacs/Test/subdir/</code>，按下回车。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-4">
+<h4 id="headline-10">
+次模式
+</h4>
+<div id="outline-text-headline-10" class="outline-text-4">
+<p>
+同一个 Buffer 可以有多个次模式，次模式可以进一步调整、增加一些配置。通常来说，插件都是靠次模式来起作用的。当我们安装插件时，插件的官网会提示如何设置这个插件，其中大多都会使用次模式。</p>
+<p>
+官网中列出了一些<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Minor-Modes.html">常用次模式</a>。下一篇教程的配置中，笔者会直接列出其中常用的几个是如何设置的。</p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-4">
+<h4 id="headline-11">
+Mode hook
+</h4>
+<div id="outline-text-headline-11" class="outline-text-4">
+<p>
+每一个主模式都对应着一个 Mode hook，hook 是挂钩的意思，Mode hook 的作用就是当启动一个主模式时，自动执行一些已经“挂钩”到这个主模式的函数或次模式。由此，我们可以自由地向一个主模式上挂上各种功能，在启动这个主模式时就可以自动跟随着一起启动。</p>
+<p>
+Mode hook 的名字通常就是“主模式名-hook”。例如，我们希望在主模式“文本文件模式” <code>text-mode</code> 时启动次模式“检查拼写” <code>flyspell-mode</code> ，我们就可以这样写配置：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;text-mode-hook</span> <span class="ss">&#39;flyspell-mode</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+  这样当我们打开 txt 文件时，会自动开启检查拼写功能。</p>
+<p>
+  <code>text-mode</code> 是基于文本的文件的一个主模式，有一些其它主模式是由它派生，例如 <code>html-mode</code> 。而相对的，还有编程模式 <code>prog-mode</code> ，各种编程语言对应的主模式都是由它派生，包括我们上文提到的 <code>c++-mode</code> 和 <code>python-mode</code> 。那么如果我们希望在任何编程语言时都有一些共同需要的功能，例如编程时我们希望有代码块折叠功能，就为 <code>prog-mode-hook</code> 挂上相应功能就好。</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;prog-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">hs-minor-mode</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+在下一篇教程中，我们会进一步讨论这些应该如何配置更好。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-3">
+<h3 id="headline-12">
+目录（文件夹）操作
+</h3>
+<div id="outline-text-headline-12" class="outline-text-3">
+<p>
+<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html">Dired</a>，即 Directory Editor，是 Emacs 自带的用以处理目录和文件的功能。常见的操作例如删除文件、将文件从一处拷贝至另一处，更高级的操作如对比两个文件的异同、更改权限、链接文件等等，都可以通过 Dired 实现。</p>
+<p>
+启动 Dired 非常简单，只需要按下 <code>C-x C-f</code> ，输入一个目录（文件夹）而非文件，就会进入 Dired。更标准的方式是按 <code>C-x d</code> 或调用 <code>M-x</code> <code>dired</code> 命令然后输入一个目录的名字启动，但前者与打开文件的快捷键相同，更易记忆。</p>
+<p><img src="../../images/emacs-book/buffer/dired.png" alt="../../images/emacs-book/buffer/dired.png" title="../../images/emacs-book/buffer/dired.png" /></p>
+<p>
+当已经打开了一个文件时，输入 <code>C-x C-j</code> 可以打开当前文件所在的目录。</p>
+<p>
+Dired 会把目录下的文件都列出来，随后用户可以对文件进行操作。此时可以按下 <code>h</code> （Help）来打开帮助，读者可以翻到下面的 &#34;Keybindings&#34;，里面列出了所有在 Dired 中可以使用的命令。</p>
+<p>
+Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 <code>Control</code> 而直接按 <code>p</code> 和 <code>n</code> 就可以上下移动光标）到相应文件上，按下一个命令快捷键来对该文件调用命令。想要批量操作，只需要按 <code>m</code> （Mark）就可以选择，按 <code>u</code> （Unmark） 来取消选择。批量删除时，按 <code>d</code> （Delete）标记删除，按 <code>x</code> （Execute）执行删除。</p>
+<p>
+可以执行的命令全都在 &#34;Keybindings&#34; 中罗列，读者只需要自行查阅即可。</p>
+<p>
+这里举一个简单的例子，我们想要将 <code>a.txt</code> 和 <code>b.txt</code> 文件挪到 <code>subdir</code> 中，首先我们可以对 <code>subdir</code> 按下 <code>i</code> 来展开这个子目录， 随后对两个文本文件按下 <code>m</code> 标记， 然后按下 <code>R</code> （Rename） ，在回显区输入 <code>~/Code/Emacs/Test/subdir/</code> ，按下回车。</p>
+<p>
 
 <div class="tip">
   这里熟悉 Linux 的读者应该清楚， 移动文件的本质就是重命名（Rename），所以 Dired 里没有所谓的”移动“这个操作，而只有重命名。
 </div>
-
-<p><img src="../../images/emacs-book/buffer/dired-2.png" alt="emacs-buffer-list"></p>
-<h2 id="总结">总结</h2>
-<p>以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。</p>
-<h2 id="命令列表">命令列表</h2>
+</p>
+<p><img src="../../images/emacs-book/buffer/dired-2.png" alt="../../images/emacs-book/buffer/dired-2.png" title="../../images/emacs-book/buffer/dired-2.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+总结
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
+<p>
+以上内容介绍了 Emacs 界面的术语，如何打开多个文件，如何在多个 Buffer 之间切换和如何使用多个 Window 和 Frame。希望读者多进行尝试，感受一下细节。如果熟练掌握到现在为止的内容，读者应当可以满足编辑文本方面的基本需求了。</p>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-3">
+<h3 id="headline-14">
+命令列表
+</h3>
+<div id="outline-text-headline-14" class="outline-text-3">
 <table>
 <thead>
 <tr>
@@ -484,7 +680,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 <tbody>
 <tr>
 <td>下拉菜单栏</td>
-<td><f10></td>
+<td>&lt;f10&gt;</td>
 <td>menu-bar-open</td>
 </tr>
 <tr>
@@ -599,6 +795,8 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 
     <div class="pager">
   
@@ -627,7 +825,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -730,7 +928,7 @@ Scroll bar：图形界面时 Window 的最右侧有一滚动条。事实上在 E
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

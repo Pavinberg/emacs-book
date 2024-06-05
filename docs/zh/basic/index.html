@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,8 +13,10 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>基础操作 | 专业 Emacs 入门</title><meta property="og:title" content="基础操作" />
-<meta property="og:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
+<title>基础操作 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/basic/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="基础操作">
+  <meta property="og:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
 安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
@@ -28,13 +30,12 @@ macOS:
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
-启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/basic/" /><meta property="article:section" content="" />
+启动后可以看到这样的界面，可以看到其中有一个 &#34;Emacs tutorial&#34;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="基础操作">
-<meta itemprop="description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
+  <meta itemprop="name" content="基础操作">
+  <meta itemprop="description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
 安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
@@ -48,12 +49,11 @@ macOS:
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
-启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
-
-<meta itemprop="wordCount" content="797">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="基础操作"/>
-<meta name="twitter:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
+启动后可以看到这样的界面，可以看到其中有一个 &#34;Emacs tutorial&#34;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
+  <meta itemprop="wordCount" content="846">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="基础操作">
+  <meta name="twitter:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
 安装 截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
@@ -67,7 +67,7 @@ macOS:
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
-启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。"/>
+启动后可以看到这样的界面，可以看到其中有一个 &#34;Emacs tutorial&#34;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -89,7 +89,7 @@ macOS:
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果想要打开非图形界面版的 Emacs，输入：
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
-启动后可以看到这样的界面，可以看到其中有一个 &amp;quot;Emacs tutorial&amp;quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
+启动后可以看到这样的界面，可以看到其中有一个 &amp;#34;Emacs tutorial&amp;#34;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。">
 
 
 </head>
@@ -178,386 +178,656 @@ macOS:
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link active"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>基础操作</h1><p>本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。</p>
-<p>文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。</p>
-<p>另外不要忘了官网的 <a href="https://www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是<a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作卡片</a>，另一个是更为简洁的“<a href="https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。可以打印出来放在一边。</p>
-<h2 id="安装">安装</h2>
-<p>截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。</p>
-<p>特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。</p>
-<p>图形界面在<a href="https://www.gnu.org/software/emacs/">官网</a>下载安装包进行安装。</p>
-<p>此外还可以用正常包管理工具来进行安装。</p>
-<p>macOS:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew install emacs
-</span></span></code></pre></div><p>Debian/Ubuntu:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install emacs
-</span></span></code></pre></div><p>稍老一些的 Ubuntu 可能不能直接这样安装最新版本的 Emacs，需要自行去下载最新版本安装包安装。</p>
-<p>其它系统类似，安装操作网上资源较多，在此不做赘述。</p>
-<h2 id="启动">启动</h2>
-<p>图形界面可以直接打开程序。命令行输入命令启动 Emacs。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs
-</span></span></code></pre></div><p>如果想要打开非图形界面版的 Emacs，输入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs -nw <span class="c1"># no window system</span>
-</span></span></code></pre></div><p>如果后面接文件名，则可以直接打开相应文件。</p>
-<p>启动后可以看到这样的界面，可以看到其中有一个 &quot;Emacs tutorial&quot;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。</p>
-<p><img src="../../images/emacs-book/basic/startup.png" alt="emacs-learning-curve"></p>
-<p>对于 macOS，如果是用安装包手动安装的，直接输入 emacs 命令无法启动图形界面程序，也可以在命令行里添加一个 alias：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="nb">alias</span> <span class="nv">emacsx</span><span class="o">=</span><span class="s2">&#34;open -a /Applications/Emacs.app/ </span><span class="nv">$1</span><span class="s2">&#34;</span>
-</span></span></code></pre></div><p>之后就可以用 emacsx 命令启动图形界面了。当然，读者可以换成更短的名字，比如 emx。但其实还是推荐用 Homebrew Cask 来安装。</p>
-<p>退出程序的方法请见最后的附录。</p>
-<h2 id="关于键盘操作">关于键盘操作</h2>
+    <h1>基础操作</h1>
+<p>
+本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。</p>
+<p>
+文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。</p>
+<p>
+另外不要忘了官网的 <a href="https://www.gnu.org/software/emacs/refcards/index.html">Emacs Reference Card</a>：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是<a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">基本操作卡片</a>，另一个是更为简洁的“<a href="https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf">生存卡片</a>”。可以打印出来放在一边。</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+安装
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+截止本文更新日期（2022.4.6）Emacs 的稳定版本为 28.2。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。</p>
+<p>
+特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。</p>
+<p>
+图形界面在<a href="https://www.gnu.org/software/emacs/">官网</a>下载安装包进行安装。</p>
+<p>
+此外还可以用正常包管理工具来进行安装。</p>
+<p>
+macOS:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew install emacs</span></span></code></pre></div>
+</div>
+<p>
+Debian/Ubuntu:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install emacs</span></span></code></pre></div>
+</div>
+<p>
+稍老一些的 Ubuntu 可能不能直接这样安装最新版本的 Emacs，需要自行去下载最新版本安装包安装。</p>
+<p>
+其它系统类似，安装操作网上资源较多，在此不做赘述。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+启动
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+图形界面可以直接打开程序。命令行输入命令启动 Emacs。</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs</span></span></code></pre></div>
+</div>
+<p>
+如果想要打开非图形界面版的 Emacs，输入：</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs -nw <span class="c1"># no window system</span></span></span></code></pre></div>
+</div>
+<p>
+如果后面接文件名，则可以直接打开相应文件。</p>
+<p>
+启动后可以看到这样的界面，可以看到其中有一个 &#34;Emacs tutorial&#34;，如果读者英文不错，可以直接点击进入，进行互动入门教程，跳过本篇教程。</p>
+<p><img src="../../images/emacs-book/basic/startup.png" alt="../../images/emacs-book/basic/startup.png" title="../../images/emacs-book/basic/startup.png" /></p>
+<p>
+对于 macOS，如果是用安装包手动安装的，直接输入 emacs 命令无法启动图形界面程序，也可以在命令行里添加一个 alias：</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="nb">alias</span> <span class="nv">emacsx</span><span class="o">=</span><span class="s2">&#34;open -a /Applications/Emacs.app/ </span><span class="nv">$1</span><span class="s2">&#34;</span></span></span></code></pre></div>
+</div>
+<p>
+之后就可以用 emacsx 命令启动图形界面了。当然，读者可以换成更短的名字，比如 emx。但其实还是推荐用 Homebrew Cask 来安装。</p>
+<p>
+退出程序的方法请见最后的附录。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+关于键盘操作
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
 
 <div class="tip">
-  <p>为什么大量使用快捷键？</p>
-<p>Emacs 作为一个在图形界面诞生之前就存在的编辑器，其打设计之初就根本不需要鼠标来进行操作，那么直到今天，真正流畅的编程其实也最好不要引入过多的鼠标操作，越是常用的操作就应当更多地使用键盘而不是使用鼠标。鼠标是低效的，读者可以把手放到键盘上正常打字的位置，如果你现在忽然要使用鼠标来进行文本的选择，那右手（对于大部分人来说）就要立刻拿开，摸到鼠标、找到光标、移动到合适的位置、微调鼠标定位、选中、手放回原位。这么长的操作只是为了选中那么一点文字，而这又是如此常见的需求，这种操作模式会打断码代码的手部连贯性和头脑思绪的连贯性。</p>
-<p>快捷键的出现就是用来弥补这一不足，通过简短的按键来完成一些复杂的任务。而 Emacs 一不做二不休，直接将快捷键用到极致——所有操作都最好用快捷键。这样一来，程序员会比较辛苦，需要记忆繁多的快捷键，但一旦形成了肌肉记忆，将能得到极高的效率。</p>
+  <p>
+为什么大量使用快捷键？</p>
+<p>
+Emacs 作为一个在图形界面诞生之前就存在的编辑器，其打设计之初就根本不需要鼠标来进行操作，那么直到今天，真正流畅的编程其实也最好不要引入过多的鼠标操作，越是常用的操作就应当更多地使用键盘而不是使用鼠标。鼠标是低效的，读者可以把手放到键盘上正常打字的位置，如果你现在忽然要使用鼠标来进行文本的选择，那右手（对于大部分人来说）就要立刻拿开，摸到鼠标、找到光标、移动到合适的位置、微调鼠标定位、选中、手放回原位。这么长的操作只是为了选中那么一点文字，而这又是如此常见的需求，这种操作模式会打断码代码的手部连贯性和头脑思绪的连贯性。</p>
+<p>
+快捷键的出现就是用来弥补这一不足，通过简短的按键来完成一些复杂的任务。而 Emacs 一不做二不休，直接将快捷键用到极致——所有操作都最好用快捷键。这样一来，程序员会比较辛苦，需要记忆繁多的快捷键，但一旦形成了肌肉记忆，将能得到极高的效率。</p>
 
 </div>
-
-<p>需要提前说明的是，快捷键是一个十分自由的配置，你可以根据你自己的需要任意修改，笔者会给出一些笔者实践中的经验，但读者不必也不需要完全仿照，一切根据自己的习惯和需求来。</p>
-<h2 id="功能键">功能键</h2>
-<p>Emacs 中有五个功能键： <code>Control</code>、 <code>Meta</code>、 <code>Shift</code>、 <code>Super</code>、 <code>Hyper</code>。其中部分名称读者可能不熟悉，那是几十年前的键盘上的按键名称，其中的 <code>Hyper</code> 键更是在现代键盘上消失了。那 <code>Meta</code> 和 <code>Super</code> 又是什么呢？ <code>Meta</code> 对应于普通 PC 键盘上的 <code>Alt</code> 键，Mac 电脑上的 <code>Option</code> 键。 <code>Super</code> 对应 PC 键盘上的 <code>Win</code> 键，对应 Mac 电脑上的 <code>Command</code> 键。那么我们知道， <code>Super</code> 键在现代系统中起到了重要作用，因此 Emacs 平常不使用和 <code>Super</code> 键相关的快捷键，Emacs 的绝大多数快捷键都是使用 <code>Control</code> 和 <code>Meta</code> 键，而其中一大部分都是只使用 <code>Control</code> 键。</p>
+</p>
+<p>
+需要提前说明的是，快捷键是一个十分自由的配置，你可以根据你自己的需要任意修改，笔者会给出一些笔者实践中的经验，但读者不必也不需要完全仿照，一切根据自己的习惯和需求来。</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+功能键
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>
+Emacs 中有五个功能键： <code>Control</code> 、 <code>Meta</code> 、 <code>Shift</code> 、 <code>Super</code> 、 <code>Hyper</code> 。其中部分名称读者可能不熟悉，那是几十年前的键盘上的按键名称，其中的 <code>Hyper</code> 键更是在现代键盘上消失了。那 <code>Meta</code> 和 <code>Super</code> 又是什么呢？ <code>Meta</code> 对应于普通 PC 键盘上的 <code>Alt</code> 键，Mac 电脑上的 <code>Option</code> 键。 <code>Super</code> 对应 PC 键盘上的 <code>Win</code> 键，对应 Mac 电脑上的 <code>Command</code> 键。那么我们知道， <code>Super</code> 键在现代系统中起到了重要作用，因此 Emacs 平常不使用和 <code>Super</code> 键相关的快捷键，Emacs 的绝大多数快捷键都是使用 <code>Control</code> 和 <code>Meta</code> 键，而其中一大部分都是只使用 <code>Control</code> 键。</p>
+<p>
 
 <div class="tip">
   尽管 <code>Hyper</code> 键已经消失了，但是 Emacs 依然可以使用这个功能键，例如如果读者手上的键盘有一些不常用的按键，可以考虑设定为 <code>Hyper</code> 键，拓宽快捷键，这部分读者自行探索吧。
-事实上 Emacs 中也有 <code>Alt</code> 键，但现在键盘上的 Alt 键都是被映射为 <code>Meta</code>，<code>Alt</code> 键也几乎不去使用了，为避免混淆就没有放到正文中介绍。
+事实上 Emacs 中也有 <code>Alt</code> 键，但现在键盘上的 Alt 键都是被映射为 <code>Meta</code> ，~Alt~ 键也几乎不去使用了，为避免混淆就没有放到正文中介绍。
 </div>
-
+</p>
+<p>
 
 <div class="tip">
   可以看到， <code>Control</code> 键是 Emacs 程序员键盘的“重灾区”，按 <code>Control</code> 键的小指也是 Emacs 程序员最易出问题的部位，因此笔者强烈建议，在你正式使用 Emacs 后改变键盘键位保护手指。
 例如笔者将 <code>Control</code> 键改到了大小写锁定键上（读者可以调换两个键，但考虑到实际很少用大小写锁定键，笔者索性不要大小写锁定键了）。也可以将 PC 键盘上的 <code>Win</code> 键、Mac 键盘上 的 <code>Command</code> 键与 <code>Control</code> 调换，这样使用强壮的大拇指也没有问题。如果不想全局改变，也可以只在 Emacs 内部进行，后面会提到。
 笔者作为 Mac 用户，推荐一款改键软件 <a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements</a>，它甚至可以将 Emacs 常用键位完全拓展到全局。
 </div>
-
-<p>在 Emacs 中，我们经常需要自定义快捷键，那么需要一种方式来表示快捷键，这样才能写到配置文件里。Emacs 使用一个单独的字母表达功能键，见下表。</p>
+</p>
+<p>
+在 Emacs 中，我们经常需要自定义快捷键，那么需要一种方式来表示快捷键，这样才能写到配置文件里。Emacs 使用一个单独的字母表达功能键，见下表。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Emacs 功能键</th>
-<th style="text-align:left">缩写</th>
-<th style="text-align:left">对应键盘按键(PC/Mac)</th>
+<th>Emacs 功能键</th>
+<th>缩写</th>
+<th>对应键盘按键(PC/Mac)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Control</td>
-<td style="text-align:left">C</td>
-<td style="text-align:left">Ctrl / Control</td>
+<td>Control</td>
+<td>C</td>
+<td>Ctrl / Control</td>
 </tr>
 <tr>
-<td style="text-align:left">Meta</td>
-<td style="text-align:left">M</td>
-<td style="text-align:left">Alt / Option</td>
+<td>Meta</td>
+<td>M</td>
+<td>Alt / Option</td>
 </tr>
 <tr>
-<td style="text-align:left">Shift</td>
-<td style="text-align:left">S</td>
-<td style="text-align:left">Shift / Shift</td>
+<td>Shift</td>
+<td>S</td>
+<td>Shift / Shift</td>
 </tr>
 <tr>
-<td style="text-align:left">Super</td>
-<td style="text-align:left">s</td>
-<td style="text-align:left">Win / Command</td>
+<td>Super</td>
+<td>s</td>
+<td>Win / Command</td>
 </tr>
 <tr>
-<td style="text-align:left">Hyper</td>
-<td style="text-align:left">H</td>
-<td style="text-align:left">无</td>
+<td>Hyper</td>
+<td>H</td>
+<td>无</td>
 </tr>
 </tbody>
 </table>
-<p>Emacs 用连字符表示“同时按下”。例如，我们用 C-a 表达“先按下 <code>Control</code> 键不要松，再按下 <code>a</code> 键“。 <code>C-x b</code> 则表达“先按下 <code>Control</code> 键不松，按下 <code>x</code> 键，松开这两个键，按下 <code>b</code> 键”。</p>
-<p><code>C-S-&lt;mouse-1&gt;</code> 表达“同时按下 <code>Control</code> 键和 <code>Shift</code> 键，然后鼠标左键点击“。这里提到了鼠标是因为 Emacs 图形界面支持鼠标操作，并且在有些场景下的确使用鼠标更为方便（例如无规律的多光标选择）。</p>
-<p>特别的， <code>Meta</code> 键做前缀有两种按法，例如 <code>M-x</code> 可以“按住 <code>Meta</code> 键不要松，再按下 <code>x</code> 键“，也可以“先按一下 <code>Esc</code> 键松开，再按一下 <code>x</code> 键“。后者是为了在应对无法使用 <code>Meta</code> 键的硬件或系统，但实际操作有很多不便。因此读者尽可能使用 <code>Alt</code> / <code>Option</code> 作为 <code>Meta</code> 键来按。</p>
+<p>
+Emacs 用连字符表示“同时按下”。例如，我们用 C-a 表达“先按下 <code>Control</code> 键不要松，再按下 <code>a</code> 键“。 <code>C-x b</code> 则表达“先按下 <code>Control</code> 键不松，按下 <code>x</code> 键，松开这两个键，按下 <code>b</code> 键”。</p>
+<p>
+<code>C-S-&lt;mouse-1&gt;</code> 表达“同时按下 <code>Control</code> 键和 <code>Shift</code> 键，然后鼠标左键点击“。这里提到了鼠标是因为 Emacs 图形界面支持鼠标操作，并且在有些场景下的确使用鼠标更为方便（例如无规律的多光标选择）。</p>
+<p>
+特别的， <code>Meta</code> 键做前缀有两种按法，例如 <code>M-x</code> 可以“按住 <code>Meta</code> 键不要松，再按下 <code>x</code> 键“，也可以“先按一下 <code>Esc</code> 键松开，再按一下 <code>x</code> 键“。后者是为了在应对无法使用 <code>Meta</code> 键的硬件或系统，但实际操作有很多不便。因此读者尽可能使用 <code>Alt</code> / <code>Option</code> 作为 <code>Meta</code> 键来按。</p>
+<p>
 
 <div class="tip">
   一些终端例如 Mac 自带的终端默认不会把 <code>Option</code> 键作为 Meta 传入，但只需打开它的偏好设置，其中 ”Profiles - Keyboard“ 中有一项“将 <code>Option</code> 用作 <code>Meta</code> 键“，勾选即可。iTerm2 同理。
 </div>
-
-<h2 id="emacs-命令">Emacs 命令</h2>
-<p>在介绍具体的快捷键之前，要先说明 Emacs 的主体逻辑。与其它编辑器类似，Emacs 也是通过命令进行交互的。而所谓命令，就是 Emacs 中使用 Elisp 语言定义的一些函数。这些函数可以完成一些功能。例如，即使是最最简单的“将光标上移一行”，也对应着命令 <code>previous-line</code> 。一切操作都对应一个命令，而快捷键的本质是在调用这些命令。</p>
-<p>对 Emacs 输入命令需要先按下 <code>M-x</code>，此时你会看到 Emacs 最下面的空行上出现了 &quot;M-x &quot;，然后等待你的输入，随后你便可以输入一个函数名。这一快捷键可以说是最重要的一个快捷键了，只要有它，即使你忘记了其它快捷键，也可以输入函数名进行调用。</p>
-<p>命令名的传统是有连字符连接的多个有意义的英文单词。在输入时可以用空格代替连字符。也可以使用 <code>&lt;tab&gt;</code> 键自动补全。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+Emacs 命令
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>
+在介绍具体的快捷键之前，要先说明 Emacs 的主体逻辑。与其它编辑器类似，Emacs 也是通过命令进行交互的。而所谓命令，就是 Emacs 中使用 Elisp 语言定义的一些函数。这些函数可以完成一些功能。例如，即使是最最简单的“将光标上移一行”，也对应着命令 <code>previous-line</code> 。一切操作都对应一个命令，而快捷键的本质是在调用这些命令。</p>
+<p>
+对 Emacs 输入命令需要先按下 <code>M-x</code> ，此时你会看到 Emacs 最下面的空行上出现了 &#34;M-x &#34;，然后等待你的输入，随后你便可以输入一个函数名。这一快捷键可以说是最重要的一个快捷键了，只要有它，即使你忘记了其它快捷键，也可以输入函数名进行调用。</p>
+<p>
+命令名的传统是有连字符连接的多个有意义的英文单词。在输入时可以用空格代替连字符。也可以使用 <code>&lt;tab&gt;</code> 键自动补全。</p>
+<p>
 
 <div class="tip">
-  自然， <code>M-x</code> 也对应着命令 <code>execute-extended-command</code>。
+  自然， <code>M-x</code> 也对应着命令 <code>execute-extended-command</code> 。
 </div>
-
-<h2 id="基础快捷键">基础快捷键</h2>
-<p>接下来介绍一些入门基础内容。读者最好打开一个文本进行尝试，例如前面提到的 Emacs 内置教程，如果不知如何打开，请按下 <code>C-h t</code> （注意松开 <code>Control</code> 键和 <code>h</code> 键之后再按 <code>t</code> 键）。或者读者打开任意一段代码。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+基础快捷键
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+接下来介绍一些入门基础内容。读者最好打开一个文本进行尝试，例如前面提到的 Emacs 内置教程，如果不知如何打开，请按下 <code>C-h t</code> （注意松开 <code>Control</code> 键和 <code>h</code> 键之后再按 <code>t</code> 键）。或者读者打开任意一段代码。</p>
+<p>
 
 <div class="tip">
   对于 Vim 用户，可以安装 <code>evil</code> 插件来使用 Vim 按键，可略读下文的大部分内容。 插件的安装方式请参考<a href="../configuration">基本配置</a>和<a href="../enhancement">插件：功能增强类</a>的最后一节。
 </div>
-
-<h3 id="如何退出">如何退出</h3>
-<p>退出程序： <code>C-x C-c</code>。</p>
-<p>对于输了一半的命令，或者按了一部分快捷键但不想继续了，可以按下 <code>C-g</code> 放弃。此外在任何场合如果出现了卡住等情况，也都可以尝试输入 <code>C-g</code> 打断。</p>
-<h3 id="光标移动">光标移动</h3>
-<p>光标移动也需要教？是的，Emacs 快捷键甚至连方向键都绑定了快捷键。如此大费周章是由于方向键在键盘上处于非常偏的位置，按方向键时你的右手需要做移动，而按方向键又是常见操作，Emacs 认为这种程度的手部移动就已经在打断写代码的连贯性了！</p>
-<p>于是，方向键上下左右的快捷键是 <code>C-p</code>、 <code>C-n</code>、 <code>C-b</code>、 <code>C-f</code>。它们的英文含义分别是：previous（前）、next（后）、back（退）、forward（进）。一开始看的确很奇怪，但熟练之后确实方便顺手。</p>
-<p>除此之外，Emacs 提供了多种方式进行光标移动：</p>
-<p>以词为单位： <code>M-b</code> 光标向左移动一个词， <code>M-f</code> 光标向右移动一个词。
+</p>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+如何退出
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>
+退出程序： <code>C-x C-c</code> 。</p>
+<p>
+对于输了一半的命令，或者按了一部分快捷键但不想继续了，可以按下 <code>C-g</code> 放弃。此外在任何场合如果出现了卡住等情况，也都可以尝试输入 <code>C-g</code> 打断。</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
+光标移动
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<p>
+光标移动也需要教？是的，Emacs 快捷键甚至连方向键都绑定了快捷键。如此大费周章是由于方向键在键盘上处于非常偏的位置，按方向键时你的右手需要做移动，而按方向键又是常见操作，Emacs 认为这种程度的手部移动就已经在打断写代码的连贯性了！</p>
+<p>
+于是，方向键上下左右的快捷键是 <code>C-p</code> 、 <code>C-n</code> 、 <code>C-b</code> 、 <code>C-f</code> 。它们的英文含义分别是：previous（前）、next（后）、back（退）、forward（进）。一开始看的确很奇怪，但熟练之后确实方便顺手。</p>
+<p>
+除此之外，Emacs 提供了多种方式进行光标移动：</p>
+<p>
+以词为单位： <code>M-b</code> 光标向左移动一个词， <code>M-f</code> 光标向右移动一个词。
 首尾：
-行： <code>C-a</code> 光标移至行首， <code>C-e</code> 光标移至行尾。而代码经常是有缩进的，但 <code>C-a</code> 会直接移动到整个行首，并不能直接编辑开头的文字，这种情况可使用 <code>M-m</code> 来移动到文字的开头。不过这里只是介绍，笔者之后会直接推荐一个插件 <code>mwim</code>，避免这个琐碎的小区别。
+行： <code>C-a</code> 光标移至行首， <code>C-e</code> 光标移至行尾。而代码经常是有缩进的，但 <code>C-a</code> 会直接移动到整个行首，并不能直接编辑开头的文字，这种情况可使用 <code>M-m</code> 来移动到文字的开头。不过这里只是介绍，笔者之后会直接推荐一个插件 <code>mwim</code> ，避免这个琐碎的小区别。
 句子： <code>M-a</code> 光标移至句首， M-e 光标移至句尾。
 整个文件： <code>M-&lt;</code> 移动到文件开头， <code>M-&gt;</code> 移动到文件末尾。注意这里需要同时按下 <code>Meta</code> 键、 <code>Shift</code> 键和逗号/句号键。
-窗口：<code>M-r</code> 按第一次——光标移动到窗口中间行；接着按第二次——光标移动到窗口最上面一行；接着按第三次——光标移动到窗口最下面一行。
+窗口：~M-r~ 按第一次——光标移动到窗口中间行；接着按第二次——光标移动到窗口最上面一行；接着按第三次——光标移动到窗口最下面一行。
 笔者平日使用 mac 电脑，macOS 本身就有着近乎全局的这套 Emacs 快捷键，因此笔者平日很少按方向键，全部使用这四个快捷键。读者需要大量练习，形成肌肉记忆。</p>
+<p>
 
 <div class="tip">
-  如果想增加一些趣味性，可以玩 Emacs 内的贪吃蛇游戏来锻炼对方向键的熟练度。按 <code>M-` </code> 调用 <code>tmm-menubar</code>，按 <code>t</code> 选择 Tools，按 <code>g</code> 选择 Games，按 <code>s</code> 选择 Snake，然后开始游戏吧！
+  如果想增加一些趣味性，可以玩 Emacs 内的贪吃蛇游戏来锻炼对方向键的熟练度。按 <code>~ M-</code> ~ ~ 调用 ~ tmm-menubar~，按 ~ t~ 选择 Tools，按 ~ g~ 选择 Games，按 ~ s` 选择 Snake，然后开始游戏吧！
 </div>
-
-<h3 id="编辑操作">编辑操作</h3>
-<p>删除字符：删除一个字符与正常一样，按下删除键（在 Emacs 中删除键写为 <code>&lt;DEL&gt;</code> 或 <code>&lt;backspace&gt;</code>）即可删掉光标左侧的字符。如果想要删掉右侧的字符，就按下 <code>C-d</code> 键。
-移除词：M-d 移除光标右边一整个词。<code>M-&lt;DEL&gt;</code> 移除光标左侧一整个词。
-移除右侧直到句子结尾： <code>M-k</code>。
+</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
+编辑操作
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<p>
+删除字符：删除一个字符与正常一样，按下删除键（在 Emacs 中删除键写为 <code>&lt;DEL&gt;</code> 或 <code>&lt;backspace&gt;</code> ）即可删掉光标左侧的字符。如果想要删掉右侧的字符，就按下 <code>C-d</code> 键。
+移除词：M-d 移除光标右边一整个词。~M-&lt;DEL&gt;~ 移除光标左侧一整个词。
+移除右侧直到句子结尾： <code>M-k</code> 。
 移除右侧直到行结尾： <code>C-k</code> 。
 选中部分区域（region）：把光标移动到某处，按下 <code>C-SPC</code> （ <code>SPC</code> 表示空格键，space），此时 Emacs 最下方的空行显示 “Mark set“，表示当前打了一个标；接着任意移动光标到另一个位置，可以看到半透明的选择框。这就是和平日里你使用鼠标进行选择是一样的。
 复制： <code>M-w</code> 复制选中的区域。
 移除： <code>C-w</code> 移除选中的区域。
-注意，这里我用了“删除”和“移除“两种说法，”删除“对应于 &quot;delete&quot;，是真的删除，而“移除”对应于 &quot;kill&quot;，相当于“剪切”，之后可以再次插入到其它位置，即 &quot;insert&quot;，相当于粘贴。</p>
-<p>笔者的实际使用中，复制比移除更为常见，由于光标的移动等大量操作依赖于 <code>Control</code> 键，因此将复制与移除调换，使用 <code>C-w</code> 做复制，<code>M-w</code> 做移除更为顺手。读者可以根据自己的需要更改，具体配置方法见后续教程。
-Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前移除的内容时（即粘贴之前剪切的内容），按下 <code>C-y</code>，这被称为 &quot;yank&quot;，它会将最近一次移除的内容插入回来。那么如何粘贴历史记录呢？在一次 &quot;yank&quot; 的基础上，再按 <code>M-y</code> ，就可以得到倒数第二次移除的内容，再按一次 <code>M-y</code> 即可得到倒数第三次移除的内容，以此类推。后面笔者会介绍插件 <a href="../optimization"><code>counsel</code></a> 辅助这个过程。</p>
+注意，这里我用了“删除”和“移除“两种说法，”删除“对应于 &#34;delete&#34;，是真的删除，而“移除”对应于 &#34;kill&#34;，相当于“剪切”，之后可以再次插入到其它位置，即 &#34;insert&#34;，相当于粘贴。</p>
+<p>
+笔者的实际使用中，复制比移除更为常见，由于光标的移动等大量操作依赖于 <code>Control</code> 键，因此将复制与移除调换，使用 <code>C-w</code> 做复制，~M-w~ 做移除更为顺手。读者可以根据自己的需要更改，具体配置方法见后续教程。
+Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前移除的内容时（即粘贴之前剪切的内容），按下 <code>C-y</code> ，这被称为 &#34;yank&#34;，它会将最近一次移除的内容插入回来。那么如何粘贴历史记录呢？在一次 &#34;yank&#34; 的基础上，再按 <code>M-y</code> ，就可以得到倒数第二次移除的内容，再按一次 <code>M-y</code> 即可得到倒数第三次移除的内容，以此类推。后面笔者会介绍插件 <a href="../optimization"><code>counsel</code> </a> 辅助这个过程。</p>
 <ul>
-<li>撤销（undo）： <code>C-/</code> 或 <code>C-_</code> 或 <code>C-x u</code>。撤销刚刚的操作。对字符进行编辑例外，例如你按了 5 次删除键删除了 5 个字符，按一下撤销即可复原。</li>
-<li>重做（redo）：Emacs 对于历史记录也维护成了一个环。但 Emacs 并没有直接的重做操作，而是先按一下 <code>C-g</code> ，即没有操作，此时再按撤销键时，会撤销上次的“撤销”，相当于重做；也可以理解为按下 <code>C-g</code> 后这个环的移动方向会改变。所以 Emacs 其实不分 undo 和 redo，而是靠改变历史记录的移动方向来控制。那么读者一定觉得这里难以理解不便使用，没错，因此笔者将会在后面介绍更好用的插件 <a href="../optimization"><code>undo-tree</code></a>。</li>
+<li>撤销（undo）： <code>C-/</code> 或 <code>C-_</code> 或 <code>C-x u</code> 。撤销刚刚的操作。对字符进行编辑例外，例如你按了 5 次删除键删除了 5 个字符，按一下撤销即可复原。</li>
+<li>重做（redo）：Emacs 对于历史记录也维护成了一个环。但 Emacs 并没有直接的重做操作，而是先按一下 <code>C-g</code> ，即没有操作，此时再按撤销键时，会撤销上次的“撤销”，相当于重做；也可以理解为按下 <code>C-g</code> 后这个环的移动方向会改变。所以 Emacs 其实不分 undo 和 redo，而是靠改变历史记录的移动方向来控制。那么读者一定觉得这里难以理解不便使用，没错，因此笔者将会在后面介绍更好用的插件 <a href="../optimization"><code>undo-tree</code> </a>。</li>
 </ul>
-<h3 id="标记与跳转">标记与跳转</h3>
-<p>上文提到的选中键 <code>C-SPC</code> 不仅是选中文本这么简单的功能，它的本质是设定一个标记（mark）。Emacs 还有一个标记跳转功能，例如我们先在文本的第一行，按下两次 <code>C-SPC</code>（这样我们即打了标记，又没有选中文本），然后光标移动到别的位置（甚至以后学过之后，到别的文件），这时候按下 <code>C-x C-SPC</code> 或 <code>C-u C-SPC</code>，即可立刻跳转回刚刚的位置。同样的，有更好用的插件可以辅助这一功能即上文提到的 <code>counsel</code>。</p>
-<p>想要跳到特定的行，<code>M-g M-g</code> 加行号、回车即可 。</p>
-<h3 id="重复操作">重复操作</h3>
-<p>Emacs 提供了一个机制可以把一个命令重复执行任意次数。具体来说，先按下 <code>C-u</code>，再按数字表示次数，再按下命令的快捷键。例如：<code>C-u 12 C-n</code> 表示向下 12 行。如果不加数字，默认是 4 次。</p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-4">
+<h4 id="headline-10">
+标记与跳转
+</h4>
+<div id="outline-text-headline-10" class="outline-text-4">
+<p>
+上文提到的选中键 <code>C-SPC</code> 不仅是选中文本这么简单的功能，它的本质是设定一个标记（mark）。Emacs 还有一个标记跳转功能，例如我们先在文本的第一行，按下两次 <code>C-SPC</code> （这样我们即打了标记，又没有选中文本），然后光标移动到别的位置（甚至以后学过之后，到别的文件），这时候按下 <code>C-x C-SPC</code> 或 <code>C-u C-SPC</code> ，即可立刻跳转回刚刚的位置。同样的，有更好用的插件可以辅助这一功能即上文提到的 <code>counsel</code> 。</p>
+<p>
+想要跳到特定的行，~M-g M-g~ 加行号、回车即可 。</p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-4">
+<h4 id="headline-11">
+重复操作
+</h4>
+<div id="outline-text-headline-11" class="outline-text-4">
+<p>
+Emacs 提供了一个机制可以把一个命令重复执行任意次数。具体来说，先按下 <code>C-u</code> ，再按数字表示次数，再按下命令的快捷键。例如：~C-u 12 C-n~ 表示向下 12 行。如果不加数字，默认是 4 次。</p>
+<p>
 
 <div class="tip">
   注意，有些特殊命令不表示次数，例如与 <code>M-x</code> 组合时表示传参。读者暂不需要知晓这么深刻。
 </div>
-
-<h3 id="页面移动">页面移动</h3>
-<p><code>C-v</code> 会向下翻滚一页内容， <code>M-v</code> 会向上翻滚一页。但 Emacs 会保留三行不会被翻过去，这样看起来更为舒服。</p>
-<p><code>C-l</code> 第一次按时，会移动页面使得光标所在行在窗口中央。这样当我们写文本写到下面时，只需要按一下 <code>C-l</code> 即可把当前光标所在行移动到正中央，有利于查看。但如果按完一次之后紧接着再按一次 <code>C-l</code>，会移动页面使得光标所在行在窗口最上面，而按第三次 <code>C-l</code> 会移动页面使得光标所在行在窗口最下面。第四次按与按一次的效果相同，如此循环。</p>
-<h3 id="搜索文本">搜索文本</h3>
-<p>从光标位置向下搜索，按下 <code>C-s</code>，即 search，此时最下方空行会出现 &quot;I-search: &quot;，输入你要搜索 的文本，此时会显示出能够匹配的文本，光标会移动到第一个匹配的文本位置。</p>
-<p>如果你想让光标跳到下一个匹配位置，就再按一次 <code>C-s</code>。
+</p>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-4">
+<h4 id="headline-12">
+页面移动
+</h4>
+<div id="outline-text-headline-12" class="outline-text-4">
+<p>
+<code>C-v</code> 会向下翻滚一页内容， <code>M-v</code> 会向上翻滚一页。但 Emacs 会保留三行不会被翻过去，这样看起来更为舒服。</p>
+<p>
+<code>C-l</code> 第一次按时，会移动页面使得光标所在行在窗口中央。这样当我们写文本写到下面时，只需要按一下 <code>C-l</code> 即可把当前光标所在行移动到正中央，有利于查看。但如果按完一次之后紧接着再按一次 <code>C-l</code> ，会移动页面使得光标所在行在窗口最上面，而按第三次 <code>C-l</code> 会移动页面使得光标所在行在窗口最下面。第四次按与按一次的效果相同，如此循环。</p>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-4">
+<h4 id="headline-13">
+搜索文本
+</h4>
+<div id="outline-text-headline-13" class="outline-text-4">
+<p>
+从光标位置向下搜索，按下 <code>C-s</code> ，即 search，此时最下方空行会出现 &#34;I-search: &#34;，输入你要搜索 的文本，此时会显示出能够匹配的文本，光标会移动到第一个匹配的文本位置。</p>
+<p>
+如果你想让光标跳到下一个匹配位置，就再按一次 <code>C-s</code> 。
 如果想停留在当前位置，退出搜索，按下回车键。
-如果想放弃搜索，回到搜索前的位置，按下 <code>C-g</code>。
-从光标位置向前搜索，按下 <code>C-r</code>，其用法与 <code>C-s</code> 一致，只是方向相反。安装了 <code>swiper</code> 的话会显示搜索结果列表，更为直观（<code>swiper</code> 和上文提到的 <code>counsel</code> 是一套插件）。</p>
-<h3 id="其它小操作">其它小操作</h3>
-<p>交换光标左右的字符：<code>C-t</code> ；交换光标前后的词：<code>M-t</code>；交换光标所在行和上一行：<code>C-x C-t</code>。还有交换句子、段落、选择区域等，但没有快捷键，详见文档。
-在光标所在行下方创建一个新的空行：<code>C-o</code>；将光标所在前后所有连续空行变为一个空行：<code>C-x C-o</code>。
-将光标后一词变为小写：<code>M-l</code>；变为大写 ：<code>M-u</code>；变为首字母大写：<code>M-c</code>。</p>
-<h3 id="获得帮助">获得帮助</h3>
-<p>Emacs 内置了多种获取帮助的方式。其共有前缀 <code>C-h</code>。</p>
-<p>简要描述快捷键功能：按下 <code>C-h c</code> 后，按想查询的快捷键。例如 <code>C-h c C-p</code>，会在最下面出现：&quot;C-p runs the command previous-line&quot;，告诉你 <code>C-p</code> 键对应的命令是 &quot;previous-line&quot;。
+如果想放弃搜索，回到搜索前的位置，按下 <code>C-g</code> 。
+从光标位置向前搜索，按下 <code>C-r</code> ，其用法与 <code>C-s</code> 一致，只是方向相反。安装了 <code>swiper</code> 的话会显示搜索结果列表，更为直观（~swiper~ 和上文提到的 <code>counsel</code> 是一套插件）。</p>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-4">
+<h4 id="headline-14">
+其它小操作
+</h4>
+<div id="outline-text-headline-14" class="outline-text-4">
+<p>
+交换光标左右的字符：~C-t~ ；交换光标前后的词：~M-t~ ；交换光标所在行和上一行：~C-x C-t~ 。还有交换句子、段落、选择区域等，但没有快捷键，详见文档。
+在光标所在行下方创建一个新的空行：~C-o~ ；将光标所在前后所有连续空行变为一个空行：~C-x C-o~ 。
+将光标后一词变为小写：~M-l~ ；变为大写 ：~M-u~ ；变为首字母大写：~M-c~ 。</p>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-4">
+<h4 id="headline-15">
+获得帮助
+</h4>
+<div id="outline-text-headline-15" class="outline-text-4">
+<p>
+Emacs 内置了多种获取帮助的方式。其共有前缀 <code>C-h</code> 。</p>
+<p>
+简要描述快捷键功能：按下 <code>C-h c</code> 后，按想查询的快捷键。例如 <code>C-h c C-p</code> ，会在最下面出现：&#34;C-p runs the command previous-line&#34;，告诉你 <code>C-p</code> 键对应的命令是 &#34;previous-line&#34;。
 详细描述快捷键功能：按下 <code>C-h k</code> 后，按想查询的快捷键。
-描述函数（function）： <code>C-h f</code>，输入函数名。
-描述变量（variable）： <code>C-h v</code>，输入变量名。
-列出含某一关键词的命令（Command Apropos）： <code>C-h a</code>，加一个关键词。
-列出含某一关键词的符号的文档： <code>C-h d</code>，加一个关键词。
+描述函数（function）： <code>C-h f</code> ，输入函数名。
+描述变量（variable）： <code>C-h v</code> ，输入变量名。
+列出含某一关键词的命令（Command Apropos）： <code>C-h a</code> ，加一个关键词。
+列出含某一关键词的符号的文档： <code>C-h d</code> ，加一个关键词。
 这些帮助太多了记不住？还有帮助的帮助：</p>
-<p><code>C-h ?</code>，列出以上功能，以及其它帮助功能。</p>
-<p>有一个小插件 <a href="../optimization"><code>which-key</code></a> 可以在敲快捷键给予一定的提示作用，后续会详细介绍。</p>
+<p>
+<code>C-h ?</code> ，列出以上功能，以及其它帮助功能。</p>
+<p>
+有一个小插件 <a href="../optimization"><code>which-key</code> </a> 可以在敲快捷键给予一定的提示作用，后续会详细介绍。</p>
+<p>
 
 <div class="tip">
   一些系统对有些键位会做映射。例如 macOS 就会将 C-/ 映射为 C-_ ， C-SPC 映射为 C-@。不影响日常使用，但是读者想覆盖键位时需要注意。
 </div>
-
-<h2 id="命令列表">命令列表</h2>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-3">
+<h3 id="headline-16">
+命令列表
+</h3>
+<div id="outline-text-headline-16" class="outline-text-3">
 <table>
 <thead>
 <tr>
@@ -664,7 +934,7 @@ Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前�
 </tr>
 <tr>
 <td>移除光标左侧词</td>
-<td>M-</td>
+<td>M-DEL</td>
 <td>backward-kill-word</td>
 </tr>
 <tr>
@@ -794,7 +1064,7 @@ Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前�
 </tr>
 <tr>
 <td>缩小字号</td>
-<td>C-x C--</td>
+<td>C-x C–</td>
 <td>text-scale-adjust</td>
 </tr>
 <tr>
@@ -839,6 +1109,8 @@ Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前�
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 
     <div class="pager">
   
@@ -867,7 +1139,7 @@ Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前�
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -970,7 +1242,7 @@ Emacs 内部维护了一个环形“剪贴板历史”，当你想插入之前�
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

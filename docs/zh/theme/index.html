@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,34 +13,34 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>外观与主题 | 专业 Emacs 入门</title><meta property="og:title" content="外观与主题" />
-<meta property="og:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+<title>外观与主题 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/theme/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="外观与主题">
+  <meta property="og:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
 本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
 初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
-想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &#34;cursor&#34;，就得到了类似下图所示的界面。
 这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
-除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/theme/" /><meta property="article:section" content="" />
+除了使用 M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="外观与主题">
-<meta itemprop="description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+  <meta itemprop="name" content="外观与主题">
+  <meta itemprop="description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
 本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
 初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
-想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &#34;cursor&#34;，就得到了类似下图所示的界面。
 这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
-除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
-
-<meta itemprop="wordCount" content="546">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="外观与主题"/>
-<meta name="twitter:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
+除了使用 M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
+  <meta itemprop="wordCount" content="568">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="外观与主题">
+  <meta name="twitter:description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
 本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
 初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
-想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &#34;cursor&#34;，就得到了类似下图所示的界面。
 这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
-除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。"/>
+除了使用 M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -51,9 +51,9 @@
   <meta name="description" content="本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。
 本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。
 初识配置 Face Emacs 中掌管显示的专用名词是 Face，例如对文字来说，其字体、字号、颜色、背景都称为 Face。
-想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &amp;quot;cursor&amp;quot;，就得到了类似下图所示的界面。
+想要配置 Face，输入命令 M-x customize-face 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 M-x list-faces-display 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &amp;#34;cursor&amp;#34;，就得到了类似下图所示的界面。
 这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。
-除了使用M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
+除了使用 M-x list-faces-display 列出当前界面所有的 Face 外，还可以使用快捷键 C-u C-x = 调用带前缀参数的 what-cursor-position 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。">
 
 
 </head>
@@ -130,299 +130,482 @@
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link active"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>外观与主题</h1><p>本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。</p>
-<p>本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。</p>
-<h2 id="初识配置-face">初识配置 Face</h2>
-<p>Emacs 中掌管显示的专用名词是 <a href="https://www.emacswiki.org/emacs/Face%23face">Face</a>，例如对文字来说，其字体、字号、颜色、背景都称为 Face。</p>
-<p>想要配置 Face，输入命令 <code>M-x</code> <code>customize-face</code> 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 <code>M-x</code> <code>list-faces-display</code> 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &quot;cursor&quot;，就得到了类似下图所示的界面。</p>
-<p><img src="../../images/emacs-book/theme/cursor-face.png" alt="cursor-face"></p>
-<p>这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。</p>
-<p>除了使用<code>M-x</code> <code>list-faces-display</code> 列出当前界面所有的 Face 外，还可以使用快捷键 <code>C-u C-x =</code> 调用带前缀参数的 <code>what-cursor-position</code> 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。</p>
-<p>更通用的设置方式则是直接使用 Customization 进行搜索查找。强调一下，Customization 本身并不只包含关于 Face 的设置，各种变量都可以用它更改。进入 Customization 对首页可以输入命令 <code>M-x</code> <code>customize</code>，可以点选其中的 “Face” 进入关于 Face 的设置，其中有罗列所有的 Face 分类。例如对于背景颜色这种设置，可以直接选 “Basic Faces“，里面的 “Default face” 的 “Background” 就是控制 Emacs 背景的属性了。读者当然也可以直接用搜索框直接搜索。</p>
+    <h1>外观与主题</h1>
+<p>
+本文简单介绍一下如何为 Emacs 配置外观和主题，让 Emacs 成为一个赏心悦目的编辑器。</p>
+<p>
+本文首先简要介绍 Emacs 外观的概念和手动配置方式，之后介绍一些其他人设计好的主题供读者选择。外观的配置每个人有每个人的偏好，本文只介绍基本的配置逻辑，具体选择什么样的配置读者可以自己拓展搜索。</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+初识配置 Face
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+Emacs 中掌管显示的专用名词是 <a href="https://www.emacswiki.org/emacs/Face%23face">Face</a>，例如对文字来说，其字体、字号、颜色、背景都称为 Face。</p>
+<p>
+想要配置 Face，输入命令 <code>M-x</code>  <code>customize-face</code> 然后输入相应的 Face 名称即可自定义。那么如何知道 Face 的名称呢？在界面中输入 <code>M-x</code>  <code>list-faces-display</code> 就可以显示当前界面下所有的 Face 的名字及颜色。例如，我们想更改光标的颜色，可以输入 &#34;cursor&#34;，就得到了类似下图所示的界面。</p>
+<p><img src="../../images/emacs-book/theme/cursor-face.png" alt="../../images/emacs-book/theme/cursor-face.png" title="../../images/emacs-book/theme/cursor-face.png" /></p>
+<p>
+这里 “Cursor face:“ 后有一块白色的矩形，那便是笔者 Emacs 中光标方块的颜色。下面的 “State” 表示这个 Face 是被谁设置了，笔者使用了主题，光标颜色由主题指定，这里就显示 “THEMED”；读者如果从未配置，这里会显示 ”STANDARD“，即”标准“，也就是默认的标准颜色。再下面是一段对这个 Face 的介绍。最后是可以配置的属性（Attribute），属性有很多，但只展示配置过的属性，对于 Cursor 来说，主要就是背景颜色，所以这里显示了 “Background”。点 “Choose” 就会列出一系列颜色供用户选择。点 “Show All Attributes“ 可以列出所有属性，包括字体、字号、加粗、斜体等等（但正如介绍中所说，对 Cursor 来说别的属性没有意义，所以这里修改别的也是没用的）。最后，点上方的 “Apply”就是应用当前的设置预览效果，但不保存设置；点 ”Apply and Save“ 就是应用并保存了。</p>
+<p>
+除了使用 <code>M-x</code>  <code>list-faces-display</code> 列出当前界面所有的 Face 外，还可以使用快捷键 <code>C-u C-x =</code> 调用带前缀参数的 <code>what-cursor-position</code> 命令，它会在新的窗口中显示光标所在位置的界面信息，其中包括了 Face。</p>
+<p>
+更通用的设置方式则是直接使用 Customization 进行搜索查找。强调一下，Customization 本身并不只包含关于 Face 的设置，各种变量都可以用它更改。进入 Customization 对首页可以输入命令 <code>M-x</code>  <code>customize</code> ，可以点选其中的 “Face” 进入关于 Face 的设置，其中有罗列所有的 Face 分类。例如对于背景颜色这种设置，可以直接选 “Basic Faces“，里面的 “Default face” 的 “Background” 就是控制 Emacs 背景的属性了。读者当然也可以直接用搜索框直接搜索。</p>
+<p>
 
 <div class="tip">
   读者在使用命令行 Emacs 时，可能并没有很多可以选择的颜色，这很可能是因为读者所使用的终端不支持显示很多颜色。建议读者首先使用较为现代的终端程序，并且打开其中的色彩选项，例如 ”xterm-256“ 之类的。
 </div>
-
-<h2 id="配置-custom-文件">配置 Custom 文件</h2>
-<p>那么我们的自定义设置究竟是保存到了哪里呢？当读者保存了上述自定义配置后，默认会在你的初始化文件（如 <code>~/.emacs.d/init.el</code>）的末尾添加一段代码，类似：</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+配置 Custom 文件
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+那么我们的自定义设置究竟是保存到了哪里呢？当读者保存了上述自定义配置后，默认会在你的初始化文件（如 <code>~/.emacs.d/init.el</code> ）的末尾添加一段代码，类似：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nv">custom-set-variables</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="c1">;; custom-set-variables was added by Custom.</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">;; Your init file should contain only one such instance.</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nv">custom-set-faces</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="c1">;; custom-set-faces was added by Custom.</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="c1">;; Your init file should contain only one such instance.</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="c1">; 一些 Face 配置</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">))</span>
-</span></span></code></pre></div><p>正如注释中所言，这段代码是由 Custom 系统自动维护的，读者轻易不要手动修改，否则会导致混乱。但是也可以看出，这里说到底也就是普通的 Emacs Lisp 代码，如果读者熟悉 Emacs Lisp，也不用对此非常畏惧。</p>
-<p>部分读者可能会提出，Custom 如此修改初始化文件，把初始化文件弄的不美观了；或者如果用户有时候在本机使用图形界面 Emacs，有时候在服务器上使用命令行 Emacs，二者希望进行不同的 Custom 设置但又不想维护两组 Emacs 配置，该如何操作呢？</p>
-<p>事实上，这段配置可以单独放在一个文件中，比如建一个 <code>~/.emacs.d/custom.el</code> 文件，把上方的代码块完全剪切到其中，然后在配置文件如 <code>~/.emacs.d/init.el</code> 中写入：</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="c1">;; custom-set-variables was added by Custom.</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="c1">;; Your init file should contain only one such instance.</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nv">custom-set-faces</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="c1">;; custom-set-faces was added by Custom.</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="c1">;; If you edit it by hand, you could mess it up, so be careful.</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="c1">;; Your init file should contain only one such instance.</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="c1">;; If there is more than one, they won&#39;t work right.</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="c1">; 一些 Face 配置</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+正如注释中所言，这段代码是由 Custom 系统自动维护的，读者轻易不要手动修改，否则会导致混乱。但是也可以看出，这里说到底也就是普通的 Emacs Lisp 代码，如果读者熟悉 Emacs Lisp，也不用对此非常畏惧。</p>
+<p>
+部分读者可能会提出，Custom 如此修改初始化文件，把初始化文件弄的不美观了；或者如果用户有时候在本机使用图形界面 Emacs，有时候在服务器上使用命令行 Emacs，二者希望进行不同的 Custom 设置但又不想维护两组 Emacs 配置，该如何操作呢？</p>
+<p>
+事实上，这段配置可以单独放在一个文件中，比如建一个 <code>~/.emacs.d/custom.el</code> 文件，把上方的代码块完全剪切到其中，然后在配置文件如 <code>~/.emacs.d/init.el</code> 中写入：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="s">&#34;~/.emacs.d/custom.el&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span>
-</span></span></code></pre></div><p>这里设置变量 <code>custom-file</code> 改成我们自定义的文件名，然后加载这个文件，即可让 Custom 不再干扰我们的 <code>~/.emacs.d/init.el</code> 文件，而把改动都写入 <code>~/.emacs.d/custom.el</code>。</p>
-<p>读者更可以利用前面所学的模块化配置的方法，新建一个 <code>~/.emacs.d/lisp/init-theme.el</code> 文件，把这两句代码写进去后，在 <code>~/.emacs.d/init.el</code> 中 require 导入。</p>
-<p>对于想要区分多个场景下的 Custom 配置，可以参考如下 <code>init-theme.el</code> 的配置：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+这里设置变量 <code>custom-file</code> 改成我们自定义的文件名，然后加载这个文件，即可让 Custom 不再干扰我们的 <code>~/.emacs.d/init.el</code> 文件，而把改动都写入 <code>~/.emacs.d/custom.el</code> 。</p>
+<p>
+读者更可以利用前面所学的模块化配置的方法，新建一个 <code>~/.emacs.d/lisp/init-theme.el</code> 文件，把这两句代码写进去后，在 <code>~/.emacs.d/init.el</code> 中 require 导入。</p>
+<p>
+对于想要区分多个场景下的 Custom 配置，可以参考如下 <code>init-theme.el</code> 的配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-nw-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;custom-nw.el&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-gui-file</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;custom-gui.el&#34;</span> <span class="nv">user-emacs-directory</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="p">(</span><span class="nb">progn</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">	  <span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="nv">custom-gui-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">          <span class="c1">; (add-to-list &#39;default-frame-alist &#39;(ns-appearance . dark)) ; macOS 下让窗口使用暗色主题</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">	  <span class="c1">;; other settings</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">progn</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="nv">custom-gui-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">     <span class="c1">; (add-to-list &#39;default-frame-alist &#39;(ns-appearance . dark)) ; macOS 下让窗口使用暗色主题</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="c1">;; other settings</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nb">progn</span>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="p">(</span><span class="nb">setq</span> <span class="nv">custom-file</span> <span class="nv">custom-nw-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="c1">;; other settings</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="c1">;; other settings</span>
 </span></span><span class="line"><span class="ln">13</span><span class="cl">	<span class="p">))</span>
 </span></span><span class="line"><span class="ln">14</span><span class="cl">
-</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span>
-</span></span></code></pre></div><p>如此在图形界面时使用 <code>~/.emacs.d/custom-gui.el</code> 而在命令行时使用 <code>~/.emacs.d/custom-gui.el</code>。</p>
-<h2 id="配置主题">配置主题</h2>
-<p>Emacs 的主题非常多，读者只需要在搜索引擎中搜索 “Emacs 主题”，或在国外搜索引擎中搜索 “Emacs themes” 就能得到非常多的结果。比较全的网站有 <a href="https://emacsthemes.com/">Emacs Themes Gallery</a> 和 <a href="https://github.com/topics/emacs-theme">GitHub Topics：emacs-theme</a>。</p>
-<p>举个例子，笔者比较喜欢 Dracula 主题，通过 Gallery 网站找到 <a href="https://draculatheme.com/emacs">Dracula 的主页</a>。其中写着只需要输入命令 <code>M-x</code> <code>package-install</code> <code>&lt;RET&gt;</code> <code>dracula-theme</code> 即可安装。随后在配置文件 <code>~/.emacs.d/init-themes.el</code> 的合适位置写入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;dracula</span> <span class="no">t</span><span class="p">)</span>
-</span></span></code></pre></div><p>就可以使用 Dracula 主题了。</p>
-<p>此外，笔者也非常喜欢 Doom Emacs 的主题，本教程虽然使用的是 Vanilla Emacs， 但也有插件把 Doom Emacs 的主题借鉴了过来。不仅如此，诸如 Atom、Monokai 也都有相应的实现，读者只需要寻找相应的主页进行安装即可。</p>
-<p>在此分享一下笔者所使用的 Doom Emacs 主题，用到了 <a href="https://github.com/doomemacs/themes">doom-themes</a>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="nf">load</span> <span class="nv">custom-file</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+如此在图形界面时使用 <code>~/.emacs.d/custom-gui.el</code> 而在命令行时使用 <code>~/.emacs.d/custom-gui.el</code> 。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+配置主题
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+Emacs 的主题非常多，读者只需要在搜索引擎中搜索 “Emacs 主题”，或在国外搜索引擎中搜索 “Emacs themes” 就能得到非常多的结果。比较全的网站有 <a href="https://emacsthemes.com/">Emacs Themes Gallery</a> 和 <a href="https://github.com/topics/emacs-theme">GitHub Topics：emacs-theme</a>。</p>
+<p>
+举个例子，笔者比较喜欢 Dracula 主题，通过 Gallery 网站找到 <a href="https://draculatheme.com/emacs">Dracula 的主页</a>。其中写着只需要输入命令 <code>M-x</code>  <code>package-install</code>  <code>&lt;RET&gt;</code>  <code>dracula-theme</code> 即可安装。随后在配置文件 <code>~/.emacs.d/init-themes.el</code> 的合适位置写入：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;dracula</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+就可以使用 Dracula 主题了。</p>
+<p>
+此外，笔者也非常喜欢 Doom Emacs 的主题，本教程虽然使用的是 Vanilla Emacs， 但也有插件把 Doom Emacs 的主题借鉴了过来。不仅如此，诸如 Atom、Monokai 也都有相应的实现，读者只需要寻找相应的主页进行安装即可。</p>
+<p>
+在此分享一下笔者所使用的 Doom Emacs 主题，用到了 <a href="https://github.com/doomemacs/themes">doom-themes</a>
 包，笔者选择了 <code>doom-monokai-octagon</code> 主题：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">doom-themes</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="c1">;; Global settings (defaults)</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">doom-themes-enable-bold</span> <span class="no">nil</span>    <span class="c1">; if nil, bold is universally disabled</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="c1">;; Global settings (defaults)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">doom-themes-enable-bold</span> <span class="no">nil</span>  <span class="c1">; if nil, bold is universally disabled</span>
 </span></span><span class="line"><span class="ln">6</span><span class="cl">	<span class="nv">doom-themes-enable-italic</span> <span class="no">t</span><span class="p">)</span> <span class="c1">; if nil, italics is universally disabled</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;doom-monokai-octagon</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="p">(</span><span class="nv">doom-themes-treemacs-config</span><span class="p">))</span>
-</span></span></code></pre></div><p><code>doom-themes</code> 中本身就有很多主题可选，读者可以根据喜好选择。 注意最好搭配下文的 <code>all-the-icons</code> 一同使用。</p>
-<h2 id="配置图标">配置图标</h2>
-<p>图形界面的 Emacs 可以安装一个 [all-the-icons](<a href="https://github.com/domtronn/all-the-">https://github.com/domtronn/all-the-</a>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"> <span class="p">(</span><span class="nv">load-theme</span> <span class="ss">&#39;doom-monokai-octagon</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"> <span class="p">(</span><span class="nv">doom-themes-treemacs-config</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+ <code>doom-themes</code> 中本身就有很多主题可选，读者可以根据喜好选择。 注意最好搭配下文的 <code>all-the-icons</code> 一同使用。</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+配置图标
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>
+图形界面的 Emacs 可以安装一个 [all-the-icons](<a href="https://github.com/domtronn/all-the-">https://github.com/domtronn/all-the-</a>
 icons.el) 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来说如果终端能够支持这些图标字体，也是可以使用的。首先添加配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">all-the-icons</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:if</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">))</span>
-</span></span></code></pre></div><p>重启 Emacs 后安装字体：<code>M-x</code> <code>all-the-icons-install-fonts</code>。</p>
-<p>这些图标可以用在许多地方，例如自动补全框、文件列表等等，有些搭配相应的主题，如上文的 <code>doom-themes</code> 插件可以自动配置图标，其它可参考插件的 <a href="https://github.com/domtronn/all-the-icons.el/wiki">Wiki</a>，读者可根据需要自行配置合适的图标。</p>
-<h2 id="mode-line">mode-line</h2>
-<p>mode-line 的显示非常见仁见智，有的人喜欢花哨的，有的人喜欢简约的。笔者属于后者，所以没有配置很复杂的图形显示。mode-line 可以使用 <a href="https://github.com/milkypostman/powerline">powerline</a>、<a href="https://github.com/TheBB/spaceline">spaceline</a> 等。<code>powerline</code> 在 zsh 里比较流行，<code>spaceline</code> 则是从 Spacemacs 衍生出来的。</p>
-<p>这里再次提一下在<a href="../optimization#smart-mode-line%E5%8F%AF%E9%80%89">插件：功能优化类</a>里提及的插件 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 的额外配置。mode-line 由于会显示出当前的所有次模式（minor mode），很混乱，而 <code>smart-mode-line</code> 可以规整 mode-line， 但用起来还是会发现经常一些不太重要的 minor mode 被显示出来，重要的反而被排在了后面。这时候我们可以隐藏一部分 minor mode。</p>
-<p>隐藏 minor mode 实际上是由另一个插件 <a href="https://github.com/Malabarba/rich-minority">rich-minority</a> 来完成的，但安装了 <code>smart-mode-line</code> 之后已经被一起安装好了。还有一个类似功能的插件是 <a href="https://github.com/myrjola/diminish.el">diminish</a>，读者可以自行选择其中之一。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:if</span> <span class="p">(</span><span class="nv">display-graphic-p</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+重启 Emacs 后安装字体： <code>M-x</code>  <code>all-the-icons-install-fonts</code> 。</p>
+<p>
+这些图标可以用在许多地方，例如自动补全框、文件列表等等，有些搭配相应的主题，如上文的 <code>doom-themes</code> 插件可以自动配置图标，其它可参考插件的 <a href="https://github.com/domtronn/all-the-icons.el/wiki">Wiki</a>，读者可根据需要自行配置合适的图标。</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+mode-line
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>
+mode-line 的显示非常见仁见智，有的人喜欢花哨的，有的人喜欢简约的。笔者属于后者，所以没有配置很复杂的图形显示。mode-line 可以使用 <a href="https://github.com/milkypostman/powerline">powerline</a>、<a href="https://github.com/TheBB/spaceline">spaceline</a> 等。 <code>powerline</code> 在 zsh 里比较流行， <code>spaceline</code> 则是从 Spacemacs 衍生出来的。</p>
+<p>
+这里再次提一下在<a href="../optimization#smart-mode-line可选">插件：功能优化类</a>里提及的插件 <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a> 的额外配置。mode-line 由于会显示出当前的所有次模式（minor mode），很混乱，而 <code>smart-mode-line</code> 可以规整 mode-line， 但用起来还是会发现经常一些不太重要的 minor mode 被显示出来，重要的反而被排在了后面。这时候我们可以隐藏一部分 minor mode。</p>
+<p>
+隐藏 minor mode 实际上是由另一个插件 <a href="https://github.com/Malabarba/rich-minority">rich-minority</a> 来完成的，但安装了 <code>smart-mode-line</code> 之后已经被一起安装好了。还有一个类似功能的插件是 <a href="https://github.com/myrjola/diminish.el">diminish</a>，读者可以自行选择其中之一。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">smart-mode-line</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">; (setq sml/no-confirm-load-theme t)  ; avoid asking when startup</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nv">sml/setup</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">rm-blacklist</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;^ \\(%s\\)$&#34;</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="p">(</span><span class="nf">mapconcat</span> <span class="nf">#&#39;identity</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;Projectile.*&#34;</span> <span class="s">&#34;company.*&#34;</span> <span class="s">&#34;Google&#34;</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">	  <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">         <span class="s">&#34;\\|&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>相比之前，就是添加了一个 config，把一些不想被显示的 minor mode 加入黑名单。看起来有些复杂但其实读者无需关心细节，这里的 <code>format</code> 和 <code>mapconcat</code> 只是在做字符串操作，设法把用户罗列的 minor mode 名字拼接成一整个字符串。读者只需要修改其中的那个列表：</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="c1">; (setq sml/no-confirm-load-theme t) ; avoid asking when startup</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nv">sml/setup</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">rm-blacklist</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;^ \\(%s\\)$&#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">   <span class="p">(</span><span class="nf">mapconcat</span> <span class="nf">#&#39;identity</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;Projectile.*&#34;</span> <span class="s">&#34;company.*&#34;</span> <span class="s">&#34;Google&#34;</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">     <span class="s">&#34;\\|&#34;</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+相比之前，就是添加了一个 config，把一些不想被显示的 minor mode 加入黑名单。看起来有些复杂但其实读者无需关心细节，这里的 <code>format</code> 和 <code>mapconcat</code> 只是在做字符串操作，设法把用户罗列的 minor mode 名字拼接成一整个字符串。读者只需要修改其中的那个列表：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;Projectile.*&#34;</span> <span class="s">&#34;company.*&#34;</span> <span class="s">&#34;Google&#34;</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><p>其中每个字符串可以是一个正则表达式，列出不希望显示在 mode-line 的 minor mode 名字即可。这里想要隐藏的分别是：<code>projectile</code>、<code>company</code>、<code>google-this</code>、<code>undo-tree</code>、<code>counsel</code>、<code>ivy</code>、<code>yasnippet</code> 和 <code>which-key</code> 。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="s">&#34;Undo-Tree&#34;</span> <span class="s">&#34;counsel&#34;</span> <span class="s">&#34;ivy&#34;</span> <span class="s">&#34;yas&#34;</span> <span class="s">&#34;WK&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+其中每个字符串可以是一个正则表达式，列出不希望显示在 mode-line 的 minor mode 名字即可。这里想要隐藏的分别是： <code>projectile</code> 、 <code>company</code> 、 <code>google-this</code> 、 <code>undo-tree</code> 、 <code>counsel</code> 、 <code>ivy</code> 、 <code>yasnippet</code> 和 <code>which-key</code> 。</p>
 <hr>
-<p>不得不承认，对于图形显示来说，Doom Emacs 和 Spacemacs 有更为丰富的实践，本文的 Vanilla Emacs
+<p>
+不得不承认，对于图形显示来说，Doom Emacs 和 Spacemacs 有更为丰富的实践，本文的 Vanilla Emacs
 需要向它们多多取经。读者也可以多关注一下两个发行版的优秀插件。</p>
+</div>
+</div>
 
     <div class="pager">
   
@@ -451,7 +634,7 @@ icons.el) 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来�
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -554,7 +737,7 @@ icons.el) 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来�
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

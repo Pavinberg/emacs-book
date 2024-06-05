@@ -1,8 +1,6 @@
----
-title: "Pavinberg's Emacs Book"
-author: "Pavinberg"
-weight: 1
----
+#+TITLE: Pavinberg's Emacs Book
+#+AUTHOR: Pavinberg
+#+WEIGHT: 1
 
 This book is a walkthrough of Emacs which tries to introduce the core functions and some popular extensions of Emacs to let one start from the very beginning. The book provides some typical workflows and examples to make Emacs ready for development and daily use, which could be a good starting point for the beginners (at least in my opinion). Notice that there are many ways to achieve the same goal in Emacs so please always feel free to explore the others.
 

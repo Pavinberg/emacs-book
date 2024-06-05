@@ -4,6 +4,8 @@
     <title>Categories on Pavinberg&#39;s Emacs Book</title>
     <link>https://pavinberg.github.io/emacs-book/categories/</link>
     <description>Recent content in Categories on Pavinberg&#39;s Emacs Book</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://pavinberg.github.io/emacs-book/categories/index.xml" rel="self" type="application/rss+xml" />
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://pavinberg.github.io/emacs-book/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
