@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,37 +13,37 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>插件：编程开发类 | 专业 Emacs 入门</title><meta property="og:title" content="插件：编程开发类" />
-<meta property="og:description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
+<title>插件：编程开发类 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/development/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="插件：编程开发类">
+  <meta property="og:description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
 编辑器最基本需要三大方面的功能：
 对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
-1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 &#43; 一个数字选择相应标号的备选项。
-此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode ." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/development/" /><meta property="article:section" content="" />
-
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="插件：编程开发类">
-<meta itemprop="description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
-编辑器最基本需要三大方面的功能：
-对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
-自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
-1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 &#43; 一个数字选择相应标号的备选项。
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
 1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta itemprop="wordCount" content="2102">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="插件：编程开发类"/>
-<meta name="twitter:description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
+  <meta itemprop="name" content="插件：编程开发类">
+  <meta itemprop="description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
 编辑器最基本需要三大方面的功能：
 对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
-1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 &#43; 一个数字选择相应标号的备选项。
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode ."/>
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+  <meta itemprop="wordCount" content="2175">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="插件：编程开发类">
+  <meta name="twitter:description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
+编辑器最基本需要三大方面的功能：
+对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
+自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
+此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -55,7 +55,7 @@
 编辑器最基本需要三大方面的功能：
 对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
-1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &amp;#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 &#43; 一个数字选择相应标号的备选项。
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &amp;#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
 1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
 
@@ -146,676 +146,1037 @@
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link active"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>插件：编程开发类</h1><p>经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。</p>
-<p>编辑器最基本需要三大方面的功能：</p>
+    <h1>插件：编程开发类</h1>
+<p>
+经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。</p>
+<p>
+编辑器最基本需要三大方面的功能：</p>
 <ol>
 <li>对编程进行辅助：自动补全、语法检查、代码跳转等。</li>
 <li>项目管理、编译、运行、调试、版本控制等。</li>
 <li>与相关开发工具结合等。</li>
 </ol>
 <p>其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。</p>
-<h2 id="自动补全">自动补全</h2>
-<h3 id="基本配置">基本配置</h3>
-<p>Emacs 最广为使用的补全插件便是 <a href="https://company-mode.github.io/">company-mode</a>，其官方主页上已有详细的说明。可进行如下配置：</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+自动补全
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<div id="outline-container-headline-2" class="outline-4">
+<h4 id="headline-2">
+基本配置
+</h4>
+<div id="outline-text-headline-2" class="outline-text-4">
+<p>
+Emacs 最广为使用的补全插件便是 <a href="https://company-mode.github.io/">company-mode</a>，其官方主页上已有详细的说明。可进行如下配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">company</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-company-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-minimum-prefix-length</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">; 只需敲 1 个字母就开始进行自动补全</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-tooltip-align-annotations</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">      <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-idle-delay</span> <span class="mf">0.0</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-show-numbers</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择).</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-selection-wrap-around</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-transformers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-sort-by-occurrence</span><span class="p">)))</span> <span class="c1">; 根据选择的频率进行排序，读者如果不喜欢可以去掉</span>
-</span></span></code></pre></div><p>安装后，输入前缀即可弹出自动补全。用 <code>M-p</code> 和 <code>M-n</code> 上下选择， <code>Meta 键</code> + 一个数字选择相应标号的备选项。</p>
-<p>此外，如果读者使用图形界面，可以再安装一个 <a href="https://github.com/sebastiencs/company-box">company-box</a> 用以显示图标：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">    <span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-box</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">      <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">      <span class="nb">:if</span> <span class="nf">window-system</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">      <span class="nb">:hook</span> <span class="p">(</span><span class="nv">company-mode</span> <span class="o">.</span> <span class="nv">company-box-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p><img src="../../images/emacs-book/development/company.png" alt="company"></p>
-<h3 id="tabnine---ai-自动补全">TabNine - AI 自动补全</h3>
-<p>Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 <a href="https://www.tabnine.com/">TabNine</a>。<code>TabNine</code> 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 <a href="https://github.com/TommyX12/company-tabnine">TabNine for Emacs</a> 中的指导，我们配置一下即可：</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-company-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-minimum-prefix-length</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">; 只需敲 1 个字母就开始进行自动补全</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-tooltip-align-annotations</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">   <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-idle-delay</span> <span class="mf">0.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-show-numbers</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择).</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-selection-wrap-around</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-transformers</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-sort-by-occurrence</span><span class="p">)))</span> <span class="c1">; 根据选择的频率进行排序，读者如果不喜欢可以去掉</span></span></span></code></pre></div>
+</div>
+<p>
+安装后，输入前缀即可弹出自动补全。用 <code>M-p</code> 和 <code>M-n</code> 上下选择， <code>Meta 键</code> \+ 一个数字选择相应标号的备选项。</p>
+<p>
+此外，如果读者使用图形界面，可以再安装一个 <a href="https://github.com/sebastiencs/company-box">company-box</a> 用以显示图标：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-box</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="nb">:if</span> <span class="nf">window-system</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="nb">:hook</span> <span class="p">(</span><span class="nv">company-mode</span> <span class="o">.</span> <span class="nv">company-box-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p><img src="../../images/emacs-book/development/company.png" alt="../../images/emacs-book/development/company.png" title="../../images/emacs-book/development/company.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+TabNine - AI 自动补全
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>
+Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 <a href="https://www.tabnine.com/">TabNine</a>。 <code>TabNine</code> 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 <a href="https://github.com/TommyX12/company-tabnine">TabNine for Emacs</a> 中的指导，我们配置一下即可：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-tabnine</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;company-backends</span> <span class="nf">#&#39;</span><span class="nv">company-tabnine</span><span class="p">))</span>
-</span></span></code></pre></div><p>随后，重启 Emacs，输入命令：<code>M-x company-tabnine-install-binary</code>，来安装 <code>TabNine</code> 的后台程序。之后就可以正常使用了。但是总的来说，AI 插件会导致偶尔的高 CPU 占用，如果电脑硬件性能不佳，建议尽量关闭后台训练功能，或者是直接使用传统补全插件就好。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;company-backends</span> <span class="nf">#&#39;</span><span class="nv">company-tabnine</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+随后，重启 Emacs，输入命令： <code>M-x company-tabnine-install-binary</code> ，来安装 <code>TabNine</code> 的后台程序。之后就可以正常使用了。但是总的来说，AI 插件会导致偶尔的高 CPU 占用，如果电脑硬件性能不佳，建议尽量关闭后台训练功能，或者是直接使用传统补全插件就好。</p>
+<p>
 
 <div class="tip">
-  Tip 1：想要打开 <code>TabNine</code> 的设置页面只需要在任意位置输入：<code>tabnine::config</code>，随后会弹出一个浏览器窗口显示 <code>TabNine</code> 的相关设置。
-Tip 2：<code>TabNine</code> 学生认证可以免费获得 <code>TabNine Pro</code> 的使用资格，包括更多的备选项等。
+  Tip 1：想要打开 <code>TabNine</code> 的设置页面只需要在任意位置输入： <code>tabnine::config</code> ，随后会弹出一个浏览器窗口显示 <code>TabNine</code> 的相关设置。
+Tip 2： <code>TabNine</code> 学生认证可以免费获得 <code>TabNine Pro</code> 的使用资格，包括更多的备选项等。
 </div>
-
-<h3 id="代码片段模板">代码片段模板</h3>
-<p>IDE 通常有代码片段模板，可以快速展开常用代码，例如 C/C++ 语言中输入了 “for” 之后按下 <code>&lt;TAB&gt;</code>，会展开出形如 <code>for (init-statement; condition; inc-expression)</code> 这样的结果。在 Emacs 中我们可以使用插件 <a href="https://github.com/joaotavora/yasnippet">yasnippet</a> 来完成这一任务。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+代码片段模板
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p>
+IDE 通常有代码片段模板，可以快速展开常用代码，例如 C/C++ 语言中输入了 “for” 之后按下 <code>&lt;TAB&gt;</code> ，会展开出形如 <code>for (init-statement; condition; inc-expression)</code> 这样的结果。在 Emacs 中我们可以使用插件 <a href="https://github.com/joaotavora/yasnippet">yasnippet</a> 来完成这一任务。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">yasnippet</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">yas-minor-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nv">yas-reload-all</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="c1">;; add company-yasnippet to company-backends</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">company-mode/backend-with-yas</span> <span class="p">(</span><span class="nv">backend</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">listp</span> <span class="nv">backend</span><span class="p">)</span> <span class="p">(</span><span class="nf">member</span> <span class="ss">&#39;company-yasnippet</span> <span class="nv">backend</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">	    <span class="nv">backend</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">      <span class="p">(</span><span class="nf">append</span> <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">consp</span> <span class="nv">backend</span><span class="p">)</span> <span class="nv">backend</span> <span class="p">(</span><span class="nf">list</span> <span class="nv">backend</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">               <span class="o">&#39;</span><span class="p">(</span><span class="nb">:with</span> <span class="nv">company-yasnippet</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-backends</span> <span class="p">(</span><span class="nf">mapcar</span> <span class="nf">#&#39;</span><span class="nv">company-mode/backend-with-yas</span> <span class="nv">company-backends</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="c1">;; unbind &lt;TAB&gt; completion</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">[(</span><span class="nv">tab</span><span class="p">)]</span>        <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;TAB&#34;</span><span class="p">)</span>    <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;tab&gt;&#34;</span><span class="p">)</span>  <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="s">&#34;S-&lt;tab&gt;&#34;</span> <span class="o">.</span> <span class="nv">yas-expand</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">    
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">yas-minor-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nv">yas-reload-all</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="c1">;; add company-yasnippet to company-backends</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">company-mode/backend-with-yas</span> <span class="p">(</span><span class="nv">backend</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nf">listp</span> <span class="nv">backend</span><span class="p">)</span> <span class="p">(</span><span class="nf">member</span> <span class="ss">&#39;company-yasnippet</span> <span class="nv">backend</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="nv">backend</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">   <span class="p">(</span><span class="nf">append</span> <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">consp</span> <span class="nv">backend</span><span class="p">)</span> <span class="nv">backend</span> <span class="p">(</span><span class="nf">list</span> <span class="nv">backend</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="nb">:with</span> <span class="nv">company-yasnippet</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">company-backends</span> <span class="p">(</span><span class="nf">mapcar</span> <span class="nf">#&#39;</span><span class="nv">company-mode/backend-with-yas</span> <span class="nv">company-backends</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> <span class="c1">;; unbind &lt;TAB&gt; completion</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"> <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">[(</span><span class="nv">tab</span><span class="p">)]</span>    <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"> <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;TAB&#34;</span><span class="p">)</span>  <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"> <span class="p">(</span><span class="nf">define-key</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;&lt;tab&gt;&#34;</span><span class="p">)</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"> <span class="p">(</span><span class="nb">:map</span> <span class="nv">yas-minor-mode-map</span> <span class="p">(</span><span class="s">&#34;S-&lt;tab&gt;&#34;</span> <span class="o">.</span> <span class="nv">yas-expand</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  
 </span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">yasnippet-snippets</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="nb">:after</span> <span class="nv">yasnippet</span><span class="p">)</span>
-</span></span></code></pre></div><p>这里笔者的配置略微复杂，主要有两个考虑：</p>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"> <span class="nb">:after</span> <span class="nv">yasnippet</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+这里笔者的配置略微复杂，主要有两个考虑：</p>
 <ol>
-<li>默认情况，yasnippet 当光标位于一个可展开的字符串后面时，按下 <code>&lt;tab&gt;</code> 键会自动展开。然而，<code>&lt;tab&gt;</code> 键在 Emacs 中本身就有着一个对齐缩进的作用，当我们写代码时，光标不论在一行代码的哪里，只要我们按下 <code>&lt;tab&gt;</code>，就会将这行代码缩进到最合理的位置。于是这会造成一个误判，例如我们有个 for 循环，我们希望用 <code>&lt;tab&gt;</code> 自动缩进这行代码，而光标恰好处于 for 的后面，这时会触发 yasnippet 再次将 for 展开。笔者采取的方案是由用户显式调用 yasnippet 的展开，于是解绑了 <code>&lt;tab&gt;</code> 键，换成了 <code>S-&lt;tab&gt;</code>（也就是 <code>Shift+&lt;tab&gt;</code>）。</li>
-<li>我们希望 yasnippet 可以与自动补全协同，让自动补全也为我们补全 yasnippet 代码片段。默认情况，我们需要显式调用 <code>company-yasnippet</code> 来查看专属 yasnippet 的自动补全。有些读者也许偏爱这一方式，那么就请去掉 <code>:config</code> 的前两句用来设置 company-backends 的代码。</li>
+<li>默认情况，yasnippet 当光标位于一个可展开的字符串后面时，按下 <code>&lt;tab&gt;</code> 键会自动展开。然而， <code>&lt;tab&gt;</code> 键在 Emacs 中本身就有着一个对齐缩进的作用，当我们写代码时，光标不论在一行代码的哪里，只要我们按下 <code>&lt;tab&gt;</code> ，就会将这行代码缩进到最合理的位置。于是这会造成一个误判，例如我们有个 for 循环，我们希望用 <code>&lt;tab&gt;</code> 自动缩进这行代码，而光标恰好处于 for 的后面，这时会触发 yasnippet 再次将 for 展开。笔者采取的方案是由用户显式调用 yasnippet 的展开，于是解绑了 <code>&lt;tab&gt;</code> 键，换成了 <code>S-&lt;tab&gt;</code> （也就是 <code>Shift+&lt;tab&gt;</code> ）。</li>
+<li>我们希望 yasnippet 可以与自动补全协同，让自动补全也为我们补全 yasnippet 代码片段。默认情况，我们需要显式调用 <code>company-yasnippet</code> 来查看专属 yasnippet 的自动补全。有些读者也许偏爱这一方式，那么就请去掉 <code>:config</code> 的前两句用来设置 company-backends 的代码。 </li>
 </ol>
 <p>第二个 <code>use-package</code> 所安装的 yasnippet-snippets 是一个模板集合，里面包含了常见的模板。读者也可以自定义模板，参考
 yasnippet 的主页即可。</p>
-<p>最终效果图如下（还混用了下文提到的 lsp 插件）：</p>
-<p><img src="../../images/emacs-book/development/yasnippet.png" alt="yasnippet"></p>
-<h3 id="文本展开">文本展开</h3>
-<p>Emacs 还有一个非常实用的补全小功能 <code>hippie</code>。<code>dabbbrev</code> 与之功能相似，二者都是 Emacs 自带的功能。默认 <code>M-/</code>
-键就被绑定到了 <code>dabbrev-expand</code> 函数。笔者选择使用前者，替换掉了这个快捷键：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-/&#34;</span><span class="p">)</span> <span class="ss">&#39;hippie-expand</span><span class="p">)</span>
-</span></span></code></pre></div><p>当我们输入几个字符前缀，然后按下 <code>M-/</code> 调用 <code>hippie-expand</code> 函数，它会根据前缀匹配后面的内容。不同于普通的代码补全，它的补全还包括了文件名、elisp 函数名等。它的补全规则不包含语法分析，而是纯文本补全，很适用于我们写一些重复性的相似代码/其它文本的场合。</p>
-<h2 id="语法检查">语法检查</h2>
-<p>语法检查有两个主流插件，一个是 <a href="https://www.flycheck.org/en/latest/">flycheck</a>，一个是 <a href="https://www.emacswiki.org/emacs/FlyMake">flymake</a>，笔者个人感觉 <code>flycheck</code> 使用的人更多。</p>
-<p><code>flycheck</code> 是一个对接 Emacs 和语法检查程序（也就是 linting）的插件。官网提供的方案是全局开启 <code>flycheck</code>：</p>
+<p>
+最终效果图如下（还混用了下文提到的 lsp 插件）：</p>
+<p><img src="../../images/emacs-book/development/yasnippet.png" alt="../../images/emacs-book/development/yasnippet.png" title="../../images/emacs-book/development/yasnippet.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-4">
+<h4 id="headline-5">
+文本展开
+</h4>
+<div id="outline-text-headline-5" class="outline-text-4">
+<p>
+Emacs 还有一个非常实用的补全小功能 <code>hippie</code> 。 <code>dabbbrev</code> 与之功能相似，二者都是 Emacs 自带的功能。默认 <code>M-/</code> 键就被绑定到了 <code>dabbrev-expand</code> 函数。笔者选择使用前者，替换掉了这个快捷键：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;M-/&#34;</span><span class="p">)</span> <span class="ss">&#39;hippie-expand</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+当我们输入几个字符前缀，然后按下 <code>M-/</code> 调用 <code>hippie-expand</code> 函数，它会根据前缀匹配后面的内容。不同于普通的代码补全，它的补全还包括了文件名、elisp 函数名等。它的补全规则不包含语法分析，而是纯文本补全，很适用于我们写一些重复性的相似代码/其它文本的场合。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+语法检查
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+语法检查有两个主流插件，一个是 <a href="https://www.flycheck.org/en/latest/">flycheck</a>，一个是 <a href="https://www.emacswiki.org/emacs/FlyMake">flymake</a>，笔者个人感觉 <code>flycheck</code> 使用的人更多。</p>
+<p>
+ <code>flycheck</code> 是一个对接 Emacs 和语法检查程序（也就是 linting）的插件。官网提供的方案是全局开启 <code>flycheck</code> ：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">flycheck</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-flycheck-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>笔者认为全局开启略有不妥。我们可以使用 hook 来指定什么情况下启动 <code>flycheck</code>，例如只在编程时使用：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-flycheck-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+笔者认为全局开启略有不妥。我们可以使用 hook 来指定什么情况下启动 <code>flycheck</code> ，例如只在编程时使用：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">flycheck</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">truncate-lines</span> <span class="no">nil</span><span class="p">)</span> <span class="c1">; 如果单行信息很长会自动换行</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">flycheck-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>那么，<code>flycheck</code>已就绪，特定语言的语法检查程序要如何安装呢？<code>flycheck</code> 的主页上已为你列好<a href="https://www.flycheck.org/en/latest/languages.html#flycheck-languages">各种编程语言对应的语法检查程序列表</a>，其中包含了相应的链接。</p>
-<p>例如，写 Python 的话，我们可以使用 <a href="https://flake8.pycqa.org/en/latest/">python-flake8</a> 或者 <a href="https://pylint.org/">pylint</a>。 例如使用 <code>pylint</code> 的话，在 Ubuntu 上可以用 <code>apt</code> 进行安装，在 macOS、Windows 上可以用 <code>pip</code> 来进行安装。</p>
-<p>编译型语言通常安装好编译器即可使用。例如 C/C++、Rust 安装好 gcc/clang、rustc 就可以了。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">truncate-lines</span> <span class="no">nil</span><span class="p">)</span> <span class="c1">; 如果单行信息很长会自动换行</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">flycheck-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+那么， <code>flycheck</code> 已就绪，特定语言的语法检查程序要如何安装呢？ <code>flycheck</code> 的主页上已为你列好<a href="https://www.flycheck.org/en/latest/languages.html#flycheck-languages">各种编程语言对应的语法检查程序列表</a>，其中包含了相应的链接。</p>
+<p>
+例如，写 Python 的话，我们可以使用 <a href="https://flake8.pycqa.org/en/latest/">python-flake8</a> 或者 <a href="https://pylint.org/">pylint</a>。 例如使用 <code>pylint</code> 的话，在 Ubuntu 上可以用 <code>apt</code> 进行安装，在 macOS、Windows 上可以用 <code>pip</code> 来进行安装。</p>
+<p>
+编译型语言通常安装好编译器即可使用。例如 C/C++、Rust 安装好 gcc/clang、rustc 就可以了。</p>
+<p>
 
 <div class="tip">
   <code>flycheck</code> 对 Windows 没有官方支持，但官网中提到也可以有方式使用。不过，在 Windows 上用 Emacs 做开发应该很少见吧 :-)。
 </div>
-
-<h2 id="代码分析">代码分析</h2>
-<p>这一功能是指通过语法分析来进行诸如寻找函数和变量的定义、引用等等与编程语言本身相关的功能。传统方法中，每种语言都有一个专门为其设计的插件，例如 C/C++ 开发会用一些传统的 CEDET，gtag 等插件，Python 则用 elpy。但这类插件由于和编辑器直接耦合，完全由插件开发者控制，更新维护不一定及时，bug 也会较多。因此，笔者推荐使用微软为 VSCode 设计的 Language Server Protocol (LSP) 来完成这一任务。随着 LSP 发展壮大，它已成为一个开放的、统一的标准了，可以供 Emacs 使用。</p>
-<p>LSP 将代码分析解耦合为前端（即编辑器提供的功能，语言无关）和后端（语法分析，语言相关）两部分，二者通过一个规定好的协议来通信，也就是 LSP 协议，这样一来，编辑器开发者只需要做好前端部分，也就是 LSP client，后端的语言相关部分由语言开发者完成，称为 LSP server，分工明确，效率更高，体验也就会好很多。</p>
-<p>为 Emacs 提供 LSP 的插件有 <a href="https://emacs-lsp.github.io/lsp-mode">lsp</a> 和
-<a href="https://github.com/joaotavora/eglot">eglot</a>，相对来说使用 lsp 的人更多相对更稳定，本节将介绍 <code>lsp</code> 插件，及其相关的组合插件。<code>lsp</code> 应当与下文介绍的 <code>projectile</code> 一起使用。此外，这里的 <code>lsp</code> 只是前端部分， 后端需要单独安装，有的时候可以直接通过命令 <code>lsp-install-server</code> 让 <code>lsp</code> 为你自动安装，或者也可以手动安装你偏爱的 LSP server，下文“语言相关配置”中会介绍几个笔者常用语言的典型配置。</p>
-<p>首先根据其官网，我们就可以有一个最基础的配置：</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-3">
+<h3 id="headline-7">
+代码分析
+</h3>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>
+这一功能是指通过语法分析来进行诸如寻找函数和变量的定义、引用等等与编程语言本身相关的功能。传统方法中，每种语言都有一个专门为其设计的插件，例如 C/C++ 开发会用一些传统的 CEDET，gtag 等插件，Python 则用 elpy。但这类插件由于和编辑器直接耦合，完全由插件开发者控制，更新维护不一定及时，bug 也会较多。因此，笔者推荐使用微软为 VSCode 设计的 Language Server Protocol (LSP) 来完成这一任务。随着 LSP 发展壮大，它已成为一个开放的、统一的标准了，可以供 Emacs 使用。</p>
+<p>
+LSP 将代码分析解耦合为前端（即编辑器提供的功能，语言无关）和后端（语法分析，语言相关）两部分，二者通过一个规定好的协议来通信，也就是 LSP 协议，这样一来，编辑器开发者只需要做好前端部分，也就是 LSP client，后端的语言相关部分由语言开发者完成，称为 LSP server，分工明确，效率更高，体验也就会好很多。</p>
+<p>
+为 Emacs 提供 LSP 的插件有 <a href="https://emacs-lsp.github.io/lsp-mode">lsp</a> 和
+<a href="https://github.com/joaotavora/eglot">eglot</a>，相对来说使用 lsp 的人更多相对更稳定，本节将介绍 <code>lsp</code> 插件，及其相关的组合插件。 <code>lsp</code> 应当与下文介绍的 <code>projectile</code> 一起使用。此外，这里的 <code>lsp</code> 只是前端部分， 后端需要单独安装，有的时候可以直接通过命令 <code>lsp-install-server</code> 让 <code>lsp</code> 为你自动安装，或者也可以手动安装你偏爱的 LSP server，下文“语言相关配置”中会介绍几个笔者常用语言的典型配置。</p>
+<p>
+首先根据其官网，我们就可以有一个最基础的配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">;; set prefix for lsp-command-keymap (few alternatives - &#34;C-l&#34;, &#34;C-c l&#34;)</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-keymap-prefix</span> <span class="s">&#34;C-c l&#34;</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="c1">;; set prefix for lsp-command-keymap (few alternatives - &#34;C-l&#34;, &#34;C-c l&#34;)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-keymap-prefix</span> <span class="s">&#34;C-c l&#34;</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl">	<span class="nv">lsp-file-watch-threshold</span> <span class="mi">500</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nb">:hook</span> 
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-enable-which-key-integration</span><span class="p">)</span> <span class="c1">; which-key integration</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nb">:commands</span> <span class="p">(</span><span class="nv">lsp</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-completion-provider</span> <span class="nb">:none</span><span class="p">)</span> <span class="c1">;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-headerline-breadcrumb-enable</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c l s&#34;</span> <span class="o">.</span> <span class="nv">lsp-ivy-workspace-symbol</span><span class="p">))</span> <span class="c1">;; 可快速搜索工作区内的符号（类名、函数名、变量名等）</span>
-</span></span></code></pre></div><p>这里区别于官网写了很多的 hooks，笔者选择将这些 hooks 和语言具体的配置放在一起，详见下文“语言相关配置”。当然读者也可以选择与官网保持一致，并没有本质区别，只是组织配置代码的逻辑不同。另外官网相应的 <code>lsp</code> 命令笔者使用的是 <code>lsp-deferred</code> 替代，主要区别是 <code>lsp-deferred</code> 会推迟 lsp 服务的启动直到文件完全被显示出来，使用这个的主要目的是为了避免在文件数量过多的大项目造成 LSP 服务端过载。</p>
-<p><code>(lsp-mode . lsp-enable-which-key-integration)</code> 这句是让 <code>lsp</code> 与我们先前介绍过的 <code>which-key</code> 插件能够协作。最后一句让 <code>lsp</code> 为我们显示一下 breadcrumb，当我们完全配置好后，打开一个项目中的文件时，会在文件的最上面显示该文件的路径，这个被称为 breadcrumb。</p>
-<p>随后，我们如果希望有更现代的图形化的支持，例如光标停留在一个变量或者函数时，显示相关的定义缩略信息、文档注释等，那么我们可以再安装一个 <code>lsp-ui</code> 插件，并做如下配置：</p>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="nb">:hook</span>  <span class="p">(</span><span class="nv">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-enable-which-key-integration</span><span class="p">)</span> <span class="c1">; which-key integration</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="nb">:commands</span> <span class="p">(</span><span class="nv">lsp</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-completion-provider</span> <span class="nb">:none</span><span class="p">)</span> <span class="c1">;; 阻止 lsp 重新设置 company-backend 而覆盖我们 yasnippet 的设置</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-headerline-breadcrumb-enable</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> <span class="p">(</span><span class="s">&#34;C-c l s&#34;</span> <span class="o">.</span> <span class="nv">lsp-ivy-workspace-symbol</span><span class="p">))</span> <span class="c1">;; 可快速搜索工作区内的符号（类名、函数名、变量名等）</span></span></span></code></pre></div>
+</div>
+<p>
+这里区别于官网写了很多的 hooks，笔者选择将这些 hooks 和语言具体的配置放在一起，详见下文“语言相关配置”。当然读者也可以选择与官网保持一致，并没有本质区别，只是组织配置代码的逻辑不同。另外官网相应的 <code>lsp</code> 命令笔者使用的是 <code>lsp-deferred</code> 替代，主要区别是 <code>lsp-deferred</code> 会推迟 lsp 服务的启动直到文件完全被显示出来，使用这个的主要目的是为了避免在文件数量过多的大项目造成 LSP 服务端过载。</p>
+<p>
+ <code>(lsp-mode . lsp-enable-which-key-integration)</code> 这句是让 <code>lsp</code> 与我们先前介绍过的 <code>which-key</code> 插件能够协作。最后一句让 <code>lsp</code> 为我们显示一下 breadcrumb，当我们完全配置好后，打开一个项目中的文件时，会在文件的最上面显示该文件的路径，这个被称为 breadcrumb。</p>
+<p>
+随后，我们如果希望有更现代的图形化的支持，例如光标停留在一个变量或者函数时，显示相关的定义缩略信息、文档注释等，那么我们可以再安装一个 <code>lsp-ui</code> 插件，并做如下配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ui</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span> <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-definitions</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-definitions</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span> <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-references</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-references</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-ui-doc-position</span> <span class="ss">&#39;top</span><span class="p">))</span>
-</span></span></code></pre></div><p>这几句的主要目的是替换本来的部分快捷键映射，由 lsp-ui 来进行接管，它同时为我们提供了一些跳转功能。这样我们可以使用 <code>M-.</code> 来寻找符号的定义，用 <code>M-?</code> 来寻找符号的引用。最后一句配置了 <code>lsp-ui-doc</code>
-（也就是刚刚提到的符号信息弹窗）在窗口上方显示，虽然很多现代编辑器都是显示在光标所在位置，但那会遮挡代码，有时十分惹人厌烦，所以一般会设置成显示在上方 <code>top</code> 或下方 <code>bottom</code>。如果确实希望显示在光标所在位置，可以改为 <code>at-point</code>。</p>
-<p>同时，<code>lsp</code> 还能和我们之前安装过的 ivy 进行协作，利用 <code>ivy</code> 辅助 <code>lsp</code>。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span> <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-definitions</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-definitions</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span> <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-references</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-references</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-ui-doc-position</span> <span class="ss">&#39;top</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+这几句的主要目的是替换本来的部分快捷键映射，由 lsp-ui 来进行接管，它同时为我们提供了一些跳转功能。这样我们可以使用 <code>M-.</code> 来寻找符号的定义，用 <code>M-?</code> 来寻找符号的引用。最后一句配置了 <code>lsp-ui-doc</code> （也就是刚刚提到的符号信息弹窗）在窗口上方显示，虽然很多现代编辑器都是显示在光标所在位置，但那会遮挡代码，有时十分惹人厌烦，所以一般会设置成显示在上方 <code>top</code> 或下方 <code>bottom</code> 。如果确实希望显示在光标所在位置，可以改为 <code>at-point</code> 。</p>
+<p>
+同时， <code>lsp</code> 还能和我们之前安装过的 ivy 进行协作，利用 <code>ivy</code> 辅助 <code>lsp</code> 。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ivy</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">lsp-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>这样我们可以通过命令 <code>lsp-ivy-workspace-symbol</code> 来搜索当前工作区的符号。</p>
-<p><img src="../../images/emacs-book/development/lsp-ivy.png" alt="lsp-ivy-workspace-symbol"></p>
-<h2 id="代码调试">代码调试</h2>
-<p>与代码分析类似，微软设计 VSCode 时，对调试器也进行了前后端分离的设计，称为 <a href="https://microsoft.github.io/debug-adapter-protocol/">Debug Adapter Protocol</a>。Emacs 中可以使用 <a href="https://emacs-lsp.github.io/dap-mode/">dap-mode</a> 作为客户端。</p>
-<p><code>dap-mode</code> 对各个语言的配置在其<a href="https://emacs-lsp.github.io/dap-mode/page/configuration/">官方手册</a>上有说明。下文对语言的介绍中会一一进行简单说明。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:after</span> <span class="p">(</span><span class="nv">lsp-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+这样我们可以通过命令 <code>lsp-ivy-workspace-symbol</code> 来搜索当前工作区的符号。</p>
+<p><img src="../../images/emacs-book/development/lsp-ivy.png" alt="../../images/emacs-book/development/lsp-ivy.png" title="../../images/emacs-book/development/lsp-ivy.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-3">
+<h3 id="headline-8">
+代码调试
+</h3>
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>
+与代码分析类似，微软设计 VSCode 时，对调试器也进行了前后端分离的设计，称为 <a href="https://microsoft.github.io/debug-adapter-protocol/">Debug Adapter Protocol</a>。Emacs 中可以使用 <a href="https://emacs-lsp.github.io/dap-mode/">dap-mode</a> 作为客户端。</p>
+<p>
+ <code>dap-mode</code> 对各个语言的配置在其<a href="https://emacs-lsp.github.io/dap-mode/page/configuration/">官方手册</a>上有说明。下文对语言的介绍中会一一进行简单说明。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">dap-mode</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:after</span> <span class="nv">lsp-mode</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;image-types</span> <span class="ss">&#39;svg</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:commands</span> <span class="nv">dap-debug</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">dap-auto-configure-mode</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">:hydra</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nv">dap-hydra</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="p">(</span><span class="nb">:color</span> <span class="nv">pink</span> <span class="nb">:hint</span> <span class="no">nil</span> <span class="nb">:foreign-keys</span> <span class="nv">run</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">   <span class="s">&#34;
-</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="s">^Stepping^          ^Switch^                 ^Breakpoints^         ^Debug^                     ^Eval^                      
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:after</span> <span class="nv">lsp-mode</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;image-types</span> <span class="ss">&#39;svg</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="nb">:commands</span> <span class="nv">dap-debug</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nv">dap-auto-configure-mode</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="nb">:hydra</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="p">(</span><span class="nv">dap-hydra</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">:color</span> <span class="nv">pink</span> <span class="nb">:hint</span> <span class="no">nil</span> <span class="nb">:foreign-keys</span> <span class="nv">run</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="s">&#34;
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="s">^Stepping^     ^Switch^         ^Breakpoints^     ^Debug^           ^Eval^           
 </span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s">^^^^^^^^---------------------------------------------------------------------------------------------------------------
-</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s">_n_: Next           _ss_: Session            _bb_: Toggle          _dd_: Debug                 _ee_: Eval                  
-</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s">_i_: Step in        _st_: Thread             _bd_: Delete          _dr_: Debug recent          _er_: Eval region
-</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s">_o_: Step out       _sf_: Stack frame        _ba_: Add             _dl_: Debug last            _es_: Eval thing at point
-</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="s">_c_: Continue       _su_: Up stack frame     _bc_: Set condition   _de_: Edit debug template   _ea_: Add expression.
-</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="s">_r_: Restart frame  _sd_: Down stack frame   _bh_: Set hit count   _ds_: Debug restart
-</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="s">_Q_: Disconnect     _sl_: List locals        _bl_: Set log message
-</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="s">                  _sb_: List breakpoints
-</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="s">                  _se_: List expressions
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s">_n_: Next      _ss_: Session      _bb_: Toggle     _dd_: Debug         _ee_: Eval         
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s">_i_: Step in    _st_: Thread       _bd_: Delete     _dr_: Debug recent     _er_: Eval region
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s">_o_: Step out    _sf_: Stack frame    _ba_: Add       _dl_: Debug last      _es_: Eval thing at point
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="s">_c_: Continue    _su_: Up stack frame   _bc_: Set condition  _de_: Edit debug template  _ea_: Add expression.
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="s">_r_: Restart frame _sd_: Down stack frame  _bh_: Set hit count  _ds_: Debug restart
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="s">_Q_: Disconnect   _sl_: List locals    _bl_: Set log message
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="s">         _sb_: List breakpoints
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="s">         _se_: List expressions
 </span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="s">&#34;</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">   <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="nv">dap-next</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">24</span><span class="cl">   <span class="p">(</span><span class="s">&#34;i&#34;</span> <span class="nv">dap-step-in</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">25</span><span class="cl">   <span class="p">(</span><span class="s">&#34;o&#34;</span> <span class="nv">dap-step-out</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl">   <span class="p">(</span><span class="s">&#34;c&#34;</span> <span class="nv">dap-continue</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">27</span><span class="cl">   <span class="p">(</span><span class="s">&#34;r&#34;</span> <span class="nv">dap-restart-frame</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">28</span><span class="cl">   <span class="p">(</span><span class="s">&#34;ss&#34;</span> <span class="nv">dap-switch-session</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">29</span><span class="cl">   <span class="p">(</span><span class="s">&#34;st&#34;</span> <span class="nv">dap-switch-thread</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">30</span><span class="cl">   <span class="p">(</span><span class="s">&#34;sf&#34;</span> <span class="nv">dap-switch-stack-frame</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">31</span><span class="cl">   <span class="p">(</span><span class="s">&#34;su&#34;</span> <span class="nv">dap-up-stack-frame</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">32</span><span class="cl">   <span class="p">(</span><span class="s">&#34;sd&#34;</span> <span class="nv">dap-down-stack-frame</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">33</span><span class="cl">   <span class="p">(</span><span class="s">&#34;sl&#34;</span> <span class="nv">dap-ui-locals</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">34</span><span class="cl">   <span class="p">(</span><span class="s">&#34;sb&#34;</span> <span class="nv">dap-ui-breakpoints</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">35</span><span class="cl">   <span class="p">(</span><span class="s">&#34;se&#34;</span> <span class="nv">dap-ui-expressions</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">36</span><span class="cl">   <span class="p">(</span><span class="s">&#34;bb&#34;</span> <span class="nv">dap-breakpoint-toggle</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">37</span><span class="cl">   <span class="p">(</span><span class="s">&#34;ba&#34;</span> <span class="nv">dap-breakpoint-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">38</span><span class="cl">   <span class="p">(</span><span class="s">&#34;bd&#34;</span> <span class="nv">dap-breakpoint-delete</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">39</span><span class="cl">   <span class="p">(</span><span class="s">&#34;bc&#34;</span> <span class="nv">dap-breakpoint-condition</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">40</span><span class="cl">   <span class="p">(</span><span class="s">&#34;bh&#34;</span> <span class="nv">dap-breakpoint-hit-condition</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">41</span><span class="cl">   <span class="p">(</span><span class="s">&#34;bl&#34;</span> <span class="nv">dap-breakpoint-log-message</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">42</span><span class="cl">   <span class="p">(</span><span class="s">&#34;dd&#34;</span> <span class="nv">dap-debug</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">43</span><span class="cl">   <span class="p">(</span><span class="s">&#34;dr&#34;</span> <span class="nv">dap-debug-recent</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">44</span><span class="cl">   <span class="p">(</span><span class="s">&#34;ds&#34;</span> <span class="nv">dap-debug-restart</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">45</span><span class="cl">   <span class="p">(</span><span class="s">&#34;dl&#34;</span> <span class="nv">dap-debug-last</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">46</span><span class="cl">   <span class="p">(</span><span class="s">&#34;de&#34;</span> <span class="nv">dap-debug-edit-template</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">47</span><span class="cl">   <span class="p">(</span><span class="s">&#34;ee&#34;</span> <span class="nv">dap-eval</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">48</span><span class="cl">   <span class="p">(</span><span class="s">&#34;ea&#34;</span> <span class="nv">dap-ui-expressions-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">49</span><span class="cl">   <span class="p">(</span><span class="s">&#34;er&#34;</span> <span class="nv">dap-eval-region</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">50</span><span class="cl">   <span class="p">(</span><span class="s">&#34;es&#34;</span> <span class="nv">dap-eval-thing-at-point</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">51</span><span class="cl">   <span class="p">(</span><span class="s">&#34;q&#34;</span> <span class="no">nil</span> <span class="s">&#34;quit&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">52</span><span class="cl">   <span class="p">(</span><span class="s">&#34;Q&#34;</span> <span class="nv">dap-disconnect</span> <span class="s">&#34;Disconnect&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">53</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">54</span><span class="cl">  <span class="p">(</span><span class="nv">dap-ui-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">55</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">dap-hydra</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="nv">dap-next</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  <span class="p">(</span><span class="s">&#34;i&#34;</span> <span class="nv">dap-step-in</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="p">(</span><span class="s">&#34;o&#34;</span> <span class="nv">dap-step-out</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="p">(</span><span class="s">&#34;c&#34;</span> <span class="nv">dap-continue</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="p">(</span><span class="s">&#34;r&#34;</span> <span class="nv">dap-restart-frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="p">(</span><span class="s">&#34;ss&#34;</span> <span class="nv">dap-switch-session</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="p">(</span><span class="s">&#34;st&#34;</span> <span class="nv">dap-switch-thread</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="p">(</span><span class="s">&#34;sf&#34;</span> <span class="nv">dap-switch-stack-frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  <span class="p">(</span><span class="s">&#34;su&#34;</span> <span class="nv">dap-up-stack-frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  <span class="p">(</span><span class="s">&#34;sd&#34;</span> <span class="nv">dap-down-stack-frame</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  <span class="p">(</span><span class="s">&#34;sl&#34;</span> <span class="nv">dap-ui-locals</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">  <span class="p">(</span><span class="s">&#34;sb&#34;</span> <span class="nv">dap-ui-breakpoints</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">  <span class="p">(</span><span class="s">&#34;se&#34;</span> <span class="nv">dap-ui-expressions</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">  <span class="p">(</span><span class="s">&#34;bb&#34;</span> <span class="nv">dap-breakpoint-toggle</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">  <span class="p">(</span><span class="s">&#34;ba&#34;</span> <span class="nv">dap-breakpoint-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  <span class="p">(</span><span class="s">&#34;bd&#34;</span> <span class="nv">dap-breakpoint-delete</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  <span class="p">(</span><span class="s">&#34;bc&#34;</span> <span class="nv">dap-breakpoint-condition</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">  <span class="p">(</span><span class="s">&#34;bh&#34;</span> <span class="nv">dap-breakpoint-hit-condition</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">  <span class="p">(</span><span class="s">&#34;bl&#34;</span> <span class="nv">dap-breakpoint-log-message</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">42</span><span class="cl">  <span class="p">(</span><span class="s">&#34;dd&#34;</span> <span class="nv">dap-debug</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">  <span class="p">(</span><span class="s">&#34;dr&#34;</span> <span class="nv">dap-debug-recent</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">  <span class="p">(</span><span class="s">&#34;ds&#34;</span> <span class="nv">dap-debug-restart</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl">  <span class="p">(</span><span class="s">&#34;dl&#34;</span> <span class="nv">dap-debug-last</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">  <span class="p">(</span><span class="s">&#34;de&#34;</span> <span class="nv">dap-debug-edit-template</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">  <span class="p">(</span><span class="s">&#34;ee&#34;</span> <span class="nv">dap-eval</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">  <span class="p">(</span><span class="s">&#34;ea&#34;</span> <span class="nv">dap-ui-expressions-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">  <span class="p">(</span><span class="s">&#34;er&#34;</span> <span class="nv">dap-eval-region</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">50</span><span class="cl">  <span class="p">(</span><span class="s">&#34;es&#34;</span> <span class="nv">dap-eval-thing-at-point</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl">  <span class="p">(</span><span class="s">&#34;q&#34;</span> <span class="no">nil</span> <span class="s">&#34;quit&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">  <span class="p">(</span><span class="s">&#34;Q&#34;</span> <span class="nv">dap-disconnect</span> <span class="s">&#34;Disconnect&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">54</span><span class="cl"> <span class="p">(</span><span class="nv">dap-ui-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">dap-hydra</span> <span class="p">()</span>
 </span></span><span class="line"><span class="ln">56</span><span class="cl">	<span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">57</span><span class="cl">	<span class="s">&#34;Run </span><span class="ss">`dap-hydra/body&#39;</span><span class="s">.&#34;</span>
-</span></span><span class="line"><span class="ln">58</span><span class="cl">	<span class="p">(</span><span class="nv">dap-hydra/body</span><span class="p">)))</span>
-</span></span></code></pre></div><p>其操作和我们平常使用 IDE 的操作是几乎一样的。我们可以通过 <code>dap-breakpoint-add</code> 命令或鼠标点击一行的左侧边缘来增加一个断点。当然也可以使用我们上面定义的 <code>hydra</code>，先调用 <code>M-x</code> <code>dap-hydra</code> 展开 <code>hydra</code>，然后输入相应命令。</p>
-<p>使用 <code>dap-debug-edit-template</code> 命令可以编辑调试所使用的模板，也就是调试命令的设置，如果没有自定义参数通常用默认的就好，无需进行此步操作。这就类似于 VSCode 的 <code>launch.json</code> 文件的作用。 把光标移入它生成的模板的括号内，按下 <code>C-M-x</code> 来让其生效，随后调用 <code>dap-debug</code> 开始调试。</p>
-<p>对于不同语言，需要安装好不同的后端程序，主要可以参考其<a href="https://emacs-lsp.github.io/dap-mode/page/configuration/">官方手册</a>。</p>
-<h2 id="项目管理">项目管理</h2>
-<p>事实上，上述的 <code>lsp</code> 插件还需要配合 <code>projectile</code> 插件使用。原因在于，目前为止，Emacs 只是在对文件进行操作，而没有项目的概念。我们实际的开发一定是以项目为单位的，<code>lsp</code> 的符号查找应当也是在项目范围的。<code>projectile</code> 就是为 Emacs 提供了项目管理的插件。</p>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">	<span class="p">(</span><span class="nv">dap-hydra/body</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+其操作和我们平常使用 IDE 的操作是几乎一样的。我们可以通过 <code>dap-breakpoint-add</code> 命令或鼠标点击一行的左侧边缘来增加一个断点。当然也可以使用我们上面定义的 <code>hydra</code> ，先调用 <code>M-x</code>  <code>dap-hydra</code> 展开 <code>hydra</code> ，然后输入相应命令。</p>
+<p>
+使用 <code>dap-debug-edit-template</code> 命令可以编辑调试所使用的模板，也就是调试命令的设置，如果没有自定义参数通常用默认的就好，无需进行此步操作。这就类似于 VSCode 的 <code>launch.json</code> 文件的作用。 把光标移入它生成的模板的括号内，按下 <code>C-M-x</code> 来让其生效，随后调用 <code>dap-debug</code> 开始调试。</p>
+<p>
+对于不同语言，需要安装好不同的后端程序，主要可以参考其<a href="https://emacs-lsp.github.io/dap-mode/page/configuration/">官方手册</a>。</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-3">
+<h3 id="headline-9">
+项目管理
+</h3>
+<div id="outline-text-headline-9" class="outline-text-3">
+<p>
+事实上，上述的 <code>lsp</code> 插件还需要配合 <code>projectile</code> 插件使用。原因在于，目前为止，Emacs 只是在对文件进行操作，而没有项目的概念。我们实际的开发一定是以项目为单位的， <code>lsp</code> 的符号查找应当也是在项目范围的。 <code>projectile</code> 就是为 Emacs 提供了项目管理的插件。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">projectile</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-c p&#34;</span> <span class="o">.</span> <span class="nv">projectile-command-map</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">projectile-mode-line</span> <span class="s">&#34;Projectile&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">projectile-track-known-projects-automatically</span> <span class="no">nil</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-c p&#34;</span> <span class="o">.</span> <span class="nv">projectile-command-map</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">projectile-mode-line</span> <span class="s">&#34;Projectile&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">projectile-track-known-projects-automatically</span> <span class="no">nil</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln"> 7</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">counsel-projectile</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">projectile</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">counsel-projectile-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>当同时配好 <code>projectile</code> 和 <code>lsp</code> 后，我们如果打开一个项目内的文件，<code>lsp</code> 会提示你让你确认一下 <code>projectile</code>
-推测出的项目的根目录，它会以此为范围做代码分析。</p>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="nb">:after</span> <span class="p">(</span><span class="nv">projectile</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">counsel-projectile-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+当同时配好 <code>projectile</code> 和 <code>lsp</code> 后，我们如果打开一个项目内的文件， <code>lsp</code> 会提示你让你确认一下 <code>projectile</code> 推测出的项目的根目录，它会以此为范围做代码分析。</p>
+<p>
 
 <div class="tip">
-  projectile 之所以能猜出来项目的根目录，逻辑是它从你打开的文件所在的目录一级一级向上寻找含有一些项目标志性的文件或目录，例如 <code>.git</code>、<code>Makefile</code>、<code>CMakeLists.txt</code>、 <code>setup.py</code>、<code>Cargo.toml</code> 等所在的目录认定为项目根目录。当然，也会有一些情况会推测错误，尤其对于大型项目包含子项目的情况会无法推测出根项目，所以它在询问你时，可以根据它的指示，手动指定项目的根目录。对于一些临时打开的文件，也可以直接跳过这个步骤。另外，也可以直接在项目的根目录下创建一个名为 <code>.projectile</code> 的空文件来明确提示 projectile 根目录在这里。
+  projectile 之所以能猜出来项目的根目录，逻辑是它从你打开的文件所在的目录一级一级向上寻找含有一些项目标志性的文件或目录，例如 <code>.git</code> 、 <code>Makefile</code> 、 <code>CMakeLists.txt</code> 、 <code>setup.py</code> 、 <code>Cargo.toml</code> 等所在的目录认定为项目根目录。当然，也会有一些情况会推测错误，尤其对于大型项目包含子项目的情况会无法推测出根项目，所以它在询问你时，可以根据它的指示，手动指定项目的根目录。对于一些临时打开的文件，也可以直接跳过这个步骤。另外，也可以直接在项目的根目录下创建一个名为 <code>.projectile</code> 的空文件来明确提示 projectile 根目录在这里。
 更多详细说明可以参考<a href="https://docs.projectile.mx/projectile/projects.html">文档</a>。
 </div>
-
-<p>配置好上述的 <code>counsel-projectile</code> 后，我们还会拥有 <code>counsel</code> 和 <code>projectile</code> 的协作功能。例如，我们可以使用快捷键 <code>C-c p p</code> 调用 <code>counsel-projectile-switch-project</code> 来选择你曾经打开过的项目；再如，我们可以使用快捷键 <code>C-c p f</code> 来调用 <code>counsel-projectile-find-file</code> 快速打开一个项目内的文件。它利用 <code>counsel</code> 的搜索功能，可以模糊查找，也不必输入完整的路径，比正常 <code>C-x C-f</code> 要快速方便许多。</p>
-<h2 id="局部变量">局部变量</h2>
-<p>我们目前的配置都是全局的，Emacs 自然也可以对项目进行特别的配置。Emacs 有一个配置文件，就类似于 VSCode 的 <code>.vscode/settings.json</code> ，名为 <code>.dir-locals.el</code>。这个文件是一种特殊的语法，用于保存一些变量在这个项目下的取值。</p>
-<p>举个例子，如果我们的项目需要使用 clang 编译器的 c++11 标准做语法检查，应当如下操作：</p>
-<p>输入命令 <code>M-x</code> <code>add-dir-local-variable</code> 在操作结束后，会自动创建 <code>.dir-locals.el</code> 文件。首先它会让我们选择一下我们的这个变量是哪个 major mode 的变量，我们选择 <code>c++-mode</code>。随后，输入我们想要设置的变量 <code>flycheck-clang-language-standard</code>，输入回车确认。最后输入我们要设置的值 <code>&quot;c++11&quot;</code>（注意双引号表示字符串）。此时命令完成我们会跳转到 <code>.dir-locals.el</code> 文件的 buffer，内容如下：</p>
+</p>
+<p>
+配置好上述的 <code>counsel-projectile</code> 后，我们还会拥有 <code>counsel</code> 和 <code>projectile</code> 的协作功能。例如，我们可以使用快捷键 <code>C-c p p</code> 调用 <code>counsel-projectile-switch-project</code> 来选择你曾经打开过的项目；再如，我们可以使用快捷键 <code>C-c p f</code> 来调用 <code>counsel-projectile-find-file</code> 快速打开一个项目内的文件。它利用 <code>counsel</code> 的搜索功能，可以模糊查找，也不必输入完整的路径，比正常 <code>C-x C-f</code> 要快速方便许多。</p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-3">
+<h3 id="headline-10">
+局部变量
+</h3>
+<div id="outline-text-headline-10" class="outline-text-3">
+<p>
+我们目前的配置都是全局的，Emacs 自然也可以对项目进行特别的配置。Emacs 有一个配置文件，就类似于 VSCode 的 <code>.vscode/settings.json</code> ，名为 <code>.dir-locals.el</code> 。这个文件是一种特殊的语法，用于保存一些变量在这个项目下的取值。</p>
+<p>
+举个例子，如果我们的项目需要使用 clang 编译器的 c++11 标准做语法检查，应当如下操作：</p>
+<p>
+输入命令 <code>M-x</code>  <code>add-dir-local-variable</code> 在操作结束后，会自动创建 <code>.dir-locals.el</code> 文件。首先它会让我们选择一下我们的这个变量是哪个 major mode 的变量，我们选择 <code>c++-mode</code> 。随后，输入我们想要设置的变量 <code>flycheck-clang-language-standard</code> ，输入回车确认。最后输入我们要设置的值 <code>&#34;c++11&#34;</code> （注意双引号表示字符串）。此时命令完成我们会跳转到 <code>.dir-locals.el</code> 文件的 buffer，内容如下：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">;;; Directory Local Variables</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">;;; For more information see (info &#34;(emacs) Directory Variables&#34;)</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">((</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>按下 <code>C-x C-s</code> 保存这个文件。下次打开这个项目的文件时，会提示你是否要应用这些变量的自定义值（为了安全性），按 <code>y</code> 即可生效。</p>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">((</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+按下 <code>C-x C-s</code> 保存这个文件。下次打开这个项目的文件时，会提示你是否要应用这些变量的自定义值（为了安全性），按 <code>y</code> 即可生效。</p>
+<p>
 
 <div class="tip">
   如果使用的是 gcc 编译器，将变量名中的 clang 替换成 gcc 就好。
 </div>
-
-<h2 id="环境变量">环境变量</h2>
-<p>特别的，尤其是在 macOS 上，有时候我们可能会遇到一些在终端中的可执行文件放到 Emacs 图形界面下不能使用的问题。原因就在于图形界面的环境变量没有被正确设置。例如在图形界面使用 lsp 插件写 Python 程序并使用了 conda 虚拟环境，可能会提示你它找不到任何 language server，原因就在于 lsp 直接调用了 <code>pyright</code> 命令但是它没有在基本环境变量里。</p>
-<p>我们可以通过安装 Steve Purcell 写的插件 [exec-path-from-shell](<a href="https://github.com/purcell/exec-path-">https://github.com/purcell/exec-path-</a>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-3">
+<h3 id="headline-11">
+环境变量
+</h3>
+<div id="outline-text-headline-11" class="outline-text-3">
+<p>
+特别的，尤其是在 macOS 上，有时候我们可能会遇到一些在终端中的可执行文件放到 Emacs 图形界面下不能使用的问题。原因就在于图形界面的环境变量没有被正确设置。例如在图形界面使用 lsp 插件写 Python 程序并使用了 conda 虚拟环境，可能会提示你它找不到任何 language server，原因就在于 lsp 直接调用了 <code>pyright</code> 命令但是它没有在基本环境变量里。</p>
+<p>
+我们可以通过安装 Steve Purcell 写的插件 [exec-path-from-shell](<a href="https://github.com/purcell/exec-path-">https://github.com/purcell/exec-path-</a>
 from-shell) 来完成：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">exec-path-from-shell</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:if</span> <span class="p">(</span><span class="nf">memq</span> <span class="nf">window-system</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">mac</span> <span class="nv">ns</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">exec-path-from-shell-arguments</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">))</span>
-</span></span></code></pre></div><p><strong>注意</strong> ，完成这一任务会调用 Shell 进程，速度很慢，而如果遇到日常大家 <code>export PATH=$PATH:path/to/bin</code>
-这种字符串拼接写法时会更慢，大大拖慢 Emacs 启动速度。根据 [Purcell 的建议](<a href="https://github.com/purcell/exec-path-">https://github.com/purcell/exec-path-</a>
-from-shell#setting-up-your-shell-startup-files-correctly)，这里的配置就只针对 macOS
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:if</span> <span class="p">(</span><span class="nf">memq</span> <span class="nf">window-system</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">mac</span> <span class="nv">ns</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">exec-path-from-shell-arguments</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="p">(</span><span class="nv">exec-path-from-shell-initialize</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+ <strong>注意</strong> ，完成这一任务会调用 Shell 进程，速度很慢，而如果遇到日常大家 <code>export PATH=$PATH:path/to/bin</code> 这种字符串拼接写法时会更慢，大大拖慢 Emacs 启动速度。根据 <a href="https://github.com/purcell/exec-path-from-shell#setting-up-your-shell-startup-files-correctly">Purcell 的建议</a>，这里的配置就只针对 macOS
 上使用了图形界面的情况才启动这个插件的功能，并且读者应当尽量做到：</p>
 <ol>
-<li>通过把 PATH 变量的设定放置在 <code>~/.profile</code>、<code>~/.bash_profile</code>、<code>~/.zshenv</code> 而不是通通放入 <code>~/.bashrc</code> 、<code>~/.zshrc</code> 。</li>
+<li>通过把 PATH 变量的设定放置在 <code>~/.profile</code> 、 <code>~/.bash_profile</code> 、 <code>~/.zshenv</code> 而不是通通放入 <code>~/.bashrc</code> 、 <code>~/.zshrc</code> 。</li>
 <li>不要使用 PATH 变量字符串拼接，而直接赋值。</li>
 </ol>
-<h2 id="版本管理">版本管理</h2>
-<p><a href="https://magit.vc/">magit</a> 是 Emacs 内部的 git 管理工具，提供了对 git 方便的调用和显示。<code>magit</code> 几乎无需配置。</p>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-3">
+<h3 id="headline-12">
+版本管理
+</h3>
+<div id="outline-text-headline-12" class="outline-text-3">
+<p>
+<a href="https://magit.vc/">magit</a> 是 Emacs 内部的 git 管理工具，提供了对 git 方便的调用和显示。 <code>magit</code> 几乎无需配置。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">magit</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
-</span></span></code></pre></div><p>安装好后，在一个 git 仓库中，我们可以使用 <code>C-x g</code> 调用 <code>magit-status</code> 查看状态，相当于 <code>git status</code>。</p>
-<p><code>magit</code> 的总体使用逻辑是一步一步进行输入的 。最基本的用法是使用 <code>C-x M-g</code> 调用 <code>magit-dispatch</code>，会列出来所有可以调用的子命令，选中后再输入一些可选的选项和接下来的命令，就和正常输入 git 的命令一样。</p>
-<p>使用 magit 做一些较为复杂的操作是非常方便的，举个例子，我们希望对比当前的这个源文件和上一个 commit 的区别，只需如下操作，其中每一步都有非常多的提示：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+安装好后，在一个 git 仓库中，我们可以使用 <code>C-x g</code> 调用 <code>magit-status</code> 查看状态，相当于 <code>git status</code> 。</p>
+<p>
+ <code>magit</code> 的总体使用逻辑是一步一步进行输入的 。最基本的用法是使用 <code>C-x M-g</code> 调用 <code>magit-dispatch</code> ，会列出来所有可以调用的子命令，选中后再输入一些可选的选项和接下来的命令，就和正常输入 git 的命令一样。</p>
+<p>
+使用 magit 做一些较为复杂的操作是非常方便的，举个例子，我们希望对比当前的这个源文件和上一个 commit 的区别，只需如下操作，其中每一步都有非常多的提示：</p>
 <ol>
-<li><code>C-x M-g</code> 调用 <code>magit-dispatch</code> 。</li>
-<li><code>d</code> 选择 Diff 。</li>
+<li><code>C-x M-g</code> 调用 <code>magit-dispatch</code> 。 2. <code>d</code> 选择 Diff 。</li>
 <li><code>-- &lt;tab&gt; &lt;enter&gt; &lt;enter&gt;</code> 自动填充当前文件名，表示我们只关注这个文件的异同。</li>
 <li><code>r</code> 选择 Diff range，因为我们想对比另一个 commit。</li>
-<li>输入 <code>HEAD^</code> （表示同一分支的上一个 commit）/ 想要对比的 commit ID。可以按 <code>&lt;tab&gt;</code> 进行提示。</li>
+<li>输入 <code>HEAD^</code> （表示同一分支的上一个 commit）/ 想要对比的 commit ID。可以按 <code>&lt;tab&gt;</code> 进行提示。 </li>
 </ol>
 <p>由于 git 本身就是个非常复杂的工具，本文不做细致讨论，更多用法可以参考 <code>magit</code> 的主页。</p>
-<h2 id="语言相关配置">语言相关配置</h2>
-<p>笔者在 Emacs 上常使用的编译型语言是 C/C++ 和 Rust。Emacs 对 C/C++ 这种语言有一些基本的原生支持，对 Rust
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+语言相关配置
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
+<p>
+笔者在 Emacs 上常使用的编译型语言是 C/C++ 和 Rust。Emacs 对 C/C++ 这种语言有一些基本的原生支持，对 Rust
 这种后起之秀则有相应的插件可以管理。解释型语言里笔者主要使用 Python。Emacs 对于主流语言，包括但不限于
 Java、Go、JavaScript、Ruby 等等都有完善的支持，论坛上经常可以见到相关讨论，读者如有需要可以自行探索。当然了，小众语言也都有支持的，但是资料相对较少，这倒也不是 Emacs 的问题了。</p>
-<p>这里没有提及代码排版工具，读者可以根据需要自己寻找合适的插件，例如 <a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a>。</p>
-<h3 id="cc">C/C++</h3>
+<p>
+这里没有提及代码排版工具，读者可以根据需要自己寻找合适的插件，例如 <a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a>。</p>
+<div id="outline-container-headline-14" class="outline-4">
+<h4 id="headline-14">
+C/C++
+</h4>
+<div id="outline-text-headline-14" class="outline-text-4">
 <ol>
 <li>编译</li>
 </ol>
-<p>Emacs 本身就有一个 <code>compile</code> 函数可以用来编译 C/C++ 文件。打开一个 C/C++ 项目，使用默认配置调用 <code>M-x</code>
-<code>compile</code>，它会提示 <code>make -k</code> 来进行编译，也就是会默认我们是一个 make 项目。 如果我们没有
+<p>Emacs 本身就有一个 <code>compile</code> 函数可以用来编译 C/C++ 文件。打开一个 C/C++ 项目，使用默认配置调用 <code>M-x</code>  <code>compile</code> ，它会提示 <code>make -k</code> 来进行编译，也就是会默认我们是一个 make 项目。 如果我们没有
 Makefile，例如我们在做算法题，只是想直接单独编译一个源文件，那么也可以直接手动输入命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ g++ prog.cpp -g -o <span class="nb">exec</span>
-</span></span></code></pre></div><p>事实上，这个默认值是一个 Emacs 字符串变量，如果我们希望在这个项目里使用一个固定的编译命令，就可以利用上文“局部变量”小节中提到的办法自定义局部变量 <code>compile-command</code> 为我们想要的编译命令。 如果我们在之前的基础上设置，会得到如下的 <code>.dir-locals.el</code> 文件：</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ g++ prog.cpp -g -o exec</span></span></code></pre></div>
+</div>
+<p>
+事实上，这个默认值是一个 Emacs 字符串变量，如果我们希望在这个项目里使用一个固定的编译命令，就可以利用上文“局部变量”小节中提到的办法自定义局部变量 <code>compile-command</code> 为我们想要的编译命令。 如果我们在之前的基础上设置，会得到如下的 <code>.dir-locals.el</code> 文件：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">;;; Directory Local Variables</span>
 </span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">;;; For more information see (info &#34;(emacs) Directory Variables&#34;)</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">((</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nv">compile-command</span> <span class="o">.</span> <span class="s">&#34;g++ main.cpp -g -o exec&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">	      <span class="p">(</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>但是显然，这里我们写死了源代码文件 <code>main.cpp</code>，对于一些特定小项目是可以的，但是对于刷算法题这种需求却并不好用，因为我们不同的题目是放在不同的源文件中，每个都单独可编译。为此，我们需要让 Emacs 自己为编译命令填写当前的源码文件（这里其实就是我们手动实现一个类似 VSCode 的 Code Runner 插件）。</p>
-<p>首先我们可以在 <code>init.el</code> （或者是任何你自己定义的 elisp 文件中）定义两个函数：</p>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+但是显然，这里我们写死了源代码文件 <code>main.cpp</code> ，对于一些特定小项目是可以的，但是对于刷算法题这种需求却并不好用，因为我们不同的题目是放在不同的源文件中，每个都单独可编译。为此，我们需要让 Emacs 自己为编译命令填写当前的源码文件（这里其实就是我们手动实现一个类似 VSCode 的 Code Runner 插件）。</p>
+<p>
+首先我们可以在 <code>init.el</code> （或者是任何你自己定义的 elisp 文件中）定义两个函数：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">file-name-only</span> <span class="p">()</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="s">&#34;Get the current buffer file name without directory.&#34;</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="s">&#34;Get the current buffer file name without directory.&#34;</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="p">(</span><span class="nf">file-name-nondirectory</span> <span class="p">(</span><span class="nf">buffer-name</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln">4</span><span class="cl">
 </span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">(</span><span class="nb">defun</span> <span class="nv">file-name-only-noext</span> <span class="p">()</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="s">&#34;Get the currennt buffer file name without directory and extension.&#34;</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="p">(</span><span class="nv">file-name-sans-extension</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)))</span>
-</span></span></code></pre></div><p>前者可以获得当前所在 buffer 的文件名，后者则得到了文件名除去后缀名的名字（用来做可执行文件名）。</p>
-<p>随后我们设置 <code>compile-command</code> 为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;clang++ -g &#34;</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span> <span class="s">&#34; -o &#34;</span> <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">))</span>
-</span></span></code></pre></div><p>其中 <code>concat</code> 是一个字符串拼接函数，可以理解为：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="s">&#34;clang++ -g &#34;</span> <span class="nf">+</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span> <span class="nf">+</span> <span class="s">&#34; -o &#34;</span> <span class="nf">+</span> <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">)</span>
-</span></span></code></pre></div><p>最终得到这样的 <code>.dir-locals.el</code>：</p>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="s">&#34;Get the currennt buffer file name without directory and extension.&#34;</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"> <span class="p">(</span><span class="nv">file-name-sans-extension</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+前者可以获得当前所在 buffer 的文件名，后者则得到了文件名除去后缀名的名字（用来做可执行文件名）。</p>
+<p>
+随后我们设置 <code>compile-command</code> 为：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;clang++ -g &#34;</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span> <span class="s">&#34; -o &#34;</span> <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+其中 <code>concat</code> 是一个字符串拼接函数，可以理解为：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="s">&#34;clang++ -g &#34;</span> <span class="nf">+</span> <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span> <span class="nf">+</span> <span class="s">&#34; -o &#34;</span> <span class="nf">+</span> <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+最终得到这样的 <code>.dir-locals.el</code> ：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">((</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="p">((</span><span class="nv">compile-command</span> <span class="o">.</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;clang++ -g &#34;</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">				                  <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">                                  <span class="s">&#34; -o &#34;</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">				                  <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">	      <span class="p">(</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>这样当我们调用 <code>compile</code> 命令时，可以利用字符串拼接自动补全当前所在的源文件并编译成相应的可执行文件。注意其中的 <code>-g</code> 选项是用于 debug 的选项 。读者也可以直接修改 <code>.dir-locals.el</code> 文件，只不过括号比较多需要注意不要出错。</p>
-<ol start="2">
+</span></span><span class="line"><span class="ln">2</span><span class="cl">           <span class="p">(</span><span class="nv">file-name-only</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">                 <span class="s">&#34; -o &#34;</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">           <span class="p">(</span><span class="nv">file-name-only-noext</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nv">flycheck-clang-language-standard</span> <span class="o">.</span> <span class="s">&#34;c++11&#34;</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+这样当我们调用 <code>compile</code> 命令时，可以利用字符串拼接自动补全当前所在的源文件并编译成相应的可执行文件。注意其中的 <code>-g</code> 选项是用于 debug 的选项 。读者也可以直接修改 <code>.dir-locals.el</code> 文件，只不过括号比较多需要注意不要出错。</p>
+<ol>
 <li>LSP</li>
 </ol>
 <p>前文提到，LSP 需要针对每个语言有一个后端程序提供分析功能。对于 C/C++ 笔者所使用的是 llvm 下的 <a href="https://clangd.llvm.org/">clangd</a> 工具，读者还可以选择 <a href="https://github.com/MaskRay/ccls">ccls</a>。安装可以参照<a href="https://clangd.llvm.org/installation">它的官网</a>，简单来说，对于 macOS，安装了 llvm 就有了 clangd；对于 Debian/Ubuntu 可以直接用 apt 安装。</p>
+<p>
 
 <div class="tip">
   每种语言的 language server 都被 lsp 插件官网贴心地罗列了出来。
 </div>
-
-<p>对于项目需要一些特殊的编译选项，例如自定义头文件、库等，需要参照 <a href="https://clangd.llvm.org/installation#project-setup">clangd 的文档</a>进行设置，简单来说，就是在项目目录下创建一个 <code>compile_flags.txt</code> 文件，把编译选项写在里面就好。写好后，clangd 在分析代码时就会使用这些选项了。</p>
-<p>对于 CMake 项目，CMake 可以生成 <code>compile_commands.json</code> 文件给 clangd 使用，参考 <a href="https://clangd.llvm.org/installation#project-setup">clangd 的文档</a>。此外，也可以使用 <a href="https://github.com/atilaneves/cmake-ide">cmake-ide</a> 插件（但就不走 <code>lsp</code> 插件了）。对于 CMake 语法则可以安装 <a href="https://github.com/regen100/cmake-language-server">cmake-language-server</a>。</p>
-<p>C/C++ 配置如下，其中 <code>c-toggle-hungry-state</code> 函数是为了在按下删除键时尽可能删除多余空白字符，例如缩进的空白、空行等，会自动删除到一个非空白字符，读者可以根据需要开启：</p>
+</p>
+<p>
+对于项目需要一些特殊的编译选项，例如自定义头文件、库等，需要参照 <a href="https://clangd.llvm.org/installation#project-setup">clangd 的文档</a>进行设置，简单来说，就是在项目目录下创建一个 <code>compile_flags.txt</code> 文件，把编译选项写在里面就好。写好后，clangd 在分析代码时就会使用这些选项了。</p>
+<p>
+对于 CMake 项目，CMake 可以生成 <code>compile_commands.json</code> 文件给 clangd 使用，参考 <a href="https://clangd.llvm.org/installation#project-setup">clangd 的文档</a>。此外，也可以使用 <a href="https://github.com/atilaneves/cmake-ide">cmake-ide</a> 插件（但就不走 <code>lsp</code> 插件了）。对于 CMake 语法则可以安装 <a href="https://github.com/regen100/cmake-language-server">cmake-language-server</a>。</p>
+<p>
+C/C++ 配置如下，其中 <code>c-toggle-hungry-state</code> 函数是为了在按下删除键时尽可能删除多余空白字符，例如缩进的空白、空行等，会自动删除到一个非空白字符，读者可以根据需要开启：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">c++-mode</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:functions</span> 			<span class="c1">; suppress warnings</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nv">c-toggle-hungry-state</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">c-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">(</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="p">(</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="nv">c-toggle-hungry-state</span><span class="p">))</span>
-</span></span></code></pre></div><ol start="3">
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:functions</span>  <span class="c1">; suppress warnings</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nv">c-toggle-hungry-state</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="p">(</span><span class="nv">c-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="p">(</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"> <span class="p">(</span><span class="nv">c++-mode</span> <span class="o">.</span> <span class="nv">c-toggle-hungry-state</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<ol>
 <li>调试</li>
 </ol>
-<p>Emacs 本身可以直接使用 <code>M-x</code> <code>gdb</code> 利用 gdb 进行调试。</p>
-<p>那么我们更希望使用 <code>dap-mode</code>， 笔者选择使用 llvm 下的 lldb-vscode 工具做后端进行调试。安装 llvm
+<p>Emacs 本身可以直接使用 <code>M-x</code>  <code>gdb</code> 利用 gdb 进行调试。</p>
+<p>
+那么我们更希望使用 <code>dap-mode</code> ， 笔者选择使用 llvm 下的 lldb-vscode 工具做后端进行调试。安装 llvm
 后应该已经安装好了这个工具，否则手动安装就好。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">dap-lldb</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:after</span> <span class="nv">dap-mode</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nv">dap-lldb-debug-program</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;/usr/local/opt/llvm/bin/lldb-vscode&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="c1">;; ask user for executable to debug if not specified explicitly (c++)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="p">(</span><span class="nv">dap-lldb-debugged-program-function</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">	<span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">read-file-name</span> <span class="s">&#34;Select file to debug: &#34;</span><span class="p">))))</span>
-</span></span></code></pre></div><p>配置中明确指定了 lldb-vscode 的路径。这里的路径是 macOS 上通过 Homebrew 安装 llvm 的路径，其它平台的路径需要自行确定。</p>
-<p>除了 lldb-vscode，也可以使用其它方式如 vscode-cpptools、GDB 等，可以参考 <a href="https://emacs-lsp.github.io/dap-mode/page/configuration/#native-debug-gdblldb">dap-mode 的手册</a>。</p>
-<p>macOS 上（Linux 未测试）直接使用默认的 lldb 做 debug 会提示 <code>Failed to load MI Debugger</code>。这是因为 llvm-mi 被移出了 llvm 项目成为了一个单独项目，所以并未一同安装。 需要克隆源码安装一下（请事先选择好一个合适的存放目录进行操作）：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:after</span> <span class="nv">dap-mode</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="p">(</span><span class="nv">dap-lldb-debug-program</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;/usr/local/opt/llvm/bin/lldb-vscode&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="c1">;; ask user for executable to debug if not specified explicitly (c++)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="p">(</span><span class="nv">dap-lldb-debugged-program-function</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">	<span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span> <span class="p">(</span><span class="nv">read-file-name</span> <span class="s">&#34;Select file to debug: &#34;</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+配置中明确指定了 lldb-vscode 的路径。这里的路径是 macOS 上通过 Homebrew 安装 llvm 的路径，其它平台的路径需要自行确定。</p>
+<p>
+除了 lldb-vscode，也可以使用其它方式如 vscode-cpptools、GDB 等，可以参考 <a href="https://emacs-lsp.github.io/dap-mode/page/configuration/#native-debug-gdblldb">dap-mode 的手册</a>。</p>
+<p>
+macOS 上（Linux 未测试）直接使用默认的 lldb 做 debug 会提示 <code>Failed to load MI Debugger</code> 。这是因为 llvm-mi 被移出了 llvm 项目成为了一个单独项目，所以并未一同安装。 需要克隆源码安装一下（请事先选择好一个合适的存放目录进行操作）：</p>
+<div class="src src-bash">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ git clone https://github.com/lldb-tools/lldb-mi.git
 </span></span><span class="line"><span class="ln">2</span><span class="cl">$ mkdir -p lldb-mi/build
 </span></span><span class="line"><span class="ln">3</span><span class="cl">$ <span class="nb">cd</span> lldb-mi/build
 </span></span><span class="line"><span class="ln">4</span><span class="cl">$ cmake ..
 </span></span><span class="line"><span class="ln">5</span><span class="cl">$ cmake --build .
-</span></span><span class="line"><span class="ln">6</span><span class="cl">$ ln -s <span class="nv">$PWD</span>/src/lldb-mi /usr/local/bin/lldb-mi
-</span></span></code></pre></div><p>最后的链接命令可以改成你觉得合适的其它路径，只要在环境变量中就好。安装好后，就可以直接使用 lldb。macOS 上 <code>dap-mode</code> 使用 gdb 会有问题，笔者也暂未解决。</p>
-<h3 id="rust">Rust</h3>
-<p>Rust 得益于其本身完善的工具链，相比之下要简单很多，直接安装 <a href="https://github.com/rust-lang/rust-mode">rust-mode</a> 和 <a href="https://github.com/kwrooijen/cargo.el">cargo</a> 插件，<code>M-x</code> <code>cargo-process-run</code> 就可以执行 <code>cargo run</code>。其余命令也都以 <code>cargo-</code> 为前缀，可以参考<a href="https://github.com/kwrooijen/cargo.el">官方主页</a>。</p>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">$ ln -s <span class="nv">$PWD</span>/src/lldb-mi /usr/local/bin/lldb-mi</span></span></code></pre></div>
+</div>
+<p>
+最后的链接命令可以改成你觉得合适的其它路径，只要在环境变量中就好。安装好后，就可以直接使用 lldb。macOS 上 <code>dap-mode</code> 使用 gdb 会有问题，笔者也暂未解决。</p>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-4">
+<h4 id="headline-15">
+Rust
+</h4>
+<div id="outline-text-headline-15" class="outline-text-4">
+<p>
+Rust 得益于其本身完善的工具链，相比之下要简单很多，直接安装 <a href="https://github.com/rust-lang/rust-mode">rust-mode</a> 和 <a href="https://github.com/kwrooijen/cargo.el">cargo</a> 插件， <code>M-x</code>  <code>cargo-process-run</code> 就可以执行 <code>cargo run</code> 。其余命令也都以 <code>cargo-</code> 为前缀，可以参考<a href="https://github.com/kwrooijen/cargo.el">官方主页</a>。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">rust-mode</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:functions</span> <span class="nv">dap-register-debug-template</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c C-c&#34;</span> <span class="o">.</span> <span class="nv">rust-run</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">rust-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="c1">;; debug</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;dap-gdb-lldb</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nv">dap-register-debug-template</span> <span class="s">&#34;Rust::LLDB Run Configuration&#34;</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">                               <span class="p">(</span><span class="nf">list</span> <span class="nb">:type</span> <span class="s">&#34;lldb&#34;</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">				     <span class="nb">:request</span> <span class="s">&#34;launch&#34;</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">			             <span class="nb">:name</span> <span class="s">&#34;rust-lldb::Run&#34;</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">				     <span class="nb">:gdbpath</span> <span class="s">&#34;rust-lldb&#34;</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">				     <span class="nb">:target</span> <span class="no">nil</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">				     <span class="nb">:cwd</span> <span class="no">nil</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:functions</span> <span class="nv">dap-register-debug-template</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="s">&#34;C-c C-c&#34;</span> <span class="o">.</span> <span class="nv">rust-run</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nv">rust-mode</span> <span class="o">.</span> <span class="nv">lsp-deferred</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="c1">;; debug</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;dap-gdb-lldb</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> <span class="p">(</span><span class="nv">dap-register-debug-template</span> <span class="s">&#34;Rust::LLDB Run Configuration&#34;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">                <span class="p">(</span><span class="nf">list</span> <span class="nb">:type</span> <span class="s">&#34;lldb&#34;</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">     <span class="nb">:request</span> <span class="s">&#34;launch&#34;</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">        <span class="nb">:name</span> <span class="s">&#34;rust-lldb::Run&#34;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">     <span class="nb">:gdbpath</span> <span class="s">&#34;rust-lldb&#34;</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">     <span class="nb">:target</span> <span class="no">nil</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">     <span class="nb">:cwd</span> <span class="no">nil</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln">18</span><span class="cl">
 </span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">cargo</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="p">(</span><span class="nv">rust-mode</span> <span class="o">.</span> <span class="nv">cargo-minor-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>LSP 方面，笔者使用了 <a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a>，其<a href="https://rust-analyzer.github.io/manual.html#installation">安装方法</a>在主页上有详细说明。这里 debug 我使用的是 rust-lldb，因为 macOS 上使用 rust-gdb 有一些问题。事实上，rust 本质就是使用 lldb，所以和 C/C++的情况一样。另外，这篇<a href="https://robert.kra.hn/posts/rust-emacs-setup/">博客</a>有介绍更多详细的 Rust 相关配置。相信现阶段能使用 Rust 的都是有些编程经验的人，所以这里就不做赘述了。</p>
-<h3 id="python">Python</h3>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"> <span class="p">(</span><span class="nv">rust-mode</span> <span class="o">.</span> <span class="nv">cargo-minor-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+LSP 方面，笔者使用了 <a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a>，其<a href="https://rust-analyzer.github.io/manual.html#installation">安装方法</a>在主页上有详细说明。这里 debug 我使用的是 rust-lldb，因为 macOS 上使用 rust-gdb 有一些问题。事实上，rust 本质就是使用 lldb，所以和 C/C++的情况一样。另外，这篇<a href="https://robert.kra.hn/posts/rust-emacs-setup/">博客</a>有介绍更多详细的 Rust 相关配置。相信现阶段能使用 Rust 的都是有些编程经验的人，所以这里就不做赘述了。</p>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-4">
+<h4 id="headline-16">
+Python
+</h4>
+<div id="outline-text-headline-16" class="outline-text-4">
 <ol>
-<li>运行</li>
-</ol>
-<p>Python 的运行主要考虑与它的 REPL 的配合以及虚拟环境的切换。前者是 Emacs 自带的基础功能，后者可以安装插件 <a href="https://github.com/jorgenschaefer/pyvenv">pyvenv</a> 进行管理。笔者平日使用 miniconda 做 Python 的环境管理（F.Y.I., miniconda 是 anaconda 的最精简版），如果你使用 anaconda，只需要改个名字；如果你使用 Python 本身的 virtualenv，<code>pyvenv</code> 插件更是直接支持。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">python</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:mode</span> <span class="p">(</span><span class="s">&#34;\\.py\\&#39;&#34;</span> <span class="o">.</span> <span class="nv">python-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:interpreter</span> <span class="p">(</span><span class="s">&#34;python3&#34;</span> <span class="o">.</span> <span class="nv">python-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="c1">;; for debug</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;dap-python</span><span class="p">))</span>
+<li>
+<p>运行</p>
+<p>
+Python 的运行主要考虑与它的 REPL 的配合以及虚拟环境的切换。前者是 Emacs 自带的基础功能，后者可以安装插件 <a href="https://github.com/jorgenschaefer/pyvenv">pyvenv</a> 进行管理。笔者平日使用 miniconda 做 Python 的环境管理（F.Y.I., miniconda 是 anaconda 的最精简版），如果你使用 anaconda，只需要改个名字；如果你使用 Python 本身的 virtualenv， <code>pyvenv</code> 插件更是直接支持。</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">python</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">   <span class="nb">:defer</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">   <span class="nb">:mode</span> <span class="p">(</span><span class="s">&#34;\\.py\\&#39;&#34;</span> <span class="o">.</span> <span class="nv">python-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">   <span class="nb">:interpreter</span> <span class="p">(</span><span class="s">&#34;python3&#34;</span> <span class="o">.</span> <span class="nv">python-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">   <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">   <span class="c1">;; for debug</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">   <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;dap-python</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln"> 8</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">pyvenv</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nv">setenv</span> <span class="s">&#34;WORKON_HOME&#34;</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;~/miniconda3/envs&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="c1">;; (setq python-shell-interpreter &#34;python3&#34;)  ; （可选）更改解释器名字</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="nv">pyvenv-mode</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="c1">;; （可选）如果希望启动后激活 miniconda 的 base 环境，就使用如下的 hook</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="c1">;; :hook</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="c1">;; (python-mode . (lambda () (pyvenv-workon &#34;..&#34;)))</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">)</span>
-</span></span></code></pre></div><p>读者需要把这里的 <code>~/miniconda3</code> 路径换成自己的路径，一般默认或者在用户目录下，形如 <code>~/anaconda3</code>；或者在根目录下，形如 <code>/anaconda3</code>。使用 virtualenv 的话则不需要这行配置。</p>
-<p>有了 <code>pyvenv</code>，我们打开 Python 项目，如果想要切换环境，就输入命令 <code>M-x</code> <code>pyvenv-workon</code>，它会列出所有可以切换的环境，配置中的设置就是为了能让 <code>pyvenv</code> 找到我们的 miniconda 环境。</p>
-<p>想要使用 REPL，首先打开一个 Python 文件，然后使用快捷键 <code>C-c C-p</code> 调用命令 <code>run-python</code>，启动 Python 解释器，Emacs 会弹出一个名为 <em>Python</em> 的 buffer，就是 Python 的 REPL。随后我们光标放在 Python 文件的 buffer 中，可以选中一部分代码，或者不选表示全部代码，按 <code>C-c C-c</code> 调用命令 <code>python-shell-send-buffer</code>，把选中的代码发送到 REPL 中，此时 <em>Python</em> buffer 中就会相应地执行了这些代码。</p>
-<p>此外，对于 IPython Notebook 文件（.ipynb），有一个 <a href="https://github.com/millejoh/emacs-ipython-notebook">emacs-ipython-notebook</a> 插件可以提供支持，但笔者未使用过，在此不做评价。</p>
-<ol start="2">
-<li>LSP</li>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">pyvenv</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">   <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   <span class="p">(</span><span class="nv">setenv</span> <span class="s">&#34;WORKON_HOME&#34;</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="s">&#34;~/miniconda3/envs&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">   <span class="c1">;; (setq python-shell-interpreter &#34;python3&#34;) ; （可选）更改解释器名字</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">   <span class="p">(</span><span class="nv">pyvenv-mode</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">   <span class="c1">;; （可选）如果希望启动后激活 miniconda 的 base 环境，就使用如下的 hook</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">   <span class="c1">;; :hook</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">   <span class="c1">;; (python-mode . (lambda () (pyvenv-workon &#34;..&#34;)))</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+读者需要把这里的 <code>~/miniconda3</code> 路径换成自己的路径，一般默认或者在用户目录下，形如 <code>~/anaconda3</code> ；或者在根目录下，形如 <code>/anaconda3</code> 。使用 virtualenv 的话则不需要这行配置。</p>
+<p>
+有了 <code>pyvenv</code> ，我们打开 Python 项目，如果想要切换环境，就输入命令 <code>M-x</code>  <code>pyvenv-workon</code> ，它会列出所有可以切换的环境，配置中的设置就是为了能让 <code>pyvenv</code> 找到我们的 miniconda 环境。</p>
+<p>
+想要使用 REPL，首先打开一个 Python 文件，然后使用快捷键 <code>C-c C-p</code> 调用命令 <code>run-python</code> ，启动 Python 解释器，Emacs 会弹出一个名为 <strong>Python</strong> 的 buffer，就是 Python 的 REPL。随后我们光标放在 Python 文件的 buffer 中，可以选中一部分代码，或者不选表示全部代码，按 <code>C-c C-c</code> 调用命令 <code>python-shell-send-buffer</code> ，把选中的代码发送到 REPL 中，此时 <strong>Python</strong> buffer 中就会相应地执行了这些代码。
+此外，对于 IPython Notebook 文件（.ipynb），有一个 <a href="https://github.com/millejoh/emacs-ipython-notebook">emacs-ipython-notebook</a> 插件可以提供支持，但笔者未使用过，在此不做评价。</p>
+</li>
+<li>
+<p>LSP</p>
+<p>
+Python 的 language server 比较多，包括 <a href="https://github.com/python-lsp/python-lsp-server">python-language-server（pyls）</a>、<a href="https://github.com/davidhalter/jedi">Jedi</a>、<a href="https://github.com/Microsoft/python-language-server">Microsoft Python Language Server</a> 和 <a href="https://github.com/microsoft/pyright">Pyright</a>。pyls 普遍评价是比较慢，所以不推荐使用。后三个读者可以根据自己喜好选择。笔者选择了评价较好的 Pyright。可以通过 <code>pip3 install pyright</code> 来手动安装。Emacs 中的相应配置如下：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-pyright</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">   <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">   <span class="p">(</span><span class="nv">python-mode</span> <span class="o">.</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;lsp-pyright</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="p">(</span><span class="nv">lsp-deferred</span><span class="p">))))</span></span></span></code></pre></div>
+</div>
+<p>
+Python 的各种框架也基本都有 Emacs 插件提供支持，读者按需安装就好。</p>
+<p>
+<strong>注意</strong> ，在图形界面中，尤其是 macOS 上，可能会出现明明安装了 <code>pyright</code> 但是 <code>lsp</code> 提示无法找到该命令的情况，遇到这个问题，请记得安装上面“环境变量” 小节的插件 <code>exec-path-from-shell</code> 。</p>
+</li>
+<li>调试
+
+使用 <code>dap-mode</code> 调试前需先手动通过 pip 安装 <code>python3 -m pip install ptvsd</code> 。</li>
 </ol>
-<p>Python 的 language server 比较多，包括 [python-language-server（pyls）](<a href="https://github.com/python-">https://github.com/python-</a>
-lsp/python-lsp-server)、<a href="https://github.com/davidhalter/jedi">Jedi</a>、<a href="https://github.com/Microsoft/python-language-server">Microsoft
-Python Language Server</a> 和
-<a href="https://github.com/microsoft/pyright">Pyright</a>。pyls 普遍评价是比较慢，所以不推荐使用。后三个读者可以根据自己喜好选择。笔者选择了评价较好的 Pyright。可以通过 <code>pip3 install pyright</code> 来手动安装。Emacs 中的相应配置如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-pyright</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="nv">python-mode</span> <span class="o">.</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">		  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;lsp-pyright</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">		  <span class="p">(</span><span class="nv">lsp-deferred</span><span class="p">))))</span>
-</span></span></code></pre></div><p>Python 的各种框架也基本都有 Emacs 插件提供支持，读者按需安装就好。</p>
-<p><strong>注意</strong> ，在图形界面中，尤其是 macOS 上，可能会出现明明安装了 <code>pyright</code> 但是 <code>lsp</code>
-提示无法找到该命令的情况，遇到这个问题，请记得安装上面“环境变量” 小节的插件 <code>exec-path-from-shell</code> 。</p>
-<ol start="3">
-<li>调试</li>
-</ol>
-<p>使用 <code>dap-mode</code> 调试前需先手动通过 pip 安装 <code>python3 -m pip install ptvsd</code>。</p>
-<h2 id="工作区管理">工作区管理</h2>
-<p>对于涉及多个项目的更复杂的任务，我们需要一个工作区（workspace）来进行管理和切换。<a href="https://github.com/Alexander-Miller/treemacs">treemacs</a> 为我们提供了这样的功能。如果读者不需要工作区管理这样复杂的功能，而只是想要一个树形文件结构显示，那么可以考虑使用 <a href="https://github.com/jaypei/emacs-neotree">neotree</a>。</p>
-<p><img src="../../images/emacs-book/development/treemacs.png" alt="treemacs"></p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-17" class="outline-3">
+<h3 id="headline-17">
+工作区管理
+</h3>
+<div id="outline-text-headline-17" class="outline-text-3">
+<p>
+对于涉及多个项目的更复杂的任务，我们需要一个工作区（workspace）来进行管理和切换。<a href="https://github.com/Alexander-Miller/treemacs">treemacs</a> 为我们提供了这样的功能。如果读者不需要工作区管理这样复杂的功能，而只是想要一个树形文件结构显示，那么可以考虑使用 <a href="https://github.com/jaypei/emacs-neotree">neotree</a>。</p>
+<p><img src="../../images/emacs-book/development/treemacs.png" alt="../../images/emacs-book/development/treemacs.png" title="../../images/emacs-book/development/treemacs.png" /></p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">treemacs</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:defer</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nv">treemacs-tag-follow-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">global-map</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="p">(</span><span class="s">&#34;M-0&#34;</span>       <span class="o">.</span> <span class="nv">treemacs-select-window</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t 1&#34;</span>   <span class="o">.</span> <span class="nv">treemacs-delete-other-windows</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t t&#34;</span>   <span class="o">.</span> <span class="nv">treemacs</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t B&#34;</span>   <span class="o">.</span> <span class="nv">treemacs-bookmark</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">        <span class="c1">;; (&#34;C-x t C-t&#34; . treemacs-find-file)</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="p">(</span><span class="s">&#34;C-x t M-t&#34;</span> <span class="o">.</span> <span class="nv">treemacs-find-tag</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">treemacs-mode-map</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:defer</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nv">treemacs-tag-follow-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nb">:map</span> <span class="nv">global-map</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="p">(</span><span class="s">&#34;M-0&#34;</span>    <span class="o">.</span> <span class="nv">treemacs-select-window</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="p">(</span><span class="s">&#34;C-x t 1&#34;</span>  <span class="o">.</span> <span class="nv">treemacs-delete-other-windows</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">(</span><span class="s">&#34;C-x t t&#34;</span>  <span class="o">.</span> <span class="nv">treemacs</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="p">(</span><span class="s">&#34;C-x t B&#34;</span>  <span class="o">.</span> <span class="nv">treemacs-bookmark</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="c1">;; (&#34;C-x t C-t&#34; . treemacs-find-file)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="p">(</span><span class="s">&#34;C-x t M-t&#34;</span> <span class="o">.</span> <span class="nv">treemacs-find-tag</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> <span class="p">(</span><span class="nb">:map</span> <span class="nv">treemacs-mode-map</span>
 </span></span><span class="line"><span class="ln">15</span><span class="cl">	<span class="p">(</span><span class="s">&#34;/&#34;</span> <span class="o">.</span> <span class="nv">treemacs-advanced-helpful-hydra</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln">16</span><span class="cl">
 </span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">treemacs-projectile</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">treemacs</span> <span class="nv">projectile</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"> <span class="nb">:after</span> <span class="p">(</span><span class="nv">treemacs</span> <span class="nv">projectile</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln">20</span><span class="cl">
 </span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-treemacs</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="nb">:after</span> <span class="p">(</span><span class="nv">treemacs</span> <span class="nv">lsp</span><span class="p">))</span>
-</span></span></code></pre></div><p>配置好后，我们可以使用 <code>C-x t t</code> 调出 <code>treemacs</code>，用 <code>M-0</code> 在我们的代码 Buffer 和 <code>treemacs</code> 边栏之间切换。当我们光标进入 <code>treemacs</code> 边栏时，可以按问号 <code>?</code> 来调出帮助。</p>
-<p>我们可以使用 <code>treemacs-create-workspace</code> 来创建一个新的工作区。它会在你当前光标所在处打出一个小窗提示你输入 “Workspace name”，起个合适的名字。创建好后，我们在 treemacs 边栏中输入 <code>C-c C-p a</code> 调用 <code>treemacs-add-project-to-workspace</code> 来添加一个项目路径，用 <code>C-c C-p d</code> 去除工作区选中的项目。这些都可以在 <code>?</code> 显示的帮助中找到。想要切换工作区时，使用 <code>treemacs-switch-workspace</code> 命令。</p>
-<p>由于我们安装了 <code>treemacs-projectile</code>，我们也可以使用 <code>treemacs-projectile</code> 命令将我们 <code>projectile</code> 当中保存过的项目直接导入到 <code>treemacs</code> 中。</p>
-<p>此外，我们还可以调用 <code>treemacs-edit-workspaces</code> 来通过配置文件来修改我们的工作区设置，修改完成后用 <code>treemacs-finish-edit</code> 命令或 <code>C-c C-c</code> 结束编辑。它会自动检查语法。（ps：所使用的语法是 Emacs <code>org-mode</code>，一个 Emacs 内部的笔记系统，可以近似理解为高级 markdown，后续教程会做介绍）。</p>
-<p><code>treemacs</code> 不仅能够显示文件，还会显示其中的符号，包括函数定义、结构体定义等等。配置中的 <code>(treemacs-tag-follow-mode)</code> 就是希望 treemacs 始终跟随着我们代码光标所在位置进行移动。</p>
-<p>最后，<code>?</code> 显示出的帮助是 <code>treemacs-common-helpful-hydra</code>，我们可以按 <code>/</code> 或调用 <code>treemacs-advanced-helpful-hydra</code> 来显示出更多帮助，包括了对文件的操作和对工作区的操作。</p>
-<p><code>treemacs</code> 正常情况不会根据我们打开的 Buffer 不同而切换项目或工作区。其原因在于有时候我们只是打开一些额外的文件，并不希望工作区也进行转变。而大多数情况，我们也确实并不需要频繁切换工作区，所以我们主动去调用 <code>treemacs-switch-workspace</code> 就好。如果读者觉得这样过于繁琐，也可以开启一个 <code>treemacs-project-follow-mode</code>，它会根据我们的文件跳转到相应的项目中。 或者直接使用本节开头提到的 <a href="https://github.com/jaypei/emacs-neotree">neotree 插件</a>。</p>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"> <span class="nb">:after</span> <span class="p">(</span><span class="nv">treemacs</span> <span class="nv">lsp</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+配置好后，我们可以使用 <code>C-x t t</code> 调出 <code>treemacs</code> ，用 <code>M-0</code> 在我们的代码 Buffer 和 <code>treemacs</code> 边栏之间切换。当我们光标进入 <code>treemacs</code> 边栏时，可以按问号 <code>?</code> 来调出帮助。</p>
+<p>
+我们可以使用 <code>treemacs-create-workspace</code> 来创建一个新的工作区。它会在你当前光标所在处打出一个小窗提示你输入 “Workspace name”，起个合适的名字。创建好后，我们在 treemacs 边栏中输入 <code>C-c C-p a</code> 调用 <code>treemacs-add-project-to-workspace</code> 来添加一个项目路径，用 <code>C-c C-p d</code> 去除工作区选中的项目。这些都可以在 <code>?</code> 显示的帮助中找到。想要切换工作区时，使用 <code>treemacs-switch-workspace</code> 命令。</p>
+<p>
+由于我们安装了 <code>treemacs-projectile</code> ，我们也可以使用 <code>treemacs-projectile</code> 命令将我们 <code>projectile</code> 当中保存过的项目直接导入到 <code>treemacs</code> 中。</p>
+<p>
+此外，我们还可以调用 <code>treemacs-edit-workspaces</code> 来通过配置文件来修改我们的工作区设置，修改完成后用 <code>treemacs-finish-edit</code> 命令或 <code>C-c C-c</code> 结束编辑。它会自动检查语法。（ps：所使用的语法是 Emacs <code>org-mode</code> ，一个 Emacs 内部的笔记系统，可以近似理解为高级 markdown，后续教程会做介绍）。</p>
+<p>
+ <code>treemacs</code> 不仅能够显示文件，还会显示其中的符号，包括函数定义、结构体定义等等。配置中的 <code>(treemacs-tag-follow-mode)</code> 就是希望 treemacs 始终跟随着我们代码光标所在位置进行移动。</p>
+<p>
+最后， <code>?</code> 显示出的帮助是 <code>treemacs-common-helpful-hydra</code> ，我们可以按 <code>/</code> 或调用 <code>treemacs-advanced-helpful-hydra</code> 来显示出更多帮助，包括了对文件的操作和对工作区的操作。</p>
+<p>
+ <code>treemacs</code> 正常情况不会根据我们打开的 Buffer 不同而切换项目或工作区。其原因在于有时候我们只是打开一些额外的文件，并不希望工作区也进行转变。而大多数情况，我们也确实并不需要频繁切换工作区，所以我们主动去调用 <code>treemacs-switch-workspace</code> 就好。如果读者觉得这样过于繁琐，也可以开启一个 <code>treemacs-project-follow-mode</code> ，它会根据我们的文件跳转到相应的项目中。 或者直接使用本节开头提到的 <a href="https://github.com/jaypei/emacs-neotree">neotree 插件</a>。</p>
+<p>
 
 <div class="tip">
   <code>treemacs</code> 的边栏是一个固定在 Buffer 内的 frame， 所以操作起来有些特殊。
 </div>
-
-<h2 id="终端">终端</h2>
-<p>Emacs 内想要使用 Shell 可以直接调用 <code>M-x</code> <code>shell</code> 即可打开你的默认 Shell。使用 Shell 主要注意操作上，我们不再使用方向键来回滚历史命令，而是通过 <code>M-p</code> 和 <code>M-n</code> 来翻看命令。</p>
-<p>此外 Emacs 还特别打造了 eshell 作为 Emacs 的专用 Shell，但笔者几乎没有使用所以只做简要介绍。首先要明确 eshell 是个
+</p>
+</div>
+</div>
+<div id="outline-container-headline-18" class="outline-3">
+<h3 id="headline-18">
+终端
+</h3>
+<div id="outline-text-headline-18" class="outline-text-3">
+<p>
+Emacs 内想要使用 Shell 可以直接调用 <code>M-x</code>  <code>shell</code> 即可打开你的默认 Shell。使用 Shell 主要注意操作上，我们不再使用方向键来回滚历史命令，而是通过 <code>M-p</code> 和 <code>M-n</code> 来翻看命令。</p>
+<p>
+此外 Emacs 还特别打造了 eshell 作为 Emacs 的专用 Shell，但笔者几乎没有使用所以只做简要介绍。首先要明确 eshell 是个
 shell 而不是个终端，所以我们不能指望它可以处理各种终端控制序列、丰富的色彩等等（这些应该由 Emacs 本身来完成），而应类比为 bash、zsh、fish 等之间的关系。eshell 最特别的是提供了对 Emacs Lisp 的直接支持，可以直接输入 Lisp
 语句，甚至可以省略外部括号。此时读者可能会意识到，eshell 其实就是把各种命令打包成了 Emacs Lisp 的函数。也因此，可以把 eshell 作为一个Lisp 解释器，完成一些简单的计算任务等等都是可以的。同时，eshell 与 Emacs 的互动更密切，例如我们平时用 cat 命令组合 less 来查看文件，到了 eshell 可以使用 <code>view-file</code> 命令直接用 Emacs 的 buffer 查看文件，更方便配合 Emacs 的语法高亮等功能。</p>
-<p>一些稍微详细的介绍可以查看这个<a href="https://howardism.org/Technical/Emacs/eshell-why.html">博客</a>，更多细节就请参照<a href="https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html">官方文档</a>了。</p>
-<h2 id="远程访问">远程访问</h2>
-<p>Emacs 本身有一个 tramp 功能可以实现远程 ssh 访问。无需任何配置，使用 <code>C-x C-f</code> 打开文件时，删除掉所有路径，只留下一个斜杠 <code>/</code>，然后输入成 <code>/ssh:user@address:</code>，后面接远程服务器上的目录，就可以访问到相应的远程服务器的相应文件或目录。如果在 <code>~/.ssh/config</code> 中有配置 Host 名称，也可以直接输入名称 <code>/ssh:hostname:</code>。</p>
-<p>如果需要代理才能访问，请参考 <a href="../configurations#melpa">基本配置-MELPA</a> 中的代理配置：</p>
+<p>
+一些稍微详细的介绍可以查看这个<a href="https://howardism.org/Technical/Emacs/eshell-why.html">博客</a>，更多细节就请参照<a href="https://www.gnu.org/software/emacs/manual/html_node/eshell/index.html">官方文档</a>了。</p>
+</div>
+</div>
+<div id="outline-container-headline-19" class="outline-3">
+<h3 id="headline-19">
+远程访问
+</h3>
+<div id="outline-text-headline-19" class="outline-text-3">
+<p>
+Emacs 本身有一个 tramp 功能可以实现远程 ssh 访问。无需任何配置，使用 <code>C-x C-f</code> 打开文件时，删除掉所有路径，只留下一个斜杠 <code>/</code> ，然后输入成 <code>/ssh:user@address:</code> ，后面接远程服务器上的目录，就可以访问到相应的远程服务器的相应文件或目录。如果在 <code>~/.ssh/config</code> 中有配置 Host 名称，也可以直接输入名称 <code>/ssh:hostname:</code> 。</p>
+<p>
+如果需要代理才能访问，请参考 <a href="../configurations#melpa">基本配置-MELPA</a> 中的代理配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">url-proxy-services</span> <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;no_proxy&#34;</span> <span class="o">.</span> <span class="s">&#34;^\\(192\\.168\\..*\\)&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">                           <span class="p">(</span><span class="s">&#34;http&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">                           <span class="p">(</span><span class="s">&#34;https&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)))</span>
-</span></span></code></pre></div><p>但是，虽然可以远程编辑，却并不能继续使用以上大部分功能，因为这些插件都是安装在本地的，而源代码和项目都在远程服务器上。VSCode 对此的解决办法是可以在远程服务器也安装一遍这些插件。对 Emacs 来说，其实只要把 <code>~/.emacs.d</code> 目录复制到远程服务器上，然后在上面安装一个 Emacs，就可以直接在终端中使用远程的 Emacs 了，毕竟我们用 Emacs 本来就不需要鼠标。这样可能比远程访问来得更加简单好用。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">              <span class="p">(</span><span class="s">&#34;http&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">              <span class="p">(</span><span class="s">&#34;https&#34;</span> <span class="o">.</span> <span class="s">&#34;&lt;代理 IP&gt;:&lt;代理端口号&gt;&#34;</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+但是，虽然可以远程编辑，却并不能继续使用以上大部分功能，因为这些插件都是安装在本地的，而源代码和项目都在远程服务器上。VSCode 对此的解决办法是可以在远程服务器也安装一遍这些插件。对 Emacs 来说，其实只要把 <code>~/.emacs.d</code> 目录复制到远程服务器上，然后在上面安装一个 Emacs，就可以直接在终端中使用远程的 Emacs 了，毕竟我们用 Emacs 本来就不需要鼠标。这样可能比远程访问来得更加简单好用。</p>
+</div>
+</div>
 
     <div class="pager">
   
@@ -844,7 +1205,7 @@ shell 而不是个终端，所以我们不能指望它可以处理各种终端�
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -947,7 +1308,7 @@ shell 而不是个终端，所以我们不能指望它可以处理各种终端�
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

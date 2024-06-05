@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/Users/pavin/Code/Sites/emacs-book",
+	"sourceRoot": "/Users/yupeiwen/Code/Emacs/emacs-book",
 	"sources": [
 		"assets/sass/main.sass",
 		"assets/sass/_variables.sass",

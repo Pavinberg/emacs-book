@@ -1,0 +1,15 @@
+* Pavinberg's Emacs Book
+
+An Emacs tutorial for beginners with extensions recommendation. 
+
+Read the Book [[https://pavinberg.github.io/emacs-book/][here]].
+
+#+begin_quote
+The book is still ongoing.
+#+end_quote
+
+[[https://pavinberg.github.io/emacs-book/zh/][中文版]]
+
+**  Acknowledgement
+
+Thanks [[https://gohugo.io][Hugo]] and the [[https://github.com/onweru/compose][compose]] theme. 

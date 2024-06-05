@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,58 +13,46 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>插件：功能增强类 | 专业 Emacs 入门</title><meta property="og:title" content="插件：功能增强类" />
-<meta property="og:description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
+<title>插件：功能增强类 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/enhancement/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="插件：功能增强类">
+  <meta property="og:description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
 Book marks Book marks - EmacsWiki
 这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：
-C-x r m （bookmark-set） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
-C-x r b（bookmark-jump，如果在上一篇教程中安装了 counsel，应当已被覆盖为 counsel-bookmark）：跳转到书签。
-C-x r l （bookmark-bmenu-list）：列出已有书签。
+C-x r m （ bookmark-set ） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
+C-x r b （ bookmark-jump ，如果在上一篇教程中安装了 counsel ，应当已被覆盖为 counsel-bookmark ）：跳转到书签。
+C-x r l （ bookmark-bmenu-list ）：列出已有书签。
 M-x bookmark-delete ：删除书签。
 这在阅读代码的时候可是个十分方便的功能。
-ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能——ivy view。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
-ivy-push-view：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v。
-ivy-switch-view：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 C-c s。
-ivy-pop-view ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c V。
-which-key（可选） 主页
-这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 hs-minor-mode 后，我们正常可以通过 C-c @ C-h 折叠代码块、用 C-c @ C-s 来展开代码块。但这个快捷键很长，时常记不住，那么有了 which-key 后我们可以先按下 C-c @ ，此时 which-key 就会提示我们接下来可以按的键：" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/enhancement/" /><meta property="article:section" content="" />
+ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能—— ivy view 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
+ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v 。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="插件：功能增强类">
-<meta itemprop="description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
+  <meta itemprop="name" content="插件：功能增强类">
+  <meta itemprop="description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
 Book marks Book marks - EmacsWiki
 这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：
-C-x r m （bookmark-set） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
-C-x r b（bookmark-jump，如果在上一篇教程中安装了 counsel，应当已被覆盖为 counsel-bookmark）：跳转到书签。
-C-x r l （bookmark-bmenu-list）：列出已有书签。
+C-x r m （ bookmark-set ） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
+C-x r b （ bookmark-jump ，如果在上一篇教程中安装了 counsel ，应当已被覆盖为 counsel-bookmark ）：跳转到书签。
+C-x r l （ bookmark-bmenu-list ）：列出已有书签。
 M-x bookmark-delete ：删除书签。
 这在阅读代码的时候可是个十分方便的功能。
-ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能——ivy view。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
-ivy-push-view：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v。
-ivy-switch-view：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 C-c s。
-ivy-pop-view ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c V。
-which-key（可选） 主页
-这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 hs-minor-mode 后，我们正常可以通过 C-c @ C-h 折叠代码块、用 C-c @ C-s 来展开代码块。但这个快捷键很长，时常记不住，那么有了 which-key 后我们可以先按下 C-c @ ，此时 which-key 就会提示我们接下来可以按的键：">
-
-<meta itemprop="wordCount" content="1164">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="插件：功能增强类"/>
-<meta name="twitter:description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
+ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能—— ivy view 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
+ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v 。">
+  <meta itemprop="wordCount" content="1211">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="插件：功能增强类">
+  <meta name="twitter:description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
 Book marks Book marks - EmacsWiki
 这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：
-C-x r m （bookmark-set） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
-C-x r b（bookmark-jump，如果在上一篇教程中安装了 counsel，应当已被覆盖为 counsel-bookmark）：跳转到书签。
-C-x r l （bookmark-bmenu-list）：列出已有书签。
+C-x r m （ bookmark-set ） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
+C-x r b （ bookmark-jump ，如果在上一篇教程中安装了 counsel ，应当已被覆盖为 counsel-bookmark ）：跳转到书签。
+C-x r l （ bookmark-bmenu-list ）：列出已有书签。
 M-x bookmark-delete ：删除书签。
 这在阅读代码的时候可是个十分方便的功能。
-ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能——ivy view。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
-ivy-push-view：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v。
-ivy-switch-view：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 C-c s。
-ivy-pop-view ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c V。
-which-key（可选） 主页
-这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 hs-minor-mode 后，我们正常可以通过 C-c @ C-h 折叠代码块、用 C-c @ C-s 来展开代码块。但这个快捷键很长，时常记不住，那么有了 which-key 后我们可以先按下 C-c @ ，此时 which-key 就会提示我们接下来可以按的键："/>
+ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能—— ivy view 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
+ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v 。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -75,17 +63,13 @@ which-key（可选） 主页
   <meta name="description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
 Book marks Book marks - EmacsWiki
 这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：
-C-x r m （bookmark-set） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
-C-x r b（bookmark-jump，如果在上一篇教程中安装了 counsel，应当已被覆盖为 counsel-bookmark）：跳转到书签。
-C-x r l （bookmark-bmenu-list）：列出已有书签。
+C-x r m （ bookmark-set ） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。
+C-x r b （ bookmark-jump ，如果在上一篇教程中安装了 counsel ，应当已被覆盖为 counsel-bookmark ）：跳转到书签。
+C-x r l （ bookmark-bmenu-list ）：列出已有书签。
 M-x bookmark-delete ：删除书签。
 这在阅读代码的时候可是个十分方便的功能。
-ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能——ivy view。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
-ivy-push-view：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v。
-ivy-switch-view：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 C-c s。
-ivy-pop-view ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c V。
-which-key（可选） 主页
-这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 hs-minor-mode 后，我们正常可以通过 C-c @ C-h 折叠代码块、用 C-c @ C-s 来展开代码块。但这个快捷键很长，时常记不住，那么有了 which-key 后我们可以先按下 C-c @ ，此时 which-key 就会提示我们接下来可以按的键：">
+ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能—— ivy view 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
+ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v 。">
 
 
 </head>
@@ -174,481 +158,810 @@ which-key（可选） 主页
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link active"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>插件：功能增强类</h1><p>上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。
+    <h1>插件：功能增强类</h1>
+<p>
+上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。
 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。</p>
-<h2 id="book-marks">Book marks</h2>
-<p><a href="https://www.emacswiki.org/emacs/BookMarks">Book marks - EmacsWiki</a></p>
-<p>这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：</p>
-<p><code>C-x r m</code> （<code>bookmark-set</code>） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。</p>
-<p><code>C-x r b</code>（<code>bookmark-jump</code>，如果在上一篇教程中安装了 <code>counsel</code>，应当已被覆盖为 <code>counsel-bookmark</code>）：跳转到书签。</p>
-<p><code>C-x r l</code> （<code>bookmark-bmenu-list</code>）：列出已有书签。</p>
-<p><code>M-x</code> <code>bookmark-delete</code> ：删除书签。</p>
-<p>这在阅读代码的时候可是个十分方便的功能。</p>
-<h2 id="ivy-view">ivy view</h2>
-<p>顺着 Book marks，我们顺带一提<a href="../optimization#ivy">上一篇教程</a>中提及的 <code>ivy</code> 插件的额外功能——<code>ivy view</code>。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 <code>ivy view</code>
-出场的地方了。与 Book marks 类似，涉及三个命令：</p>
-<p><code>ivy-push-view</code>：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 <code>C-c v</code>。</p>
-<p><code>ivy-switch-view</code>：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 <code>C-c s</code>。</p>
-<p><code>ivy-pop-view</code> ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 <code>C-c V</code>。</p>
-<h2 id="which-key可选">which-key（可选）</h2>
-<p><a href="https://github.com/justbur/emacs-which-key">主页</a></p>
-<p>这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 <code>hs-minor-mode</code> 后，我们正常可以通过 <code>C-c @ C-h</code> 折叠代码块、用 <code>C-c @ C-s</code> 来展开代码块。但这个快捷键很长，时常记不住，那么有了 <code>which-key</code> 后我们可以先按下 <code>C-c @</code> ，此时 <code>which-key</code> 就会提示我们接下来可以按的键：</p>
-<p><img src="../../images/emacs-book/enhancement/which-key.png" alt="which-key"></p>
-<p>对于选项过多的前缀，例如 <code>C-x</code> ，<code>which-key</code> 会显示出非常多的选项，那么就需要翻页，根据它的提示，我们只需要按下 <code>C-h</code>，然后按 <code>n</code> 或 <code>p</code> 进行向下翻页和向上翻页。</p>
-<p>只需如下配置文件：</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+Book marks
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+<a href="https://www.emacswiki.org/emacs/BookMarks">Book marks - EmacsWiki</a></p>
+<p>
+这是 Emacs 自带的功能。根据名字即可大概猜到其功能，就和电子书中的书签功能一样，在当前光标位置打上一个书签，之后可以随时跳转回来。主要涉及到如下四个命令：</p>
+<p>
+ <code>C-x r m</code> （ <code>bookmark-set</code> ） ：设置书签。可以为书签起个标记名称，默认为文件名。也可以为目录打书签。</p>
+<p>
+ <code>C-x r b</code> （ <code>bookmark-jump</code> ，如果在上一篇教程中安装了 <code>counsel</code> ，应当已被覆盖为 <code>counsel-bookmark</code> ）：跳转到书签。</p>
+<p>
+ <code>C-x r l</code> （ <code>bookmark-bmenu-list</code> ）：列出已有书签。</p>
+<p>
+ <code>M-x</code>  <code>bookmark-delete</code> ：删除书签。</p>
+<p>
+这在阅读代码的时候可是个十分方便的功能。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+ivy view
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+顺着 Book marks，我们顺带一提<a href="../optimization#ivy">上一篇教程</a>中提及的 <code>ivy</code> 插件的额外功能—— <code>ivy view</code> 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 <code>ivy view</code> 出场的地方了。与 Book marks 类似，涉及三个命令：</p>
+<p>
+ <code>ivy-push-view</code> ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 <code>C-c v</code> 。</p>
+<p>
+ <code>ivy-switch-view</code> ：切换窗口状态。 在上一篇教程的配置中绑定为快捷键 <code>C-c s</code> 。</p>
+<p>
+ <code>ivy-pop-view</code> ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 <code>C-c V</code> 。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+which-key（可选）
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+<a href="https://github.com/justbur/emacs-which-key">主页</a></p>
+<p>
+这是一个实用小工具，专门针对 Emacs 快捷键多而杂的问题，安装后，当按下部分快捷键前缀时，它会通过 minibuffer 提示你都有哪些可以按的快捷键及其命令名。例如启动了 <code>hs-minor-mode</code> 后，我们正常可以通过 <code>C-c @ C-h</code> 折叠代码块、用 <code>C-c @ C-s</code> 来展开代码块。但这个快捷键很长，时常记不住，那么有了 <code>which-key</code> 后我们可以先按下 <code>C-c @</code> ，此时 <code>which-key</code> 就会提示我们接下来可以按的键：</p>
+<p><img src="../../images/emacs-book/enhancement/which-key.png" alt="../../images/emacs-book/enhancement/which-key.png" title="../../images/emacs-book/enhancement/which-key.png" /></p>
+<p>
+对于选项过多的前缀，例如 <code>C-x</code> ， <code>which-key</code> 会显示出非常多的选项，那么就需要翻页，根据它的提示，我们只需要按下 <code>C-h</code> ，然后按 <code>n</code> 或 <code>p</code> 进行向下翻页和向上翻页。</p>
+<p>
+只需如下配置文件：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">which-key</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">which-key-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>因为事实上快捷键熟练后并没有那么需要这个插件，有时候按下例如 <code>C-x</code> 这样的前缀后又会产生大量的备选项，所以并不是完全解决了这一痛点。但它配置简单，没有学习和配置成本，所以依然建议大家使用。而想要更好解决快捷键繁杂的问题，可以进一步参考下面提到的插件 <code>hydra</code>。</p>
-<h2 id="avy">avy</h2>
-<p><a href="https://github.com/abo-abo/avy">主页</a></p>
-<p><a href="https://karthinks.com/software/avy-can-do-anything/">avy - 相关博客</a></p>
-<p><code>avy</code> 又是一个 abo-abo（Oleh Krehel）开发的 <strong>强大</strong> 插件，笔者 <strong>极力推荐</strong>读者使用，熟练后效率可以成倍提升。其最最基本的功能就是无需鼠标的快速光标跳转（思想来自于 vim 的 easymotion），但其能力远不止于此，它可以让你在不操作光标的情况下，快速对文本进行复制、剪切、粘贴，大大提高了围绕光标的操作的效率。接下来将会花一些篇幅介绍。第三个链接是一个博客，有详细地介绍 <code>avy</code> 的更多用法，读者如果感兴趣可以阅读一下，以下是 <code>avy</code> 主要内容的介绍。</p>
-<h3 id="操作逻辑抽象">操作逻辑抽象</h3>
-<p>在博客中提到了 <code>avy</code> 操作逻辑的抽象概念，也是很多 Emacs 命令的操作抽象：Filter、Select、Act，翻译过来就是“ <strong>筛选</strong>”、“ <strong>选择</strong> ”、“ <strong>行动</strong> ”。举个例子，我们按 <code>C-x C-f</code> 打开文件，此时列出了当前目录下的所有文件名，按下文件名的前缀，待选文件的范围就会缩小，这就叫“ <strong>筛选</strong> ”；我们在其中最终选择了一个文件，这叫“<strong>选择</strong> ”；最后按下回车，此时 Emacs 就会打开并切换到那个文件，这就叫” <strong>行动</strong> “。很多操作都可以归为这种模式。</p>
-<h3 id="基本用法">基本用法</h3>
-<p>那么你的第一反应可能是，这不就是很正常的一个命令的用法吗，为什么说的这么抽象？ <code>avy</code> 就是在这个模式上做出了文章，其核心思想就是将三者进行解耦合，让这个模式支持更多的应用场景。我们来看看具体的用法。首先请在 <code>~/.emacs.d/init.el</code> 中加入如下配置：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">which-key-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+因为事实上快捷键熟练后并没有那么需要这个插件，有时候按下例如 <code>C-x</code> 这样的前缀后又会产生大量的备选项，所以并不是完全解决了这一痛点。但它配置简单，没有学习和配置成本，所以依然建议大家使用。而想要更好解决快捷键繁杂的问题，可以进一步参考下面提到的插件 <code>hydra</code> 。</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+avy
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>
+<a href="https://github.com/abo-abo/avy">主页</a></p>
+<p>
+<a href="https://karthinks.com/software/avy-can-do-anything/">avy - 相关博客</a></p>
+<p>
+ <code>avy</code> 又是一个 abo-abo（Oleh Krehel）开发的 <strong>强大</strong> 插件，笔者 *极力推荐*读者使用，熟练后效率可以成倍提升。其最最基本的功能就是无需鼠标的快速光标跳转（思想来自于 vim 的 easymotion），但其能力远不止于此，它可以让你在不操作光标的情况下，快速对文本进行复制、剪切、粘贴，大大提高了围绕光标的操作的效率。接下来将会花一些篇幅介绍。第三个链接是一个博客，有详细地介绍 <code>avy</code> 的更多用法，读者如果感兴趣可以阅读一下，以下是 <code>avy</code> 主要内容的介绍。</p>
+<div id="outline-container-headline-5" class="outline-4">
+<h4 id="headline-5">
+操作逻辑抽象
+</h4>
+<div id="outline-text-headline-5" class="outline-text-4">
+<p>
+在博客中提到了 <code>avy</code> 操作逻辑的抽象概念，也是很多 Emacs 命令的操作抽象：Filter、Select、Act，翻译过来就是“ <strong>筛选</strong> ”、“ <strong>选择</strong> ”、“ <strong>行动</strong> ”。举个例子，我们按 <code>C-x C-f</code> 打开文件，此时列出了当前目录下的所有文件名，按下文件名的前缀，待选文件的范围就会缩小，这就叫“ <strong>筛选</strong> ”；我们在其中最终选择了一个文件，这叫“*选择* ”；最后按下回车，此时 Emacs 就会打开并切换到那个文件，这就叫” <strong>行动</strong> “。很多操作都可以归为这种模式。</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+基本用法
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>
+那么你的第一反应可能是，这不就是很正常的一个命令的用法吗，为什么说的这么抽象？ <code>avy</code> 就是在这个模式上做出了文章，其核心思想就是将三者进行解耦合，让这个模式支持更多的应用场景。我们来看看具体的用法。首先请在 <code>~/.emacs.d/init.el</code> 中加入如下配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">avy</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-j C-SPC&#34;</span> <span class="o">.</span> <span class="nv">avy-goto-char-timer</span><span class="p">)))</span>
-</span></span></code></pre></div>
-<div class="tip">
-  <strong>注意：</strong> 这里设置快捷键的前提是在前面有执行过 <code>(global-set-key (kbd &quot;C-j&quot;) nil)</code> ，将本身的 <code>C-j</code> 快捷键的功能去掉。在大部分模式下 <code>C-j</code> 的功能是 <code>electric-newline-and-maybe-indent</code>，是一个换行的快捷键，笔者个人觉得使用频率很低，于是索性去掉了这些快捷键。然后将 <code>C-j</code> 和其它键组合绑定了少量快捷键。当然，读者也可以选择使用 <code>avy</code> 中示例的 <code>M-j</code> 作为快捷键。
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-j C-SPC&#34;</span> <span class="o">.</span> <span class="nv">avy-goto-char-timer</span><span class="p">)))</span></span></span></code></pre></div>
 </div>
-
-<p>加入后让光标在这个作用域内，按下 <code>C-M-x</code> 让配置生效 。此时，就可以使用 <code>avy</code> 了 。假如我们有如下的 Python 代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="ln"> 1</span><span class="cl">    <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">def</span> <span class="nf">hello_coder</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, coder!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="k">def</span> <span class="nf">hello_emacser</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, emacser!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    
-</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="o">...</span>
-</span></span></code></pre></div><p>那么如果此时我们的光标在其它位置，例如一个下面的代码中，而希望将光标移动到 <code>hello_emacser</code> 函数的位置，我们要么需要使用鼠标，要么需要用向上键一行一行地缓慢挪动，似乎都不够完美。有了 <code>avy</code>，我们就可以按下我们刚刚设定好的快捷键 <code>C-j C-SPC</code> 调用 <code>avy-goto-char-timer</code>，此时 <code>avy</code> 在等待你输入“目标位置的部分文本”，例如这个场景下，就输入：“h“、“he” 、”hel“ 等等都可以（要快一点输入），此时，原本是 &quot;h&quot; 的位置会被替换为一个高亮了的其它字母，那么我们希望跳转到 <code>hello_emacser</code> 的函数定义处，对应了字母 <code>g</code>，于是我们紧接着按 <code>g</code>，就会发现光标成功移动到了 <code>hello_emacser</code> 的开头。</p>
-<p><img src="../../images/emacs-book/enhancement/avy.png" alt="avy"></p>
-<p>按照刚刚提到的模式，可以这样理解这个场景：光标位置正常可以是整个 Window 上的任意位置，但当使用 <code>avy</code>
-并输入了部分文本后，就将目标光标位置的范围缩小到了上图的 6 个位置，这就是“ <strong>筛选</strong> ”。我们按下 <code>g</code> 时就是” <strong>选择</strong> “，最后 <code>avy</code> 自动执行“ <strong>行动</strong> ” ——将光标挪到相应位置。</p>
-<h3 id="进阶用法">进阶用法</h3>
-<p>别忘了，跳转只是它最最基本的功能。事实上，当我们“ <strong>筛选</strong> ”后、” <strong>选择</strong> “前，可以更改 <code>avy</code> 的“ <strong>行动</strong>”，有哪些行动呢？读者可以在输入了“部分文本”后，按下 <code>?</code> 键，就会显示出 <code>avy</code> 当前支持的“ <strong>行动</strong> ”。</p>
-<p>例如下图所示，我们写着写着希望换一种写法，对代码进行重构，把上面的三个 <code>print</code> 语句合并在一个函数中，那么一行行分别去选中、复制、回来、粘贴肯定是很麻烦的。于是，我们按下 <code>C-j C-SPC</code>，输入 <code>p</code> ( <code>print</code> 的开头字母），此时按下 <code>?</code>，下面的 Minibuffer 就会显示出可以选择的其它行动，我们希望使用 <code>Y: yank-line</code>，于是输入 <code>Y</code>（注意大小写），然后按下我们目标 <code>print</code> 语句的标签，例如 <code>a</code>，这时，<code>a</code> 对应的语句就完全被复制到了当前光标所在的位置。我们的光标没有丝毫的移动，就成功将一行代码复制了过来。</p>
-<p><img src="../../images/emacs-book/enhancement/avy2.png" alt="avy-2"></p>
-<p>读者可以自行试试其它命令的效果，例如 <code>kill-stay</code> 可以“隔空剪切文本”、<code>teleport</code> 可以“把远处的文本传送到当前位置“等等。注意我们中途按下的 <code>?</code> 只是对大家的提示 ，如果熟练记住了几个常用的“行动”，就可以直接省略按 <code>?</code> 了 。</p>
-<p>另外，记得尝试一下命令 <code>avy-copy-line</code>、<code>avy-move-line</code>、<code>avy-copy-region</code> 和 <code>avy-move-region</code>， 可以以行为单位进行操作，光标都不用动，就可以快速复制、剪切一行乃至一段文字，效率非常高。</p>
+<p>
 
 <div class="tip">
-  读者会发现自己的 <code>avy</code> 中并没有笔者的 <code>e: embark</code> 这一项。事实上，这些可以选择的命令也是我们可以自定义的，这里的<code>embark</code> 就是添加了使用 <code>embark</code> 插件的一个“ <strong>行动</strong> ”，在下文会进一步介绍。如果读者不喜欢这种输多个字符然后等待 <code>avy</code> 生效这样的方式，也可以把快捷键调用的命令改为例如 <code>avy-goto-word-1</code>，这时就可以通过输某个词的首字母就可以直接触发 <code>avy</code> 的筛选。
+  <strong>注意：</strong> 这里设置快捷键的前提是在前面有执行过 <code>(global-set-key (kbd &#34;C-j&#34;) nil)</code> ，将本身的 <code>C-j</code> 快捷键的功能去掉。在大部分模式下 <code>C-j</code> 的功能是 <code>electric-newline-and-maybe-indent</code> ，是一个换行的快捷键，笔者个人觉得使用频率很低，于是索性去掉了这些快捷键。然后将 <code>C-j</code> 和其它键组合绑定了少量快捷键。当然，读者也可以选择使用 <code>avy</code> 中示例的 <code>M-j</code> 作为快捷键。
 </div>
+</p>
+<p>
+加入后让光标在这个作用域内，按下 <code>C-M-x</code> 让配置生效 。此时，就可以使用 <code>avy</code> 了 。假如我们有如下的 Python 代码：</p>
+<div class="src src-python3">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="k">def</span> <span class="nf">hello_coder</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, coder!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="k">def</span> <span class="nf">hello_emacser</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, emacser!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">...</span></span></span></code></pre></div>
+</div>
+<p>
+那么如果此时我们的光标在其它位置，例如一个下面的代码中，而希望将光标移动到 <code>hello_emacser</code> 函数的位置，我们要么需要使用鼠标，要么需要用向上键一行一行地缓慢挪动，似乎都不够完美。有了 <code>avy</code> ，我们就可以按下我们刚刚设定好的快捷键 <code>C-j C-SPC</code> 调用 <code>avy-goto-char-timer</code> ，此时 <code>avy</code> 在等待你输入“目标位置的部分文本”，例如这个场景下，就输入：“h“、“he” 、”hel“ 等等都可以（要快一点输入），此时，原本是 &#34;h&#34; 的位置会被替换为一个高亮了的其它字母，那么我们希望跳转到 <code>hello_emacser</code> 的函数定义处，对应了字母 <code>g</code> ，于是我们紧接着按 <code>g</code> ，就会发现光标成功移动到了 <code>hello_emacser</code> 的开头。</p>
+<p><img src="../../images/emacs-book/enhancement/avy.png" alt="../../images/emacs-book/enhancement/avy.png" title="../../images/emacs-book/enhancement/avy.png" /></p>
+<p>
+按照刚刚提到的模式，可以这样理解这个场景：光标位置正常可以是整个 Window 上的任意位置，但当使用 <code>avy</code> 并输入了部分文本后，就将目标光标位置的范围缩小到了上图的 6 个位置，这就是“ <strong>筛选</strong> ”。我们按下 <code>g</code> 时就是” <strong>选择</strong> “，最后 <code>avy</code> 自动执行“ <strong>行动</strong> ” ——将光标挪到相应位置。</p>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+进阶用法
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>
+别忘了，跳转只是它最最基本的功能。事实上，当我们“ <strong>筛选</strong> ”后、” <strong>选择</strong> “前，可以更改 <code>avy</code> 的“ <strong>行动*”，有哪些行动呢？读者可以在输入了“部分文本”后，按下 <code>?</code> 键，就会显示出 <code>avy</code> 当前支持的“ *行动</strong> ”。</p>
+<p>
+例如下图所示，我们写着写着希望换一种写法，对代码进行重构，把上面的三个 <code>print</code> 语句合并在一个函数中，那么一行行分别去选中、复制、回来、粘贴肯定是很麻烦的。于是，我们按下 <code>C-j C-SPC</code> ，输入 <code>p</code> ( <code>print</code> 的开头字母），此时按下 <code>?</code> ，下面的 Minibuffer 就会显示出可以选择的其它行动，我们希望使用 <code>Y: yank-line</code> ，于是输入 <code>Y</code> （注意大小写），然后按下我们目标 <code>print</code> 语句的标签，例如 <code>a</code> ，这时， <code>a</code> 对应的语句就完全被复制到了当前光标所在的位置。我们的光标没有丝毫的移动，就成功将一行代码复制了过来。</p>
+<p><img src="../../images/emacs-book/enhancement/avy2.png" alt="../../images/emacs-book/enhancement/avy2.png" title="../../images/emacs-book/enhancement/avy2.png" /></p>
+<p>
+读者可以自行试试其它命令的效果，例如 <code>kill-stay</code> 可以“隔空剪切文本”、 <code>teleport</code> 可以“把远处的文本传送到当前位置“等等。注意我们中途按下的 <code>?</code> 只是对大家的提示 ，如果熟练记住了几个常用的“行动”，就可以直接省略按 <code>?</code> 了 。</p>
+<p>
+另外，记得尝试一下命令 <code>avy-copy-line</code> 、 <code>avy-move-line</code> 、 <code>avy-copy-region</code> 和 <code>avy-move-region</code> ， 可以以行为单位进行操作，光标都不用动，就可以快速复制、剪切一行乃至一段文字，效率非常高。</p>
+<p>
 
-<h2 id="marginalia">marginalia</h2>
-<p><a href="https://github.com/minad/marginalia">主页</a></p>
-<p>一个为 Emacs minibuffer 中的选项添加注解的插件。</p>
+<div class="tip">
+  读者会发现自己的 <code>avy</code> 中并没有笔者的 <code>e: embark</code> 这一项。事实上，这些可以选择的命令也是我们可以自定义的，这里的 <code>embark</code> 就是添加了使用 <code>embark</code> 插件的一个“ <strong>行动</strong> ”，在下文会进一步介绍。如果读者不喜欢这种输多个字符然后等待 <code>avy</code> 生效这样的方式，也可以把快捷键调用的命令改为例如 <code>avy-goto-word-1</code> ，这时就可以通过输某个词的首字母就可以直接触发 <code>avy</code> 的筛选。
+</div>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-3">
+<h3 id="headline-8">
+marginalia
+</h3>
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>
+<a href="https://github.com/minad/marginalia">主页</a></p>
+<p>
+一个为 Emacs minibuffer 中的选项添加注解的插件。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">marginalia</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">marginalia-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:bind</span> <span class="p">(</span><span class="nb">:map</span> <span class="nv">minibuffer-local-map</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">         <span class="p">(</span><span class="s">&#34;M-A&#34;</span> <span class="o">.</span> <span class="nv">marginalia-cycle</span><span class="p">)))</span>
-</span></span></code></pre></div><p><img src="../../images/emacs-book/enhancement/marginalia.png" alt="marginalia"></p>
-<h2 id="embark可选">embark（可选）</h2>
-<p><a href="https://github.com/oantolin/embark">主页</a></p>
-<p><a href="https://karthinks.com/software/fifteen-ways-to-use-embark/">embark - 相关博客</a></p>
-<p><code>embark</code> 是另一个比较神奇的工具。Emacs 基本的操作流程是先输入命令再输入命令作用的对象。例如，我们先按下 <code>C-x C-f</code> 再输入文件名来打开文件。但是有的时候，我们按下命令、选择了文件后，可能又后悔了，想要对相同的文件输入另一个命令。例如我们按下 <code>C-x k</code> 打算关闭一个后台 buffer，然后输入了文件名，这时我们忽然想再查看一眼那个文件。那么平常，我们只好按下 <code>C-g</code> 放弃这次命令，再用 <code>C-x b</code> 切换过去。而有了 <code>embark</code> ，我们可以在按下 <code>C-x k</code> 、输入了部分文件名选中文件后 ，按下 <code>C-.</code> 触发 <code>embark- act</code>，这时按下 <code>o</code> 就可以在另一个新的窗口打开这个 buffer 了。我们无需放弃命令重新输入，而是继续输入就好了。</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nb">:init</span> <span class="p">(</span><span class="nv">marginalia-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nb">:bind</span> <span class="p">(</span><span class="nb">:map</span> <span class="nv">minibuffer-local-map</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">   <span class="p">(</span><span class="s">&#34;M-A&#34;</span> <span class="o">.</span> <span class="nv">marginalia-cycle</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p><img src="../../images/emacs-book/enhancement/marginalia.png" alt="../../images/emacs-book/enhancement/marginalia.png" title="../../images/emacs-book/enhancement/marginalia.png" /></p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-3">
+<h3 id="headline-9">
+embark（可选）
+</h3>
+<div id="outline-text-headline-9" class="outline-text-3">
+<p>
+<a href="https://github.com/oantolin/embark">主页</a></p>
+<p>
+<a href="https://karthinks.com/software/fifteen-ways-to-use-embark/">embark - 相关博客</a></p>
+<p>
+ <code>embark</code> 是另一个比较神奇的工具。Emacs 基本的操作流程是先输入命令再输入命令作用的对象。例如，我们先按下 <code>C-x C-f</code> 再输入文件名来打开文件。但是有的时候，我们按下命令、选择了文件后，可能又后悔了，想要对相同的文件输入另一个命令。例如我们按下 <code>C-x k</code> 打算关闭一个后台 buffer，然后输入了文件名，这时我们忽然想再查看一眼那个文件。那么平常，我们只好按下 <code>C-g</code> 放弃这次命令，再用 <code>C-x b</code> 切换过去。而有了 <code>embark</code> ，我们可以在按下 <code>C-x k</code> 、输入了部分文件名选中文件后 ，按下 <code>C-.</code> 触发 `embark-
+act ~，这时按下 ~ o` 就可以在另一个新的窗口打开这个 buffer 了。我们无需放弃命令重新输入，而是继续输入就好了。</p>
+<p>
 
 <div class="tip">
   由于 ivy 和 avy 的使用其实已经大大加强了 Emacs 对文本和 Buffer 的操作能力，相对而言 embark 并没有那么必须，所以这里笔者标记为了可选。
 </div>
-
-<p><img src="../../images/emacs-book/enhancement/embark.png" alt="embark"></p>
-<p>直接使用官网提供的配置就好（官网中强烈建议 <code>embark</code> 和 <code>marginalia</code> 一同使用，所以最好先装好 <code>marginalia</code>）：</p>
+</p>
+<p><img src="../../images/emacs-book/enhancement/embark.png" alt="../../images/emacs-book/enhancement/embark.png" title="../../images/emacs-book/enhancement/embark.png" /></p>
+<p>
+直接使用官网提供的配置就好（官网中强烈建议 <code>embark</code> 和 <code>marginalia</code> 一同使用，所以最好先装好 <code>marginalia</code> ）：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">embark</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="c1">;; Optionally replace the key help with a completing-read interface</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">prefix-help-command</span> <span class="nf">#&#39;</span><span class="nv">embark-prefix-help-command</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="c1">;; Hide the mode line of the Embark live/completions buffers</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;display-buffer-alist</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">               <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;\\`\\*Embark Collect \\(Live\\|Completions\\)\\*&#34;</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">                 <span class="no">nil</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">                 <span class="p">(</span><span class="nf">window-parameters</span> <span class="p">(</span><span class="nv">mode-line-format</span> <span class="o">.</span> <span class="nv">none</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-.&#34;</span> <span class="o">.</span> <span class="nv">embark-act</span><span class="p">)</span>         <span class="c1">;; pick some comfortable binding</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">embark-dwim</span><span class="p">)</span>        <span class="c1">;; good alternative: M-.</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-h B&#34;</span> <span class="o">.</span> <span class="nv">embark-bindings</span><span class="p">)))</span> <span class="c1">;; alternative for `describe-bindings&#39;</span>
-</span></span></code></pre></div><p>如果想要让 <code>avy</code> 也支持 <code>embark</code>，需要在 <code>avy</code> 的配置中添加 <code>:config</code>：</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">;; Optionally replace the key help with a completing-read interface</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">prefix-help-command</span> <span class="nf">#&#39;</span><span class="nv">embark-prefix-help-command</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">;; Hide the mode line of the Embark live/completions buffers</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;display-buffer-alist</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;\\`\\*Embark Collect \\(Live\\|Completions\\)\\*&#34;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">       <span class="no">nil</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">       <span class="p">(</span><span class="nf">window-parameters</span> <span class="p">(</span><span class="nv">mode-line-format</span> <span class="o">.</span> <span class="nv">none</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">((</span><span class="s">&#34;C-.&#34;</span> <span class="o">.</span> <span class="nv">embark-act</span><span class="p">)</span>     <span class="c1">;; pick some comfortable binding</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">embark-dwim</span><span class="p">)</span>    <span class="c1">;; good alternative: M-.</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="s">&#34;C-h B&#34;</span> <span class="o">.</span> <span class="nv">embark-bindings</span><span class="p">)))</span> <span class="c1">;; alternative for `describe-bindings&#39;</span></span></span></code></pre></div>
+</div>
+<p>
+如果想要让 <code>avy</code> 也支持 <code>embark</code> ，需要在 <code>avy</code> 的配置中添加 <code>:config</code> ：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">avy</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">avy-action-embark</span> <span class="p">(</span><span class="nv">pt</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">avy-action-embark</span> <span class="p">(</span><span class="nv">pt</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl">	<span class="p">(</span><span class="nb">unwind-protect</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">		<span class="p">(</span><span class="nb">save-excursion</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">          <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pt</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">          <span class="p">(</span><span class="nv">embark-act</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="p">(</span><span class="nf">select-window</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">       <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nv">ring-ref</span> <span class="nv">avy-ring</span> <span class="mi">0</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nb">save-excursion</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">     <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pt</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">     <span class="p">(</span><span class="nv">embark-act</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">   <span class="p">(</span><span class="nf">select-window</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">    <span class="p">(</span><span class="nf">cdr</span> <span class="p">(</span><span class="nv">ring-ref</span> <span class="nv">avy-ring</span> <span class="mi">0</span><span class="p">))))</span>
 </span></span><span class="line"><span class="ln">11</span><span class="cl">	<span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">alist-get</span> <span class="sc">?e</span> <span class="nv">avy-dispatch-alist</span><span class="p">)</span> <span class="ss">&#39;avy-action-embark</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-j C-SPC&#34;</span> <span class="o">.</span> <span class="nv">avy-goto-char-timer</span><span class="p">)))</span>
-</span></span></code></pre></div><h2 id="hydra">hydra</h2>
-<p><a href="https://github.com/abo-abo/hydra">主页</a></p>
-<p><code>hydra</code> 进一步解决了 Emacs 的复杂的命令如何组织的问题，这又是一个 abo-abo（Oleh Krehel）编写的插件。<code>which-key</code> 虽然对快捷键起到了提示作用，但是对于 Emacs 数量这么庞大的命令来说还是有很多不足。</p>
-<p><code>hydra</code> 主要功能是把一组特定场景的命令组织到一起， 通过简单按键来进行调用。这个思路和 Vim 的各种 mode 是类似的。例如上一篇教程中提到的 <code>undo-tree</code>、上文的 <code>avy</code> 和接下来提到的插件 <code>multiple-cursors</code> 、调试插件 <code>dap-mode</code>，我们会发现它们有功能相近的多个命令，实际中都要频繁使用，而都绑定上快捷键又会难以记忆。那么有了 <code>hydra</code> 我们就可以把它们都组织到一起。我们先以 <code>undo-tree</code> 举个小例子。</p>
-<p>首先安装好 <code>hydra</code> ，而由于我们希望在 <code>use-package</code> 里进行配置，再安装一个 <code>use-package-hydra</code>
-小插件可以让我们的 <code>use-package</code> 多一个 <code>:hydra</code> 关键字，可以更方便地配置。 这段配置应当写在靠前一点的位置比较保险。</p>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="p">(</span><span class="nb">setf</span> <span class="p">(</span><span class="nv">alist-get</span> <span class="sc">?e</span> <span class="nv">avy-dispatch-alist</span><span class="p">)</span> <span class="ss">&#39;avy-action-embark</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-j C-SPC&#34;</span> <span class="o">.</span> <span class="nv">avy-goto-char-timer</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-3">
+<h3 id="headline-10">
+hydra
+</h3>
+<div id="outline-text-headline-10" class="outline-text-3">
+<p>
+<a href="https://github.com/abo-abo/hydra">主页</a></p>
+<p>
+ <code>hydra</code> 进一步解决了 Emacs 的复杂的命令如何组织的问题，这又是一个 abo-abo（Oleh Krehel）编写的插件。 <code>which-key</code> 虽然对快捷键起到了提示作用，但是对于 Emacs 数量这么庞大的命令来说还是有很多不足。</p>
+<p>
+ <code>hydra</code> 主要功能是把一组特定场景的命令组织到一起， 通过简单按键来进行调用。这个思路和 Vim 的各种 mode 是类似的。例如上一篇教程中提到的 <code>undo-tree</code> 、上文的 <code>avy</code> 和接下来提到的插件 <code>multiple-cursors</code> 、调试插件 <code>dap-mode</code> ，我们会发现它们有功能相近的多个命令，实际中都要频繁使用，而都绑定上快捷键又会难以记忆。那么有了 <code>hydra</code> 我们就可以把它们都组织到一起。我们先以 <code>undo-tree</code> 举个小例子。</p>
+<p>
+首先安装好 <code>hydra</code> ，而由于我们希望在 <code>use-package</code> 里进行配置，再安装一个 <code>use-package-hydra</code> 小插件可以让我们的 <code>use-package</code> 多一个 <code>:hydra</code> 关键字，可以更方便地配置。 这段配置应当写在靠前一点的位置比较保险。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">hydra</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln">3</span><span class="cl">
 </span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">use-package-hydra</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="nb">:after</span> <span class="nv">hydra</span><span class="p">)</span>
-</span></span></code></pre></div><p>然后，我们起初对 <code>undo-tree</code> 的配置非常简单：</p>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"> <span class="nb">:after</span> <span class="nv">hydra</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+然后，我们起初对 <code>undo-tree</code> 的配置非常简单：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">undo-tree</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">))</span>
-</span></span></code></pre></div><p>而想要和 <code>hydra</code> 结合可以变为：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+而想要和 <code>hydra</code> 结合可以变为：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">undo-tree</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:after</span> <span class="nv">hydra</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;C-x C-h u&#34;</span> <span class="o">.</span> <span class="nv">hydra-undo-tree/body</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:hydra</span> <span class="p">(</span><span class="nv">hydra-undo-tree</span> <span class="p">(</span><span class="nb">:hint</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="s">&#34;
-</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="s">  _p_: undo  _n_: redo _s_: save _l_: load   &#34;</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="s">&#34;p&#34;</span>   <span class="nv">undo-tree-undo</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="p">(</span><span class="s">&#34;n&#34;</span>   <span class="nv">undo-tree-redo</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="s">&#34;s&#34;</span>   <span class="nv">undo-tree-save-history</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="s">&#34;l&#34;</span>   <span class="nv">undo-tree-load-history</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">(</span><span class="s">&#34;u&#34;</span>   <span class="nv">undo-tree-visualize</span> <span class="s">&#34;visualize&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="s">&#34;q&#34;</span>   <span class="no">nil</span> <span class="s">&#34;quit&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)))</span>
-</span></span></code></pre></div><p>看起来很长，其实就是定义了一个小表格，可以让我们先按下 <code>C-x C-h u</code> 来调用 <code>hydra-undo-tree/body</code> 这个命令，它会在 minibuffer 中显示出我们配置中的字符串，形成下图效果：</p>
-<p><img src="../../images/emacs-book/enhancement/hydra.png" alt="undo-tree"></p>
-<p>此时，我们就可以通过选择 <code>p</code>、<code>n</code>、<code>s</code>、<code>l</code> 和 <code>u</code> 来分别触发五个 <code>undo-tree</code> 的命令了。 所以可以总结为，<code>hydra</code> 可以任意将一些命令组织在一起，方便在某个场合下调用。</p>
-<p>具体来说，我们通过 <code>:hydra</code> 标签可以声明这样一组命令，起了个名字，在上面的例子中就是 <code>hydra-undo-tree</code>，被称为 <code>hydra-awesome</code>，习惯以 <code>hydra-</code> 开头。想要调出这一组，需要输入的是就是加上 <code>/body</code>，上例中也就是 <code>hydra-undo-tree/body</code>，当然你可以选择直接调其中的某个命令例如 <code>hydra-undo-tree/undo-tree-undo</code>。</p>
-<p>一个值得注意的小细节是每个提示词的颜色，有的为红色，有的为蓝色。事实上颜色是有相对应的设置的，红色的表示按过了之后依然可以继续按，不会退出 <code>hydra</code>；蓝色表示按了一次就会退出 <code>hydra</code>。例如上例中，我们可能需要多次 undo 和 redo，所以 <code>p</code> 和 <code>n</code> 都是红色的。而 <code>u</code>可以展示出 <code>undo-tree</code>，而展示出来之后我们就不再需要 <code>hydra</code> 了，所以我们把 <code>u</code>配置成了蓝色。所有颜色如下：</p>
-<pre tabindex="0"><code>    | color    | toggle                     |
-    |----------+----------------------------|
-    | red      |                            |
-    | blue     | :exit t                    |
-    | amaranth | :foreign-keys warn         |
-    | teal     | :foreign-keys warn :exit t |
-    | pink     | :foreign-keys run          |
-</code></pre><p>不想用颜色的话也可以直接用 <code>:exit t</code> 表示按完后就退出。此外还有很多细节可以调整，例如超时退出，具体参考 <code>hydra</code> 的<a href="https://github.com/abo-abo/hydra/wiki/">主页 Wiki</a>吧。</p>
-<h2 id="multiple-cursors">multiple-cursors</h2>
-<p><a href="https://github.com/magnars/multiple-cursors.el">主页</a></p>
-<p>多光标编辑可是编辑器的必备需求。这个插件提供了多种生成多光标的方式。</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">global-undo-tree-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:after</span> <span class="nv">hydra</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;C-x C-h u&#34;</span> <span class="o">.</span> <span class="nv">hydra-undo-tree/body</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:hydra</span> <span class="p">(</span><span class="nv">hydra-undo-tree</span> <span class="p">(</span><span class="nb">:hint</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="s">&#34;
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="s"> _p_: undo _n_: redo _s_: save _l_: load  &#34;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> <span class="p">(</span><span class="s">&#34;p&#34;</span>  <span class="nv">undo-tree-undo</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="s">&#34;n&#34;</span>  <span class="nv">undo-tree-redo</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> <span class="p">(</span><span class="s">&#34;s&#34;</span>  <span class="nv">undo-tree-save-history</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="p">(</span><span class="s">&#34;l&#34;</span>  <span class="nv">undo-tree-load-history</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> <span class="p">(</span><span class="s">&#34;u&#34;</span>  <span class="nv">undo-tree-visualize</span> <span class="s">&#34;visualize&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> <span class="p">(</span><span class="s">&#34;q&#34;</span>  <span class="no">nil</span> <span class="s">&#34;quit&#34;</span> <span class="nb">:color</span> <span class="nv">blue</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+看起来很长，其实就是定义了一个小表格，可以让我们先按下 <code>C-x C-h u</code> 来调用 <code>hydra-undo-tree/body</code> 这个命令，它会在 minibuffer 中显示出我们配置中的字符串，形成下图效果：</p>
+<p><img src="../../images/emacs-book/enhancement/hydra.png" alt="../../images/emacs-book/enhancement/hydra.png" title="../../images/emacs-book/enhancement/hydra.png" /></p>
+<p>
+此时，我们就可以通过选择 <code>p</code> 、 <code>n</code> 、 <code>s</code> 、 <code>l</code> 和 <code>u</code> 来分别触发五个 <code>undo-tree</code> 的命令了。 所以可以总结为， <code>hydra</code> 可以任意将一些命令组织在一起，方便在某个场合下调用。</p>
+<p>
+具体来说，我们通过 <code>:hydra</code> 标签可以声明这样一组命令，起了个名字，在上面的例子中就是 <code>hydra-undo-tree</code> ，被称为 <code>hydra-awesome</code> ，习惯以 <code>hydra-</code> 开头。想要调出这一组，需要输入的是就是加上 <code>/body</code> ，上例中也就是 <code>hydra-undo-tree/body</code> ，当然你可以选择直接调其中的某个命令例如 <code>hydra-undo-tree/undo-tree-undo</code> 。</p>
+<p>
+一个值得注意的小细节是每个提示词的颜色，有的为红色，有的为蓝色。事实上颜色是有相对应的设置的，红色的表示按过了之后依然可以继续按，不会退出 <code>hydra</code> ；蓝色表示按了一次就会退出 <code>hydra</code> 。例如上例中，我们可能需要多次 undo 和 redo，所以 <code>p</code> 和 <code>n</code> 都是红色的。而 <code>u</code> 可以展示出 <code>undo-tree</code> ，而展示出来之后我们就不再需要 <code>hydra</code> 了，所以我们把 <code>u</code> 配置成了蓝色。所有颜色如下：</p>
+<table>
+<thead>
+<tr>
+<th>color</th>
+<th>toggle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>red</td>
+<td></td>
+</tr>
+<tr>
+<td>blue</td>
+<td>:exit t</td>
+</tr>
+<tr>
+<td>amaranth</td>
+<td>:foreign-keys warn</td>
+</tr>
+<tr>
+<td>teal</td>
+<td>:foreign-keys warn :exit t</td>
+</tr>
+<tr>
+<td>pink</td>
+<td>:foreign-keys run</td>
+</tr>
+</tbody>
+</table>
+<p>
+不想用颜色的话也可以直接用 <code>:exit t</code> 表示按完后就退出。此外还有很多细节可以调整，例如超时退出，具体参考 <code>hydra</code> 的<a href="https://github.com/abo-abo/hydra/wiki/">主页 Wiki</a>吧。</p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-3">
+<h3 id="headline-11">
+multiple-cursors
+</h3>
+<div id="outline-text-headline-11" class="outline-text-3">
+<p>
+<a href="https://github.com/magnars/multiple-cursors.el">主页</a></p>
+<p>
+多光标编辑可是编辑器的必备需求。这个插件提供了多种生成多光标的方式。</p>
 <ol>
-<li><strong>连续多行</strong> ：我们按下 <code>C-SPC</code> 触发一次 <code>set-mark</code>，随后让光标向下移动，再输入 <code>M-x</code> <code>mc/edit-lines</code> 就生成连续多行光标。</li>
-<li><strong>编辑多处同一段文本</strong> ：选中文本，输入命令<code>mc/mark-next-like-this</code>、<code>mc/mark-previous-like-this</code>、 <code>mc/mark-all-like-this</code>，看名字就知道，分别可以标记下一个词、上一个词、所有词。还可以用 <code>mc/skip-to-next-like-this</code> 和 <code>mc/skip-to-previous-like-this</code> 跳过一部分。</li>
-<li><strong>鼠标点击选择</strong> ：见配置，将 <code>mc/toggle-cursor-on-click</code> 绑定到某个键位。笔者使用的是 <code>Ctrl</code>+ <code>Shift</code> + 鼠标左键。</li>
+<li><strong>连续多行</strong> ：我们按下 <code>C-SPC</code> 触发一次 <code>set-mark</code> ，随后让光标向下移动，再输入 <code>M-x</code>  <code>mc/edit-lines</code> 就生成连续多行光标。</li>
+<li><strong>编辑多处同一段文本</strong> ：选中文本，输入命令 <code>mc/mark-next-like-this</code> 、 <code>mc/mark-previous-like-this</code> 、 <code>mc/mark-all-like-this</code> ，看名字就知道，分别可以标记下一个词、上一个词、所有词。还可以用 <code>mc/skip-to-next-like-this</code> 和 <code>mc/skip-to-previous-like-this</code> 跳过一部分。</li>
+<li><strong>鼠标点击选择</strong> ：见配置，将 <code>mc/toggle-cursor-on-click</code> 绑定到某个键位。笔者使用的是 <code>Ctrl</code> \+ <code>Shift</code> \+ 鼠标左键。</li>
 </ol>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">multiple-cursors</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-S-&lt;mouse-1&gt;&#34;</span> <span class="o">.</span> <span class="nv">mc/toggle-cursor-on-click</span><span class="p">))</span>
-</span></span></code></pre></div><p>可以看到这个插件的命令比较杂，一一绑定快捷键难以记忆。这就是又一次要使用 <code>hydra</code> 形成一组快捷键了：</p>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="p">(</span><span class="s">&#34;C-S-&lt;mouse-1&gt;&#34;</span> <span class="o">.</span> <span class="nv">mc/toggle-cursor-on-click</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+可以看到这个插件的命令比较杂，一一绑定快捷键难以记忆。这就是又一次要使用 <code>hydra</code> 形成一组快捷键了：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">multiple-cursors</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:after</span> <span class="nv">hydra</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-x C-h m&#34;</span> <span class="o">.</span> <span class="nv">hydra-multiple-cursors/body</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-S-&lt;mouse-1&gt;&#34;</span> <span class="o">.</span> <span class="nv">mc/toggle-cursor-on-click</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="nb">:hydra</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">hydra-multiple-cursors</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">   <span class="p">(</span><span class="nb">:hint</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="s">&#34;
-</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="s">Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (&gt; (mc/num-cursors) 1) \&#34;s\&#34; \&#34;\&#34;)
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:after</span> <span class="nv">hydra</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-x C-h m&#34;</span> <span class="o">.</span> <span class="nv">hydra-multiple-cursors/body</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-S-&lt;mouse-1&gt;&#34;</span> <span class="o">.</span> <span class="nv">mc/toggle-cursor-on-click</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="nb">:hydra</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="p">(</span><span class="nv">hydra-multiple-cursors</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nb">:hint</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="s">&#34;
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="s">Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (&gt; (mc/num-cursors) 1) \&#34;s\&#34; \&#34;\&#34;)
 </span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="s">------------------------------------------------------------------
-</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s"> [_p_]   Prev     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
-</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s"> [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
-</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s"> [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search      [_q_] Quit
-</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s"> [_|_] Align with input CHAR       [Click] Cursor at point&#34;</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">   <span class="p">(</span><span class="s">&#34;l&#34;</span> <span class="nv">mc/edit-lines</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">   <span class="p">(</span><span class="s">&#34;a&#34;</span> <span class="nv">mc/mark-all-like-this</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">   <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="nv">mc/mark-next-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">   <span class="p">(</span><span class="s">&#34;N&#34;</span> <span class="nv">mc/skip-to-next-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl">   <span class="p">(</span><span class="s">&#34;M-n&#34;</span> <span class="nv">mc/unmark-next-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">   <span class="p">(</span><span class="s">&#34;p&#34;</span> <span class="nv">mc/mark-previous-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">   <span class="p">(</span><span class="s">&#34;P&#34;</span> <span class="nv">mc/skip-to-previous-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">24</span><span class="cl">   <span class="p">(</span><span class="s">&#34;M-p&#34;</span> <span class="nv">mc/unmark-previous-like-this</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">25</span><span class="cl">   <span class="p">(</span><span class="s">&#34;|&#34;</span> <span class="nv">mc/vertical-align</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl">   <span class="p">(</span><span class="s">&#34;s&#34;</span> <span class="nv">mc/mark-all-in-region-regexp</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">27</span><span class="cl">   <span class="p">(</span><span class="s">&#34;0&#34;</span> <span class="nv">mc/insert-numbers</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">28</span><span class="cl">   <span class="p">(</span><span class="s">&#34;A&#34;</span> <span class="nv">mc/insert-letters</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">29</span><span class="cl">   <span class="p">(</span><span class="s">&#34;&lt;mouse-1&gt;&#34;</span> <span class="nv">mc/add-cursor-on-click</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">30</span><span class="cl">   <span class="c1">;; Help with click recognition in this hydra</span>
-</span></span><span class="line"><span class="ln">31</span><span class="cl">   <span class="p">(</span><span class="s">&#34;&lt;down-mouse-1&gt;&#34;</span> <span class="nv">ignore</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">32</span><span class="cl">   <span class="p">(</span><span class="s">&#34;&lt;drag-mouse-1&gt;&#34;</span> <span class="nv">ignore</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">33</span><span class="cl">   <span class="p">(</span><span class="s">&#34;q&#34;</span> <span class="no">nil</span><span class="p">)))</span>
-</span></span></code></pre></div><p>之后我们便可以使用 <code>C-x C-h m</code> 来列出所有的命令，然后选择即可。第一次用 <code>multiple-cursors</code> 可能会问你是否要将 xxx 命令应用到所有的光标上，读者根据具体情况判断即可，之后就不会反复提问了。</p>
+</span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s"> [_p_]  Prev   [_n_]  Next   [_l_] Edit lines [_0_] Insert numbers
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s"> [_P_]  Skip   [_N_]  Skip   [_a_] Mark all  [_A_] Insert letters
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="s"> [_M-p_] Unmark  [_M-n_] Unmark  [_s_] Search   [_q_] Quit
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="s"> [_|_] Align with input CHAR    [Click] Cursor at point&#34;</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">  <span class="p">(</span><span class="s">&#34;l&#34;</span> <span class="nv">mc/edit-lines</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">(</span><span class="s">&#34;a&#34;</span> <span class="nv">mc/mark-all-like-this</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="nv">mc/mark-next-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="p">(</span><span class="s">&#34;N&#34;</span> <span class="nv">mc/skip-to-next-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="p">(</span><span class="s">&#34;M-n&#34;</span> <span class="nv">mc/unmark-next-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="p">(</span><span class="s">&#34;p&#34;</span> <span class="nv">mc/mark-previous-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="p">(</span><span class="s">&#34;P&#34;</span> <span class="nv">mc/skip-to-previous-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">  <span class="p">(</span><span class="s">&#34;M-p&#34;</span> <span class="nv">mc/unmark-previous-like-this</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="p">(</span><span class="s">&#34;|&#34;</span> <span class="nv">mc/vertical-align</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="p">(</span><span class="s">&#34;s&#34;</span> <span class="nv">mc/mark-all-in-region-regexp</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="p">(</span><span class="s">&#34;0&#34;</span> <span class="nv">mc/insert-numbers</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="p">(</span><span class="s">&#34;A&#34;</span> <span class="nv">mc/insert-letters</span> <span class="nb">:exit</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;mouse-1&gt;&#34;</span> <span class="nv">mc/add-cursor-on-click</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="c1">;; Help with click recognition in this hydra</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;down-mouse-1&gt;&#34;</span> <span class="nv">ignore</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">  <span class="p">(</span><span class="s">&#34;&lt;drag-mouse-1&gt;&#34;</span> <span class="nv">ignore</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">  <span class="p">(</span><span class="s">&#34;q&#34;</span> <span class="no">nil</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+之后我们便可以使用 <code>C-x C-h m</code> 来列出所有的命令，然后选择即可。第一次用 <code>multiple-cursors</code> 可能会问你是否要将 xxx 命令应用到所有的光标上，读者根据具体情况判断即可，之后就不会反复提问了。</p>
+<p>
 
 <div class="tip">
   这部分代码事实上来自于 hydra 的 <a href="https://github.com/abo-abo/hydra/wiki/multiple-cursors">Wiki</a>，融入进了 use-package 中。读者也可以多去借鉴，也可自行调整。
 </div>
-
-<h2 id="dashboard">dashboard</h2>
-<p><a href="https://github.com/emacs-dashboard/emacs-dashboard">主页</a></p>
-<p>起初每当我们打开 Emacs 都有一个欢迎界面，显示了一些 Emacs 的帮助信息。这对刚入门而言比较方便，但当我们熟练后这个页面就逐渐无用了。<code>dashboard</code> 就是一个新的欢迎界面，可以列出最近打开的项目、最近打开的文件等等。按下 <code>p</code> 或 <code>r</code> 就可以快速跳转到相应小结里。还可以列出来标记过的书签、<code>org-mode</code> （Emacs 自带的一个强大的笔记系统）日程、自定义控件等。</p>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-3">
+<h3 id="headline-12">
+dashboard
+</h3>
+<div id="outline-text-headline-12" class="outline-text-3">
+<p>
+<a href="https://github.com/emacs-dashboard/emacs-dashboard">主页</a></p>
+<p>
+起初每当我们打开 Emacs 都有一个欢迎界面，显示了一些 Emacs 的帮助信息。这对刚入门而言比较方便，但当我们熟练后这个页面就逐渐无用了。 <code>dashboard</code> 就是一个新的欢迎界面，可以列出最近打开的项目、最近打开的文件等等。按下 <code>p</code> 或 <code>r</code> 就可以快速跳转到相应小结里。还可以列出来标记过的书签、 <code>org-mode</code> （Emacs 自带的一个强大的笔记系统）日程、自定义控件等。</p>
+<p>
 
 <div class="tip">
-  读者此时可能会发现自己的 Projects 节中没有内容，原因在于这部分是配合 <code>projectile</code> 插件使用的，我们将在下一教程中详细介绍 <code>projectile</code>。
+  读者此时可能会发现自己的 Projects 节中没有内容，原因在于这部分是配合 <code>projectile</code> 插件使用的，我们将在下一教程中详细介绍 <code>projectile</code> 。
 </div>
-
-<p><img src="../../images/emacs-book/enhancement/dashboard.png" alt="dashboard"></p>
+</p>
+<p><img src="../../images/emacs-book/enhancement/dashboard.png" alt="../../images/emacs-book/enhancement/dashboard.png" title="../../images/emacs-book/enhancement/dashboard.png" /></p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">dashboard</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:config</span>
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">dashboard-banner-logo-title</span> <span class="s">&#34;Welcome to Emacs!&#34;</span><span class="p">)</span> <span class="c1">;; 个性签名，随读者喜好设置</span>
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="c1">;; (setq dashboard-projects-backend &#39;projectile) ;; 读者可以暂时注释掉这一行，等安装了 projectile 后再使用</span>
 </span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">dashboard-startup-banner</span> <span class="ss">&#39;official</span><span class="p">)</span> <span class="c1">;; 也可以自定义图片</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">dashboard-items</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">recents</span>  <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>   <span class="c1">;; 显示多少个最近文件</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">		  <span class="p">(</span><span class="nv">bookmarks</span> <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">;; 显示多少个最近书签</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">		  <span class="p">(</span><span class="nv">projects</span> <span class="o">.</span> <span class="mi">10</span><span class="p">)))</span> <span class="c1">;; 显示多少个最近项目</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nv">dashboard-setup-startup-hook</span><span class="p">))</span>
-</span></span></code></pre></div><h2 id="tiny">tiny</h2>
-<p><a href="https://github.com/abo-abo/tiny">主页</a></p>
-<p>abo-abo 继续为我们带来好用的插件。tiny 可以实现一个方便的序号宏展开。举个小例子就一目了然了：我们想要定义一组函数分别名为 <code>int fun01</code>、<code>int fun02</code>、 …… 、<code>int fun10</code>，正常我们只能一个个手敲，但有了 <code>tiny</code>，我们可以输入一个这样的简单语法：</p>
-<pre tabindex="0"><code>m1\n10|int func%02d ()
-</code></pre><p>m 是个固定的前缀字符，&quot;1\n10&quot; 表示 1 到 10 的数字，中间用回车换行分隔，竖线 | 后面是我们的格式化文本。然后我们调用 <code>M-x</code> <code>tiny-expand</code> 命令，就能得到如下文本：</p>
-<pre tabindex="0"><code>int func01 ()
-int func02 ()
-int func03 ()
-int func04 ()
-int func05 ()
-int func06 ()
-int func07 ()
-int func08 ()
-int func09 ()
-int func10 ()
-</code></pre><p>插件主页有多个例子，读者可以去了解一下语法。它只需最简单的配置即可：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">tiny</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="c1">;; 可选绑定快捷键，笔者个人感觉不绑定快捷键也无妨</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">tiny-expand</span><span class="p">))</span>
-</span></span></code></pre></div><h2 id="highlight-symbol">highlight-symbol</h2>
-<p><a href="https://github.com/nschum/highlight-symbol.el">主页</a></p>
-<p>这个插件可以高亮出当前 Buffer 中所有的、与光标所在处的符号相同的符号。也就是例如一些同名变量、函数名等。虽然在后面我们使用一些其他插件时也会捎带有类似功能，但它可以同时高亮很多字符，便于阅读代码等。</p>
-<p><img src="../../images/emacs-book/enhancement/highlight-symbol.png" alt="highlight-symbol"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">highlight-symbol</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">highlight-symbol-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;&lt;f3&gt;&#34;</span> <span class="o">.</span> <span class="nv">highlight-symbol</span><span class="p">))</span> <span class="c1">;; 按下 F3 键就可高亮当前符号</span>
-</span></span></code></pre></div><h2 id="rainbow-delimiters">rainbow-delimiters</h2>
-<p><a href="https://github.com/Fanael/rainbow-delimiters">主页</a></p>
-<p>这个插件可以用不同颜色标记多级括号，方便看清代码块（尤其在 EmacsLisp 中）。</p>
-<p><img src="../../images/emacs-book/enhancement/rainbow-delimiters.png" alt="rainbow-delimiters"></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">rainbow-delimiters</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:hook</span> <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">rainbow-delimiters-mode</span><span class="p">))</span>
-</span></span></code></pre></div><h2 id="evil为-vim-用户">evil（为 Vim 用户）</h2>
-<p><a href="https://github.com/emacs-evil/evil">主页</a></p>
-<p><code>evil</code> 可以让习惯了 Vim 的用户在 Emacs 中使用 Vim 按键方式，大大减轻了 Vim 用户转入 Emacs 的成本。笔者本人不是个 Vim 用户，所以对此没有深入研究。基本配置只需参照官网即可，其中提到了少量依赖，读者可以自行检查。两个主要 ”Emacs 发行版“ [Doom Emacs](<a href="https://github.com/hlissner/doom-">https://github.com/hlissner/doom-</a>
-emacs) 和 <a href="https://www.spacemacs.org/">Spacemacs</a> 都是默认支持的，所以这二者对 Vim 转 Emacs 且不喜欢花太多时间配置的人来说非常合适。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">evil</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nb">:init</span> <span class="p">(</span><span class="nv">evil-mode</span><span class="p">))</span>
-</span></span></code></pre></div>
-<div class="tip">
-  <code>evil</code> 可以使用 <code>C-z</code> 切换 Emacs 按键模式和 <code>Vim</code> 按键模式。当然在终端中，这会覆盖掉挂起功能，想要挂起可以按 <code>C-x C-z</code>。
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">dashboard-items</span> <span class="o">&#39;</span><span class="p">((</span><span class="nv">recents</span> <span class="o">.</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">;; 显示多少个最近文件</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">bookmarks</span> <span class="o">.</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; 显示多少个最近书签</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nv">projects</span> <span class="o">.</span> <span class="mi">10</span><span class="p">)))</span> <span class="c1">;; 显示多少个最近项目</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> <span class="p">(</span><span class="nv">dashboard-setup-startup-hook</span><span class="p">))</span></span></span></code></pre></div>
 </div>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+tiny
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
+<p>
+<a href="https://github.com/abo-abo/tiny">主页</a></p>
+<p>
+abo-abo 继续为我们带来好用的插件。tiny 可以实现一个方便的序号宏展开。举个小例子就一目了然了：我们想要定义一组函数分别名为 <code>int fun01</code> 、 <code>int fun02</code> 、 …… 、 <code>int fun10</code> ，正常我们只能一个个手敲，但有了 <code>tiny</code> ，我们可以输入一个这样的简单语法：</p>
+<p>#+end_src
+m1\n10|int func%02d ()</p>
+<p>#+end_src</p>
+<p>
+m 是个固定的前缀字符，&#34;1\n10&#34; 表示 1 到 10 的数字，中间用回车换行分隔，竖线 | 后面是我们的格式化文本。然后我们调用 <code>M-x</code>  <code>tiny-expand</code> 命令，就能得到如下文本：</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln"> 1</span><span class="cl">int func01 ()
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">int func02 ()
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">int func03 ()
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">int func04 ()
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">int func05 ()
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">int func06 ()
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">int func07 ()
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">int func08 ()
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">int func09 ()
+</span></span><span class="line"><span class="ln">10</span><span class="cl">int func10 ()</span></span></code></pre></div>
+</div>
+<p>
+插件主页有多个例子，读者可以去了解一下语法。它只需最简单的配置即可：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">tiny</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="c1">;; 可选绑定快捷键，笔者个人感觉不绑定快捷键也无妨</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"> <span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">tiny-expand</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-3">
+<h3 id="headline-14">
+highlight-symbol
+</h3>
+<div id="outline-text-headline-14" class="outline-text-3">
+<p>
+<a href="https://github.com/nschum/highlight-symbol.el">主页</a></p>
+<p>
+这个插件可以高亮出当前 Buffer 中所有的、与光标所在处的符号相同的符号。也就是例如一些同名变量、函数名等。虽然在后面我们使用一些其他插件时也会捎带有类似功能，但它可以同时高亮很多字符，便于阅读代码等。</p>
+<p><img src="../../images/emacs-book/enhancement/highlight-symbol.png" alt="../../images/emacs-book/enhancement/highlight-symbol.png" title="../../images/emacs-book/enhancement/highlight-symbol.png" /></p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">highlight-symbol</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">highlight-symbol-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="nb">:bind</span> <span class="p">(</span><span class="s">&#34;&lt;f3&gt;&#34;</span> <span class="o">.</span> <span class="nv">highlight-symbol</span><span class="p">))</span> <span class="c1">;; 按下 F3 键就可高亮当前符号</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-3">
+<h3 id="headline-15">
+rainbow-delimiters
+</h3>
+<div id="outline-text-headline-15" class="outline-text-3">
+<p>
+<a href="https://github.com/Fanael/rainbow-delimiters">主页</a></p>
+<p>
+这个插件可以用不同颜色标记多级括号，方便看清代码块（尤其在 EmacsLisp 中）。</p>
+<p>
+!<a href="../../images/emacs-book/enhancement/rainbow-delimiters.png">rainbow-delimiters</a></p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">rainbow-delimiters</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:hook</span> <span class="p">(</span><span class="nv">prog-mode</span> <span class="o">.</span> <span class="nv">rainbow-delimiters-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-3">
+<h3 id="headline-16">
+evil（为 Vim 用户）
+</h3>
+<div id="outline-text-headline-16" class="outline-text-3">
+<p>
+<a href="https://github.com/emacs-evil/evil">主页</a></p>
+<p>
+ <code>evil</code> 可以让习惯了 Vim 的用户在 Emacs 中使用 Vim 按键方式，大大减轻了 Vim 用户转入 Emacs 的成本。笔者本人不是个 Vim 用户，所以对此没有深入研究。基本配置只需参照官网即可，其中提到了少量依赖，读者可以自行检查。两个主要 ”Emacs 发行版“ [Doom Emacs](<a href="https://github.com/hlissner/doom-">https://github.com/hlissner/doom-</a>
+emacs) 和 <a href="https://www.spacemacs.org/">Spacemacs</a> 都是默认支持的，所以这二者对 Vim 转 Emacs 且不喜欢花太多时间配置的人来说非常合适。</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">evil</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">evil-mode</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
 
+<div class="tip">
+  <code>evil</code> 可以使用 <code>C-z</code> 切换 Emacs 按键模式和 <code>Vim</code> 按键模式。当然在终端中，这会覆盖掉挂起功能，想要挂起可以按 <code>C-x C-z</code> 。
+</div>
+</p>
+</div>
+</div>
 
     <div class="pager">
   
@@ -677,7 +990,7 @@ emacs) 和 <a href="https://www.spacemacs.org/">Spacemacs</a> 都是默认支持
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -780,7 +1093,7 @@ emacs) 和 <a href="https://www.spacemacs.org/">Spacemacs</a> 都是默认支持
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

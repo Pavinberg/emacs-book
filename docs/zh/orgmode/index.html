@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.111.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -13,40 +13,34 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>笔记系统 org-mode | 专业 Emacs 入门</title><meta property="og:title" content="笔记系统 org-mode" />
-<meta property="og:description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
-章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。
-读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
+<title>org-mode | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/orgmode/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="org-mode">
+  <meta property="og:description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
+章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。 读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
 基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
-只要打开后缀名为 .org 的文件就会自动启动 org-mode。 语法和 Markdown 类似，只不过星号（*）开头是节，或可以说是标题：
-* 一级标题 ** 二级标题 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
-[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar。属性主要用于为 org-mode 提供高级功能。
-#&#43;foo:bar org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据基本配置中的内容将 org-mode 相关配置单独放到一个文件中（例如 ~/." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/orgmode/" /><meta property="article:section" content="" />
+只要打开后缀名为 .org 的文件就会自动启动 org-mode 。 语法和 Markdown 类似，只不过星号（ * ）开头是节，或可以说是标题：
+1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-<meta property="og:site_name" content="专业 Emacs 入门" />
-<meta itemprop="name" content="笔记系统 org-mode">
-<meta itemprop="description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
-章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。
-读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
+  <meta itemprop="name" content="org-mode">
+  <meta itemprop="description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
+章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。 读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
 基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
-只要打开后缀名为 .org 的文件就会自动启动 org-mode。 语法和 Markdown 类似，只不过星号（*）开头是节，或可以说是标题：
-* 一级标题 ** 二级标题 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
-[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar。属性主要用于为 org-mode 提供高级功能。
-#&#43;foo:bar org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据基本配置中的内容将 org-mode 相关配置单独放到一个文件中（例如 ~/.">
-
-<meta itemprop="wordCount" content="1712">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="笔记系统 org-mode"/>
-<meta name="twitter:description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
-章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。
-读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
+只要打开后缀名为 .org 的文件就会自动启动 org-mode 。 语法和 Markdown 类似，只不过星号（ * ）开头是节，或可以说是标题：
+1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。">
+  <meta itemprop="wordCount" content="1770">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="org-mode">
+  <meta name="twitter:description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
+章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。 读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
 基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
-只要打开后缀名为 .org 的文件就会自动启动 org-mode。 语法和 Markdown 类似，只不过星号（*）开头是节，或可以说是标题：
-* 一级标题 ** 二级标题 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
-[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar。属性主要用于为 org-mode 提供高级功能。
-#&#43;foo:bar org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据基本配置中的内容将 org-mode 相关配置单独放到一个文件中（例如 ~/."/>
+只要打开后缀名为 .org 的文件就会自动启动 org-mode 。 语法和 Markdown 类似，只不过星号（ * ）开头是节，或可以说是标题：
+1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -55,13 +49,11 @@
 
 
   <meta name="description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
-章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。
-读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
+章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。 读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
 基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
-只要打开后缀名为 .org 的文件就会自动启动 org-mode。 语法和 Markdown 类似，只不过星号（*）开头是节，或可以说是标题：
-* 一级标题 ** 二级标题 *** 三级标题 通过按 &amp;lt;TAB&amp;gt; 和 S-&amp;lt;TAB&amp;gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
-[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar。属性主要用于为 org-mode 提供高级功能。
-#&#43;foo:bar org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据基本配置中的内容将 org-mode 相关配置单独放到一个文件中（例如 ~/.">
+只要打开后缀名为 .org 的文件就会自动启动 org-mode 。 语法和 Markdown 类似，只不过星号（ * ）开头是节，或可以说是标题：
+1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &amp;lt;TAB&amp;gt; 和 S-&amp;lt;TAB&amp;gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。">
 
 
 </head>
@@ -138,201 +130,308 @@
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
       <section class="" id="docs-专业-emacs-入门">
         <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么学习-emacs">为什么学习 Emacs</a></li>
-    <li><a href="#emacs-的主要相关资料">Emacs 的主要相关资料</a></li>
-    <li><a href="#对-vim-用户">对 Vim 用户</a></li>
-    <li><a href="#其它-emacs">其它 Emacs</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#安装">安装</a></li>
-    <li><a href="#启动">启动</a></li>
-    <li><a href="#关于键盘操作">关于键盘操作</a></li>
-    <li><a href="#功能键">功能键</a></li>
-    <li><a href="#emacs-命令">Emacs 命令</a></li>
-    <li><a href="#基础快捷键">基础快捷键</a>
-      <ul>
-        <li><a href="#如何退出">如何退出</a></li>
-        <li><a href="#光标移动">光标移动</a></li>
-        <li><a href="#编辑操作">编辑操作</a></li>
-        <li><a href="#标记与跳转">标记与跳转</a></li>
-        <li><a href="#重复操作">重复操作</a></li>
-        <li><a href="#页面移动">页面移动</a></li>
-        <li><a href="#搜索文本">搜索文本</a></li>
-        <li><a href="#其它小操作">其它小操作</a></li>
-        <li><a href="#获得帮助">获得帮助</a></li>
-      </ul>
-    </li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识界面">初识界面</a></li>
-    <li><a href="#文件与-buffer">文件与 Buffer</a>
-      <ul>
-        <li><a href="#打开多文件">打开多文件</a></li>
-        <li><a href="#buffer-的切换">Buffer 的切换</a></li>
-        <li><a href="#文件备份">文件备份</a></li>
-      </ul>
-    </li>
-    <li><a href="#多-window">多 Window</a></li>
-    <li><a href="#多-frame">多 Frame</a></li>
-    <li><a href="#模式mode">模式（mode）</a>
-      <ul>
-        <li><a href="#主模式">主模式</a></li>
-        <li><a href="#次模式">次模式</a></li>
-        <li><a href="#mode-hook">Mode hook</a></li>
-      </ul>
-    </li>
-    <li><a href="#目录文件夹操作">目录（文件夹）操作</a></li>
-    <li><a href="#总结">总结</a></li>
-    <li><a href="#命令列表">命令列表</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#emacs-lisp-简介">Emacs Lisp 简介</a>
-      <ul>
-        <li><a href="#为什么要了解-emacs-lisp">为什么要了解 Emacs Lisp</a></li>
-        <li><a href="#语法简介">语法简介</a></li>
-      </ul>
-    </li>
-    <li><a href="#基础设置">基础设置</a>
-      <ul>
-        <li><a href="#现成的配置">现成的配置</a></li>
-        <li><a href="#基本结构">基本结构</a></li>
-        <li><a href="#最开始的配置">最开始的配置</a></li>
-      </ul>
-    </li>
-    <li><a href="#配置快捷键">配置快捷键</a></li>
-    <li><a href="#melpa">MELPA</a></li>
-    <li><a href="#插件设置-use-package">插件设置 (use-package)</a></li>
-    <li><a href="#配置变量">配置变量</a></li>
-    <li><a href="#配置生效">配置生效</a></li>
-    <li><a href="#结尾">结尾</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#ivy">ivy</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置流程">配置流程</a></li>
-        <li><a href="#效果">效果</a></li>
-        <li><a href="#同类插件">同类插件</a></li>
-      </ul>
-    </li>
-    <li><a href="#amx">amx</a></li>
-    <li><a href="#ace-window">ace-window</a></li>
-    <li><a href="#mwim">mwim</a></li>
-    <li><a href="#undo-tree">undo-tree</a></li>
-    <li><a href="#smart-mode-line可选">smart-mode-line（可选）</a></li>
-    <li><a href="#good-scroll-可选">good-scroll （可选）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#book-marks">Book marks</a></li>
-    <li><a href="#ivy-view">ivy view</a></li>
-    <li><a href="#which-key可选">which-key（可选）</a></li>
-    <li><a href="#avy">avy</a>
-      <ul>
-        <li><a href="#操作逻辑抽象">操作逻辑抽象</a></li>
-        <li><a href="#基本用法">基本用法</a></li>
-        <li><a href="#进阶用法">进阶用法</a></li>
-      </ul>
-    </li>
-    <li><a href="#marginalia">marginalia</a></li>
-    <li><a href="#embark可选">embark（可选）</a></li>
-    <li><a href="#hydra">hydra</a></li>
-    <li><a href="#multiple-cursors">multiple-cursors</a></li>
-    <li><a href="#dashboard">dashboard</a></li>
-    <li><a href="#tiny">tiny</a></li>
-    <li><a href="#highlight-symbol">highlight-symbol</a></li>
-    <li><a href="#rainbow-delimiters">rainbow-delimiters</a></li>
-    <li><a href="#evil为-vim-用户">evil（为 Vim 用户）</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#自动补全">自动补全</a>
-      <ul>
-        <li><a href="#基本配置">基本配置</a></li>
-        <li><a href="#tabnine---ai-自动补全">TabNine - AI 自动补全</a></li>
-        <li><a href="#代码片段模板">代码片段模板</a></li>
-        <li><a href="#文本展开">文本展开</a></li>
-      </ul>
-    </li>
-    <li><a href="#语法检查">语法检查</a></li>
-    <li><a href="#代码分析">代码分析</a></li>
-    <li><a href="#代码调试">代码调试</a></li>
-    <li><a href="#项目管理">项目管理</a></li>
-    <li><a href="#局部变量">局部变量</a></li>
-    <li><a href="#环境变量">环境变量</a></li>
-    <li><a href="#版本管理">版本管理</a></li>
-    <li><a href="#语言相关配置">语言相关配置</a>
-      <ul>
-        <li><a href="#cc">C/C++</a></li>
-        <li><a href="#rust">Rust</a></li>
-        <li><a href="#python">Python</a></li>
-      </ul>
-    </li>
-    <li><a href="#工作区管理">工作区管理</a></li>
-    <li><a href="#终端">终端</a></li>
-    <li><a href="#远程访问">远程访问</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#初识配置-face">初识配置 Face</a></li>
-    <li><a href="#配置-custom-文件">配置 Custom 文件</a></li>
-    <li><a href="#配置主题">配置主题</a></li>
-    <li><a href="#配置图标">配置图标</a></li>
-    <li><a href="#mode-line">mode-line</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
 </nav>
         <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#笔记">笔记</a>
-      <ul>
-        <li><a href="#markdown">Markdown</a></li>
-        <li><a href="#latex">LaTeX</a></li>
-        <li><a href="#中文支持">中文支持</a></li>
-        <li><a href="#org-mode">org-mode</a></li>
-      </ul>
-    </li>
-    <li><a href="#计算器">计算器</a></li>
-    <li><a href="#emacs-server">Emacs server</a></li>
-    <li><a href="#chatgpt">ChatGPT</a></li>
-    <li><a href="#google-this">google-this</a></li>
-  </ul>
-</nav>
-        <h3 class="section_link active"><a id="docs-笔记系统-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">笔记系统 org-mode</a></h3><nav id="TableOfContents">
-  <ul>
-    <li><a href="#基础结构">基础结构</a></li>
-    <li><a href="#zettelkasten-笔记法">Zettelkasten 笔记法</a></li>
-    <li><a href="#任务管理">任务管理</a>
-      <ul>
-        <li><a href="#简介">简介</a></li>
-        <li><a href="#配置">配置</a></li>
-        <li><a href="#快速添加任务">快速添加任务</a></li>
-      </ul>
-    </li>
-    <li><a href="#论文笔记">论文笔记</a></li>
-  </ul>
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
 </nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
+        <h3 class="section_link active"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>笔记系统 org-mode</h1><p><a href="https://orgmode.org/">org-mode</a> 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：</p>
+    <h1>org-mode</h1>
+<p>
+<a href="https://orgmode.org/">org-mode</a> 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：</p>
 <ul>
 <li>章节折叠、跳转</li>
 <li>方便的多状态、多层级 Todo List</li>
@@ -340,350 +439,445 @@
 <li>表格操作（甚至可以像 Excel 一样输入公式自动计算）</li>
 <li>插入代码</li>
 <li>导出成各种格式（Markdown、HTML、LaTeX 等）</li>
-<li>依附于 Emacs 生态， 有着连贯的使用体验</li>
+<li>依附于 Emacs 生态， 有着连贯的使用体验
+
+<code>org-mode</code> 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。</li>
 </ul>
-<p><code>org-mode</code> 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。</p>
 <p>读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。</p>
-<h2 id="基础结构">基础结构</h2>
-<p>org-mode 的<a href="https://orgmode.org/manual/index.html">文档</a>非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。</p>
-<p>只要打开后缀名为 <code>.org</code> 的文件就会自动启动 <code>org-mode</code>。 语法和 Markdown 类似，只不过星号（<code>*</code>）开头是节，或可以说是标题：</p>
-<pre tabindex="0"><code>* 一级标题
-** 二级标题
-*** 三级标题
-</code></pre><p>通过按 <code>&lt;TAB&gt;</code> 和 <code>S-&lt;TAB&gt;</code> 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：</p>
-<pre tabindex="0"><code>[[https://github.com][GitHub]]
-</code></pre><p><code>#+</code> 开头的是该文件的属性，例如下面定义了 <code>foo</code> 属性的值为 <code>bar</code>。属性主要用于为 org-mode 提供高级功能。</p>
-<pre tabindex="0"><code>#+foo:bar
-</code></pre><p>org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据<a href="../configurations#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84">基本配置</a>中的内容将 org-mode 相关配置单独放到一个文件中（例如 <code>~/.emacs.d/lisp/init-org.el</code>）。</p>
-<p>一般来说我们希望把自己的笔记整理到一起，变量 <code>org-directory</code> 表示了用户希望把笔记放到哪里，默认是 <code>~/org/</code> 目录，可以先进行如下设置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-directory</span> <span class="p">(</span><span class="nv">file-truename</span> <span class="s">&#34;~/org/&#34;</span><span class="p">))</span>
-</span></span></code></pre></div><h2 id="zettelkasten-笔记法">Zettelkasten 笔记法</h2>
-<p>Zettelkasten 笔记法不是一个 org-mode 概念，而是一个很流行的笔记方式。大概的思想就是说，我们以前组织文件、书籍往往是按照内容组织成树形结构，自上而下有一级一级的文件夹，将知识分门别类归纳其中。但我们在学习的过程中，很难在一开始就把知识整理成体系，而是先零散学习，之后随着知识面的增加逐渐形成体系。因此，相比于自上而下的笔记方式，自下而上的方式更符合人的学习过程。此外，知识本身并不是个树形结构，知识之间有很多复杂的关联，应该形成一个知识网络，树形分门别类的方式限制了知识间的关联。简而言之，树形结构的组织方式更像是一个专业的学科综述，它不适合作为我们日常的笔记方法。</p>
-<p>Zettelkasten 笔记法就是一个自下而上的知识网络的方式。我们在学习新事物时，先不要去管它到底应该属于哪个分支，而是记下来再说。而等到我们意识到这部分知识和我们已有的知识的关联时，就通过链接的方式与我们已有的知识网络连接起来，由此我们的知识网络就增加了一个新的节点。通过链接的方式，我们可以逐渐组织我们自己的知识网络，没有任何结构性的限制。</p>
-<p>那么在 Emacs 中，<a href="https://www.orgroam.com">org-roam</a> 就提供了这样的功能。以下是一个基本配置：</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+基础结构
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+org-mode 的<a href="https://orgmode.org/manual/index.html">文档</a>非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。</p>
+<p>
+只要打开后缀名为 <code>.org</code> 的文件就会自动启动 <code>org-mode</code> 。 语法和 Markdown 类似，只不过星号（ <code>*</code> ）开头是节，或可以说是标题：</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl"> * 一级标题
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> ** 二级标题
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> *** 三级标题</span></span></code></pre></div>
+</div>
+<p>
+通过按 <code>&lt;TAB&gt;</code> 和 <code>S-&lt;TAB&gt;</code> 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">[[https://github.com][GitHub]]</span></span></code></pre></div>
+</div>
+<p>
+ <code>#+</code> 开头的是该文件的属性，例如下面定义了 <code>foo</code> 属性的值为 <code>bar</code> 。属性主要用于为 org-mode 提供高级功能。</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">*+foo:bar</span></span></code></pre></div>
+</div>
+<p>
+org-mode 的配置自由度非常高，每个人都有自己的偏好，不复杂但可能会很长。因此建议根据<a href="../configurations#基本结构">基本配置</a>中的内容将 org-mode 相关配置单独放到一个文件中（例如 <code>~/.emacs.d/lisp/init-org.el</code> ）。</p>
+<p>
+一般来说我们希望把自己的笔记整理到一起，变量 <code>org-directory</code> 表示了用户希望把笔记放到哪里，默认是 <code>~/org/</code> 目录，可以先进行如下设置：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-directory</span> <span class="p">(</span><span class="nv">file-truename</span> <span class="s">&#34;~/org/&#34;</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+Zettelkasten 笔记法
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+Zettelkasten 笔记法不是一个 org-mode 概念，而是一个很流行的笔记方式。大概的思想就是说，我们以前组织文件、书籍往往是按照内容组织成树形结构，自上而下有一级一级的文件夹，将知识分门别类归纳其中。但我们在学习的过程中，很难在一开始就把知识整理成体系，而是先零散学习，之后随着知识面的增加逐渐形成体系。因此，相比于自上而下的笔记方式，自下而上的方式更符合人的学习过程。此外，知识本身并不是个树形结构，知识之间有很多复杂的关联，应该形成一个知识网络，树形分门别类的方式限制了知识间的关联。简而言之，树形结构的组织方式更像是一个专业的学科综述，它不适合作为我们日常的笔记方法。</p>
+<p>
+Zettelkasten 笔记法就是一个自下而上的知识网络的方式。我们在学习新事物时，先不要去管它到底应该属于哪个分支，而是记下来再说。而等到我们意识到这部分知识和我们已有的知识的关联时，就通过链接的方式与我们已有的知识网络连接起来，由此我们的知识网络就增加了一个新的节点。通过链接的方式，我们可以逐渐组织我们自己的知识网络，没有任何结构性的限制。</p>
+<p>
+那么在 Emacs 中，<a href="https://www.orgroam.com">org-roam</a> 就提供了这样的功能。以下是一个基本配置：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org-roam</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">   <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">   <span class="nb">:after</span> <span class="nv">org</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">   <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">   <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-v2-ack</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; Acknowledge V2 upgrade</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">   <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">   <span class="p">(</span><span class="nv">org-roam-setup</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">   <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">   <span class="p">(</span><span class="nv">org-roam-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;roam/&#34;</span><span class="p">))</span> <span class="c1">; 设置 org-roam 目录</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">   <span class="p">((</span><span class="s">&#34;C-c n f&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="p">(</span><span class="nb">:map</span> <span class="nv">org-mode-map</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">          <span class="p">((</span><span class="s">&#34;C-c n i&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">           <span class="p">(</span><span class="s">&#34;C-c n o&#34;</span> <span class="o">.</span> <span class="nv">org-id-get-create</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">           <span class="p">(</span><span class="s">&#34;C-c n t&#34;</span> <span class="o">.</span> <span class="nv">org-roam-tag-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">           <span class="p">(</span><span class="s">&#34;C-c n a&#34;</span> <span class="o">.</span> <span class="nv">org-roam-alias-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">           <span class="p">(</span><span class="s">&#34;C-c n l&#34;</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)))))</span>
-</span></span></code></pre></div><p>在 <code>org-roam</code> 中，一个文件就是一个节点（node）。我们通过它提供的函数来新建文件，即按 <code>C-c n f</code> 调用 <code>org-roam-node-find</code> 来新建或打开一个笔记文件。新建时会让我们输入一个标题，这个后面随时可改，<code>org-roam</code> 会在我们指定的 <code>org-roam-directory</code> 里（这里设定的是 <code>~/org/roam/</code> 目录）新建一个带时间戳的文件作为实际存放这个笔记的文件，并在属性中绑定一个唯一的 ID，以防止标题重名。我们并不需要手动去访问这个目录里的文件，只需要用 <code>C-c n f</code> 来打开文件即可。<code>org-roam</code> 会自动和 <code>ivy</code> 或 <code>helm</code> 协作，提供补全功能。</p>
-<p>打开了一个笔记文件后，可以按 <code>C-c n i</code> 调用 <code>org-roam-node-insert</code> 来关联另一个节点。此外也可以对文件起别名、添加标签等等。其余功能都可以在文档中找到。对一个链接可以按 <code>C-c C-o</code> 调用 <code>org-open-at-point</code> 打开。</p>
-<p>此外，对于新建的笔记，我们可以自定义它的模板，例如笔者希望能记录每个笔记最后一次修改的时间，这里写了较多的辅助函数（<code>pv/</code> 前缀的函数），但是逻辑就是在文件保存时（<code>before-save</code>）绑定一个 Hook（<code>pv/org-set-last-modified</code>），可以把当前的时间记录下来：</p>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:after</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-v2-ack</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; Acknowledge V2 upgrade</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">org-roam-setup</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="p">(</span><span class="nv">org-roam-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;roam/&#34;</span><span class="p">))</span> <span class="c1">; 设置 org-roam 目录</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-c n f&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nb">:map</span> <span class="nv">org-mode-map</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">     <span class="p">((</span><span class="s">&#34;C-c n i&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n o&#34;</span> <span class="o">.</span> <span class="nv">org-id-get-create</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n t&#34;</span> <span class="o">.</span> <span class="nv">org-roam-tag-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n a&#34;</span> <span class="o">.</span> <span class="nv">org-roam-alias-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n l&#34;</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)))))</span></span></span></code></pre></div>
+</div>
+<p>
+在 <code>org-roam</code> 中，一个文件就是一个节点（node）。我们通过它提供的函数来新建文件，即按 <code>C-c n f</code> 调用 <code>org-roam-node-find</code> 来新建或打开一个笔记文件。新建时会让我们输入一个标题，这个后面随时可改， <code>org-roam</code> 会在我们指定的 <code>org-roam-directory</code> 里（这里设定的是 <code>~/org/roam/</code> 目录）新建一个带时间戳的文件作为实际存放这个笔记的文件，并在属性中绑定一个唯一的 ID，以防止标题重名。我们并不需要手动去访问这个目录里的文件，只需要用 <code>C-c n f</code> 来打开文件即可。 <code>org-roam</code> 会自动和 <code>ivy</code> 或 <code>helm</code> 协作，提供补全功能。</p>
+<p>
+打开了一个笔记文件后，可以按 <code>C-c n i</code> 调用 <code>org-roam-node-insert</code> 来关联另一个节点。此外也可以对文件起别名、添加标签等等。其余功能都可以在文档中找到。对一个链接可以按 <code>C-c C-o</code> 调用 <code>org-open-at-point</code> 打开。</p>
+<p>
+此外，对于新建的笔记，我们可以自定义它的模板，例如笔者希望能记录每个笔记最后一次修改的时间，这里写了较多的辅助函数（ <code>pv/</code> 前缀的函数），但是逻辑就是在文件保存时（ <code>before-save</code> ）绑定一个 Hook（ <code>pv/org-set-last-modified</code> ），可以把当前的时间记录下来：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org-roam</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">   <span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">   <span class="nb">:after</span> <span class="nv">org</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">   <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">   <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-v2-ack</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; Acknowledge V2 upgrade</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">   <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">   <span class="p">(</span><span class="nv">org-roam-setup</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">   <span class="c1">;;--------------------------</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">   <span class="c1">;; Handling file properties for ‘LAST_MODIFIED’</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="c1">;;--------------------------</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">   <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-find-time-file-property</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">     <span class="s">&#34;Return the position of the time file PROPERTY if it exists.
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nb">:after</span> <span class="nv">org</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="p">(</span><span class="nb">setq</span> <span class="nv">org-roam-v2-ack</span> <span class="no">t</span><span class="p">)</span> <span class="c1">;; Acknowledge V2 upgrade</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">org-roam-setup</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="c1">;;--------------------------</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="c1">;; Handling file properties for ‘LAST_MODIFIED’</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="c1">;;--------------------------</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-find-time-file-property</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   <span class="s">&#34;Return the position of the time file PROPERTY if it exists.
 </span></span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="s">When ANYWHERE is non-nil, search beyond the preamble.&#34;</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">     <span class="p">(</span><span class="nb">save-excursion</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">       <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">       <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">first-heading</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">              <span class="p">(</span><span class="nb">save-excursion</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">				<span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">org-outline-regexp-bol</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">         <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;^#\\+%s:&#34;</span> <span class="nv">property</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl">                                  <span class="p">(</span><span class="nb">if</span> <span class="nv">anywhere</span> <span class="no">nil</span> <span class="nv">first-heading</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">                                  <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">           <span class="p">(</span><span class="nf">point</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">   <span class="p">(</span><span class="nb">save-excursion</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="p">(</span><span class="nf">goto-char</span> <span class="p">(</span><span class="nf">point-min</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">first-heading</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">       <span class="p">(</span><span class="nb">save-excursion</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="p">(</span><span class="nf">re-search-forward</span> <span class="nv">org-outline-regexp-bol</span> <span class="no">nil</span> <span class="no">t</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">     <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nf">re-search-forward</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;^#\\+%s:&#34;</span> <span class="nv">property</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">                 <span class="p">(</span><span class="nb">if</span> <span class="nv">anywhere</span> <span class="no">nil</span> <span class="nv">first-heading</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">                 <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">      <span class="p">(</span><span class="nf">point</span><span class="p">)))))</span>
 </span></span><span class="line"><span class="ln">24</span><span class="cl">
-</span></span><span class="line"><span class="ln">25</span><span class="cl">   <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-has-time-file-property-p</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl">     <span class="s">&#34;Return the position of time file PROPERTY if it is defined.
+</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-has-time-file-property-p</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">   <span class="s">&#34;Return the position of time file PROPERTY if it is defined.
 </span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="s">As a special case, return -1 if the time file PROPERTY exists but
 </span></span></span><span class="line"><span class="ln">29</span><span class="cl"><span class="s">is not defined.&#34;</span>
-</span></span><span class="line"><span class="ln">30</span><span class="cl">     <span class="p">(</span><span class="nv">when-let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nv">pv/org-find-time-file-property</span> <span class="nv">property</span> <span class="nv">anywhere</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">31</span><span class="cl">       <span class="p">(</span><span class="nb">save-excursion</span>
-</span></span><span class="line"><span class="ln">32</span><span class="cl">         <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pos</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">33</span><span class="cl">         <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">looking-at-p</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">34</span><span class="cl">                  <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nf">forward-char</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">35</span><span class="cl">                         <span class="p">(</span><span class="nv">org-at-timestamp-p</span> <span class="ss">&#39;lax</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">36</span><span class="cl">             <span class="nv">pos</span>
-</span></span><span class="line"><span class="ln">37</span><span class="cl">           <span class="mi">-1</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">38</span><span class="cl">   <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-set-time-file-property</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span> <span class="nv">pos</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="s">&#34;Set the time file PROPERTY in the preamble.
+</span></span><span class="line"><span class="ln">30</span><span class="cl">   <span class="p">(</span><span class="nv">when-let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nv">pv/org-find-time-file-property</span> <span class="nv">property</span> <span class="nv">anywhere</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="p">(</span><span class="nb">save-excursion</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">     <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">33</span><span class="cl">     <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nv">looking-at-p</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">         <span class="p">(</span><span class="nb">progn</span> <span class="p">(</span><span class="nf">forward-char</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">             <span class="p">(</span><span class="nv">org-at-timestamp-p</span> <span class="ss">&#39;lax</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">       <span class="nv">pos</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">      <span class="mi">-1</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-set-time-file-property</span> <span class="p">(</span><span class="nv">property</span> <span class="kp">&amp;optional</span> <span class="nv">anywhere</span> <span class="nv">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">  <span class="s">&#34;Set the time file PROPERTY in the preamble.
 </span></span></span><span class="line"><span class="ln">40</span><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="ln">41</span><span class="cl"><span class="s">When ANYWHERE is non-nil, search beyond the preamble.
 </span></span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="ln">43</span><span class="cl"><span class="s">If the position of the file PROPERTY has already been computed,
 </span></span></span><span class="line"><span class="ln">44</span><span class="cl"><span class="s">it can be passed in POS.&#34;</span>
-</span></span><span class="line"><span class="ln">45</span><span class="cl">    <span class="p">(</span><span class="nv">when-let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">pos</span>
-</span></span><span class="line"><span class="ln">46</span><span class="cl">                        <span class="p">(</span><span class="nv">pv/org-find-time-file-property</span> <span class="nv">property</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">47</span><span class="cl">      <span class="p">(</span><span class="nb">save-excursion</span>
-</span></span><span class="line"><span class="ln">48</span><span class="cl">        <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pos</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">49</span><span class="cl">        <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">looking-at-p</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">50</span><span class="cl">            <span class="p">(</span><span class="nf">forward-char</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">51</span><span class="cl">          <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34; &#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">52</span><span class="cl">        <span class="p">(</span><span class="nf">delete-region</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="p">(</span><span class="nf">line-end-position</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">53</span><span class="cl">        <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">now</span> <span class="p">(</span><span class="nf">format-time-string</span> <span class="s">&#34;[%Y-%m-%d %a %H:%M]&#34;</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">54</span><span class="cl">          <span class="p">(</span><span class="nf">insert</span> <span class="nv">now</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl">  <span class="p">(</span><span class="nv">when-let</span> <span class="p">((</span><span class="nv">pos</span> <span class="p">(</span><span class="nb">or</span> <span class="nv">pos</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">            <span class="p">(</span><span class="nv">pv/org-find-time-file-property</span> <span class="nv">property</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">   <span class="p">(</span><span class="nb">save-excursion</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">    <span class="p">(</span><span class="nf">goto-char</span> <span class="nv">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">    <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">looking-at-p</span> <span class="s">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">50</span><span class="cl">      <span class="p">(</span><span class="nf">forward-char</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl">     <span class="p">(</span><span class="nf">insert</span> <span class="s">&#34; &#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">    <span class="p">(</span><span class="nf">delete-region</span> <span class="p">(</span><span class="nf">point</span><span class="p">)</span> <span class="p">(</span><span class="nf">line-end-position</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl">    <span class="p">(</span><span class="nb">let*</span> <span class="p">((</span><span class="nv">now</span> <span class="p">(</span><span class="nf">format-time-string</span> <span class="s">&#34;[%Y-%m-%d %a %H:%M]&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">54</span><span class="cl">     <span class="p">(</span><span class="nf">insert</span> <span class="nv">now</span><span class="p">)))))</span>
 </span></span><span class="line"><span class="ln">55</span><span class="cl">
-</span></span><span class="line"><span class="ln">56</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-set-last-modified</span> <span class="p">()</span>
-</span></span><span class="line"><span class="ln">57</span><span class="cl">    <span class="s">&#34;Update the LAST_MODIFIED file property in the preamble.&#34;</span>
-</span></span><span class="line"><span class="ln">58</span><span class="cl">    <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">derived-mode-p</span> <span class="ss">&#39;org-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">59</span><span class="cl">      <span class="p">(</span><span class="nv">pv/org-set-time-file-property</span> <span class="s">&#34;last_modified&#34;</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">60</span><span class="cl">   <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln">61</span><span class="cl">   <span class="p">(</span><span class="nv">before-save</span> <span class="o">.</span> <span class="nv">pv/org-set-last-modified</span><span class="p">)</span> <span class="c1">; 保存文件时调用</span>
-</span></span><span class="line"><span class="ln">62</span><span class="cl">   <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln">63</span><span class="cl">   <span class="p">(</span><span class="nv">org-roam-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;roam/&#34;</span><span class="p">))</span>  <span class="c1">; 设置 org-roam 目录</span>
-</span></span><span class="line"><span class="ln">64</span><span class="cl">   <span class="c1">;; 自定义默认模板</span>
-</span></span><span class="line"><span class="ln">65</span><span class="cl">   <span class="p">(</span><span class="nv">org-roam-capture-templates</span>
-</span></span><span class="line"><span class="ln">66</span><span class="cl">    <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;d&#34;</span> <span class="s">&#34;default&#34;</span> <span class="nv">plain</span> <span class="s">&#34;%?&#34;</span>
-</span></span><span class="line"><span class="ln">67</span><span class="cl">       <span class="nb">:if-new</span>
-</span></span><span class="line"><span class="ln">68</span><span class="cl">       <span class="p">(</span><span class="nv">file+head</span> <span class="s">&#34;${slug}-%&lt;%Y%m%d%H%M%S&gt;.org&#34;</span>
-</span></span><span class="line"><span class="ln">69</span><span class="cl">                  <span class="s">&#34;#+title: ${title}\n#+date: %u\n#+last_modified: \n\n&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">70</span><span class="cl">       <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln">71</span><span class="cl">   <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-c n f&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">72</span><span class="cl">          <span class="p">(</span><span class="nb">:map</span> <span class="nv">org-mode-map</span>
-</span></span><span class="line"><span class="ln">73</span><span class="cl">            <span class="p">((</span><span class="s">&#34;C-c n i&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">74</span><span class="cl">            <span class="p">(</span><span class="s">&#34;C-c n o&#34;</span> <span class="o">.</span> <span class="nv">org-id-get-create</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">75</span><span class="cl">            <span class="p">(</span><span class="s">&#34;C-c n t&#34;</span> <span class="o">.</span> <span class="nv">org-roam-tag-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">76</span><span class="cl">            <span class="p">(</span><span class="s">&#34;C-c n a&#34;</span> <span class="o">.</span> <span class="nv">org-roam-alias-add</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">77</span><span class="cl">            <span class="p">(</span><span class="s">&#34;C-c n l&#34;</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)))))</span>
-</span></span></code></pre></div><p>笔者这里只有一个默认模板，如果用户设定了多个模板，在新建文件时就会询问用户想要用哪个模板新建，十分方便。</p>
-<h2 id="任务管理">任务管理</h2>
-<h3 id="简介">简介</h3>
-<p>org-mode 另一个用途是可以管理自己的任务清单。在毫无自定义配置时，写起来大概是这样的：</p>
-<p><img src="../../images/emacs-book/orgmode/todo-list.png" alt="todo-list"></p>
-<p>相信很多读者会和笔者一开始一样心想：“这不就是一个很普通的 todo-list 嘛，这么简单的事情什么软件不能做？而且组织整理任务清单好麻烦的，没有这个习惯。”</p>
-<p>但事实上，任务管理是要搭配 <a href="https://orgmode.org/manual/Agenda-Views.html">org-agenda</a> 一同使用。实际的使用方式是，用户在固定的一个或几个文件中写自己的任务清单，然后调用 <code>org-agenda</code> 命令，它会为我们整理一个漂亮的日程安排。其中可以选择很多种方式展示，例如过滤掉已完成的任务，按 Deadline 顺序显示等等。</p>
-<p>此外，每个任务可以不止是有“TODO”和”DONE”两种状态，而是自定义任何其它状态；org-mode 还提供了任务优先级功能。于是，就可以有这样的效果：</p>
-<p><img src="../../images/emacs-book/orgmode/org-agenda.png" alt="org-agenda"></p>
-<p>笔者当时截图日期是 5 月 11 日周四的 12:20。可以看到，最开头是最高优先级的、也就是亟需完成的任务。紧接着，是前两天开始的 7 天时间的任务概览。其中，今天的任务会详细显示，还包括了红色的前两天超时未完成的任务，以及每周四的 18:30 预订了一个周期性的组会，处于“MEETING”状态。最下方是详细的普通优先级任务，其中第一条处于“WAITING”状态，因为这是笔者要投稿论文，需要在网站注册，但当时该注册网站尚未启动，所以需要等待它开通。右侧两个冒号间的内容则是各个任务的标签（tag），可用于筛选任务。</p>
-<p>可以看到，org-mode 结合 org-agenda 后，不仅仅是一个简单的 todo-list，还是一个日历，还可以具备多状态、多优先级、多标签。具备多状态的好处就是，如果一个任务只有完成和没完成两个状态，那如果我们需要等待别人完成我们才能开始时，就需要自己在脑袋里记着，而现在我们有了“WAITING”状态，就可以显式标记出来。同时它还可以是多层级的，大任务下可以写小任务，有利于拆解复杂的任务。而会议其实不算是一个待办事项，所以还有额外的“MEETING”状态。任务可以被取消，所以还有个“CANCELD”状态。</p>
-<h3 id="配置">配置</h3>
-<p>笔者的配置主要来自于<a href="https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html">这篇博客</a>和<a href="http://doc.norang.ca/org-mode.html">这篇博客</a>。在 <code>:init</code> 中，笔者设置了 <code>pv/org-agenda-files</code> 为目录 <code>~/org/Agenda/</code>，这表示“该目录下的所有文件都是用于写 todo-list 的，在使用 <code>org-agenda</code> 时需要对它们进行读取”。随后新建一个文件 <code>~/org/Agenda/agenda.org</code> 用来写自己的 todo-list，调用 <code>C-c a</code> <code>d</code> 就可以展示类似上图的任务列表视图。</p>
+</span></span><span class="line"><span class="ln">56</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-set-last-modified</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">57</span><span class="cl">  <span class="s">&#34;Update the LAST_MODIFIED file property in the preamble.&#34;</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">  <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">derived-mode-p</span> <span class="ss">&#39;org-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">59</span><span class="cl">   <span class="p">(</span><span class="nv">pv/org-set-time-file-property</span> <span class="s">&#34;last_modified&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">60</span><span class="cl">  <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln">61</span><span class="cl">  <span class="p">(</span><span class="nv">before-save</span> <span class="o">.</span> <span class="nv">pv/org-set-last-modified</span><span class="p">)</span> <span class="c1">; 保存文件时调用</span>
+</span></span><span class="line"><span class="ln">62</span><span class="cl">  <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">63</span><span class="cl">  <span class="p">(</span><span class="nv">org-roam-directory</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;roam/&#34;</span><span class="p">))</span> <span class="c1">; 设置 org-roam 目录</span>
+</span></span><span class="line"><span class="ln">64</span><span class="cl">  <span class="c1">;; 自定义默认模板</span>
+</span></span><span class="line"><span class="ln">65</span><span class="cl">  <span class="p">(</span><span class="nv">org-roam-capture-templates</span>
+</span></span><span class="line"><span class="ln">66</span><span class="cl">  <span class="o">&#39;</span><span class="p">((</span><span class="s">&#34;d&#34;</span> <span class="s">&#34;default&#34;</span> <span class="nv">plain</span> <span class="s">&#34;%?&#34;</span>
+</span></span><span class="line"><span class="ln">67</span><span class="cl">    <span class="nb">:if-new</span>
+</span></span><span class="line"><span class="ln">68</span><span class="cl">    <span class="p">(</span><span class="nv">file+head</span> <span class="s">&#34;${slug}-%&lt;%Y%m%d%H%M%S&gt;.org&#34;</span>
+</span></span><span class="line"><span class="ln">69</span><span class="cl">         <span class="s">&#34;#+title: ${title}\n#+date: %u\n#+last_modified: \n\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">70</span><span class="cl">    <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">71</span><span class="cl">  <span class="nb">:bind</span> <span class="p">((</span><span class="s">&#34;C-c n f&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-find</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">72</span><span class="cl">     <span class="p">(</span><span class="nb">:map</span> <span class="nv">org-mode-map</span>
+</span></span><span class="line"><span class="ln">73</span><span class="cl">      <span class="p">((</span><span class="s">&#34;C-c n i&#34;</span> <span class="o">.</span> <span class="nv">org-roam-node-insert</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">74</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n o&#34;</span> <span class="o">.</span> <span class="nv">org-id-get-create</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">75</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n t&#34;</span> <span class="o">.</span> <span class="nv">org-roam-tag-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">76</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n a&#34;</span> <span class="o">.</span> <span class="nv">org-roam-alias-add</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">77</span><span class="cl">      <span class="p">(</span><span class="s">&#34;C-c n l&#34;</span> <span class="o">.</span> <span class="nv">org-roam-buffer-toggle</span><span class="p">)))))</span></span></span></code></pre></div>
+</div>
+<p>
+笔者这里只有一个默认模板，如果用户设定了多个模板，在新建文件时就会询问用户想要用哪个模板新建，十分方便。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+任务管理
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+简介
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p>
+org-mode 另一个用途是可以管理自己的任务清单。在毫无自定义配置时，写起来大概是这样的：</p>
+<p><img src="../../images/emacs-book/orgmode/todo-list.png" alt="../../images/emacs-book/orgmode/todo-list.png" title="../../images/emacs-book/orgmode/todo-list.png" /></p>
+<p>
+相信很多读者会和笔者一开始一样心想：“这不就是一个很普通的 todo-list 嘛，这么简单的事情什么软件不能做？而且组织整理任务清单好麻烦的，没有这个习惯。”</p>
+<p>
+但事实上，任务管理是要搭配 <a href="https://orgmode.org/manual/Agenda-Views.html">org-agenda</a> 一同使用。实际的使用方式是，用户在固定的一个或几个文件中写自己的任务清单，然后调用 <code>org-agenda</code> 命令，它会为我们整理一个漂亮的日程安排。其中可以选择很多种方式展示，例如过滤掉已完成的任务，按 Deadline 顺序显示等等。</p>
+<p>
+此外，每个任务可以不止是有“TODO”和”DONE”两种状态，而是自定义任何其它状态；org-mode 还提供了任务优先级功能。于是，就可以有这样的效果：</p>
+<p><img src="../../images/emacs-book/orgmode/org-agenda.png" alt="../../images/emacs-book/orgmode/org-agenda.png" title="../../images/emacs-book/orgmode/org-agenda.png" /></p>
+<p>
+笔者当时截图日期是 5 月 11 日周四的 12:20。可以看到，最开头是最高优先级的、也就是亟需完成的任务。紧接着，是前两天开始的 7 天时间的任务概览。其中，今天的任务会详细显示，还包括了红色的前两天超时未完成的任务，以及每周四的 18:30 预订了一个周期性的组会，处于“MEETING”状态。最下方是详细的普通优先级任务，其中第一条处于“WAITING”状态，因为这是笔者要投稿论文，需要在网站注册，但当时该注册网站尚未启动，所以需要等待它开通。右侧两个冒号间的内容则是各个任务的标签（tag），可用于筛选任务。</p>
+<p>
+可以看到，org-mode 结合 org-agenda 后，不仅仅是一个简单的 todo-list，还是一个日历，还可以具备多状态、多优先级、多标签。具备多状态的好处就是，如果一个任务只有完成和没完成两个状态，那如果我们需要等待别人完成我们才能开始时，就需要自己在脑袋里记着，而现在我们有了“WAITING”状态，就可以显式标记出来。同时它还可以是多层级的，大任务下可以写小任务，有利于拆解复杂的任务。而会议其实不算是一个待办事项，所以还有额外的“MEETING”状态。任务可以被取消，所以还有个“CANCELD”状态。</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-4">
+<h4 id="headline-5">
+配置
+</h4>
+<div id="outline-text-headline-5" class="outline-text-4">
+<p>
+笔者的配置主要来自于<a href="https://blog.aaronbieber.com/2016/09/24/an-agenda-for-life-with-org-mode.html">这篇博客</a>和<a href="http://doc.norang.ca/org-mode.html">这篇博客</a>。在 <code>:init</code> 中，笔者设置了 <code>pv/org-agenda-files</code> 为目录 <code>~/org/Agenda/</code> ，这表示“该目录下的所有文件都是用于写 todo-list 的，在使用 <code>org-agenda</code> 时需要对它们进行读取”。随后新建一个文件 <code>~/org/Agenda/agenda.org</code> 用来写自己的 todo-list，调用 <code>C-c a</code>  <code>d</code> 就可以展示类似上图的任务列表视图。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">  1</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">org-directory</span> <span class="p">(</span><span class="nv">file-truename</span> <span class="s">&#34;~/org/&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">pv/org-agenda-files</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;Agenda/&#34;</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln">  3</span><span class="cl">
 </span></span><span class="line"><span class="ln">  4</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
-</span></span><span class="line"><span class="ln">  5</span><span class="cl">  <span class="nb">:init</span>
-</span></span><span class="line"><span class="ln">  6</span><span class="cl">  <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;org-indent</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">  7</span><span class="cl">  <span class="nb">:config</span>
-</span></span><span class="line"><span class="ln">  8</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/init-org-hook</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">  5</span><span class="cl"> <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln">  6</span><span class="cl"> <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;org-indent</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">  7</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">  8</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/init-org-hook</span> <span class="p">()</span>
 </span></span><span class="line"><span class="ln">  9</span><span class="cl">	<span class="p">(</span><span class="nb">setq</span> <span class="nv">truncate-lines</span> <span class="no">nil</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln"> 10</span><span class="cl">	<span class="p">(</span><span class="nv">org-toggle-pretty-entities</span><span class="p">))</span> <span class="c1">; display LaTeX symbols</span>
-</span></span><span class="line"><span class="ln"> 11</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-skip-subtree-if-priority</span> <span class="p">(</span><span class="nv">priority</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 11</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-skip-subtree-if-priority</span> <span class="p">(</span><span class="nv">priority</span><span class="p">)</span>
 </span></span><span class="line"><span class="ln"> 12</span><span class="cl">	<span class="s">&#34;Skip an agenda subtree if it has a priority of PRIORITY.
 </span></span></span><span class="line"><span class="ln"> 13</span><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="ln"> 14</span><span class="cl"><span class="s">PRIORITY may be one of the characters ?A, ?B, or ?C.&#34;</span>
 </span></span><span class="line"><span class="ln"> 15</span><span class="cl">	<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">subtree-end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">org-end-of-subtree</span> <span class="no">t</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 16</span><span class="cl">          <span class="p">(</span><span class="nv">pri-value</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">1000</span> <span class="p">(</span><span class="nf">-</span> <span class="nv">org-lowest-priority</span> <span class="nv">priority</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 17</span><span class="cl">          <span class="p">(</span><span class="nv">pri-current</span> <span class="p">(</span><span class="nv">org-get-priority</span> <span class="p">(</span><span class="nv">thing-at-point</span> <span class="ss">&#39;line</span> <span class="no">t</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 18</span><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">=</span> <span class="nv">pri-value</span> <span class="nv">pri-current</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 19</span><span class="cl">          <span class="nv">subtree-end</span>
-</span></span><span class="line"><span class="ln"> 20</span><span class="cl">		<span class="no">nil</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 21</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-skip-subtree-if-habit</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 16</span><span class="cl">     <span class="p">(</span><span class="nv">pri-value</span> <span class="p">(</span><span class="nf">*</span> <span class="mi">1000</span> <span class="p">(</span><span class="nf">-</span> <span class="nv">org-lowest-priority</span> <span class="nv">priority</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 17</span><span class="cl">     <span class="p">(</span><span class="nv">pri-current</span> <span class="p">(</span><span class="nv">org-get-priority</span> <span class="p">(</span><span class="nv">thing-at-point</span> <span class="ss">&#39;line</span> <span class="no">t</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 18</span><span class="cl">   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">=</span> <span class="nv">pri-value</span> <span class="nv">pri-current</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 19</span><span class="cl">     <span class="nv">subtree-end</span>
+</span></span><span class="line"><span class="ln"> 20</span><span class="cl"> <span class="no">nil</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 21</span><span class="cl"> <span class="p">(</span><span class="nb">defun</span> <span class="nv">pv/org-skip-subtree-if-habit</span> <span class="p">()</span>
 </span></span><span class="line"><span class="ln"> 22</span><span class="cl">	<span class="s">&#34;Skip an agenda entry if it has a STYLE property equal to \&#34;habit\&#34;.&#34;</span>
 </span></span><span class="line"><span class="ln"> 23</span><span class="cl">	<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">subtree-end</span> <span class="p">(</span><span class="nb">save-excursion</span> <span class="p">(</span><span class="nv">org-end-of-subtree</span> <span class="no">t</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 24</span><span class="cl">      <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">string=</span> <span class="p">(</span><span class="nv">org-entry-get</span> <span class="no">nil</span> <span class="s">&#34;STYLE&#34;</span><span class="p">)</span> <span class="s">&#34;habit&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 25</span><span class="cl">          <span class="nv">subtree-end</span>
-</span></span><span class="line"><span class="ln"> 26</span><span class="cl">		<span class="no">nil</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 27</span><span class="cl">  <span class="nb">:hook</span>
-</span></span><span class="line"><span class="ln"> 28</span><span class="cl">  <span class="p">(</span><span class="nv">org-mode</span> <span class="o">.</span> <span class="nv">pv/init-org-hook</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 29</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln"> 30</span><span class="cl">  <span class="p">(</span><span class="nv">org-hide-leading-stars</span> <span class="no">t</span> <span class="s">&#34;clearer way to display&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 31</span><span class="cl">  <span class="p">(</span><span class="nv">org-startup-with-inline-images</span> <span class="no">t</span> <span class="s">&#34;always display inline image&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 32</span><span class="cl">  <span class="p">(</span><span class="nv">org-image-actual-width</span> <span class="mi">600</span> <span class="s">&#34;set width of image when displaying&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 33</span><span class="cl">  <span class="p">(</span><span class="nv">org-outline-path-complete-in-steps</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 34</span><span class="cl">  <span class="p">(</span><span class="nv">org-todo-keywords</span>
-</span></span><span class="line"><span class="ln"> 35</span><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="nv">sequence</span> <span class="s">&#34;TODO(t)&#34;</span> <span class="s">&#34;NEXT(n)&#34;</span> <span class="s">&#34;|&#34;</span> <span class="s">&#34;DONE(d)&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 36</span><span class="cl">		   <span class="p">(</span><span class="nv">sequence</span> <span class="s">&#34;WAITING(w@/!)&#34;</span> <span class="s">&#34;|&#34;</span> <span class="s">&#34;CANCELLED(c@/!)&#34;</span> <span class="s">&#34;MEETING&#34;</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 37</span><span class="cl">  <span class="p">(</span><span class="nv">org-todo-keyword-faces</span>
-</span></span><span class="line"><span class="ln"> 38</span><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;TODO&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;goldenrod1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 39</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;NEXT&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;DodgerBlue1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 40</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;DONE&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;SpringGreen2&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 41</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;LightSalmon1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 42</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;LavenderBlush4&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 43</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;MEETING&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;IndianRed1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 44</span><span class="cl">  <span class="p">(</span><span class="nv">org-todo-state-tags-triggers</span>
-</span></span><span class="line"><span class="ln"> 45</span><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;CANCELLED&#34;</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 46</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 47</span><span class="cl">		   <span class="p">(</span><span class="nv">done</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 48</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;TODO&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 49</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;NEXT&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 50</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;DONE&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">)))))</span>
-</span></span><span class="line"><span class="ln"> 51</span><span class="cl">  <span class="p">(</span><span class="nv">org-adapt-indentation</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 52</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-files</span> <span class="nv">pv/org-agenda-files</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 53</span><span class="cl">  <span class="c1">;; Do not dim blocked tasks</span>
-</span></span><span class="line"><span class="ln"> 54</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-dim-blocked-tasks</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 55</span><span class="cl">  <span class="c1">;; compact the block agenda view</span>
-</span></span><span class="line"><span class="ln"> 56</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-compact-blocks</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 57</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-span</span> <span class="mi">7</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 58</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-start-day</span> <span class="s">&#34;-2d&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 59</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-start-on-weekday</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 60</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-tags-column</span> <span class="mi">-86</span><span class="p">)</span> <span class="c1">; default value auto has issues</span>
-</span></span><span class="line"><span class="ln"> 61</span><span class="cl">  <span class="c1">;; Custom agenda command definitions</span>
-</span></span><span class="line"><span class="ln"> 62</span><span class="cl">  <span class="p">(</span><span class="nv">org-agenda-custom-commands</span>
-</span></span><span class="line"><span class="ln"> 63</span><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;d&#34;</span> <span class="s">&#34;Daily agenda and all TODOs&#34;</span>
-</span></span><span class="line"><span class="ln"> 64</span><span class="cl">			<span class="p">((</span><span class="nv">tags</span> <span class="s">&#34;PRIORITY=\&#34;A\&#34;&#34;</span>
-</span></span><span class="line"><span class="ln"> 65</span><span class="cl">                   <span class="p">((</span><span class="nv">org-agenda-skip-function</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-agenda-skip-entry-if</span> <span class="ss">&#39;todo</span> <span class="ss">&#39;done</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 66</span><span class="cl">					<span class="p">(</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;High-priority unfinished tasks:&#34;</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 67</span><span class="cl">			 <span class="p">(</span><span class="nv">agenda</span> <span class="s">&#34;&#34;</span> <span class="p">((</span><span class="nv">org-agenda-ndays</span> <span class="mi">1</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 68</span><span class="cl">			 <span class="p">(</span><span class="nv">alltodo</span> <span class="s">&#34;&#34;</span>
-</span></span><span class="line"><span class="ln"> 69</span><span class="cl">					  <span class="p">((</span><span class="nv">org-agenda-skip-function</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">pv/org-skip-subtree-if-habit</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 70</span><span class="cl">													  <span class="p">(</span><span class="nv">pv/org-skip-subtree-if-priority</span> <span class="sc">?A</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 71</span><span class="cl">													  <span class="p">(</span><span class="nv">org-agenda-skip-if</span> <span class="no">nil</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheduled</span> <span class="nv">deadline</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 72</span><span class="cl">                       <span class="p">(</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;ALL normal priority tasks:&#34;</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 73</span><span class="cl">			<span class="p">((</span><span class="nv">org-agenda-compact-blocks</span> <span class="no">t</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 74</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;p&#34;</span> <span class="s">&#34;Projects&#34;</span>
-</span></span><span class="line"><span class="ln"> 75</span><span class="cl">			<span class="p">((</span><span class="nv">agenda</span> <span class="s">&#34;&#34;</span> <span class="no">nil</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 76</span><span class="cl">             <span class="p">(</span><span class="nv">tags</span> <span class="s">&#34;REFILE&#34;</span>
-</span></span><span class="line"><span class="ln"> 77</span><span class="cl">				   <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Tasks to Refile&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 78</span><span class="cl">					<span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">nil</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 79</span><span class="cl">             <span class="p">(</span><span class="nv">tags-todo</span> <span class="s">&#34;-CANCELLED/!&#34;</span>
-</span></span><span class="line"><span class="ln"> 80</span><span class="cl">						<span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Stuck Projects&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 81</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-non-stuck-projects</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 82</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-sorting-strategy</span>
-</span></span><span class="line"><span class="ln"> 83</span><span class="cl">                          <span class="o">&#39;</span><span class="p">(</span><span class="nv">category-keep</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 84</span><span class="cl">             <span class="p">(</span><span class="nv">tags-todo</span> <span class="s">&#34;-CANCELLED/!NEXT&#34;</span>
-</span></span><span class="line"><span class="ln"> 85</span><span class="cl">						<span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;Project Next Tasks&#34;</span>
-</span></span><span class="line"><span class="ln"> 86</span><span class="cl">															   <span class="p">(</span><span class="nb">if</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span>
-</span></span><span class="line"><span class="ln"> 87</span><span class="cl">																   <span class="s">&#34;&#34;</span>
-</span></span><span class="line"><span class="ln"> 88</span><span class="cl">                                                                 <span class="s">&#34; (including WAITING and SCHEDULED tasks)&#34;</span><span class="p">)))</span>
-</span></span><span class="line"><span class="ln"> 89</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-projects-and-habits-and-single-tasks</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 90</span><span class="cl">                         <span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 91</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-todo-ignore-scheduled</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 92</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-todo-ignore-deadlines</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 93</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-todo-ignore-with-date</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 94</span><span class="cl">                         <span class="p">(</span><span class="nv">org-agenda-sorting-strategy</span>
-</span></span><span class="line"><span class="ln"> 95</span><span class="cl">                          <span class="o">&#39;</span><span class="p">(</span><span class="nv">todo-state-down</span> <span class="nv">effort-up</span> <span class="nv">category-keep</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln"> 96</span><span class="cl">             <span class="p">(</span><span class="nv">tags</span> <span class="s">&#34;-REFILE/&#34;</span>
-</span></span><span class="line"><span class="ln"> 97</span><span class="cl">				   <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Tasks to Archive&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 98</span><span class="cl">					<span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-non-archivable-tasks</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 99</span><span class="cl">					<span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">nil</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">100</span><span class="cl">			<span class="no">nil</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">101</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">102</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-c a&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-agenda</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">103</span><span class="cl">   <span class="nb">:map</span> <span class="nv">org-mode-map</span>
-</span></span><span class="line"><span class="ln">104</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c C-q&#34;</span> <span class="o">.</span> <span class="nv">counsel-org-tag</span><span class="p">)))</span>
-</span></span></code></pre></div><p>值得一提的是，对一个 TODO 可以用 <code>org-deadline</code> 来指定 deadline，用 <code>org-schedule</code> 规划时间。例如：</p>
-<pre tabindex="0"><code>* TODO 学习 Emacs 
-  DEADLINE: &lt;2023-05-20 Sat&gt;
-</code></pre><p>其中在日历中选择日期时，需要按 <code>Shift</code>+方向键。对于重复性任务如每周例会，则手动加上 &quot;+7d&quot; 表示每 7 天一个周期，具体参见<a href="https://orgmode.org/manual/Repeated-tasks.html">文档</a>：</p>
-<pre tabindex="0"><code>* MEETING 例会
-  SCHEDULED: &lt;2023-05-25 Thu 18:30 +7d&gt;
-</code></pre><h3 id="快速添加任务">快速添加任务</h3>
-<p>但毕竟手动组织 <code>agenda.org</code> 也需要一定的思考，如果手头正在忙一些事情，但忽然来了个任务，不想被打断，就可以先快速把任务记下来，回头再整理。这个功能叫 <code>org-capture</code>，可将如下配置合并到上面的配置中：</p>
+</span></span><span class="line"><span class="ln"> 24</span><span class="cl">   <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">string=</span> <span class="p">(</span><span class="nv">org-entry-get</span> <span class="no">nil</span> <span class="s">&#34;STYLE&#34;</span><span class="p">)</span> <span class="s">&#34;habit&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 25</span><span class="cl">     <span class="nv">subtree-end</span>
+</span></span><span class="line"><span class="ln"> 26</span><span class="cl"> <span class="no">nil</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 27</span><span class="cl"> <span class="nb">:hook</span>
+</span></span><span class="line"><span class="ln"> 28</span><span class="cl"> <span class="p">(</span><span class="nv">org-mode</span> <span class="o">.</span> <span class="nv">pv/init-org-hook</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 29</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln"> 30</span><span class="cl"> <span class="p">(</span><span class="nv">org-hide-leading-stars</span> <span class="no">t</span> <span class="s">&#34;clearer way to display&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 31</span><span class="cl"> <span class="p">(</span><span class="nv">org-startup-with-inline-images</span> <span class="no">t</span> <span class="s">&#34;always display inline image&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 32</span><span class="cl"> <span class="p">(</span><span class="nv">org-image-actual-width</span> <span class="mi">600</span> <span class="s">&#34;set width of image when displaying&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 33</span><span class="cl"> <span class="p">(</span><span class="nv">org-outline-path-complete-in-steps</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 34</span><span class="cl"> <span class="p">(</span><span class="nv">org-todo-keywords</span>
+</span></span><span class="line"><span class="ln"> 35</span><span class="cl">  <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="nv">sequence</span> <span class="s">&#34;TODO(t)&#34;</span> <span class="s">&#34;NEXT(n)&#34;</span> <span class="s">&#34;|&#34;</span> <span class="s">&#34;DONE(d)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 36</span><span class="cl">   <span class="p">(</span><span class="nv">sequence</span> <span class="s">&#34;WAITING(w@/!)&#34;</span> <span class="s">&#34;|&#34;</span> <span class="s">&#34;CANCELLED(c@/!)&#34;</span> <span class="s">&#34;MEETING&#34;</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 37</span><span class="cl"> <span class="p">(</span><span class="nv">org-todo-keyword-faces</span>
+</span></span><span class="line"><span class="ln"> 38</span><span class="cl">  <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;TODO&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;goldenrod1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 39</span><span class="cl">   <span class="p">(</span><span class="s">&#34;NEXT&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;DodgerBlue1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 40</span><span class="cl">   <span class="p">(</span><span class="s">&#34;DONE&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;SpringGreen2&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 41</span><span class="cl">   <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;LightSalmon1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 42</span><span class="cl">   <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;LavenderBlush4&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 43</span><span class="cl">   <span class="p">(</span><span class="s">&#34;MEETING&#34;</span> <span class="nb">:foreground</span> <span class="s">&#34;IndianRed1&#34;</span> <span class="nb">:weight</span> <span class="nv">bold</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 44</span><span class="cl"> <span class="p">(</span><span class="nv">org-todo-state-tags-triggers</span>
+</span></span><span class="line"><span class="ln"> 45</span><span class="cl">  <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;CANCELLED&#34;</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 46</span><span class="cl">   <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span> <span class="o">.</span> <span class="no">t</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 47</span><span class="cl">   <span class="p">(</span><span class="nv">done</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 48</span><span class="cl">   <span class="p">(</span><span class="s">&#34;TODO&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 49</span><span class="cl">   <span class="p">(</span><span class="s">&#34;NEXT&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 50</span><span class="cl">   <span class="p">(</span><span class="s">&#34;DONE&#34;</span> <span class="p">(</span><span class="s">&#34;WAITING&#34;</span><span class="p">)</span> <span class="p">(</span><span class="s">&#34;CANCELLED&#34;</span><span class="p">)))))</span>
+</span></span><span class="line"><span class="ln"> 51</span><span class="cl"> <span class="p">(</span><span class="nv">org-adapt-indentation</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 52</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-files</span> <span class="nv">pv/org-agenda-files</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 53</span><span class="cl"> <span class="c1">;; Do not dim blocked tasks</span>
+</span></span><span class="line"><span class="ln"> 54</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-dim-blocked-tasks</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 55</span><span class="cl"> <span class="c1">;; compact the block agenda view</span>
+</span></span><span class="line"><span class="ln"> 56</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-compact-blocks</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 57</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-span</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 58</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-start-day</span> <span class="s">&#34;-2d&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 59</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-start-on-weekday</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 60</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-tags-column</span> <span class="mi">-86</span><span class="p">)</span> <span class="c1">; default value auto has issues</span>
+</span></span><span class="line"><span class="ln"> 61</span><span class="cl"> <span class="c1">;; Custom agenda command definitions</span>
+</span></span><span class="line"><span class="ln"> 62</span><span class="cl"> <span class="p">(</span><span class="nv">org-agenda-custom-commands</span>
+</span></span><span class="line"><span class="ln"> 63</span><span class="cl">  <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;d&#34;</span> <span class="s">&#34;Daily agenda and all TODOs&#34;</span>
+</span></span><span class="line"><span class="ln"> 64</span><span class="cl"> 	<span class="p">((</span><span class="nv">tags</span> <span class="s">&#34;PRIORITY=\&#34;A\&#34;&#34;</span>
+</span></span><span class="line"><span class="ln"> 65</span><span class="cl">          <span class="p">((</span><span class="nv">org-agenda-skip-function</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">org-agenda-skip-entry-if</span> <span class="ss">&#39;todo</span> <span class="ss">&#39;done</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 66</span><span class="cl">  	<span class="p">(</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;High-priority unfinished tasks:&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 67</span><span class="cl">  <span class="p">(</span><span class="nv">agenda</span> <span class="s">&#34;&#34;</span> <span class="p">((</span><span class="nv">org-agenda-ndays</span> <span class="mi">1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 68</span><span class="cl">  <span class="p">(</span><span class="nv">alltodo</span> <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="ln"> 69</span><span class="cl">    <span class="p">((</span><span class="nv">org-agenda-skip-function</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">pv/org-skip-subtree-if-habit</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 70</span><span class="cl">        <span class="p">(</span><span class="nv">pv/org-skip-subtree-if-priority</span> <span class="sc">?A</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 71</span><span class="cl">        <span class="p">(</span><span class="nv">org-agenda-skip-if</span> <span class="no">nil</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">scheduled</span> <span class="nv">deadline</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 72</span><span class="cl">            <span class="p">(</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;ALL normal priority tasks:&#34;</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 73</span><span class="cl"> 	<span class="p">((</span><span class="nv">org-agenda-compact-blocks</span> <span class="no">t</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 74</span><span class="cl">   <span class="p">(</span><span class="s">&#34;p&#34;</span> <span class="s">&#34;Projects&#34;</span>
+</span></span><span class="line"><span class="ln"> 75</span><span class="cl"> 	<span class="p">((</span><span class="nv">agenda</span> <span class="s">&#34;&#34;</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 76</span><span class="cl">       <span class="p">(</span><span class="nv">tags</span> <span class="s">&#34;REFILE&#34;</span>
+</span></span><span class="line"><span class="ln"> 77</span><span class="cl">    <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Tasks to Refile&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 78</span><span class="cl">  	<span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">nil</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 79</span><span class="cl">       <span class="p">(</span><span class="nv">tags-todo</span> <span class="s">&#34;-CANCELLED/!&#34;</span>
+</span></span><span class="line"><span class="ln"> 80</span><span class="cl">   <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Stuck Projects&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 81</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-non-stuck-projects</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 82</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-sorting-strategy</span>
+</span></span><span class="line"><span class="ln"> 83</span><span class="cl">             <span class="o">&#39;</span><span class="p">(</span><span class="nv">category-keep</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 84</span><span class="cl">       <span class="p">(</span><span class="nv">tags-todo</span> <span class="s">&#34;-CANCELLED/!NEXT&#34;</span>
+</span></span><span class="line"><span class="ln"> 85</span><span class="cl">   <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="p">(</span><span class="nf">concat</span> <span class="s">&#34;Project Next Tasks&#34;</span>
+</span></span><span class="line"><span class="ln"> 86</span><span class="cl">         <span class="p">(</span><span class="nb">if</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span>
+</span></span><span class="line"><span class="ln"> 87</span><span class="cl">          <span class="s">&#34;&#34;</span>
+</span></span><span class="line"><span class="ln"> 88</span><span class="cl">                                 <span class="s">&#34; (including WAITING and SCHEDULED tasks)&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln"> 89</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-projects-and-habits-and-single-tasks</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 90</span><span class="cl">             <span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 91</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-todo-ignore-scheduled</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 92</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-todo-ignore-deadlines</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 93</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-todo-ignore-with-date</span> <span class="nv">bh/hide-scheduled-and-waiting-next-tasks</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 94</span><span class="cl">             <span class="p">(</span><span class="nv">org-agenda-sorting-strategy</span>
+</span></span><span class="line"><span class="ln"> 95</span><span class="cl">             <span class="o">&#39;</span><span class="p">(</span><span class="nv">todo-state-down</span> <span class="nv">effort-up</span> <span class="nv">category-keep</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln"> 96</span><span class="cl">       <span class="p">(</span><span class="nv">tags</span> <span class="s">&#34;-REFILE/&#34;</span>
+</span></span><span class="line"><span class="ln"> 97</span><span class="cl">    <span class="p">((</span><span class="nv">org-agenda-overriding-header</span> <span class="s">&#34;Tasks to Archive&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 98</span><span class="cl">  	<span class="p">(</span><span class="nv">org-agenda-skip-function</span> <span class="ss">&#39;bh/skip-non-archivable-tasks</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 99</span><span class="cl">  	<span class="p">(</span><span class="nv">org-tags-match-list-sublevels</span> <span class="no">nil</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">100</span><span class="cl"> 	<span class="no">nil</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">101</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">102</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-c a&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-agenda</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">103</span><span class="cl">  <span class="nb">:map</span> <span class="nv">org-mode-map</span>
+</span></span><span class="line"><span class="ln">104</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c C-q&#34;</span> <span class="o">.</span> <span class="nv">counsel-org-tag</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+值得一提的是，对一个 TODO 可以用 <code>org-deadline</code> 来指定 deadline，用 <code>org-schedule</code> 规划时间。例如：</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl"> * TODO 学习 Emacs  DEADLINE: &lt;2023-05-20 Sat&gt;</span></span></code></pre></div>
+</div>
+<p>
+其中在日历中选择日期时，需要按 <code>Shift</code> +方向键。对于重复性任务如每周例会，则手动加上 &#34;+7d&#34; 表示每 7 天一个周期，具体参见<a href="https://orgmode.org/manual/Repeated-tasks.html">文档</a>：</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl"> * MEETING 例会
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> SCHEDULED: &lt;2023-05-25 Thu 18:30 +7d&gt;</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-4">
+<h4 id="headline-6">
+快速添加任务
+</h4>
+<div id="outline-text-headline-6" class="outline-text-4">
+<p>
+但毕竟手动组织 <code>agenda.org</code> 也需要一定的思考，如果手头正在忙一些事情，但忽然来了个任务，不想被打断，就可以先快速把任务记下来，回头再整理。这个功能叫 <code>org-capture</code> ，可将如下配置合并到上面的配置中：</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">;; ...</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">pv/org-refile-file</span> <span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;refile.org&#34;</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> 
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="c1">;; ...</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="p">(</span><span class="nv">org-capture-templates</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">   <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;t&#34;</span> <span class="s">&#34;todo&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">			<span class="s">&#34;* TODO %?\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;r&#34;</span> <span class="s">&#34;respond&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">			<span class="s">&#34;* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span> <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="s">&#34;note&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">			<span class="s">&#34;* %? :NOTE:\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;w&#34;</span> <span class="s">&#34;org-protocol&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">			<span class="s">&#34;* TODO Review %c\n%U\n&#34;</span> <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">		   <span class="p">(</span><span class="s">&#34;m&#34;</span> <span class="s">&#34;Meeting&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">			<span class="s">&#34;* MEETING with %? :MEETING:\n%U&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">  <span class="p">(</span><span class="nv">org-refile-targets</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="no">nil</span> <span class="nb">:maxlevel</span> <span class="o">.</span> <span class="mi">9</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">                                 <span class="p">(</span><span class="nv">org-agenda-files</span> <span class="nb">:maxlevel</span> <span class="o">.</span> <span class="mi">9</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">  <span class="c1">;; Use full outline paths for refile targets - we file directly with IDO</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl">  <span class="p">(</span><span class="nv">org-refile-use-outline-path</span> <span class="ss">&#39;file</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="c1">;; Allow refile to create parent tasks with confirmation</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">  <span class="p">(</span><span class="nv">org-refile-allow-creating-parent-nodes</span> <span class="p">(</span><span class="nb">quote</span> <span class="nv">confirm</span><span class="p">))</span>
-</span></span><span class="line"><span class="ln">24</span><span class="cl">  <span class="p">(</span><span class="nv">org-cite-global-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">25</span><span class="cl">  <span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">26</span><span class="cl">  <span class="c1">;; ...</span>
-</span></span><span class="line"><span class="ln">27</span><span class="cl">  <span class="p">((</span><span class="s">&#34;C-c a&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-agenda</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">28</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c c&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-capture</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">29</span><span class="cl">   <span class="nb">:map</span> <span class="nv">org-mode-map</span>
-</span></span><span class="line"><span class="ln">30</span><span class="cl">   <span class="p">(</span><span class="s">&#34;C-c C-q&#34;</span> <span class="o">.</span> <span class="nv">counsel-org-tag</span><span class="p">)))</span>
-</span></span></code></pre></div><p>当我们使用 <code>C-c c</code> 调用 <code>org-capture</code> 时，会提示我们想要添加的是什么任务。按 <code>C-c C-c</code> 保存到 <code>~/org/refile.org</code> 中，也就是临时存储。等有空时，我们可以打开 <code>~/org/refile.org</code> 文件，对着一个任务输入 <code>C-c C-w</code> 调用 <code>org-refile</code>，此时会提示你希望把这个任务插入到哪个文件的哪个项目的位置里。</p>
-<h2 id="论文笔记">论文笔记</h2>
-<p>结合以上工具，org-mode 可以对论文进行笔记并关联 BibTeX。主要配置就是要告知 Emacs 我们的 BibTeX 文件在哪里，并设定一个存放论文 PDF 的仓库。这里，笔者配置了 <code>~/org/References</code> 为仓库，<code>~/org/References/reference.bib</code> 为一个总的 BibTeX。二者都是列表，笔者可以根据需要设置多个仓库和多个 BibTeX 文件。笔者还使用了 <a href="https://github.com/jkitchin/org-ref">org-ref</a> 插件辅助管理。</p>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="p">(</span><span class="nv">org-capture-templates</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="s">&#34;t&#34;</span> <span class="s">&#34;todo&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> 	<span class="s">&#34;* TODO %?\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">   <span class="p">(</span><span class="s">&#34;r&#34;</span> <span class="s">&#34;respond&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> 	<span class="s">&#34;* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span> <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">   <span class="p">(</span><span class="s">&#34;n&#34;</span> <span class="s">&#34;note&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> 	<span class="s">&#34;* %? :NOTE:\n%U\n%a\n&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">   <span class="p">(</span><span class="s">&#34;w&#34;</span> <span class="s">&#34;org-protocol&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"> 	<span class="s">&#34;* TODO Review %c\n%U\n&#34;</span> <span class="nb">:immediate-finish</span> <span class="no">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">   <span class="p">(</span><span class="s">&#34;m&#34;</span> <span class="s">&#34;Meeting&#34;</span> <span class="nv">entry</span> <span class="p">(</span><span class="nv">file</span> <span class="nv">pv/org-refile-file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"> 	<span class="s">&#34;* MEETING with %? :MEETING:\n%U&#34;</span> <span class="nb">:clock-in</span> <span class="no">t</span> <span class="nb">:clock-resume</span> <span class="no">t</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"> <span class="p">(</span><span class="nv">org-refile-targets</span> <span class="p">(</span><span class="nb">quote</span> <span class="p">((</span><span class="no">nil</span> <span class="nb">:maxlevel</span> <span class="o">.</span> <span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">                 <span class="p">(</span><span class="nv">org-agenda-files</span> <span class="nb">:maxlevel</span> <span class="o">.</span> <span class="mi">9</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"> <span class="c1">;; Use full outline paths for refile targets - we file directly with IDO</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl"> <span class="p">(</span><span class="nv">org-refile-use-outline-path</span> <span class="ss">&#39;file</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="c1">;; Allow refile to create parent tasks with confirmation</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"> <span class="p">(</span><span class="nv">org-refile-allow-creating-parent-nodes</span> <span class="p">(</span><span class="nb">quote</span> <span class="nv">confirm</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl"> <span class="p">(</span><span class="nv">org-cite-global-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"> <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-c a&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-agenda</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c c&#34;</span> <span class="o">.</span> <span class="ss">&#39;org-capture</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">  <span class="nb">:map</span> <span class="nv">org-mode-map</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-c C-q&#34;</span> <span class="o">.</span> <span class="nv">counsel-org-tag</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+当我们使用 <code>C-c c</code> 调用 <code>org-capture</code> 时，会提示我们想要添加的是什么任务。按 <code>C-c C-c</code> 保存到 <code>~/org/refile.org</code> 中，也就是临时存储。等有空时，我们可以打开 <code>~/org/refile.org</code> 文件，对着一个任务输入 <code>C-c C-w</code> 调用 <code>org-refile</code> ，此时会提示你希望把这个任务插入到哪个文件的哪个项目的位置里。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-7" class="outline-3">
+<h3 id="headline-7">
+论文笔记
+</h3>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>
+结合以上工具，org-mode 可以对论文进行笔记并关联 BibTeX。主要配置就是要告知 Emacs 我们的 BibTeX 文件在哪里，并设定一个存放论文 PDF 的仓库。这里，笔者配置了 <code>~/org/References</code> 为仓库， <code>~/org/References/reference.bib</code> 为一个总的 BibTeX。二者都是列表，笔者可以根据需要设置多个仓库和多个 BibTeX 文件。笔者还使用了 <a href="https://github.com/jkitchin/org-ref">org-ref</a> 插件辅助管理。</p>
+<div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">;; ...</span>
 </span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">pv/org-bibtex-library</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;References/&#34;</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">pv/org-bibtex-files</span> <span class="o">`</span><span class="p">(</span><span class="o">,</span><span class="p">(</span><span class="nf">concat</span> <span class="nv">org-directory</span> <span class="s">&#34;References/references.bib&#34;</span><span class="p">)))</span>
 </span></span><span class="line"><span class="ln"> 4</span><span class="cl">
 </span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="c1">;; ...</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="p">(</span><span class="nv">org-cite-global-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="p">(</span><span class="nv">org-cite-global-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln"> 9</span><span class="cl">
 </span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">bibtex-completion</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="nb">:custom</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">(</span><span class="nv">bibtex-completion-pdf-open-function</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">   <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">fpath</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl">	 <span class="p">(</span><span class="nf">call-process</span> <span class="s">&#34;open&#34;</span> <span class="no">nil</span> <span class="mi">0</span> <span class="no">nil</span> <span class="nv">fpath</span><span class="p">)))</span> <span class="c1">; 配置打开 PDF 的方式</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">(</span><span class="nv">bibtex-completion-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">  <span class="p">(</span><span class="nv">bibtex-completion-library-path</span> <span class="nv">pv/org-bibtex-library</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> <span class="nb">:custom</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="p">(</span><span class="nv">bibtex-completion-pdf-open-function</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="nv">fpath</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> <span class="p">(</span><span class="nf">call-process</span> <span class="s">&#34;open&#34;</span> <span class="no">nil</span> <span class="mi">0</span> <span class="no">nil</span> <span class="nv">fpath</span><span class="p">)))</span> <span class="c1">; 配置打开 PDF 的方式</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"> <span class="p">(</span><span class="nv">bibtex-completion-bibliography</span> <span class="nv">pv/org-bibtex-files</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"> <span class="p">(</span><span class="nv">bibtex-completion-library-path</span> <span class="nv">pv/org-bibtex-library</span><span class="p">))</span>
 </span></span><span class="line"><span class="ln">17</span><span class="cl">
 </span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">org-ref</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
-</span></span></code></pre></div><p>笔者的使用方式是这样的：</p>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+笔者的使用方式是这样的：</p>
 <ol>
 <li>创建一个总的论文列表（或是一类论文的列表），使用 <code>C-c n f</code> 调用 <code>org-roam-node-find</code> 命令新建一个名为 <code>papers</code> 的笔记节点。</li>
-<li>获取论文的 BibTeX（可通过官网或 Google Scholar 等获得，也可手写），以<a href="https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed">这篇论文</a>为例，获取它的 BibTeX 并粘贴到 <code>~/org/References/references.bib</code> 中（花括号内的第一个字段是这个论文的 ID 标识，笔者习惯用 Google Scholar 的方式“作者+发表年份+标题第一个单词”来命名）：</li>
-</ol>
-<pre tabindex="0"><code>@inproceedings {li2023more,
-author = {Qiang Li and Qiao Xiang and Yuxin Wang and Haohao Song and Ridi Wen and Wenhui Yao and Yuanyuan Dong and Shuqi Zhao and Shuo Huang and Zhaosheng Zhu and Huayong Wang and Shanyang Liu and Lulu Chen and Zhiwu Wu and Haonan Qiu and Derui Liu and Gexiao Tian and Chao Han and Shaozong Liu and Yaohui Wu and Zicheng Luo and Yuchao Shao and Junping Wu and Zheng Cao and Zhongjie Wu and Jiaji Zhu and Jinbo Wu and Jiwu Shu and Jiesheng Wu},
-title = {More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba},
-booktitle = {21st USENIX Conference on File and Storage Technologies (FAST 23)},
-year = {2023},
-isbn = {978-1-939133-32-8},
-address = {Santa Clara, CA},
-pages = {331--346},
-url = {https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed},
-publisher = {USENIX Association},
-month = feb,
-}
-</code></pre><ol start="3">
-<li>此时我们的剪贴板中应该刚好是这段 BibTeX（如果不是，就复制一下这段 BibTeX）。回到 <code>papers</code> 笔记文件中，输入 <code>M-x</code> <code>org-bibtex-yank</code> 命令，org-mode 就会为我们把这段 BibTeX 解析好放入我们的笔记中。实际上 <code>org-mode</code> 会把这些属性都折叠起来，所以比这里的显示要美观很多。</li>
-</ol>
-<pre tabindex="0"><code>* More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba
-:PROPERTIES:
-:TITLE:    More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba
-:BTYPE:    inproceedings
-:CUSTOM_ID: li2023more
-:AUTHOR:   Qiang Li and Qiao Xiang and Yuxin Wang and Haohao Song and Ridi Wen and Wenhui Yao and Yuanyuan Dong and Shuqi Zhao and Shuo Huang and Zhaosheng Zhu and Huayong Wang and Shanyang Liu and Lulu Chen and Zhiwu Wu and Haonan Qiu and Derui Liu and Gexiao Tian and Chao Han and Shaozong Liu and Yaohui Wu and Zicheng Luo and Yuchao Shao and Junping Wu and Zheng Cao and Zhongjie Wu and Jiaji Zhu and Jinbo Wu and Jiwu Shu and Jiesheng Wu
-:BOOKTITLE: 21st USENIX Conference on File and Storage Technologies (FAST 23)
-:YEAR:     2023
-:ISBN:     978-1-939133-32-8
-:ADDRESS:  Santa Clara, CA
-:PAGES:    331--346
-:URL:      https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed
-:PUBLISHER: USENIX Association
-:MONTH:    feb
-:END:
-</code></pre><ol start="4">
-<li>利用 <code>org-ref</code> 绑定论文 PDF。在这个论文的下面输入 <code>cite:li2023more</code>，即 “cite:” 和这篇论文的 ID。<code>org-ref</code> 会自动识别到我们想要关联这个 BibTeX。随后我们可以单击这行字，或按 <code>C-c C-o</code> 调用 <code>org-open-at-point</code>。<code>org-ref</code> 会为我们弹出一个选择窗口，我们可以按 <code>a</code> 选择&quot;add pdf to library&quot;，输入下载好的论文的 PDF 路径。<code>org-ref</code> 会将该 PDF 复制到我们设定的仓库中，即 <code>~/org/References/</code> 中，并命名为 <code>li2023more.pdf</code>。</li>
-</ol>
-<p><img src="../../images/emacs-book/orgmode/org-ref.png" alt="org-ref"></p>
-<ol start="5">
-<li>当我们想要阅读这篇论文时，对着刚刚的 <code>cite:li2023more</code> 按 <code>C-c C-o</code>，按 <code>p</code> 即可打开该 PDF。这里笔者配置的打开 PDF 的方式是用 Unix 系统的 <code>open</code> 命令打开，即用系统默认 PDF 阅读器打开。如果去掉该行配置，就会用 Emacs 打开。</li>
+<li>
+<p>获取论文的 BibTeX（可通过官网或 Google Scholar 等获得，也可手写），以<a href="https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed">这篇论文</a>为例，获取它的 BibTeX 并粘贴到 <code>~/org/References/references.bib</code> 中（花括号内的第一个字段是这个论文的 ID 标识，笔者习惯用 Google Scholar 的方式“作者+发表年份+标题第一个单词”来命名）：</p>
+<div class="src src-bibtex">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bibtex" data-lang="bibtex"><span class="line"><span class="ln"> 1</span><span class="cl">  <span class="nc">@inproceedings</span> <span class="p">{</span><span class="nl">li2023more</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="na">author</span> <span class="p">=</span> <span class="s">{Qiang Li and Qiao Xiang and Yuxin Wang and Haohao Song and Ridi Wen and Wenhui Yao and Yuanyuan Dong and Shuqi Zhao and Shuo Huang and Zhaosheng Zhu and Huayong Wang and Shanyang Liu and Lulu Chen and Zhiwu Wu and Haonan Qiu and Derui Liu and Gexiao Tian and Chao Han and Shaozong Liu and Yaohui Wu and Zicheng Luo and Yuchao Shao and Junping Wu and Zheng Cao and Zhongjie Wu and Jiaji Zhu and Jinbo Wu and Jiwu Shu and Jiesheng Wu}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="na">title</span> <span class="p">=</span> <span class="s">{More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="na">booktitle</span> <span class="p">=</span> <span class="s">{21st USENIX Conference on File and Storage Technologies (FAST 23)}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="na">year</span> <span class="p">=</span> <span class="s">{2023}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="na">isbn</span> <span class="p">=</span> <span class="s">{978-1-939133-32-8}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="na">address</span> <span class="p">=</span> <span class="s">{Santa Clara, CA}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="na">pages</span> <span class="p">=</span> <span class="s">{331--346}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="na">url</span> <span class="p">=</span> <span class="s">{https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="na">publisher</span> <span class="p">=</span> <span class="s">{USENIX Association}</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="na">month</span> <span class="p">=</span> <span class="nv">feb</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  <span class="p">}</span></span></span></code></pre></div>
+</div>
+</li>
+<li>
+<p>此时我们的剪贴板中应该刚好是这段 BibTeX（如果不是，就复制一下这段 BibTeX）。回到 <code>papers</code> 笔记文件中，输入 <code>M-x</code>  <code>org-bibtex-yank</code> 命令，org-mode 就会为我们把这段 BibTeX 解析好放入我们的笔记中。实际上 <code>org-mode</code> 会把这些属性都折叠起来，所以比这里的显示要美观很多。</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln"> 1</span><span class="cl"> * More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> :PROPERTIES:
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> :TITLE:  More Than Capacity: Performance-oriented Evolution of Pangu in Alibaba
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> :BTYPE:  inproceedings
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> :CUSTOM_ID: li2023more
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> :AUTHOR:  Qiang Li and Qiao Xiang and Yuxin Wang and Haohao Song and Ridi Wen and Wenhui Yao and Yuanyuan Dong and Shuqi Zhao and Shuo Huang and Zhaosheng Zhu and Huayong Wang and Shanyang Liu and Lulu Chen and Zhiwu Wu and Haonan Qiu and Derui Liu and Gexiao Tian and Chao Han and Shaozong Liu and Yaohui Wu and Zicheng Luo and Yuchao Shao and Junping Wu and Zheng Cao and Zhongjie Wu and Jiaji Zhu and Jinbo Wu and Jiwu Shu and Jiesheng Wu
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> :BOOKTITLE: 21st USENIX Conference on File and Storage Technologies (FAST 23)
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> :YEAR:   2023
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"> :ISBN:   978-1-939133-32-8
+</span></span><span class="line"><span class="ln">10</span><span class="cl"> :ADDRESS: Santa Clara, CA
+</span></span><span class="line"><span class="ln">11</span><span class="cl"> :PAGES:  331--346
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> :URL:   https://www.usenix.org/conference/fast23/presentation/li-qiang-deployed
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> :PUBLISHER: USENIX Association
+</span></span><span class="line"><span class="ln">14</span><span class="cl"> :MONTH:  feb
+</span></span><span class="line"><span class="ln">15</span><span class="cl"> :END:</span></span></code></pre></div>
+</div>
+</li>
+<li>
+<p>利用 <code>org-ref</code> 绑定论文 PDF。在这个论文的下面输入 <code>cite:li2023more</code> ，即 “cite:” 和这篇论文的 ID。 <code>org-ref</code> 会自动识别到我们想要关联这个 BibTeX。随后我们可以单击这行字，或按 <code>C-c C-o</code> 调用 <code>org-open-at-point</code> 。 <code>org-ref</code> 会为我们弹出一个选择窗口，我们可以按 <code>a</code> 选择&#34;add pdf to library&#34;，输入下载好的论文的 PDF 路径。 <code>org-ref</code> 会将该 PDF 复制到我们设定的仓库中，即 <code>~/org/References/</code> 中，并命名为 <code>li2023more.pdf</code> 。</p>
+<p><img src="../../images/emacs-book/orgmode/org-ref.png" alt="../../images/emacs-book/orgmode/org-ref.png" title="../../images/emacs-book/orgmode/org-ref.png" /></p>
+</li>
+<li>当我们想要阅读这篇论文时，对着刚刚的 <code>cite:li2023more</code> 按 <code>C-c C-o</code> ，按 <code>p</code> 即可打开该 PDF。这里笔者配置的打开 PDF 的方式是用 Unix 系统的 <code>open</code> 命令打开，即用系统默认 PDF 阅读器打开。如果去掉该行配置，就会用 Emacs 打开。</li>
 <li>笔记可以直接写在 <code>papers</code> 的这篇论文词条下面，如果笔记很长，也可以利用 <code>org-roam</code> 新建一个文件并链接到这里即可。</li>
 </ol>
 <p><code>org-ref</code> 还提供了多种方式导入论文，例如拖入 PDF、拖入网页 URL 等。但笔者使用中发现这些方式不是很稳定，不是百分之百好用，而上面介绍的步骤是一定有效的。此外，使用 org-mode 进行论文笔记和 <a href="https://www.zotero.org">Zotero</a>、<a href="https://www.mendeley.com">Mendeley</a> 等文献管理软件并不冲突，完全可以组合使用。</p>
+<p>
 
 <div class="tip">
-  管理论文其实有很多种方式，例如 <code>citar</code>, <code>org-roam-bibtex</code> 等，读者可以根据需要自行探索。
+  管理论文其实有很多种方式，例如 <code>citar</code> , <code>org-roam-bibtex</code> 等，读者可以根据需要自行探索。
 </div>
-
+</p>
+</div>
+</div>
 
     <div class="pager">
   
@@ -704,7 +898,7 @@ month = feb,
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2023</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
@@ -807,7 +1001,7 @@ month = feb,
         </span>`.trim();n.push(o),e.closest("pre").className="chroma",pushClass(e,"language-unknown"),e.dataset.lang=not_set}}),e.innerHTML=n.join("").trim(" "))}function wrapOrphanedPreElements(){const e=elems("pre");Array.from(e).forEach(function(e){const t=e.parentNode,n=!containsClass(t,highlight);if(n){const t=createEl();t.className=highlight;const n=createEl();n.className=highlight_wrap,wrapEl(e,t),wrapEl(t,n)}})}wrapOrphanedPreElements();function codeBlocks(){const e=elems("code"),t=Array.from(e).filter(function(e){return addLines(e),e.closest("pre")&&!Array.from(e.classList).includes("noClass")}).map(function(e){return e});return t}function codeBlockFits(e){const t=e.offsetWidth,n=e.closest(`.${highlight}`).offsetWidth;return t<=n}function maxHeightIsSet(e){let t=e.style.maxHeight;return t.includes("px")}function restrainCodeBlockHeight(e){const n=e[max_lines-1];let t=full_height;if(n){const s=n.offsetTop;if(s!==0){t=`${s}px`;const n=e[0].parentNode,o=n.closest(`.${highlight}`),i=containsClass(o,panel_expanded);i||(n.dataset.height=t,n.style.maxHeight=t)}}}const blocks=codeBlocks();function collapseCodeBlock(e){const t=elems(line_class,e),n=t.length;if(n>max_lines){const n=createEl();pushClass(n,panel_expand),pushClass(n,panel_from),n.title="Toggle snippet",n.textContent="...";const s=e.closest(".highlight");window.setTimeout(function(){const e=s.nextElementSibling.lastElementChild;deleteClass(e,panel_hide)},150),restrainCodeBlockHeight(t);const o=e.parentNode.parentNode;o.appendChild(n)}}blocks.forEach(function(e){collapseCodeBlock(e)});function actionPanel(){const e=createEl();return e.className=panel_box,snippet_actions.forEach(function(t){const n=createEl("a");n.href="#",n.title=t.title,n.className=`icon panel_icon panel_${t.id}`,!t.show&&pushClass(n,panel_hide),loadSvg(t.icon,n),e.appendChild(n)}),e}function toggleLineNumbers(e){e&&(e.forEach(e=>modifyClass(e,"pre_nolines")),restrainCodeBlockHeight(e))}function toggleLineWrap(e){modifyClass(e,"pre_wrap");const t=elems(".ln",e);restrainCodeBlockHeight(t)}function copyCode(e){const t=e.parentNode.parentNode.querySelector(`.${copy_id}`),s=t.title;loadSvg("check",t),t.title=copied_text,e=e.cloneNode(!0);const n=elems(".ln",e);!!n.length&&n.forEach(e=>e.remove());let o=elems("span",e);o.forEach(e=>{const t=e.textContent.trim(" ");t.indexOf("$")===0&&(e.textContent=e.textContent.replace("$ ",""))});const i=e.textContent.trim(" ");copyToClipboard(i),setTimeout(function(){t.title=s,loadSvg("copy",t)},2250)}(function(){const n=highlight_wrap;blocks.forEach(function(e){show_lines===!1&&toggleLineNumbers(elems(".ln",e));const o=e.parentNode.parentNode,t=createEl();t.className=n,wrapEl(o,t);const s=actionPanel(),i=elem(`.${wrap_id}`,s);!codeBlockFits(e)&&deleteClass(i,panel_hide),t.appendChild(s)});function t(e,t){return e.matches(`.${t}`)||e.closest(`.${t}`)}function s(e,t){const n=e.matches(`.${t}`)?e:e.closest(`.${t}`);deleteClass(n,active),setTimeout(function(){modifyClass(n,active)},50)}doc.addEventListener("click",function(e){const o=e.target,i=t(o,copy_id),a=t(o,wrap_id),r=t(o,lines_id),c=t(o,panel_expand),l=i||a||r||c;if(l){e.preventDefault(),s(o,"icon");const t=o.closest(`.${n}`).firstElementChild.firstElementChild;let l=elems(".ln",t);if(!!a&&toggleLineWrap(t),!!r&&toggleLineNumbers(l),c){let e=t.firstElementChild;const n=e.closest(".highlight");maxHeightIsSet(e)?(e.style.maxHeight=full_height,pushClass(n,panel_expanded)):(e.style.maxHeight=e.dataset.height,deleteClass(n,panel_expanded))}!!i&&copyCode(t)}}),function(){blocks.forEach(e=>{let t=e.dataset.lang;const n=shell_based.includes(t);if(n){const t=elems(line_class,e);Array.from(t).forEach(e=>{e=e.lastElementChild;let t=e.textContent.trim(" ");!!(t.indexOf("$")!==0&&t.trim(" ").length)&&pushClass(e,"shell")})}if(t=t==="sh"?"shell":t,t!=="fallback"){const n=createEl();n.textContent=t,pushClass(n,"lang"),e.closest(`.${highlight_wrap}`).appendChild(n)}})}()})();function prefersColor(e){return`(prefers-color-scheme: ${e})`}function systemMode(){return window.matchMedia&&window.matchMedia(prefersColor(dark)).matches?dark:light}function currentMode(){let e=light+dark;e=[...e];let t=getComputedStyle(doc).getPropertyValue(key).replace(/"/g,"").trim();return[...t].filter(t=>e.includes(t)).join("")}function changeMode(e){e?(bank.setItem(storageKey,light),elemAttribute(doc,mode_data,light)):(bank.setItem(storageKey,dark),elemAttribute(doc,mode_data,dark))}function pickModePicture(e){elems("picture").forEach(function(t){let o=t.firstElementChild;const n=t.dataset,s=[n.lit,n.dark];o.src=e=="dark"?s[1]:s[0]})}function setUserColorMode(e=!1){const t=currentMode()==dark,n=bank.getItem(storageKey),s=systemMode();n?e?changeMode(t):elemAttribute(doc,mode_data,n):changeMode(e===!0?t:s!==dark);const o=doc.dataset.mode;doc.dataset.systemmode=s,!!o&&pickModePicture(o)}setUserColorMode(),function(){return elem(".nav_header").offsetHeight+25}();function toggleMenu(e){const t=e.target,o=t.matches(`.${toggle_id}`),n=t.closest(`.${toggle_id}`),i=elems(`.${show_id}`)?Array.from(elems(`.${show_id}`)):[],a=t.closest(`.${menu}`);function s(e,t=!1){i.forEach(function(n){!t&&deleteClass(n,show_id),n!==e.closest(`.${menu}`)&&deleteClass(n,show_id)})}if(o||n){const s=n?n.parentNode.parentNode:t.parentNode.parentNode;e.preventDefault(),modifyClass(s,show_id)}else a?s(t,!0):s(t)}(function(){const t=elems("code");t&&t.forEach(function(e){hasClasses(e)||!e.children.length&&pushClass(e,"noClass")})})();function featureHeading(){const t="section_link",n="section_title",e=elem(".aside");if(e){let s=elem(`.${t}.${active}`);s=s||elem(`.${n}.${active}`),e.scroll({top:s.offsetTop,left:0})}}function activeHeading(e,t){let n=Object.create(null);n.active=t.filter(function(e){return containsClass(e,active)})[0],n.new=t.filter(function(t){return parseInt(t.dataset.position)===e})[0],n.active!=n.new&&(!!n.active&&deleteClass(n.active,active),pushClass(n.new,active))}setTimeout(()=>{featureHeading()},50);function updateDate(){const t=new Date,e=t.getFullYear().toString,n=elem(".year");!!n&&(e.textContent=e)}function customizeSidebar(){const e="toc_active",n=elem("aside"),t=elems("nav",n);if(t){t.forEach(function(t){if(t.id="",pushClass(t,"toc"),t.children.length>=1){const n=Array.from(t.children[0].children),s=t.previousElementSibling;!!s.matches(`.${active}`)&&pushClass(t,e),n.forEach(function(e){pushClass(e,"toc_item"),pushClass(e.firstElementChild,"toc_link")})}});const n=elem(`.${e}`);if(n){const e=Array.from(elems("a",n)),s=e.map(function(e){return e.hash}),t=s.map(function(e){const t=document.getElementById(decodeURIComponent(e.replace("#",""))),n=t.offsetTop;return n});e.forEach(function(e,n){e.dataset.position=t[n]}),window.addEventListener("scroll",function(){let s=window.scrollY,o=closestInt(s,t);activeHeading(o,e)})}}elems("p").forEach(function(e){const t=elems(".button",e);t.length>1&&pushClass(e,"button_grid")})}function markExternalLinks(){let e=elems("a");e&&Array.from(e).forEach(function(e){let n,o,i,s,a,r,t,c;t=new URL(e.href),c=t.host!==location.host||t.protocol!==location.protocol||t.port!==location.port,c&&(n="target",o="rel",i="_blank",s="noopener",a=elemAttribute(e,n),r=elemAttribute(e,s),!a&&elemAttribute(e,n,i),!r&&elemAttribute(e,o,s))})}function sanitizeURL(e){const t=e.indexOf(hash);if(t>-1){const n=e.substr(t,e.length-1);e=e.replace(n,"")}return e}function createDeepLinks(){let e=[];[...Array(6).keys()].forEach(function(t){t&&Array.prototype.push.apply(e,document.getElementsByTagName(`h${t+1}`))}),e.forEach(e=>{let t=createEl("a"),n=createEl("img");n.src="https://pavinberg.github.io/emacs-book/icons/link.svg",t.className="link icon",t.appendChild(n);let s=e.getAttribute("id");s&&(t.href=`${sanitizeURL(document.URL)}#${s}`,e.appendChild(t),pushClass(e,"link_owner"))})}function copyFeedback(e){const t=document.createElement("div"),n="link_yanked";if(t.classList.add(n),t.innerText=copied_text,!elem(`.${n}`,e)){const n=e.getElementsByTagName("img")[0],s=n.src;n.src="https://pavinberg.github.io/emacs-book/icons/check.svg",e.appendChild(t),setTimeout(function(){e.removeChild(t),n.src=s},2250)}}function copyHeadingLink(){let t,n,s,o,e;t="link",n=elems(`.${t}`),n&&document.addEventListener("click",function(n){e=n.target,o=e.parentNode,(e&&containsClass(e,t)||containsClass(o,t))&&(n.preventDefault(),s=e.href!=void 0?e.href:e.parentNode.href,copyToClipboard(s),copyFeedback(e.href!=void 0?e:e.parentNode))})}function makeTablesResponsive(){const e=elems("table");e&&e.forEach(function(e){const t=createEl();pushClass(t,"scrollable"),wrapEl(e,t)})}function backToTop(){const e=elem("#toTop");window.addEventListener("scroll",()=>{const t=window.scrollY;t>=200?(e.style.display="flex",pushClass(e,active)):deleteClass(e,active)})}function lazyLoadMedia(e=[]){e.forEach(e=>{let t=elems(e);t&&Array.from(t).forEach(function(e){e.loading="lazy"})})}function loadActions(){updateDate(),customizeSidebar(),markExternalLinks(),createDeepLinks(),copyHeadingLink(),makeTablesResponsive(),backToTop(),lazyLoadMedia(["iframe","img"]),doc.addEventListener("click",e=>{let t=e.target,n="color_choice",s=containsClass(t,n);!!s&&setUserColorMode(!0),toggleMenu(e)})}window.addEventListener("load",loadActions())
 </script>
 
-<script src="https://pavinberg.github.io/emacs-book/js/search.min.1d90d39c38f07098639a5615acfe08bdaf01582ec9c1413389ec19065ef7fffeb2e9680476a394052544a7df8a8d302168277a8cbd516572cc754ef26d637795.js" async></script>
+<script src="https://pavinberg.github.io/emacs-book/js/search.min.5c6f6b10f0dd1c4d28e57ffe78c5614ac4bbda167f16d6acb11ecc809ebe709820184043ce16636d2f058dee96efde8f0c5849e9df3e12958ec7c1de945d9baf.js" async></script>
 
 
 </body>

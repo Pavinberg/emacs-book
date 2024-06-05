@@ -1,0 +1,4 @@
+#+TITLE: Buffer and mode
+#+WEIGHT: 3
+
+To be translated...
