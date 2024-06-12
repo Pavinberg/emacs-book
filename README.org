@@ -10,6 +10,10 @@ The book is still ongoing.
 
 [[https://pavinberg.github.io/emacs-book/zh/][中文版]]
 
+** Discussions
+
+If you have anything to discuss, make a question, or have any ideas on this book, feel free to discuss at the [[tal][GitHub Discussions]].
+
 **  Acknowledgement
 
 Thanks [[https://gohugo.io][Hugo]] and the [[https://github.com/onweru/compose][compose]] theme. 

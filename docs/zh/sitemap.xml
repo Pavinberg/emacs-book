@@ -102,6 +102,30 @@
   </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/tricks/</loc>
   </url><url>
+    <loc>https://pavinberg.github.io/emacs-book/zh/orgmode/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pavinberg.github.io/emacs-book/orgmode/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://pavinberg.github.io/emacs-book/zh/orgmode/"
+                />
+  </url><url>
+    <loc>https://pavinberg.github.io/emacs-book/zh/ai/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pavinberg.github.io/emacs-book/ai/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://pavinberg.github.io/emacs-book/zh/ai/"
+                />
+  </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/donate/</loc>
     <xhtml:link
                 rel="alternate"
@@ -125,8 +149,6 @@
                 hreflang="zh"
                 href="https://pavinberg.github.io/emacs-book/zh/categories/"
                 />
-  </url><url>
-    <loc>https://pavinberg.github.io/emacs-book/zh/orgmode/</loc>
   </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/tags/</loc>
     <xhtml:link

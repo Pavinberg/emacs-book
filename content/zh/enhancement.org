@@ -79,7 +79,7 @@
 {{< /tip >}}
 
 加入后让光标在这个作用域内，按下 ~C-M-x~ 让配置生效 。此时，就可以使用 ~avy~ 了 。假如我们有如下的 Python 代码：
-  #+begin_src python3
+#+begin_src python3
   def hello_world():
     print("Hello, world!")
   
@@ -121,7 +121,7 @@
 [[https://github.com/minad/marginalia][主页]]
 
 一个为 Emacs minibuffer 中的选项添加注解的插件。
-  #+begin_src elisp
+#+begin_src elisp
 (use-package marginalia
  :ensure t
  :init (marginalia-mode)
@@ -150,7 +150,7 @@ act ~，这时按下 ~ o` 就可以在另一个新的窗口打开这个 buffer �
 
 直接使用官网提供的配置就好（官网中强烈建议 ~embark~ 和 ~marginalia~ 一同使用，所以最好先装好 ~marginalia~ ）：
 
-  #+begin_src elisp
+#+begin_src elisp
 (use-package embark
  :ensure t
  :init
@@ -346,7 +346,7 @@ Up^^       Down^^      Miscellaneous      % 2(mc/num-cursors) cursor%s(if (> (mc
 
 abo-abo 继续为我们带来好用的插件。tiny 可以实现一个方便的序号宏展开。举个小例子就一目了然了：我们想要定义一组函数分别名为 ~int fun01~ 、 ~int fun02~ 、 …… 、 ~int fun10~ ，正常我们只能一个个手敲，但有了 ~tiny~ ，我们可以输入一个这样的简单语法：
 
-#+end_src
+#+begin_src
 m1\n10|int func%02d ()
 #+end_src
 

@@ -32,8 +32,8 @@ enable = false # if false search will default to fusejs
  
 # Site logo
 [logo]
-  lightMode = "icons/emacs-book-logo-light.pdf"
-  darkMode = "icons/emacs-book-logo-dark.pdf"
+  lightMode = "icons/emacs-book-logo-light.svg"
+  darkMode = "icons/emacs-book-logo-dark.svg"
 
 [lang]
   iconLight = "icons/lang-light.svg"

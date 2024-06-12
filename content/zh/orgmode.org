@@ -1,5 +1,4 @@
 #+TITLE: org-mode 
-
 #+WEIGHT: 10
 
 [[https://orgmode.org/][org-mode]] 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：

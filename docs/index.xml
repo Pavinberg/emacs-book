@@ -19,7 +19,7 @@
       <link>https://pavinberg.github.io/emacs-book/basic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pavinberg.github.io/emacs-book/basic/</guid>
-      <description>To be translated…</description>
+      <description>This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&amp;#39;s no need to worry too much or memorize them by rote.</description>
     </item>
     <item>
       <title>Buffer and mode</title>
@@ -54,6 +54,20 @@
       <link>https://pavinberg.github.io/emacs-book/development/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://pavinberg.github.io/emacs-book/development/</guid>
+      <description>To be translated…</description>
+    </item>
+    <item>
+      <title>Org-mode</title>
+      <link>https://pavinberg.github.io/emacs-book/orgmode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pavinberg.github.io/emacs-book/orgmode/</guid>
+      <description>To be translated…</description>
+    </item>
+    <item>
+      <title>AI integrated</title>
+      <link>https://pavinberg.github.io/emacs-book/ai/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://pavinberg.github.io/emacs-book/ai/</guid>
       <description>To be translated…</description>
     </item>
   </channel>

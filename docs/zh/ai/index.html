@@ -1,7 +1,7 @@
 
 
 <!doctype html>
-<html lang="en"
+<html lang="zh"
   data-mode="auto"
 >
 <head><meta charset="utf-8">
@@ -13,15 +13,31 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>Categories | Pavinberg&#39;s Emacs Book</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/categories/">
-  <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book">
-  <meta property="og:title" content="Categories">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+<title>AI 集成 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/ai/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="AI 集成">
+  <meta property="og:description" content="近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
+准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
+考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
+前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-  <meta itemprop="name" content="Categories">
+  <meta itemprop="name" content="AI 集成">
+  <meta itemprop="description" content="近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
+准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
+考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
+前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+  <meta itemprop="wordCount" content="159">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Categories">
+  <meta name="twitter:title" content="AI 集成">
+  <meta name="twitter:description" content="近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
+准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
+考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
+前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -29,16 +45,22 @@
 
 
 
+  <meta name="description" content="近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
+准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
+考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
+前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+
 
 </head>
-<body class="page-taxonomy" id="pagetop">
+<body class="page-page" id="pagetop">
   <header class="nav_header">
 <nav class="wrap nav menu">
-	<a href='https://pavinberg.github.io/emacs-book/' class="nav_brand">
+	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
 		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.svg">
-			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="Pavinberg&#39;s Emacs Book Logo">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="专业 Emacs 入门 Logo">
 		</picture>
-		<label class="nav_toggle toggle" title='Site Menu' role="button">
+		<label class="nav_toggle toggle" title='网站菜单' role="button">
 			<svg class="icon icon_harmburger">
   <use xlink:href="#harmburger"></use>
 </svg>
@@ -54,8 +76,9 @@
   </label>
   
   
+    
   
-  <input type="search" class="search_field  standardize-input" placeholder="Search categories" id="find" autocomplete="off"  data-scope='categories'>
+  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
   <div class="search_results results"></div>
 </div>
 
@@ -63,7 +86,7 @@
 
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/donate/"><span>Donate</span></a>
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
 		</li>
 		
 		<li class="nav-item nav_repo">
@@ -79,7 +102,7 @@
 
   
   
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/zh/categories/" title="Toggle language">
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/ai/" title="Toggle language">
 	
 	
 	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
@@ -105,19 +128,502 @@
     
     
       
-    
-      <div class="content">
+    <div class="grid-auto"><aside class="aside menu">
+  <div>
+    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
+  <use xlink:href="#carly"></use>
+</svg></label>
+  </div>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
+      <section class="" id="docs-专业-emacs-入门">
+        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">为什么学习 Emacs</a>
+</li>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
+</li>
+<li><a href="#headline-3">对 Vim 用户</a>
+</li>
+<li><a href="#headline-4">其它 Emacs</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">安装</a>
+</li>
+<li><a href="#headline-2">启动</a>
+</li>
+<li><a href="#headline-3">关于键盘操作</a>
+</li>
+<li><a href="#headline-4">功能键</a>
+</li>
+<li><a href="#headline-5">Emacs 命令</a>
+</li>
+<li><a href="#headline-6">基础快捷键</a>
+<ul>
+<li><a href="#headline-7">如何退出</a>
+</li>
+<li><a href="#headline-8">光标移动</a>
+</li>
+<li><a href="#headline-9">编辑操作</a>
+</li>
+<li><a href="#headline-10">标记与跳转</a>
+</li>
+<li><a href="#headline-11">重复操作</a>
+</li>
+<li><a href="#headline-12">页面移动</a>
+</li>
+<li><a href="#headline-13">搜索文本</a>
+</li>
+<li><a href="#headline-14">其它小操作</a>
+</li>
+<li><a href="#headline-15">获得帮助</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">命令列表</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link active"><a id="docs-ai-集成" href="https://pavinberg.github.io/emacs-book/zh/ai/">AI 集成</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">前置操作</a>
+</li>
+<li><a href="#headline-2">对话</a>
+</li>
+<li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+  </section>
+      </section>
+  </section>
+</aside>
+
+  <main class="content">
+    <h1>AI 集成</h1>
+<p>
+近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs + AI 的一些使用方式和心得体会分享一下。</p>
+<p>
+准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。</p>
+<p>
+考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+前置操作
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。
+通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。</p>
+<table>
+<thead>
+<tr>
+<th>模型分类</th>
+<th>模型名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通义千问</td>
+<td>qwen-max</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-max-0428</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-max-0403</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-max-0107</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-max-longcontext</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-plus</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-turbo</td>
+</tr>
+<tr>
+<td>通义千问 VL 系列</td>
+<td>qwen-vl-plus</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-vl-max</td>
+</tr>
+<tr>
+<td>通义千问开源系列</td>
+<td>qwen1.5-110b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-72b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-32b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-14b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-7b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-1.8b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen1.5-0.5b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>codeqwen1.5-7b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-72b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-14b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-7b-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-1.8b-longcontext-chat</td>
+</tr>
+<tr>
+<td></td>
+<td>qwen-1.8b-chat</td>
+</tr>
+</tbody>
+</table>
+<p>
+模型的性能和价格基本上按从上到下的顺序递减，官网详细的价格表见<a href="https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-thousand-questions-metering-and-billing#TeYcd">通义千问系列价格</a>、<a href="https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-vl-plus-pricing#TeYcd">通义千问 VL 系列</a>、<a href="https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-7b-14b-72b-metering-and-billing#TeYcd">通义千问开源系列</a>。根据笔者的体验，很多时候其实并不需要追求太大的模型，7b、14b 可以覆盖绝大部分场景，简单的任务 1.8b 也能完成。使用这种比较小的模型如果不是重度使用，一个月用下来基本几块钱可以打住。因此读者根据自己的经济能力量力而行即可。同时新账号有免费额度，羊毛还是可以薅一下的。</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+对话
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+这个方法其实约等于把 Chat 模型的网页界面搬到 Emacs 里，额外增加的能力就是方便文字和代码的输入输出，不用频繁的跳转到网页上去。这也是大模型最最基本的用法。
+前面的一篇教程中，笔者介绍了 chatgpt-shell 这个插件，笔者基于这个插件修改成了 <a href="https://github.com/Pavinberg/qwen-chat-shell">qwen-chat-shell</a>，适配了 Dashscope 的 API 和通义模型、替换了中文的 prompt，方便大家直接使用。
+首先按照如下进行配置，读者需把自己的 API key 替换上去。同时读者可以选择自己偏爱的模型，默认即为 <code>qwen1.5-1.8b-chat</code> 模型：</p>
+<div class="src src-elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nb">use-package</span> <span class="nv">qwen-chat-shell</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="p">(</span><span class="nb">setq</span> <span class="nv">qwen-chat-shell-dashscope-key</span> <span class="s">&#34;sk-abcdefghijklmn12345678&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nb">setq</span> <span class="nv">qwen-chat-shell-current-model</span> <span class="s">&#34;qwen1.5-1.8b-chat&#34;</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+使用方法为：</p>
+<ol>
+<li>启动 Shell： <code>M-x</code> <code>qwen-chat-shell</code>  。</li>
+<li>切换模型： <code>M-x</code> <code>qwen-chat-shell-switch-model-version</code> 或快捷键 <code>C-c C-v</code> 。</li>
+<li>切换 Prompt： <code>M-x</code> <code>qwen-chat-shell-switch-model-version</code> 或快捷键 <code>C-c C-s</code> 。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+深度集成
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+对话的方式仍停留在通过自然语言与 LLM 交互的方式，效率和方便程度上来看还是不够理想。有很多项目已经在试图解决这些痛点，笔者目前关注到了两个项目：</p>
+<ol>
+<li><a href="https://github.com/freckletonj/uniteai">uniteai</a>：这个项目很有想法，利用现有的 Language Server Protocol (LSP) 实现编辑器与 LLM 的对接。</li>
+<li><a href="https://github.com/danielmiessler/fabric">fabric</a> &amp; <a href="https://github.com/velocitatem/fabric.el">fabric.el</a>：这个更加通用，囊括了非常多的 prompt。</li>
+</ol>
+</div>
+</div>
+
+    <div class="pager">
   
-  <ol>
     
-  </ol>
+    <div class="pager_item prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/orgmode/" class="pager_link button" title="org-mode" rel="prev">
+        <span class="pager_label">org-mode</span>
+      </a>
+    </div>
+    
   
-      </div></div>
+
+  
+</div>
+  </main>
+</div>
+</div>
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
     <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
-    <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
+    <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
 <svg width="0" height="0" class="hidden">

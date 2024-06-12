@@ -16,16 +16,16 @@
 <title>Basic operations | Pavinberg&#39;s Emacs Book</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/basic/">
   <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book">
   <meta property="og:title" content="Basic operations">
-  <meta property="og:description" content="To be translated…">
+  <meta property="og:description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
 
   <meta itemprop="name" content="Basic operations">
-  <meta itemprop="description" content="To be translated…">
-  <meta itemprop="wordCount" content="3">
+  <meta itemprop="description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.">
+  <meta itemprop="wordCount" content="3311">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Basic operations">
-  <meta name="twitter:description" content="To be translated…">
+  <meta name="twitter:description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -33,7 +33,7 @@
 
 
 
-  <meta name="description" content="To be translated…">
+  <meta name="description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&amp;#39;s no need to worry too much or memorize them by rote.">
 
 
 </head>
@@ -41,8 +41,8 @@
   <header class="nav_header">
 <nav class="wrap nav menu">
 	<a href='https://pavinberg.github.io/emacs-book/' class="nav_brand">
-		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
-			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="Pavinberg&#39;s Emacs Book Logo">
+		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.svg">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="Pavinberg&#39;s Emacs Book Logo">
 		</picture>
 		<label class="nav_toggle toggle" title='Site Menu' role="button">
 			<svg class="icon icon_harmburger">
@@ -133,12 +133,51 @@
 </li>
 </ul>
 </nav>
-        <h3 class="section_link active"><a id="docs-basic-operations" href="https://pavinberg.github.io/emacs-book/basic/">Basic operations</a></h3>
+        <h3 class="section_link active"><a id="docs-basic-operations" href="https://pavinberg.github.io/emacs-book/basic/">Basic operations</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Installation</a>
+</li>
+<li><a href="#headline-2">Startup</a>
+</li>
+<li><a href="#headline-3">About Keyboard Shortcuts</a>
+</li>
+<li><a href="#headline-4">Function Keys</a>
+</li>
+<li><a href="#headline-5">Emacs Command</a>
+</li>
+<li><a href="#headline-6">Basic Shortcuts</a>
+<ul>
+<li><a href="#headline-7">Exit Emacs</a>
+</li>
+<li><a href="#headline-8">Cursor movement</a>
+</li>
+<li><a href="#headline-9">Editing</a>
+</li>
+<li><a href="#headline-10">Mark and jump</a>
+</li>
+<li><a href="#headline-11">Repeat</a>
+</li>
+<li><a href="#headline-12">Page movement</a>
+</li>
+<li><a href="#headline-13">Search</a>
+</li>
+<li><a href="#headline-14">Other tricks</a>
+</li>
+<li><a href="#headline-15">Get help</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-16">Appendix: commands list</a>
+</li>
+</ul>
+</nav>
         <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3>
         <h3 class="section_link"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3>
         <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3>
         <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3>
         <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/orgmode/">Org-mode</a></h3>
+        <h3 class="section_link"><a id="docs-ai-integrated" href="https://pavinberg.github.io/emacs-book/ai/">AI integrated</a></h3>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
   </section>
@@ -147,8 +186,650 @@
 </aside>
 
   <main class="content">
-    <h1>Basic operations</h1><p>
-To be translated…</p>
+    <h1>Basic operations</h1>
+<p>
+This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.</p>
+<p>
+The end of this chapter includes a list of shortcuts and their command names mentioned in the text for readers to consult.</p>
+<p>
+Meanwhile, never forget the <a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">Emacs Reference Card</a> and the <a href="https://www.gnu.org/software/emacs/refcards/pdf/survival.pdf">Emacs Survival Card</a>, which serve as the cheatsheet.</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+Installation
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+As of the date of this chapter&#39;s update (June 6, 2024), the stable version of Emacs is 29.3. It is recommended to use the latest version, at least 26 or above, since some packages require higher Emacs versions. Notably, Emacs 28 introduced acceleration on running Emacs Lisp using GCC JIT, significantly boosting its performance.</p>
+<p>
+To install the graphical interface, download the installer package from the <a href="https://www.gnu.org/software/emacs/">official site</a>. Alternatively, you can also use package manager for installation.</p>
+<p>
+For macOS:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ brew install --cask emacs</span></span></code></pre></div>
+</div>
+<p>
+Debian/Ubuntu:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ sudo apt-get install emacs</span></span></code></pre></div>
+</div>
+<p>
+On other OS the installation method is similar, and the details are omitted here because the <a href="https://www.gnu.org/software/emacs/download.html">official download page</a> is good enough.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+Startup
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+With GUI, simply open the application. With terminal, run the following command:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs</span></span></code></pre></div>
+</div>
+<p>
+If you have installed a GUI Emacs but want to open non-GUI Emacs in terminal, run with <code>-nw</code>:</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ emacs -nw <span class="c1"># no window system</span></span></span></code></pre></div>
+</div>
+<p>
+Append the file name after the command if you want to open the specific file.</p>
+<p>
+There is a default welcome page with an &#34;Emacs tutorial&#34;. It walks through the basic operation of Emacs more interactively and the reader is recommended to have a try after reading this chapter. It is possible to change the language of the builtin tutorial, by typing <code>M-x</code> <code>help-with-turorial-spec-language</code> (the way to input is introduced below). </p>
+<p><img src="../images/emacs-book/basic/startup.png" alt="../images/emacs-book/basic/startup.png" title="../images/emacs-book/basic/startup.png" /></p>
+<p>
+The way to exit Emacs is in the appendix of this chapter.</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+About Keyboard Shortcuts
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+
+<div class="tip">
+  <p>
+Why use so many shortcuts in Emacs?</p>
+<p>
+Emacs is created before the GUI applications. It is designed to be used without a mouse. Even nowadays, the most efficient editing way is also avoid using mouse too much. The more frequent an operation is, the less mouse operation should be involved. You can put your hands at the keyboard and try to get the mouse. What you have to do is move your hand, find the mouse, find the cursor, move the cursor to the appropriate position, adjust the position, click and finally move your hand back to the keyboard. It not only takes a non-trivial time to complete the whole process, it also interrupt your mind to do the job conherently.</p>
+<p>
+Keyboard shortcurs is invented to help improve the issue. And Emacs</p>
+<p>
+Keyboard shortcuts were invented to improve the efficiency. In Emacs, this concept is taken to the extreme, with nearly every action having a corresponding shortcut. While this can be challenging for programmers, requiring a significant amount of memorization, it fosters muscle memory and ultimately leads to high efficiency.</p>
+
+</div>
+</p>
+<p>
+Keyboard shortcuts are highly customizable, allowing users to tailor them as their preferences. While I&#39;ll share some personal experiences, readers are neither required nor encouraged to follow them exactly – it&#39;s essential to adapt them according to one&#39;s own habits and needs.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+Function Keys
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<p>
+There are five main function keys in Emacs,  <code>Control</code> , <code>Meta</code> ,  <code>Shift</code> , <code>Super</code> , and <code>Hyper</code>. Some names may not be familiar to the readers, which are actually the names on the keyboard tens years ago. The <code>Hyper</code> even disappeared in modern keyboard.</p>
+<p>
+So, what about the <code>Meta</code> and <code>Super</code> ? <code>Meta</code> is the <code>Alt</code> key on PC and the <code>Option</code> on Mac. <code>Super</code> is the <code>Win</code> on PC and <code>Command</code> on Mac. As we&#39;ve known, the <code>Super</code> key plays an important role in modern operating systems, so there are no  shortcuts bound to <code>Super</code> by default. In Emacs, most of the shortcuts involves <code>Control</code> and <code>Meta</code>, and the formal one is even more common.</p>
+<p>
+
+<div class="tip">
+  <p>
+Though the <code>Hyper</code> key has vanished, Emacs still supports its functionality; keyboard users with less frequently used keys might consider remapping them to <code>Hyper</code> for expanded shortcuts, an exercise left to the reader&#39;s exploration.</p>
+<p>
+In fact, there is also an <code>Alt</code> key in Emacs, but modern keyboards typically map it to <code>Meta</code>, and <code>Alt</code> is rarely utilized. To avoid confusion, it is not covered in this tutorial.</p>
+
+</div>
+</p>
+<p>
+
+<div class="tip">
+  <p>
+Noticeably, the <code>Control</code> key is a hotspot for Emacs users, with their pinky finger often strained when pressing it. As such, I strongly recommend modifying your keyboard layout after familiarizing yourself with Emacs to protect your fingers.</p>
+<p>
+For instance, I have made <code>Caps Lock</code> key to be remapped to the <code>Control</code> key (readers can choose to swap them, but since Caps Lock is rarely used, I simply overwrote it). Also, you can use the strong thumb instead. On a PC, you could switch the <code>Windows</code> key with <code>Control</code>, while on a Mac, the <code>Command</code> key could be used instead. If you prefer not to change globally, adjustments can be made specifically within Emacs, as we will discuss later.
+If you are a Mac user, I recommend a keyboard customizer named <a href="https://karabiner-elements.pqrs.org/">Karabiner-Elements</a>. It can be configured with customized key mapping. </p>
+
+</div>
+</p>
+<p>
+In Emacs, since we usually configure the keyboard shortcuts, there has to be a way to represent the function keys. Emacs uses a single letter, as shown below.</p>
+<table>
+<thead>
+<tr>
+<th>Emacs Function Key</th>
+<th>Symbol</th>
+<th>Actual Key (PC/Mac)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control</td>
+<td>C</td>
+<td>Ctrl / Control</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>M</td>
+<td>Alt / Option</td>
+</tr>
+<tr>
+<td>Shift</td>
+<td>S</td>
+<td>Shift / Shift</td>
+</tr>
+<tr>
+<td>Super</td>
+<td>s</td>
+<td>Win / Command</td>
+</tr>
+<tr>
+<td>Hyper</td>
+<td>H</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p>
+In Emacs, a hyphen denotes &#34;hold down.&#34; For example, <code>C-a</code> represents &#34;press and hold <code>Control</code>, then press <code>a</code>.&#34; <code>C-x b</code> means &#34;hold <code>Control</code> and press <code>x</code>, then release both, and press <code>b</code>.&#34; <code>C-S-&lt;mouse-1&gt;</code> means &#34;press and hold <code>Control</code> and <code>Shift</code> simultaneously, then click left mouse.&#34; Though Emacs does not need mouse, the Emacs graphical interface supports mouse operations. In certain scenarios, using the mouse can be more convenient, <em>e.g.</em>, for irregular multi-cursor selections.</p>
+<p>
+Notably, the <code>Meta</code> prefix has two ways to conduct: <code>M-x</code> can be entered either by &#34;holding down <code>Meta</code> and then pressing <code>x</code>&#34; or by &#34;first pressing <code>Esc</code> and release, then press <code>x</code>&#34;. The latter is provided as a fallback for systems or hardware without a dedicated <code>Meta</code> key. But from users&#39; experience, the latter is not convenient in daily usage. Therefore, readers are encouraged to use <code>Alt~/~Option</code> as the <code>Meta</code> whenever possible.</p>
+<p>
+
+<div class="tip">
+  Some terminal, <em>e.g.</em>, terminal of macOS, will not pass <code>Option</code> as <code>Meta</code> by default. But users can open the Preferences, find the &#34;Profiles - Keyboard&#34;, tick the &#34;Use Option as Meta&#34;. Other terminal like iTerm2 are similar.
+</div>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+Emacs Command
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>
+Before introducing the shortcuts, it is essential to explain the basic logic of Emacs. Similar to other text editors, the user conduct &#34;command&#34; to interact with Emacs. A command is actually a function defined in Emacs Lisp language that finish the user request. For example, even the simplest operation &#34;move the cursor up&#34; corresponds to command <code>previous-line</code> . Every operation is a command, and the keyboard shortcuts is bound to call the command.  </p>
+<p>
+To explicitly call a command, type <code>M-x</code>, and you will a see a line appears at the bottom of Emacs with &#34;M-x &#34;, waiting for your input. You can input a command name (<em>i.e.</em>, function name) to call a command. The <code>M-x</code> shortcut is the most important shortcut in Emacs. If you forget the other shortcuts, you can always call the command directly with this shortcut.</p>
+<p>
+The convention of naming a command is using hyphen to connect several words. When inputing the command, the hyphen can be replaced with space and be expanded with <code>&lt;tab&gt;</code> key.</p>
+<p>
+
+<div class="tip">
+  FYI, <code>M-x</code> is also a command named <code>execute-extended-command</code> .
+</div>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+Basic Shortcuts
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+The following lists some commonly used shortcuts. You can open any text or code to have a try, <em>e.g.</em>, the integrated tutorial inside Emacs. Press <code>C-h t</code> if you do not know how to find it (remember to release the <code>Control</code> and <code>h</code> before pressing <code>t</code>).</p>
+<p>
+
+<div class="tip">
+  For Vim users, the <code>evil</code> package can be installed to have the same editing experience as Vim, so you can skim the below content. The way of installing a packaage is introduced in chapter <em><a href="../configurations">Configurations</a></em> and chapter <em><a href="../enhancement">Enhancement</a></em>.
+</div>
+</p>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+Exit Emacs
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>
+To exit Emacs, press <code>C-x C-c</code> .</p>
+<p>
+When inputing a command or shortcuts and you change your mind and want to give up, press <code>C-g</code>. Anytime something works strangely or gets stuck, you can always try <code>C-g</code> to interrupt the process.</p>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
+Cursor movement
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<p>
+Even cursor movement requires a shortcut? Yes, Emacs binds arrow keys to shortcuts too. This is due to the placement of the arrow keys on a keyboard is usually at the bottom right corner of a keyboard. Using them would necessitate hand movement away from the center area of the keyboard. On the other hand, moving cursor is definitely very frequent when editing. Thus, Emacs considers such interruptions to be detrimental to the workflow of editing.</p>
+<p>
+The shortcuts for <code>up</code> , <code>down</code> , <code>left</code>, and <code>right</code> are <code>C-p</code>, <code>C-n</code>, <code>C-b</code> and <code>C-f</code> . The meanings are &#34;previous&#34;, &#34;next&#34;, &#34;back&#34; and &#34;forward&#34;. It may feel strange to use these shortcuts at first, but when you get familiar with them, it could be highly efficient.</p>
+<p>
+Besides the basic cursor movement, Emacs provides many other ways:</p>
+<ul>
+<li>Move by word: <code>M-b</code> to move back a word, <code>M-f</code> to move forward a word.</li>
+<li>
+<p>Beginning and end</p>
+<ul>
+<li>Line: <code>C-a</code> to move to the beginning of a line. <code>C-e</code> to move to the end of a line. Since many programming language has indent with spaces or tab, <code>C-a</code> will always move to the exact beginning of the line including white spaces, which is not often the case we want. Press <code>M-m</code> to move to the beginning of the line excluding the indention. The following chapter <em><a href="../optimization/#headline-8">Improve the native operations</a></em> will introduce a package <code>mwim</code> to improve this operation.</li>
+<li>Sentence: <code>M-a</code> to move to the beginning of a sentence. <code>M-e</code> to move to the end of a sentence.</li>
+<li>File: <code>M-&lt;</code> to move to the beginning of a file. <code>M-&gt;</code> to move to the end of a file. Notice that you need to press and hold <code>Meta</code> , <code>Shift</code> and comma / period at the same time.</li>
+</ul>
+</li>
+<li>Window: the first time you press <code>M-r</code> , the cursor will move to the center of current window. Pressing it again move to the top and the pressing the third time to move the bottom.</li>
+</ul>
+<p>By the way, macOS has some of these cursor movement shortcuts globally. The reader is highly recommended to practice these shortcuts and fosters muscle memory.</p>
+<p>
+
+<div class="tip">
+  To make things fun, readers can play the Snake game inside Emacs to practice the cursor movement. Press <code>M-~</code> to call <code>tmm-menubar</code>, press <code>t</code> to choose &#34;Tools&#34;, press <code>g</code> to choose &#34;Games&#34;, and press <code>s</code> to choose &#34;Snake&#34;. Here you go!
+</div>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
+Editing
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<ul>
+<li>Delete character: to delete a character before the cursor, press backspace as usual (which is called <code>&lt;DEL&gt;</code> or <code>&lt;backspace&gt;</code> in Emacs). To delete a character after the cursor, use <code>C-d</code> .</li>
+<li>Kill word: Press <code>M-d</code> to delete a word after the cursor. Press <code>M-&lt;DEL&gt;</code> to delete a word before cursor.</li>
+<li>Kill sentence: Press <code>M-k</code> to kill the sentence from current point to the end.</li>
+<li>Kill line: Press <code>C-k</code> to kill the line from current point to the end.</li>
+<li>Select a region: move cursor to the beginning, press <code>C-SPC</code> (<code>SPC</code> means space). A string &#34;Mark set&#34; will appear at the bottom of the window, which means selection start. Then move the cursor to the end of the region you want to select, same as usual. Press <code>C-g</code> to cancle.</li>
+<li>Copy: Press <code>M-w</code> to copy a region.</li>
+<li>Kill: Press <code>C-w</code> to kill a region.</li>
+</ul>
+<p>Readers should have noticed that here we mention two operations, &#34;Delete&#34; and &#34;Kill&#34;. &#34;Delete&#34; is delete the content completely. &#34;Kill&#34; is similar to &#34;cut&#34;, which means the content will be saved to a history and could be pasted to another position, which is called &#34;insert&#34;.</p>
+<p>
+
+<div class="tip">
+  According to the author&#39;s experience, copy is more common than kill, and pressing <code>Control</code> is more convenient than <code>Meta</code> . As a result, the author swapped the two bindings to make <code>C-w</code> to copy and <code>M-w</code> to kill. You can also modify the bindings as your will.
+</div>
+</p>
+<p>
+Emacs keeps a history ring that stores the content you&#39;ve killed. Press <code>C-y</code> to paste the latest content, which is called &#34;yank&#34; in Emacs. To paste older history, press <code>M-y</code> after pressing <code>C-y</code> , and keep pressing <code>M-y</code> to scroll back. Actually this is not intuitive enough, so in the chapter <em><a href="../optimization/#headline-1">Improve the native operations</a></em> we will introduced a package <code>counsel</code> to help.</p>
+<ul>
+<li>Undo: to undo the latest operation, press <code>C-/</code> or <code>C-_</code> or <code>C-x u</code>. One execption is that directly editing text will be undone in group up to 20.</li>
+<li>Redo: Emacs keeps the operations history also in a ring. To redo, you need to press <code>C-g</code>, which means &#34;no operation&#34; and do the &#34;undo&#34;, leading to a redo. It can also be seen as <code>C-g</code> changes the moving direction of the history ring. Readers might complain that this is very intuitive, so in chapter <em><a href="../optimization/#headline-9">Improve the native operations</a></em> we will introduce a package <code>undo-tree</code> to help.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-4">
+<h4 id="headline-10">
+Mark and jump
+</h4>
+<div id="outline-text-headline-10" class="outline-text-4">
+<p>
+The <code>C-SPC</code> command mentioned above is not only used to select a region of text. It is actually making a mark. A common practice is press <code>C-SPC</code> twice to make a mark without select any text. Then if we have moved the cursor to somewhere else, press <code>C-x C-SPC</code> or <code>C-u C-SPC</code> will jump directly back to where we marked. Also, package <code>counsel</code> will help improve the process.</p>
+<p>
+To jump to a specific line, press <code>M-g M-g</code> and input the line number, then press enter.</p>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-4">
+<h4 id="headline-11">
+Repeat
+</h4>
+<div id="outline-text-headline-11" class="outline-text-4">
+<p>
+Emacs provides a feature to repeat a command several times. Specificly, press <code>C-u</code> and input a number, then do the operation you want. For example, press <code>C-u 12 C-n</code> will move the cursor down by 12 lines. If no number is input, the default number is 4. This operation is actually passing a number as parameter to the <code>C-n</code>.</p>
+<p>
+Besides, you can also press and hold <code>Meta</code> or <code>C-M-</code> and press a number to do the same thing. In GUI Emacs, you can also press and hold <code>Ctrl</code> and press a number.    </p>
+<p>
+
+<div class="tip">
+  <code>C-u</code> is actually a shortcut for <code>universal-argument</code> for &#34;prefix argument&#34;. For most command, it means repeat the command several times. For the other commands, it has special meanings. For example, pressing <code>C-u M-x</code> means &#34;search command by prefix&#34;. An analogy is that we press <code>1</code> to type a 1 and we press <code>shift+1</code> to type an exclamation mark. <code>C-u</code> is the same as the <code>shift</code>. Since a number argument can be passed to <code>C-u</code>, it can be used to many things. To find commands that support the prefix argument, see the help message in the command&#39;s manual, instructed in section <a href="../basic/#headline-15">Get Help</a>.
+</div>
+</p>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-4">
+<h4 id="headline-12">
+Page movement
+</h4>
+<div id="outline-text-headline-12" class="outline-text-4">
+<p>
+Press <code>C-v</code> to scroll one page down, <code>M-v</code> to scroll up. Emacs will keep 3 lines not being scrolled to make it more comfortable.</p>
+<p>
+Press <code>C-l</code> once to scroll the content and make the current position of the cursor at the center of the window. Press again to make the position of the cursor at the top of the window. Press the third time to make it to the bottom.</p>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-4">
+<h4 id="headline-13">
+Search
+</h4>
+<div id="outline-text-headline-13" class="outline-text-4">
+<p>
+To search after the current position of the cursor, press <code>C-s</code> . A prompt &#34;I-search: &#34; will show at the bottom of the window. Input the text you want to search.</p>
+<p>
+To find the next pattern matched, press <code>C-s</code> again. If you find your desired pattern, press enter to stay here. If you want to give up the searching, press <code>C-g</code> and it will jump back to where you&#39;ve started.</p>
+<p>
+To find the pattern before the current cursor, press <code>C-r</code> instead. </p>
+<p>
+Package <code>swiper</code> will make things easier, which will be introduced in chapter <em><a href="../optimization/#headline-1">Improve the native operations</a></em>.</p>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-4">
+<h4 id="headline-14">
+Other tricks
+</h4>
+<div id="outline-text-headline-14" class="outline-text-4">
+<ul>
+<li>Swap the character before and after the cursor: <code>C-t</code>. Swap the word instead: <code>M-t</code>. Swap the line: <code>C-x C-t</code>. Also there are ways to swap the sentence, paragraph and region, see the <a href="and">documentation</a> for details.</li>
+<li>Create a new line after the current line without moving cursor: <code>C-o</code>. To make all continuous empty lines to one line: <code>C-x C-o</code>.</li>
+<li>Downcase the word after the cursor: <code>M-l</code>. Upcase the word: <code>M-u</code>. Captilize the word: <code>M-c</code>.</li>
+<li>Zoom in: <code>C-x C-=</code> . Zoom out: <code>C-x C--</code> . Reset zooming: <code>C-x C-0</code> .</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-4">
+<h4 id="headline-15">
+Get help
+</h4>
+<div id="outline-text-headline-15" class="outline-text-4">
+<p>
+Emacs has many ways to get help, all prefixed with <code>C-h</code>.</p>
+<ul>
+<li>Get a brief help message of a shortcut: <code>C-h c</code> and then press the shortcut. For example, press <code>C-h c C-p</code> and a line &#34;C-p runs the command previous-line&#34; will be shown at the bottom.</li>
+<li>Detailed documentation of a shortcut: <code>C-h k</code> and press the shortcut.</li>
+<li>Detailed documentation of a command (function): <code>C-h f</code> and input the command name.</li>
+<li>Variable information: <code>C-h v</code> and input the variable name.</li>
+<li>Command search by keyword (Command Apropos): <code>C-h a</code> and input a keyword to search.</li>
+<li>List a documentation with a keyword: <code>C-h d</code> and input a keyword.</li>
+</ul>
+<p>So many ways to help? Press <code>C-h ?</code> to list the above helps.</p>
+<p>
+A small package <a href="../optimization"><code>which-key</code></a> can help to input shortcuts, which will be introduced in chapter <em><a href="../enhancement/#headline-3">Improve the native operations</a></em>.</p>
+<p>
+
+<div class="tip">
+  Some operating systems have special key mappings, for example, macOS maps <code>C-/</code> to <code>C-_</code> and <code>C-SPC</code> to <code>C-@</code>. It does not affect the editing but users should be careful if they want to rebind the keys.
+</div>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-3">
+<h3 id="headline-16">
+Appendix: commands list
+</h3>
+<div id="outline-text-headline-16" class="outline-text-3">
+<table>
+<thead>
+<tr>
+<th>操作描述</th>
+<th>快捷键</th>
+<th>命令名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Execute a command</td>
+<td>M-x</td>
+<td>execute-extended-command</td>
+</tr>
+<tr>
+<td>Exit Emacs</td>
+<td>C-x C-c</td>
+<td>save-buffers-kill-terminal</td>
+</tr>
+<tr>
+<td>Interrupt/Give up</td>
+<td>C-g</td>
+<td>keyboard-quit</td>
+</tr>
+<tr>
+<td>Line up</td>
+<td>C-p</td>
+<td>previous-line</td>
+</tr>
+<tr>
+<td>Line down</td>
+<td>C-n</td>
+<td>next-line</td>
+</tr>
+<tr>
+<td>Left</td>
+<td>C-b</td>
+<td>backward-char</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>C-f</td>
+<td>forward-char</td>
+</tr>
+<tr>
+<td>Move to left by a word</td>
+<td>M-b</td>
+<td>backward-word</td>
+</tr>
+<tr>
+<td>Move to right by a word</td>
+<td>M-f</td>
+<td>forward-word</td>
+</tr>
+<tr>
+<td>Move to the beginning of line</td>
+<td>C-a</td>
+<td>move-beginning-of-line</td>
+</tr>
+<tr>
+<td>Move to the end of line</td>
+<td>C-e</td>
+<td>move-end-of-line</td>
+</tr>
+<tr>
+<td>Move to the beginning without indent</td>
+<td>M-m</td>
+<td>back-to-indentation</td>
+</tr>
+<tr>
+<td>Move to the beginning of sentence</td>
+<td>M-a</td>
+<td>backward-sentence</td>
+</tr>
+<tr>
+<td>Move to the end of sentence</td>
+<td>M-e</td>
+<td>forward-sentence</td>
+</tr>
+<tr>
+<td>Move to the beginning of file</td>
+<td>M-&lt;</td>
+<td>beginning-of-buffer</td>
+</tr>
+<tr>
+<td>Move to the end of file</td>
+<td>M-&gt;</td>
+<td>end-of-buffer</td>
+</tr>
+<tr>
+<td>Move to center, top and bottom of window</td>
+<td>M-r</td>
+<td>move-to-window-line-top-bottom</td>
+</tr>
+<tr>
+<td>Delete character on right</td>
+<td>C-d</td>
+<td>delete-char</td>
+</tr>
+<tr>
+<td>Kill word on right</td>
+<td>M-d</td>
+<td>kill-word</td>
+</tr>
+<tr>
+<td>Kill word on left</td>
+<td>M-DEL</td>
+<td>backward-kill-word</td>
+</tr>
+<tr>
+<td>Kill until the end of sentence</td>
+<td>M-k</td>
+<td>kill-sentence</td>
+</tr>
+<tr>
+<td>Kill until the end of line</td>
+<td>C-k</td>
+<td>kill-line</td>
+</tr>
+<tr>
+<td>Set mark for selection</td>
+<td>C-SPC</td>
+<td>set-mark-command</td>
+</tr>
+<tr>
+<td>Copy</td>
+<td>M-w</td>
+<td>kill-region-save</td>
+</tr>
+<tr>
+<td>Kill (Cut)</td>
+<td>C-w</td>
+<td>kill-region</td>
+</tr>
+<tr>
+<td>Yank (Paste)</td>
+<td>C-y</td>
+<td>yank</td>
+</tr>
+<tr>
+<td>Yank history (Paste history)</td>
+<td>M-y</td>
+<td>yank-pop</td>
+</tr>
+<tr>
+<td>Undo</td>
+<td>C-/ or C-_ or C-x u</td>
+<td>undo</td>
+</tr>
+<tr>
+<td>Jump to last mark</td>
+<td>C-x C-SPC or C-u C-SPC</td>
+<td>pop-global-mark</td>
+</tr>
+<tr>
+<td>Go to line</td>
+<td>M-g M-g</td>
+<td>goto-line</td>
+</tr>
+<tr>
+<td>Repeat/Pass argument</td>
+<td>C-u</td>
+<td>universal-argument</td>
+</tr>
+<tr>
+<td>Scroll down</td>
+<td>C-v</td>
+<td>scroll-up-command</td>
+</tr>
+<tr>
+<td>Scroll up</td>
+<td>M-v</td>
+<td>scroll-down-command</td>
+</tr>
+<tr>
+<td>Move page to make cursor at the center/top/bottom</td>
+<td>C-l</td>
+<td>recenter-top-bottom</td>
+</tr>
+<tr>
+<td>Search forward</td>
+<td>C-s</td>
+<td>isearch-forward</td>
+</tr>
+<tr>
+<td>Search backward</td>
+<td>C-r</td>
+<td>isearch-backward</td>
+</tr>
+<tr>
+<td>Swap characters aside cursor</td>
+<td>C-t</td>
+<td>transpose-chars</td>
+</tr>
+<tr>
+<td>Swap word aside cursor</td>
+<td>M-t</td>
+<td>transpose-words</td>
+</tr>
+<tr>
+<td>Swap line aside cursor</td>
+<td>C-x C-t</td>
+<td>transpose-lines</td>
+</tr>
+<tr>
+<td>New line without move cursor</td>
+<td>C-o</td>
+<td>open-line</td>
+</tr>
+<tr>
+<td>Delete continuous empty lines</td>
+<td>C-x C-o</td>
+<td>delete-blank-lines</td>
+</tr>
+<tr>
+<td>Downcase the forward word</td>
+<td>M-l</td>
+<td>downcase-word</td>
+</tr>
+<tr>
+<td>Upcase the forward word</td>
+<td>M-u</td>
+<td>upcase-word</td>
+</tr>
+<tr>
+<td>Captilize the forward word</td>
+<td>M-c</td>
+<td>capitalize-word</td>
+</tr>
+<tr>
+<td>Zoom in</td>
+<td>C-x C-=</td>
+<td>text-scale-adjust</td>
+</tr>
+<tr>
+<td>Zoom out</td>
+<td>C-x C–</td>
+<td>text-scale-adjust</td>
+</tr>
+<tr>
+<td>Reset zooming</td>
+<td>C-x C-0</td>
+<td>text-scale-adjust</td>
+</tr>
+<tr>
+<td>Summary the shortcut</td>
+<td>C-h c</td>
+<td>describe-key-briefly</td>
+</tr>
+<tr>
+<td>Documentation of the shortcut</td>
+<td>C-h k</td>
+<td>describe-key</td>
+</tr>
+<tr>
+<td>Documentation of the function</td>
+<td>C-h f</td>
+<td>describe-function</td>
+</tr>
+<tr>
+<td>Documentation of a variable</td>
+<td>C-h v</td>
+<td>describe-variable</td>
+</tr>
+<tr>
+<td>Search a command by keword</td>
+<td>C-h a</td>
+<td>apropos-command</td>
+</tr>
+<tr>
+<td>Search a documentation by keyword</td>
+<td>C-h d</td>
+<td>apropos-documentation</td>
+</tr>
+<tr>
+<td>Help for help</td>
+<td>C-h ?</td>
+<td>help-for-help</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
     <div class="pager">
   

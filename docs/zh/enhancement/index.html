@@ -40,7 +40,7 @@ M-x bookmark-delete ：删除书签。
 这在阅读代码的时候可是个十分方便的功能。
 ivy view 顺着 Book marks，我们顺带一提上一篇教程中提及的 ivy 插件的额外功能—— ivy view 。它与 Book mark 的区别是直接将当前 Frame 中的 Window 的状态都进行保存，然后状态间切换。例如我们打开了多个窗口做一件事，但是中途需要看一些其它文件，那么想要回到刚刚的窗口摆放方式就是 ivy view 出场的地方了。与 Book marks 类似，涉及三个命令：
 ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑定为快捷键 C-c v 。">
-  <meta itemprop="wordCount" content="1211">
+  <meta itemprop="wordCount" content="1227">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="插件：功能增强类">
   <meta name="twitter:description" content="上一篇教程我们解决了 Emacs 的主要痛点，这一篇我们将开始介绍 Emacs 更为强大的功能。 有几个插件的篇幅较长，原因在于其配置和使用相对复杂和特别，但绝对是效率利器，需要读者静下心学习。
@@ -77,8 +77,8 @@ ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑
   <header class="nav_header">
 <nav class="wrap nav menu">
 	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
-		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.pdf">
-			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.pdf" alt="专业 Emacs 入门 Logo">
+		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.svg">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="专业 Emacs 入门 Logo">
 		</picture>
 		<label class="nav_toggle toggle" title='网站菜单' role="button">
 			<svg class="icon icon_harmburger">
@@ -429,9 +429,6 @@ ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑
 </li>
 </ul>
 </nav>
-  <section class="section aside_inner">
-    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
-  </section>
         <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
 <ul>
 <li><a href="#headline-1">基础结构</a>
@@ -452,6 +449,19 @@ ivy-push-view ：保存当前的窗口状态。在上一篇教程的配置中绑
 </li>
 </ul>
 </nav>
+        <h3 class="section_link"><a id="docs-ai-集成" href="https://pavinberg.github.io/emacs-book/zh/ai/">AI 集成</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">前置操作</a>
+</li>
+<li><a href="#headline-2">对话</a>
+</li>
+<li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+  <section class="section aside_inner">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
+  </section>
       </section>
   </section>
 </aside>
@@ -562,16 +572,16 @@ avy
 <p>
 加入后让光标在这个作用域内，按下 <code>C-M-x</code> 让配置生效 。此时，就可以使用 <code>avy</code> 了 。假如我们有如下的 Python 代码：</p>
 <div class="src src-python3">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="k">def</span> <span class="nf">hello_coder</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, coder!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="k">def</span> <span class="nf">hello_emacser</span><span class="p">():</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, emacser!&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
-</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">...</span></span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="ln"> 1</span><span class="cl">  <span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="k">def</span> <span class="nf">hello_coder</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, coder!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="k">def</span> <span class="nf">hello_emacser</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, emacser!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="o">...</span></span></span></code></pre></div>
 </div>
 <p>
 那么如果此时我们的光标在其它位置，例如一个下面的代码中，而希望将光标移动到 <code>hello_emacser</code> 函数的位置，我们要么需要使用鼠标，要么需要用向上键一行一行地缓慢挪动，似乎都不够完美。有了 <code>avy</code> ，我们就可以按下我们刚刚设定好的快捷键 <code>C-j C-SPC</code> 调用 <code>avy-goto-char-timer</code> ，此时 <code>avy</code> 在等待你输入“目标位置的部分文本”，例如这个场景下，就输入：“h“、“he” 、”hel“ 等等都可以（要快一点输入），此时，原本是 &#34;h&#34; 的位置会被替换为一个高亮了的其它字母，那么我们希望跳转到 <code>hello_emacser</code> 的函数定义处，对应了字母 <code>g</code> ，于是我们紧接着按 <code>g</code> ，就会发现光标成功移动到了 <code>hello_emacser</code> 的开头。</p>
@@ -615,10 +625,10 @@ marginalia
 一个为 Emacs minibuffer 中的选项添加注解的插件。</p>
 <div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">marginalia</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nb">:init</span> <span class="p">(</span><span class="nv">marginalia-mode</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nb">:bind</span> <span class="p">(</span><span class="nb">:map</span> <span class="nv">minibuffer-local-map</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">   <span class="p">(</span><span class="s">&#34;M-A&#34;</span> <span class="o">.</span> <span class="nv">marginalia-cycle</span><span class="p">)))</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"> <span class="nb">:init</span> <span class="p">(</span><span class="nv">marginalia-mode</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"> <span class="nb">:bind</span> <span class="p">(</span><span class="nb">:map</span> <span class="nv">minibuffer-local-map</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">     <span class="p">(</span><span class="s">&#34;M-A&#34;</span> <span class="o">.</span> <span class="nv">marginalia-cycle</span><span class="p">)))</span></span></span></code></pre></div>
 </div>
 <p><img src="../../images/emacs-book/enhancement/marginalia.png" alt="../../images/emacs-book/enhancement/marginalia.png" title="../../images/emacs-book/enhancement/marginalia.png" /></p>
 </div>
@@ -646,20 +656,20 @@ act ~，这时按下 ~ o` 就可以在另一个新的窗口打开这个 buffer �
 直接使用官网提供的配置就好（官网中强烈建议 <code>embark</code> 和 <code>marginalia</code> 一同使用，所以最好先装好 <code>marginalia</code> ）：</p>
 <div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">embark</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nb">:ensure</span> <span class="no">t</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nb">:init</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1">;; Optionally replace the key help with a completing-read interface</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="p">(</span><span class="nb">setq</span> <span class="nv">prefix-help-command</span> <span class="nf">#&#39;</span><span class="nv">embark-prefix-help-command</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nb">:config</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">;; Hide the mode line of the Embark live/completions buffers</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;display-buffer-alist</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">      <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;\\`\\*Embark Collect \\(Live\\|Completions\\)\\*&#34;</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl">       <span class="no">nil</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">       <span class="p">(</span><span class="nf">window-parameters</span> <span class="p">(</span><span class="nv">mode-line-format</span> <span class="o">.</span> <span class="nv">none</span><span class="p">))))</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="nb">:bind</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="p">((</span><span class="s">&#34;C-.&#34;</span> <span class="o">.</span> <span class="nv">embark-act</span><span class="p">)</span>     <span class="c1">;; pick some comfortable binding</span>
-</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">embark-dwim</span><span class="p">)</span>    <span class="c1">;; good alternative: M-.</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="p">(</span><span class="s">&#34;C-h B&#34;</span> <span class="o">.</span> <span class="nv">embark-bindings</span><span class="p">)))</span> <span class="c1">;; alternative for `describe-bindings&#39;</span></span></span></code></pre></div>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"> <span class="nb">:ensure</span> <span class="no">t</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"> <span class="nb">:init</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"> <span class="c1">;; Optionally replace the key help with a completing-read interface</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"> <span class="p">(</span><span class="nb">setq</span> <span class="nv">prefix-help-command</span> <span class="nf">#&#39;</span><span class="nv">embark-prefix-help-command</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"> <span class="nb">:config</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"> <span class="c1">;; Hide the mode line of the Embark live/completions buffers</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"> <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;display-buffer-alist</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="o">&#39;</span><span class="p">(</span><span class="s">&#34;\\`\\*Embark Collect \\(Live\\|Completions\\)\\*&#34;</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">         <span class="no">nil</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">         <span class="p">(</span><span class="nf">window-parameters</span> <span class="p">(</span><span class="nv">mode-line-format</span> <span class="o">.</span> <span class="nv">none</span><span class="p">))))</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"> <span class="nb">:bind</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"> <span class="p">((</span><span class="s">&#34;C-.&#34;</span> <span class="o">.</span> <span class="nv">embark-act</span><span class="p">)</span>     <span class="c1">;; pick some comfortable binding</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-;&#34;</span> <span class="o">.</span> <span class="nv">embark-dwim</span><span class="p">)</span>    <span class="c1">;; good alternative: M-.</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">  <span class="p">(</span><span class="s">&#34;C-h B&#34;</span> <span class="o">.</span> <span class="nv">embark-bindings</span><span class="p">)))</span> <span class="c1">;; alternative for `describe-bindings&#39;</span></span></span></code></pre></div>
 </div>
 <p>
 如果想要让 <code>avy</code> 也支持 <code>embark</code> ，需要在 <code>avy</code> 的配置中添加 <code>:config</code> ：</p>
@@ -875,9 +885,9 @@ tiny
 <a href="https://github.com/abo-abo/tiny">主页</a></p>
 <p>
 abo-abo 继续为我们带来好用的插件。tiny 可以实现一个方便的序号宏展开。举个小例子就一目了然了：我们想要定义一组函数分别名为 <code>int fun01</code> 、 <code>int fun02</code> 、 …… 、 <code>int fun10</code> ，正常我们只能一个个手敲，但有了 <code>tiny</code> ，我们可以输入一个这样的简单语法：</p>
-<p>#+end_src
-m1\n10|int func%02d ()</p>
-<p>#+end_src</p>
+<div class="src src-text">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">m1\n10|int func%02d ()</span></span></code></pre></div>
+</div>
 <p>
 m 是个固定的前缀字符，&#34;1\n10&#34; 表示 1 到 10 的数字，中间用回车换行分隔，竖线 | 后面是我们的格式化文本。然后我们调用 <code>M-x</code>  <code>tiny-expand</code> 命令，就能得到如下文本：</p>
 <div class="src src-text">
