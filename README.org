@@ -12,7 +12,7 @@ The book is still ongoing.
 
 ** Discussions
 
-If you have anything to discuss, make a question, or have any ideas on this book, feel free to discuss at the [[tal][GitHub Discussions]].
+If you have anything to discuss, make a question, or have any ideas on this book, feel free to discuss at the [[https://github.com/Pavinberg/emacs-book/discussions][GitHub Discussions]].
 
 **  Acknowledgement
 
