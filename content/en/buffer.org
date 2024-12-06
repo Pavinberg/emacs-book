@@ -1,4 +1,57 @@
 #+TITLE: Buffer and mode
 #+WEIGHT: 3
 
-To be translated...
+This chapter introduces Emacs' terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.
+
+** Emacs Terminology
+
+The [[https://wikemacs.org/wiki/Emacs_Terminology][wiki]] contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.
+
+- *Frame* : Open Emacs in GUI, then the whole window is called a frame. Multiple windows means multiple frames. In terminal Emacs, the terminal interface occupied by Emacs is the frame.
+  
+- *Menu Bar* : located at the top of the frame, including File, Edit, etc. by default. Click with mouse in GUI or call ~menu-bar-open~ or press ~<f10>~ to open it. Another option is the ~M-~~ shortcut to call ~tmm-menu~ .
+  
+- *Tool Bar*: Displayed only in GUI Emacs. To be honest, it is ugly and the usecase is very limited, which is already covered by the shortcuts introduced in the [[../basic][last chapter]]. So it can be hidden after users getting used to the shortcuts, by configuring ~(tool-bar-mode -1)~ (the way to confgure Emacs is introduced in [[../configurations][the next chapter]]).
+  
+- *Echo Area* : at the bottom of the frame. Used to display short messages.
+  
+#+NAME: emacs-gui
+[[../images/emacs-book/buffer/emacs-gui.png]]
+
+- *Window*: the area between the Tool Bar and the Echo Area is the window. Emacs window differs from the window of common operating systems. Users should be careful and not get confused. As mentioned above, the "window" we normally refer to is called frame in Emacs.
+  
+- *Mode Line*: at the bottom of the window (something like -UUU:%%--F1 *GNU Emacs* ). It is used to display information about the Buffer (details are discussed below), including decoding, modification status, name, cursor position, line number and so on. It is customizable, by hand or by using package like [[https://github.com/Malabarba/smart-mode-line][smart-mode-line]].
+  
+- *Scroll Bar* : at the right of the window. It is also useless in Emacs so it can be hidden by ~(when (display-graphic-p) (toggle-scroll-bar -1))~ .
+
+- *Cursor* : default to a box, whe right edge is the real position. The [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html][documentation]] introduces some settings to customize the cursor display, /e.g./, bar or box.
+
+- *Point* : cursor's position. The difference between Cursor and Point is that there is only one Cursor in Emacs but Point is Buffer specific. Each Buffer has its own Point. This distinction makes Emacs applicable to do some complex tasks across buffers.
+
+** File and buffer
+
+Here explains what is the /Buffer/ mentioned above. Before the explanation, we need to open multiple files. 
+
+*** Open multiple files
+
+After openning Emacs, we can use ~C-x C-f~ ( ~find-file~ ) to open a new file. After pressing the shortcut, the Echo Area will display "Find file: " followed by a path string. Enter the file path you want to open, or a non-exist name to create a new file. The ~<tab>~ can be used for completion. Package [[https://github.com/abo-abo/swiper][ivy]] or [[https://emacs-helm.github.io/helm/][helm]] can help this process, which is introduced in the following chapters.
+
+Press ~C-x C-s~ to save the file.
+
+{{< tip >}}
+Open the file in read-only mode: ~C-x C-r~ . Find a similar file: ~C-x C-v~ , which means you can input file name based on current file name. Switch to read-only on the current file: ~C-x C-q~ .
+{{< /tip >}}
+
+The ~C-x C-f~ can be used to open multiple files. After opening the second file, the first file will "disappear". Actually, all the files opened will be put into a "Buffer", which can be seen as an instance of the opened file. When you open the second file, the first file's buffer will be switched to the background, leaving the second file's buffer occupying the window. Buffer name is shown in the Mode Line, which is the file's name in most cases.
+
+You can also use ~C-x C-f~ to open a directory because "everything is a file" in mainstream operating systems. Emacs provies some functionalities for the directory which will be introduced in the following chapter.
+
+*** Buffer management
+There are three ways to switch buffers. The quickest way is using ~C-x b~, where you type the buffer's name and press Enter to switch. If you press Enter without typing anything, the echo area will prompt you that it will jump to the currently default buffer, in which way you can switch between two files.
+
+Obviously, if there are many buffers, remembering their names becomes difficult and less manageable. Hence, the second method, by pressing ~C-x C-b~, opens a window named "*Buffer List*", listing all the currently opened buffers. You'll see several buffers starting and ending with an asterisk (\ast{}), which are used by Emacs for outputting information, not created by opening files. For example, "*Messages*" contains some output messages from Emacs, and "*scratch*" is where you can write some Elisp code. If a buffer starts with %, it indicates that the buffer has been modified but not saved.
+
+{{< tip >}}
+If the current cursor is not in "\ast{}Buffer List\ast{}", press ~C-x o~ to switch.
+{{< /tip >}}
+

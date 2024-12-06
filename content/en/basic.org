@@ -195,9 +195,13 @@ To search after the current position of the cursor, press ~C-s~ . A prompt "I-se
 
 To find the next pattern matched, press ~C-s~ again. If you find your desired pattern, press enter to stay here. If you want to give up the searching, press ~C-g~ and it will jump back to where you've started.
 
-To find the pattern before the current cursor, press ~C-r~ instead. 
+To find the pattern before the current cursor, press ~C-r~ instead.
 
-Package ~swiper~ will make things easier, which will be introduced in chapter /[[../optimization/#headline-1][Improve the native operations]]/.
+To use regular expression to search, press ~C-M-s~ or ~C-M-r~ to search forward and backward.
+
+Package ~swiper~ will make things easier, which will list the occurrance and support regular expression by default. It be introduced in chapter /[[../optimization/#headline-1][Improve the native operations]]/.
+
+To show some lines containing a pattern in a long file (a log for example), use ~M-s o~ ( or ~M-x~ ~occur~ ) and enter the regular expression. The Emacs introduction to regular expression is [[https://www.emacswiki.org/emacs/RegularExpression][here]]. 
 
 *** Other tricks
 
@@ -265,6 +269,9 @@ Some operating systems have special key mappings, for example, macOS maps ~C-/~ 
 | Move page to make cursor at the center/top/bottom | C-l                    | recenter-top-bottom            |
 | Search forward                                    | C-s                    | isearch-forward                |
 | Search backward                                   | C-r                    | isearch-backward               |
+| Search forward in regex                           | C-M-s                  | isearch-forward-regexp         |
+| Search backward in regex                          | C-M-r                  | isearch-backward-regexp        |
+| Filter lines with pattern                         | M-s o                  | occur                          |
 | Swap characters aside cursor                      | C-t                    | transpose-chars                |
 | Swap word aside cursor                            | M-t                    | transpose-words                |
 | Swap line aside cursor                            | C-x C-t                | transpose-lines                |

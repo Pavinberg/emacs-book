@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.139.3">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -20,7 +20,7 @@
 准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
 考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
 前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
-模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.5-14b-chat qwen1.5-7b-chat qwen1.5-1.8b-chat qwen1.5-0.5b-chat codeqwen1.5-7b-chat qwen-72b-chat qwen-14b-chat qwen-7b-chat qwen-1.8b-longcontext-chat qwen-1.8b-chat 模型的性能和价格基本上按从上到下的顺序递减，官网详细的价格表见通义千问系列价格、通义千问 VL 系列、通义千问开源系列。根据笔者的体验，很多时候其实并不需要追求太大的模型，7b、14b 可以覆盖绝大部分场景，简单的任务 1.8b 也能完成。使用这种比较小的模型如果不是重度使用，一个月用下来基本几块钱可以打住。因此读者根据自己的经济能力量力而行即可。同时新账号有免费额度，羊毛还是可以薅一下的。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
 
@@ -29,7 +29,7 @@
 准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
 考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
 前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
-模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.5-14b-chat qwen1.5-7b-chat qwen1.5-1.8b-chat qwen1.5-0.5b-chat codeqwen1.5-7b-chat qwen-72b-chat qwen-14b-chat qwen-7b-chat qwen-1.8b-longcontext-chat qwen-1.8b-chat 模型的性能和价格基本上按从上到下的顺序递减，官网详细的价格表见通义千问系列价格、通义千问 VL 系列、通义千问开源系列。根据笔者的体验，很多时候其实并不需要追求太大的模型，7b、14b 可以覆盖绝大部分场景，简单的任务 1.8b 也能完成。使用这种比较小的模型如果不是重度使用，一个月用下来基本几块钱可以打住。因此读者根据自己的经济能力量力而行即可。同时新账号有免费额度，羊毛还是可以薅一下的。">
   <meta itemprop="wordCount" content="159">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="AI 集成">
@@ -37,7 +37,7 @@
 准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
 考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
 前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
-模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.5-14b-chat qwen1.5-7b-chat qwen1.5-1.8b-chat qwen1.5-0.5b-chat codeqwen1.5-7b-chat qwen-72b-chat qwen-14b-chat qwen-7b-chat qwen-1.8b-longcontext-chat qwen-1.8b-chat 模型的性能和价格基本上按从上到下的顺序递减，官网详细的价格表见通义千问系列价格、通义千问 VL 系列、通义千问开源系列。根据笔者的体验，很多时候其实并不需要追求太大的模型，7b、14b 可以覆盖绝大部分场景，简单的任务 1.8b 也能完成。使用这种比较小的模型如果不是重度使用，一个月用下来基本几块钱可以打住。因此读者根据自己的经济能力量力而行即可。同时新账号有免费额度，羊毛还是可以薅一下的。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -45,11 +45,12 @@
 
 
 
-  <meta name="description" content="近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
+  <meta name="description" content=" 近两年大语言模型（Large Language Model，LLM）的大风席卷了所有计算机领域，如今基本上每个产品都会搞点 AI 能力集成。笔者也尝试将 Emacs &#43; AI 的一些使用方式和心得体会分享一下。
 准确地说，当前所谓的“AI 能力”就是特指利用当前的大语言模型做一些信息搜索和提炼方面的事情。这也是当前 LLM 最实用的两个能力。我们可以利用现有的工具和 Emacs 的拓展能力，将 LLM 的功能和 Emacs 结合在一起，提高效率。根据前面的教程，Emacs 已经成为了一个代码编辑器、笔记管理器、日程管理器和文献管理器，也就是说 Emacs 是我们个人知识和技术的聚集地，在这里集成可定制化的 AI 技术，再合适不过。
 考虑到当前国内的环境用 ChatGPT 等国外大模型的 API 十分麻烦，且很容易被封。笔者已经逐步转移到使用国产大模型，只不过需要做一些适配的工作。笔者选了通义千问作为主力模型，因为客观来说通义总体实力属于第一梯队，种类丰富且价格便宜，阿里资源投入也够多在未来一段时间内应该不会凉；主观来说笔者自己的工作就在支撑着通义的训练，小小的支持和宣传一下。当然了，读者总是可以把配置中的 URL 一换改用任何一个大模型，比如文心一言。
 前置操作 我们以下的操作都是基于大模型的 API，因此我们需要注册一个平台的账号，获得 API 的使用方法。通常来说，主流平台都会有 HTTP API，并且用法是和 OpenAI 的 API 保持兼容的。以通义为例，首先访问这里按照流程注册账号、开通 Dashscope 服务、生成 API key。API key 就是访问你的账号的大模型的钥匙，因此需要保管好，不要不小心发布到公共平台，如果泄露了要及时删除。 通义系列当前可选的模型有如下这些，由于为了简化插件逻辑，笔者当前使用的通义的 OpenAI-compatible-API，因此不是所有模型都可以用这种方式使用。
-模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.">
+模型分类 模型名称 通义千问 qwen-max qwen-max-0428 qwen-max-0403 qwen-max-0107 qwen-max-longcontext qwen-plus qwen-turbo 通义千问 VL 系列 qwen-vl-plus qwen-vl-max 通义千问开源系列 qwen1.5-110b-chat qwen1.5-72b-chat qwen1.5-32b-chat qwen1.5-14b-chat qwen1.5-7b-chat qwen1.5-1.8b-chat qwen1.5-0.5b-chat codeqwen1.5-7b-chat qwen-72b-chat qwen-14b-chat qwen-7b-chat qwen-1.8b-longcontext-chat qwen-1.8b-chat 模型的性能和价格基本上按从上到下的顺序递减，官网详细的价格表见通义千问系列价格、通义千问 VL 系列、通义千问开源系列。根据笔者的体验，很多时候其实并不需要追求太大的模型，7b、14b 可以覆盖绝大部分场景，简单的任务 1.8b 也能完成。使用这种比较小的模型如果不是重度使用，一个月用下来基本几块钱可以打住。因此读者根据自己的经济能力量力而行即可。同时新账号有免费额度，羊毛还是可以薅一下的。
+">
 
 
 </head>
