@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -48,12 +48,13 @@
 
 
 
-  <meta name="description" content="本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
+  <meta name="description" content=" 本篇介绍配置 Emacs 相关的知识和操作。本文主要内容归纳：
 简单的 Emacs Lisp 语言知识——让你在配置时游刃有余 配置文件的知识——模块化的写法 一些观点——最好不要完全使用并依赖大牛的配置，把配置掌握在自己手中 一些基础配置——开启部分 Emacs 功能 介绍插件的安装并用 use-package 管理插件——管理成本低、逻辑更清晰 快捷键、变量的设置——迈出你的自定义脚步 Emacs Lisp 简介 为什么要了解 Emacs Lisp Emacs Lisp 是世界上第二古老高级编程语言 Lisp 专为 Emacs 打造的方言。官方提供了 Emacs Lisp 的入门介绍和参考手册。简单来说 Emacs Lisp 编程语言就是用来为 Emacs 编写逻辑，Emacs 的底层和绝大部分插件都是用这个语言写出来的。同时，作为用户，我们也可以使用 Emacs Lisp 编写一些自定义逻辑，甚至进一步形成插件。
 学习一门语言自然是比较麻烦的，但完全不必紧张，事实上绝大部分情况我们都不需要自己写 Emacs Lisp，基本上你想要的需求都可以在网上搜索到其他人已经写好的代码，至多只需要微调一下。为了应对这种需要微调的情况，同时也加强对 Emacs 的掌控，我们简单了解一下 Emacs Lisp 的语法。
 当然读者如果确实不想在这件事上耗费时间精力，可以跳到下一节直接了解“配置文件”。
 语法简介 以下语法介绍为了便于理解存在一些简化和不是百分百准确的类比。最终以文档为准。 Emacs Lisp 对于大部分人来说是十分陌生的，其语法看着就十分古怪。以下是一个例子（来源于 ivy 插件）：
-1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。">
+1(defun ivy-set-prompt (caller prompt-fn) 2 (setq ivy--prompts-list 3 (plist-put ivy--prompts-list caller prompt-fn))) Emacs Lisp 发源于 Lisp，而 Lisp 就是 “List Processing“ 的缩写，顾名思义，Lisp 语言的核心就是列表（List）。在 Lisp 中，每一对小括号表达了一个列表，列表元素用空格分隔。在执行 Lisp 时，会把列表的第一个元素作为函数名，后面的元素都是函数的参数。元素可以是一个“词”，也可以是另一个列表。可以类比 Shell 命令的写法，也是第一个词是命令名，而后面的是命令的参数。
+">
 
 
 </head>
@@ -440,6 +441,16 @@
 <li><a href="#headline-2">对话</a>
 </li>
 <li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
 </li>
 </ul>
 </nav>
@@ -959,7 +970,7 @@ MELPA
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>

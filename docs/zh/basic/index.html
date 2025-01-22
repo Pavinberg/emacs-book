@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -48,7 +48,7 @@ macOS:
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果在安装了图形界面的机器上想要在终端里打开非图形界面版的 Emacs，输入：
 1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。">
-  <meta itemprop="wordCount" content="884">
+  <meta itemprop="wordCount" content="909">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="基础操作">
   <meta name="twitter:description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
@@ -72,7 +72,7 @@ macOS:
 
 
 
-  <meta name="description" content="本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
+  <meta name="description" content=" 本篇介绍 GNU Emacs 的基础知识和操作。本文内容只是让读者初识 Emacs 操作，这些操作需要日积月累的练习才能掌握，本文的后半部分更偏向用于日后查阅；另一方面，很多操作有些繁琐难以记忆，笔者将会在后续介绍一些插件能够极大改善这些问题，因此读者如果遇到晦涩的地方不必过分担心，也不用死记硬背。
 文章的结尾附上了本文出现的快捷键及其命令名，供读者查阅。
 另外不要忘了官网的 Emacs Reference Card：即 Emacs 备忘表（Cheatsheet）。前两个 PDF 是基本内容，一个是基本操作卡片，另一个是更为简洁的“生存卡片”。可以打印出来放在一边。
 安装 截止本文更新日期（2024.6.6）Emacs 的稳定版本为 29.3。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
@@ -85,7 +85,8 @@ macOS:
 其它系统类似，安装操作官网下载页已描述详尽，在此不做赘述。
 启动 图形界面可以直接打开程序。命令行输入命令启动 Emacs。
 1$ emacs 如果在安装了图形界面的机器上想要在终端里打开非图形界面版的 Emacs，输入：
-1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。">
+1$ emacs -nw # no window system 如果后面接文件名，则可以直接打开相应文件。
+">
 
 
 </head>
@@ -475,6 +476,16 @@ macOS:
 </li>
 </ul>
 </nav>
+        <h3 class="section_link"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
+</li>
+</ul>
+</nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
@@ -786,11 +797,16 @@ Emacs 提供了一个机制可以把一个命令重复执行任意次数。具�
 <div id="outline-text-headline-13" class="outline-text-4">
 <p>
 从光标位置向下搜索，按下 <code>C-s</code> ，即 search，此时最下方空行会出现 &#34;I-search: &#34;，输入你要搜索 的文本，此时会显示出能够匹配的文本，光标会移动到第一个匹配的文本位置。</p>
+<ul>
+<li>如果你想让光标跳到下一个匹配位置，就再按一次 <code>C-s</code> 。</li>
+<li>如果想停留在当前位置，退出搜索，按下回车键。</li>
+<li>如果想放弃搜索，回到搜索前的位置，按下 <code>C-g</code> 。</li>
+<li>如果想用正则表达式向后搜索，按下 <code>C-M-s</code> 。</li>
+<li>从光标位置向前搜索，按下 <code>C-r</code> ，其用法与 <code>C-s</code> 一致，只是方向相反。如果是想用正则，则按 <code>C-M-r</code> 。</li>
+</ul>
+<p>安装了 <code>swiper</code> 的话会显示搜索结果列表，且默认可用正则表达式，更为直观（ <code>swiper</code> 和上文提到的 <code>counsel</code> 是一套插件）。</p>
 <p>
-如果你想让光标跳到下一个匹配位置，就再按一次 <code>C-s</code> 。
-如果想停留在当前位置，退出搜索，按下回车键。
-如果想放弃搜索，回到搜索前的位置，按下 <code>C-g</code> 。
-从光标位置向前搜索，按下 <code>C-r</code> ，其用法与 <code>C-s</code> 一致，只是方向相反。安装了 <code>swiper</code> 的话会显示搜索结果列表，更为直观（~swiper~ 和上文提到的 <code>counsel</code> 是一套插件）。</p>
+如果对于一个很长的日志文件想要筛选其中特定的行，可以用 <code>M-s o</code> （或 <code>M-x</code> <code>occur</code> ），输入正则表达式即可。Emacs 中的正则表达式说明在<a href="https://www.emacswiki.org/emacs/RegularExpression">这里</a>。</p>
 </div>
 </div>
 <div id="outline-container-headline-14" class="outline-4">
@@ -1031,6 +1047,21 @@ Emacs 内置了多种获取帮助的方式。其共有前缀 <code>C-h</code> �
 <td>isearch-backward</td>
 </tr>
 <tr>
+<td>向后用正则表达式搜索</td>
+<td>C-M-s</td>
+<td>isearch-forward-regexp</td>
+</tr>
+<tr>
+<td>向前用正则表达式搜索</td>
+<td>C-M-r</td>
+<td>isearch-backward-regexp</td>
+</tr>
+<tr>
+<td>用正则表达式过滤文件的行</td>
+<td>M-s o</td>
+<td>occur</td>
+</tr>
+<tr>
 <td>交换前后字符</td>
 <td>C-t</td>
 <td>transpose-chars</td>
@@ -1152,7 +1183,7 @@ Emacs 内置了多种获取帮助的方式。其共有前缀 <code>C-h</code> �
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>

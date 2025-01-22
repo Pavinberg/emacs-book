@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -22,7 +22,7 @@
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
 1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode . company-box-mode)) TabNine - AI 自动补全 Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 TabNine。 TabNine 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 TabNine for Emacs 中的指导，我们配置一下即可：">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
 
@@ -33,7 +33,7 @@
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
 1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode . company-box-mode)) TabNine - AI 自动补全 Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 TabNine。 TabNine 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 TabNine for Emacs 中的指导，我们配置一下即可：">
   <meta itemprop="wordCount" content="2175">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="插件：编程开发类">
@@ -43,7 +43,7 @@
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
 1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode . company-box-mode)) TabNine - AI 自动补全 Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 TabNine。 TabNine 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 TabNine for Emacs 中的指导，我们配置一下即可：">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -51,13 +51,14 @@
 
 
 
-  <meta name="description" content="经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
+  <meta name="description" content=" 经过了两轮的插件安装，我们已经具备了一个基础功能完备的编辑器了，但是说到底，代码编辑器最重要的目的便是用来编程了。本篇将开始对编程相关的插件进行介绍，但是我们知道编程领域十分广阔，本教程不可能涉及全部，所以本篇会介绍其中最关键的核心逻辑，只要领略了它，读者就可以自由变换、拓展到其它领域中去。
 编辑器最基本需要三大方面的功能：
 对编程进行辅助：自动补全、语法检查、代码跳转等。 项目管理、编译、运行、调试、版本控制等。 与相关开发工具结合等。 其中第三点不同的领域有不同的方案，每个人也有每个人的偏好，难以概括，本文不会进行深入的介绍，但相信读者经过了本教程的学习，完全有能力根据自己的需求进行探索。
 自动补全 基本配置 Emacs 最广为使用的补全插件便是 company-mode，其官方主页上已有详细的说明。可进行如下配置：
-1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &amp;#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
+1(use-package company 2 :ensure t 3 :init (global-company-mode) 4 :config 5 (setq company-minimum-prefix-length 1) ; 只需敲 1 个字母就开始进行自动补全 6 (setq company-tooltip-align-annotations t) 7 (setq company-idle-delay 0.0) 8 (setq company-show-numbers t) ;; 给选项编号 (按快捷键 M-1、M-2 等等来进行选择). 9 (setq company-selection-wrap-around t) 10 (setq company-transformers &#39;(company-sort-by-occurrence))) ; 根据选择的频率进行排序，读者如果不喜欢可以去掉 安装后，输入前缀即可弹出自动补全。用 M-p 和 M-n 上下选择， Meta 键 \&#43; 一个数字选择相应标号的备选项。
 此外，如果读者使用图形界面，可以再安装一个 company-box 用以显示图标：
-1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode .">
+1 (use-package company-box 2 :ensure t 3 :if window-system 4 :hook (company-mode . company-box-mode)) TabNine - AI 自动补全 Emacs 中自然也可以使用更加时髦的 AI 自动补全工具，例如 TabNine。 TabNine 是一个比较通用的自动补全工具，可以为许多编辑器提供支持，Emacs 当然不会掉队。根据 TabNine for Emacs 中的指导，我们配置一下即可：
+">
 
 
 </head>
@@ -444,6 +445,16 @@
 <li><a href="#headline-2">对话</a>
 </li>
 <li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
 </li>
 </ul>
 </nav>
@@ -1215,7 +1226,7 @@ Emacs 本身有一个 tramp 功能可以实现远程 ssh 访问。无需任何�
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>

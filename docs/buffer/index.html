@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -16,16 +16,19 @@
 <title>Buffer and mode | Pavinberg&#39;s Emacs Book</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/buffer/">
   <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book">
   <meta property="og:title" content="Buffer and mode">
-  <meta property="og:description" content="To be translated…">
+  <meta property="og:description" content="This chapter introduces Emacs&#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.
+Emacs Terminology The wiki contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
 
   <meta itemprop="name" content="Buffer and mode">
-  <meta itemprop="description" content="To be translated…">
-  <meta itemprop="wordCount" content="3">
+  <meta itemprop="description" content="This chapter introduces Emacs&#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.
+Emacs Terminology The wiki contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.">
+  <meta itemprop="wordCount" content="834">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Buffer and mode">
-  <meta name="twitter:description" content="To be translated…">
+  <meta name="twitter:description" content="This chapter introduces Emacs&#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.
+Emacs Terminology The wiki contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -33,7 +36,9 @@
 
 
 
-  <meta name="description" content="To be translated…">
+  <meta name="description" content=" This chapter introduces Emacs&#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.
+Emacs Terminology The wiki contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.
+">
 
 
 </head>
@@ -171,13 +176,27 @@
 </li>
 </ul>
 </nav>
-        <h3 class="section_link active"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3>
+        <h3 class="section_link active"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Emacs Terminology</a>
+</li>
+<li><a href="#headline-2">File and buffer</a>
+<ul>
+<li><a href="#headline-3">Open multiple files</a>
+</li>
+<li><a href="#headline-4">Buffer management</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
         <h3 class="section_link"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3>
         <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3>
         <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3>
         <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3>
         <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/orgmode/">Org-mode</a></h3>
         <h3 class="section_link"><a id="docs-ai-integrated" href="https://pavinberg.github.io/emacs-book/ai/">AI integrated</a></h3>
+        <h3 class="section_link"><a id="docs-debugging" href="https://pavinberg.github.io/emacs-book/debug/">Debugging</a></h3>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
   </section>
@@ -186,8 +205,78 @@
 </aside>
 
   <main class="content">
-    <h1>Buffer and mode</h1><p>
-To be translated…</p>
+    <h1>Buffer and mode</h1>
+<p>
+This chapter introduces Emacs&#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+Emacs Terminology
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+The <a href="https://wikemacs.org/wiki/Emacs_Terminology">wiki</a> contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.</p>
+<ul>
+<li><strong>Frame</strong> : Open Emacs in GUI, then the whole window is called a frame. Multiple windows means multiple frames. In terminal Emacs, the terminal interface occupied by Emacs is the frame.</li>
+<li><strong>Menu Bar</strong> : located at the top of the frame, including File, Edit, etc. by default. Click with mouse in GUI or call <code>menu-bar-open</code> or press <code>&lt;f10&gt;</code> to open it. Another option is the <code>M-~</code> shortcut to call <code>tmm-menu</code> .</li>
+<li><strong>Tool Bar</strong>: Displayed only in GUI Emacs. To be honest, it is ugly and the usecase is very limited, which is already covered by the shortcuts introduced in the <a href="../basic">last chapter</a>. So it can be hidden after users getting used to the shortcuts, by configuring <code>(tool-bar-mode -1)</code> (the way to confgure Emacs is introduced in <a href="../configurations">the next chapter</a>).</li>
+<li><strong>Echo Area</strong> : at the bottom of the frame. Used to display short messages.</li>
+</ul>
+<p><img src="../images/emacs-book/buffer/emacs-gui.png" alt="../images/emacs-book/buffer/emacs-gui.png" title="../images/emacs-book/buffer/emacs-gui.png" /></p>
+<ul>
+<li><strong>Window</strong>: the area between the Tool Bar and the Echo Area is the window. Emacs window differs from the window of common operating systems. Users should be careful and not get confused. As mentioned above, the &#34;window&#34; we normally refer to is called frame in Emacs.</li>
+<li><strong>Mode Line</strong>: at the bottom of the window (something like -UUU:%%–F1 <strong>GNU Emacs</strong> ). It is used to display information about the Buffer (details are discussed below), including decoding, modification status, name, cursor position, line number and so on. It is customizable, by hand or by using package like <a href="https://github.com/Malabarba/smart-mode-line">smart-mode-line</a>.</li>
+<li><strong>Scroll Bar</strong> : at the right of the window. It is also useless in Emacs so it can be hidden by <code>(when (display-graphic-p) (toggle-scroll-bar -1))</code> .</li>
+<li><strong>Cursor</strong> : default to a box, whe right edge is the real position. The <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Cursor-Display.html">documentation</a> introduces some settings to customize the cursor display, <em>e.g.</em>, bar or box.</li>
+<li><strong>Point</strong> : cursor&#39;s position. The difference between Cursor and Point is that there is only one Cursor in Emacs but Point is Buffer specific. Each Buffer has its own Point. This distinction makes Emacs applicable to do some complex tasks across buffers.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+File and buffer
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+Here explains what is the <em>Buffer</em> mentioned above. Before the explanation, we need to open multiple files. </p>
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+Open multiple files
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>
+After openning Emacs, we can use <code>C-x C-f</code> ( <code>find-file</code> ) to open a new file. After pressing the shortcut, the Echo Area will display &#34;Find file: &#34; followed by a path string. Enter the file path you want to open, or a non-exist name to create a new file. The <code>&lt;tab&gt;</code> can be used for completion. Package <a href="https://github.com/abo-abo/swiper">ivy</a> or <a href="https://emacs-helm.github.io/helm/">helm</a> can help this process, which is introduced in the following chapters.</p>
+<p>
+Press <code>C-x C-s</code> to save the file.</p>
+<p>
+
+<div class="tip">
+  Open the file in read-only mode: <code>C-x C-r</code> . Find a similar file: <code>C-x C-v</code> , which means you can input file name based on current file name. Switch to read-only on the current file: <code>C-x C-q</code> .
+</div>
+</p>
+<p>
+The <code>C-x C-f</code> can be used to open multiple files. After opening the second file, the first file will &#34;disappear&#34;. Actually, all the files opened will be put into a &#34;Buffer&#34;, which can be seen as an instance of the opened file. When you open the second file, the first file&#39;s buffer will be switched to the background, leaving the second file&#39;s buffer occupying the window. Buffer name is shown in the Mode Line, which is the file&#39;s name in most cases.</p>
+<p>
+You can also use <code>C-x C-f</code> to open a directory because &#34;everything is a file&#34; in mainstream operating systems. Emacs provies some functionalities for the directory which will be introduced in the following chapter.</p>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-4">
+<h4 id="headline-4">
+Buffer management
+</h4>
+<div id="outline-text-headline-4" class="outline-text-4">
+<p>There are three ways to switch buffers. The quickest way is using <code>C-x b</code>, where you type the buffer&#39;s name and press Enter to switch. If you press Enter without typing anything, the echo area will prompt you that it will jump to the currently default buffer, in which way you can switch between two files.</p>
+<p>
+Obviously, if there are many buffers, remembering their names becomes difficult and less manageable. Hence, the second method, by pressing <code>C-x C-b</code>, opens a window named &#34;<strong>Buffer List</strong>&#34;, listing all the currently opened buffers. You&#39;ll see several buffers starting and ending with an asterisk (*), which are used by Emacs for outputting information, not created by opening files. For example, &#34;<strong>Messages</strong>&#34; contains some output messages from Emacs, and &#34;<strong>scratch</strong>&#34; is where you can write some Elisp code. If a buffer starts with %, it indicates that the buffer has been modified but not saved.</p>
+<p>
+
+<div class="tip">
+  If the current cursor is not in &#34;*Buffer List*&#34;, press <code>C-x o</code> to switch.
+</div>
+</p>
+</div>
+</div>
+</div>
+</div>
 
     <div class="pager">
   
@@ -216,7 +305,7 @@ To be translated…</p>
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
   </div>
 </footer>

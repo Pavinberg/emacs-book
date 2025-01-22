@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -48,12 +48,13 @@
 
 
 
-  <meta name="description" content="org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
+  <meta name="description" content=" org-mode 是 Emacs 中非常强大的笔记模式，它的语法与 Markdown 类似，但 Emacs 为其赋予了很多功能，使用体验极佳，例如：
 章节折叠、跳转 方便的多状态、多层级 Todo List 丰富多样的链接引用功能 表格操作（甚至可以像 Excel 一样输入公式自动计算） 插入代码 导出成各种格式（Markdown、HTML、LaTeX 等） 依附于 Emacs 生态， 有着连贯的使用体验 org-mode 的主要缺点是一方面需要一定的额外的学习成本，另一方面只能在 Emacs 中使用，不方便直接分享（不过它可以导出成 Markdown、LaTeX、HTML 等）。 读者可能会在很多地方看到 org-mode 的教程，但它们通常只教基本操作，而不介绍额外插件，更不告诉大家这么强大的工具该用在哪里、怎么用。本文的主要目的就是向大家简要介绍几个 org-mode 区别于其它主流笔记软件的“杀手锏”功能和插件，亦是笔者使用 org-mode 的主要用途。而 org-mode 的基本操作不复杂，已有很多教程，这里不会详细介绍。
 基础结构 org-mode 的文档非常简短，建议读者大致过一遍，至少看看目录。具体的快捷键在官方文档和各种教程中都有介绍，本文对此不啰嗦讲解，但还是针对结构进行一个非常简短的介绍。
 只要打开后缀名为 .org 的文件就会自动启动 org-mode 。 语法和 Markdown 类似，只不过星号（ * ）开头是节，或可以说是标题：
-1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &amp;lt;TAB&amp;gt; 和 S-&amp;lt;TAB&amp;gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
-1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。">
+1 * 一级标题 2 ** 二级标题 3 *** 三级标题 通过按 &lt;TAB&gt; 和 S-&lt;TAB&gt; 可以对小节进行折叠，有利于查看。下面则是一个链接（可以不止是链接外部网页，也可以是本地文件）：
+1[[https://github.com][GitHub]] #&#43; 开头的是该文件的属性，例如下面定义了 foo 属性的值为 bar 。属性主要用于为 org-mode 提供高级功能。
+">
 
 
 </head>
@@ -440,6 +441,16 @@
 <li><a href="#headline-2">对话</a>
 </li>
 <li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
 </li>
 </ul>
 </nav>
@@ -928,7 +939,7 @@ org-mode 另一个用途是可以管理自己的任务清单。在毫无自定�
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>

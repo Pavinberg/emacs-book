@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -22,7 +22,7 @@
 
   <meta itemprop="name" content="Basic operations">
   <meta itemprop="description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.">
-  <meta itemprop="wordCount" content="3311">
+  <meta itemprop="wordCount" content="3391">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Basic operations">
   <meta name="twitter:description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.">
@@ -33,7 +33,8 @@
 
 
 
-  <meta name="description" content="This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&amp;#39;s no need to worry too much or memorize them by rote.">
+  <meta name="description" content=" This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&#39;s no need to worry too much or memorize them by rote.
+">
 
 
 </head>
@@ -171,13 +172,27 @@
 </li>
 </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3>
+        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Emacs Terminology</a>
+</li>
+<li><a href="#headline-2">File and buffer</a>
+<ul>
+<li><a href="#headline-3">Open multiple files</a>
+</li>
+<li><a href="#headline-4">Buffer management</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
         <h3 class="section_link"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3>
         <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3>
         <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3>
         <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3>
         <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/orgmode/">Org-mode</a></h3>
         <h3 class="section_link"><a id="docs-ai-integrated" href="https://pavinberg.github.io/emacs-book/ai/">AI integrated</a></h3>
+        <h3 class="section_link"><a id="docs-debugging" href="https://pavinberg.github.io/emacs-book/debug/">Debugging</a></h3>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
   </section>
@@ -496,9 +511,13 @@ To search after the current position of the cursor, press <code>C-s</code> . A p
 <p>
 To find the next pattern matched, press <code>C-s</code> again. If you find your desired pattern, press enter to stay here. If you want to give up the searching, press <code>C-g</code> and it will jump back to where you&#39;ve started.</p>
 <p>
-To find the pattern before the current cursor, press <code>C-r</code> instead. </p>
+To find the pattern before the current cursor, press <code>C-r</code> instead.</p>
 <p>
-Package <code>swiper</code> will make things easier, which will be introduced in chapter <em><a href="../optimization/#headline-1">Improve the native operations</a></em>.</p>
+To use regular expression to search, press <code>C-M-s</code> or <code>C-M-r</code> to search forward and backward.</p>
+<p>
+Package <code>swiper</code> will make things easier, which will list the occurrance and support regular expression by default. It be introduced in chapter <em><a href="../optimization/#headline-1">Improve the native operations</a></em>.</p>
+<p>
+To show some lines containing a pattern in a long file (a log for example), use <code>M-s o</code> ( or <code>M-x</code> <code>occur</code> ) and enter the regular expression. The Emacs introduction to regular expression is <a href="https://www.emacswiki.org/emacs/RegularExpression">here</a>. </p>
 </div>
 </div>
 <div id="outline-container-headline-14" class="outline-4">
@@ -737,6 +756,21 @@ Appendix: commands list
 <td>isearch-backward</td>
 </tr>
 <tr>
+<td>Search forward in regex</td>
+<td>C-M-s</td>
+<td>isearch-forward-regexp</td>
+</tr>
+<tr>
+<td>Search backward in regex</td>
+<td>C-M-r</td>
+<td>isearch-backward-regexp</td>
+</tr>
+<tr>
+<td>Filter lines with pattern</td>
+<td>M-s o</td>
+<td>occur</td>
+</tr>
+<tr>
 <td>Swap characters aside cursor</td>
 <td>C-t</td>
 <td>transpose-chars</td>
@@ -858,7 +892,7 @@ Appendix: commands list
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
   </div>
 </footer>

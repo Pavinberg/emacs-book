@@ -126,6 +126,18 @@
                 href="https://pavinberg.github.io/emacs-book/zh/ai/"
                 />
   </url><url>
+    <loc>https://pavinberg.github.io/emacs-book/zh/debug/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://pavinberg.github.io/emacs-book/debug/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://pavinberg.github.io/emacs-book/zh/debug/"
+                />
+  </url><url>
     <loc>https://pavinberg.github.io/emacs-book/zh/donate/</loc>
     <xhtml:link
                 rel="alternate"

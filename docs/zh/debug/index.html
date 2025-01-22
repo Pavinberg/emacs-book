@@ -1,7 +1,7 @@
 
 
 <!doctype html>
-<html lang="en"
+<html lang="zh"
   data-mode="auto"
 >
 <head><meta charset="utf-8">
@@ -13,15 +13,28 @@
 <link rel="mask-icon" href='https://pavinberg.github.io/emacs-book/favicons/safari-pinned-tab.svg'  color="#004750">
 <link rel="shortcut icon" href='https://pavinberg.github.io/emacs-book/favicons/favicon.ico'>
 <meta name="msapplication-config" content='https://pavinberg.github.io/emacs-book/favicons/browserconfig.xml'>
-<title>404 Page not found | Pavinberg&#39;s Emacs Book</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/404.html">
-  <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book">
-  <meta property="og:title" content="404 Page not found">
-  <meta property="og:locale" content="en">
-  <meta property="og:type" content="website">
+<title>错误调试 | 专业 Emacs 入门</title><meta property="og:url" content="https://pavinberg.github.io/emacs-book/zh/debug/">
+  <meta property="og:site_name" content="专业 Emacs 入门">
+  <meta property="og:title" content="错误调试">
+  <meta property="og:description" content="使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 *Message* buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
+函数 debug 我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 C-x b scratch &lt;RET&gt; 切换到 *scratch* buffer，我们编写一个用于开根的函数，但加入一个 bug：
+1 (defun demo-sqrt (x) 2 (interactive &#34;nGoing to calculate sqrt(x), please enter x: &#34;) 3 (if (&lt;= x 0) 4 (error (format &#34;cannot calculate sqrt(%d) because the number is negative&#34; x))) 5 (message &#34;sqrt(%d)=%d&#34; x (sqrt x))) 这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 M-x eval-buffer 让函数生效，调用 M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt; ，输出 &#34;sqrt(16)=4&#34;。
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt; ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 *Message* 中）。 这就是这个函数的一个 bug。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
 
-  <meta itemprop="name" content="404 Page not found">
+  <meta itemprop="name" content="错误调试">
+  <meta itemprop="description" content="使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 *Message* buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
+函数 debug 我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 C-x b scratch &lt;RET&gt; 切换到 *scratch* buffer，我们编写一个用于开根的函数，但加入一个 bug：
+1 (defun demo-sqrt (x) 2 (interactive &#34;nGoing to calculate sqrt(x), please enter x: &#34;) 3 (if (&lt;= x 0) 4 (error (format &#34;cannot calculate sqrt(%d) because the number is negative&#34; x))) 5 (message &#34;sqrt(%d)=%d&#34; x (sqrt x))) 这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 M-x eval-buffer 让函数生效，调用 M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt; ，输出 &#34;sqrt(16)=4&#34;。
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt; ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 *Message* 中）。 这就是这个函数的一个 bug。">
+  <meta itemprop="wordCount" content="371">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="404 Page not found">
+  <meta name="twitter:title" content="错误调试">
+  <meta name="twitter:description" content="使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 *Message* buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
+函数 debug 我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 C-x b scratch &lt;RET&gt; 切换到 *scratch* buffer，我们编写一个用于开根的函数，但加入一个 bug：
+1 (defun demo-sqrt (x) 2 (interactive &#34;nGoing to calculate sqrt(x), please enter x: &#34;) 3 (if (&lt;= x 0) 4 (error (format &#34;cannot calculate sqrt(%d) because the number is negative&#34; x))) 5 (message &#34;sqrt(%d)=%d&#34; x (sqrt x))) 这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 M-x eval-buffer 让函数生效，调用 M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt; ，输出 &#34;sqrt(16)=4&#34;。
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt; ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 *Message* 中）。 这就是这个函数的一个 bug。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -29,16 +42,22 @@
 
 
 
+  <meta name="description" content=" 使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 *Message* buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
+函数 debug 我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 C-x b scratch &lt;RET&gt; 切换到 *scratch* buffer，我们编写一个用于开根的函数，但加入一个 bug：
+1 (defun demo-sqrt (x) 2 (interactive &#34;nGoing to calculate sqrt(x), please enter x: &#34;) 3 (if (&lt;= x 0) 4 (error (format &#34;cannot calculate sqrt(%d) because the number is negative&#34; x))) 5 (message &#34;sqrt(%d)=%d&#34; x (sqrt x))) 这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 M-x eval-buffer 让函数生效，调用 M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt; ，输出 &#34;sqrt(16)=4&#34;。
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt; ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 *Message* 中）。 这就是这个函数的一个 bug。
+">
+
 
 </head>
-<body class="page-404" id="pagetop">
+<body class="page-page" id="pagetop">
   <header class="nav_header">
 <nav class="wrap nav menu">
-	<a href='https://pavinberg.github.io/emacs-book/' class="nav_brand">
+	<a href='https://pavinberg.github.io/emacs-book/zh/' class="nav_brand">
 		<picture data-lit="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-dark.svg">
-			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="Pavinberg&#39;s Emacs Book Logo">
+			<img src="https://pavinberg.github.io/emacs-book/icons/emacs-book-logo-light.svg" alt="专业 Emacs 入门 Logo">
 		</picture>
-		<label class="nav_toggle toggle" title='Site Menu' role="button">
+		<label class="nav_toggle toggle" title='网站菜单' role="button">
 			<svg class="icon icon_harmburger">
   <use xlink:href="#harmburger"></use>
 </svg>
@@ -56,7 +75,7 @@
   
     
   
-  <input type="search" class="search_field  standardize-input" placeholder="Search site" id="find" autocomplete="off"  data-scope=''>
+  <input type="search" class="search_field  standardize-input" placeholder="搜索 网站" id="find" autocomplete="off"  data-scope=''>
   <div class="search_results results"></div>
 </div>
 
@@ -64,7 +83,7 @@
 
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/donate/"><span>Donate</span></a>
+			<a class="nav-link" href="https://pavinberg.github.io/emacs-book/zh/donate/"><span>赞赏</span></a>
 		</li>
 		
 		<li class="nav-item nav_repo">
@@ -80,7 +99,7 @@
 
   
   
-  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/zh/404.html" title="Toggle language">
+  <a class="nav-link nav_repo" href="https://pavinberg.github.io/emacs-book/debug/" title="Toggle language">
 	
 	
 	  <picture data-lit="https://pavinberg.github.io/emacs-book/icons/lang-light.svg" data-dark="https://pavinberg.github.io/emacs-book/icons/lang-dark.svg">
@@ -108,94 +127,450 @@
       
     <div class="grid-auto"><aside class="aside menu">
   <div>
-    <label class="aside_toggle toggle" title='Docs Menu' role="button">Docs Menu <svg class="icon icon_carly">
+    <label class="aside_toggle toggle" title='文档菜单' role="button">文档菜单 <svg class="icon icon_carly">
   <use xlink:href="#carly"></use>
 </svg></label>
   </div>
   <section class="section aside_inner">
-    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/" class="group">Pavinberg&#39;s Emacs Book</a></h2>
-      <section class="" id="docs-pavinbergs-emacs-book">
-        <h3 class="section_link"><a id="docs-introduction" href="https://pavinberg.github.io/emacs-book/intro/">Introduction</a></h3><nav id="TableOfContents">
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/" class="group">专业 Emacs 入门</a></h2>
+      <section class="" id="docs-专业-emacs-入门">
+        <h3 class="section_link"><a id="docs-入门介绍" href="https://pavinberg.github.io/emacs-book/zh/intro/">入门介绍</a></h3><nav id="TableOfContents">
 <ul>
-<li><a href="#headline-1">Why Emacs</a>
+<li><a href="#headline-1">为什么学习 Emacs</a>
 </li>
-<li><a href="#headline-2">Emacs References</a>
+<li><a href="#headline-2">Emacs 的主要相关资料</a>
 </li>
-<li><a href="#headline-3">For Vim Users</a>
+<li><a href="#headline-3">对 Vim 用户</a>
 </li>
-<li><a href="#headline-4">Emacs distributions</a>
+<li><a href="#headline-4">其它 Emacs</a>
 </li>
 </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-basic-operations" href="https://pavinberg.github.io/emacs-book/basic/">Basic operations</a></h3><nav id="TableOfContents">
+        <h3 class="section_link"><a id="docs-基础操作" href="https://pavinberg.github.io/emacs-book/zh/basic/">基础操作</a></h3><nav id="TableOfContents">
 <ul>
-<li><a href="#headline-1">Installation</a>
+<li><a href="#headline-1">安装</a>
 </li>
-<li><a href="#headline-2">Startup</a>
+<li><a href="#headline-2">启动</a>
 </li>
-<li><a href="#headline-3">About Keyboard Shortcuts</a>
+<li><a href="#headline-3">关于键盘操作</a>
 </li>
-<li><a href="#headline-4">Function Keys</a>
+<li><a href="#headline-4">功能键</a>
 </li>
-<li><a href="#headline-5">Emacs Command</a>
+<li><a href="#headline-5">Emacs 命令</a>
 </li>
-<li><a href="#headline-6">Basic Shortcuts</a>
+<li><a href="#headline-6">基础快捷键</a>
 <ul>
-<li><a href="#headline-7">Exit Emacs</a>
+<li><a href="#headline-7">如何退出</a>
 </li>
-<li><a href="#headline-8">Cursor movement</a>
+<li><a href="#headline-8">光标移动</a>
 </li>
-<li><a href="#headline-9">Editing</a>
+<li><a href="#headline-9">编辑操作</a>
 </li>
-<li><a href="#headline-10">Mark and jump</a>
+<li><a href="#headline-10">标记与跳转</a>
 </li>
-<li><a href="#headline-11">Repeat</a>
+<li><a href="#headline-11">重复操作</a>
 </li>
-<li><a href="#headline-12">Page movement</a>
+<li><a href="#headline-12">页面移动</a>
 </li>
-<li><a href="#headline-13">Search</a>
+<li><a href="#headline-13">搜索文本</a>
 </li>
-<li><a href="#headline-14">Other tricks</a>
+<li><a href="#headline-14">其它小操作</a>
 </li>
-<li><a href="#headline-15">Get help</a>
+<li><a href="#headline-15">获得帮助</a>
 </li>
 </ul>
 </li>
-<li><a href="#headline-16">Appendix: commands list</a>
-</li>
-</ul>
-</nav>
-        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3><nav id="TableOfContents">
-<ul>
-<li><a href="#headline-1">Emacs Terminology</a>
-</li>
-<li><a href="#headline-2">File and buffer</a>
-<ul>
-<li><a href="#headline-3">Open multiple files</a>
-</li>
-<li><a href="#headline-4">Buffer management</a>
-</li>
-</ul>
+<li><a href="#headline-16">命令列表</a>
 </li>
 </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3>
-        <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3>
-        <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3>
-        <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3>
-        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/orgmode/">Org-mode</a></h3>
-        <h3 class="section_link"><a id="docs-ai-integrated" href="https://pavinberg.github.io/emacs-book/ai/">AI integrated</a></h3>
-        <h3 class="section_link"><a id="docs-debugging" href="https://pavinberg.github.io/emacs-book/debug/">Debugging</a></h3>
+        <h3 class="section_link"><a id="docs-多文件与模式" href="https://pavinberg.github.io/emacs-book/zh/buffer/">多文件与模式</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">初识界面</a>
+</li>
+<li><a href="#headline-2">文件与 Buffer</a>
+<ul>
+<li><a href="#headline-3">打开多文件</a>
+</li>
+<li><a href="#headline-4">Buffer 的切换</a>
+</li>
+<li><a href="#headline-5">文件备份</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">多 Window</a>
+</li>
+<li><a href="#headline-7">多 Frame</a>
+</li>
+<li><a href="#headline-8">模式（mode）</a>
+<ul>
+<li><a href="#headline-9">主模式</a>
+</li>
+<li><a href="#headline-10">次模式</a>
+</li>
+<li><a href="#headline-11">Mode hook</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-12">目录（文件夹）操作</a>
+</li>
+<li><a href="#headline-13">总结</a>
+</li>
+<li><a href="#headline-14">命令列表</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-基本配置" href="https://pavinberg.github.io/emacs-book/zh/configurations/">基本配置</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Emacs Lisp 简介</a>
+<ul>
+<li><a href="#headline-2">为什么要了解 Emacs Lisp</a>
+</li>
+<li><a href="#headline-3">语法简介</a>
+</li>
+<li><a href="#headline-4">配置文件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-5">基础设置</a>
+<ul>
+<li><a href="#headline-6">现成的配置</a>
+</li>
+<li><a href="#headline-7">基本结构</a>
+</li>
+<li><a href="#headline-8">最开始的配置</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-9">配置快捷键</a>
+</li>
+<li><a href="#headline-10">MELPA</a>
+</li>
+<li><a href="#headline-11">插件设置 (use-package)</a>
+</li>
+<li><a href="#headline-12">配置变量</a>
+</li>
+<li><a href="#headline-13">配置生效</a>
+</li>
+<li><a href="#headline-14">结尾</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能优化类" href="https://pavinberg.github.io/emacs-book/zh/optimization/">插件：功能优化类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">ivy</a>
+<ul>
+<li><a href="#headline-2">简介</a>
+</li>
+<li><a href="#headline-3">配置流程</a>
+</li>
+<li><a href="#headline-4">效果</a>
+</li>
+<li><a href="#headline-5">同类插件</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">amx</a>
+</li>
+<li><a href="#headline-7">ace-window</a>
+</li>
+<li><a href="#headline-8">mwim</a>
+</li>
+<li><a href="#headline-9">undo-tree</a>
+</li>
+<li><a href="#headline-10">smart-mode-line（可选）</a>
+</li>
+<li><a href="#headline-11">good-scroll （可选）</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件功能增强类" href="https://pavinberg.github.io/emacs-book/zh/enhancement/">插件：功能增强类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Book marks</a>
+</li>
+<li><a href="#headline-2">ivy view</a>
+</li>
+<li><a href="#headline-3">which-key（可选）</a>
+</li>
+<li><a href="#headline-4">avy</a>
+<ul>
+<li><a href="#headline-5">操作逻辑抽象</a>
+</li>
+<li><a href="#headline-6">基本用法</a>
+</li>
+<li><a href="#headline-7">进阶用法</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-8">marginalia</a>
+</li>
+<li><a href="#headline-9">embark（可选）</a>
+</li>
+<li><a href="#headline-10">hydra</a>
+</li>
+<li><a href="#headline-11">multiple-cursors</a>
+</li>
+<li><a href="#headline-12">dashboard</a>
+</li>
+<li><a href="#headline-13">tiny</a>
+</li>
+<li><a href="#headline-14">highlight-symbol</a>
+</li>
+<li><a href="#headline-15">rainbow-delimiters</a>
+</li>
+<li><a href="#headline-16">evil（为 Vim 用户）</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-插件编程开发类" href="https://pavinberg.github.io/emacs-book/zh/development/">插件：编程开发类</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">自动补全</a>
+<ul>
+<li><a href="#headline-2">基本配置</a>
+</li>
+<li><a href="#headline-3">TabNine - AI 自动补全</a>
+</li>
+<li><a href="#headline-4">代码片段模板</a>
+</li>
+<li><a href="#headline-5">文本展开</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">语法检查</a>
+</li>
+<li><a href="#headline-7">代码分析</a>
+</li>
+<li><a href="#headline-8">代码调试</a>
+</li>
+<li><a href="#headline-9">项目管理</a>
+</li>
+<li><a href="#headline-10">局部变量</a>
+</li>
+<li><a href="#headline-11">环境变量</a>
+</li>
+<li><a href="#headline-12">版本管理</a>
+</li>
+<li><a href="#headline-13">语言相关配置</a>
+<ul>
+<li><a href="#headline-14">C/C++</a>
+</li>
+<li><a href="#headline-15">Rust</a>
+</li>
+<li><a href="#headline-16">Python</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-17">工作区管理</a>
+</li>
+<li><a href="#headline-18">终端</a>
+</li>
+<li><a href="#headline-19">远程访问</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-外观与主题" href="https://pavinberg.github.io/emacs-book/zh/theme/">外观与主题</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">初识配置 Face</a>
+</li>
+<li><a href="#headline-2">配置 Custom 文件</a>
+</li>
+<li><a href="#headline-3">配置主题</a>
+</li>
+<li><a href="#headline-4">配置图标</a>
+</li>
+<li><a href="#headline-5">mode-line</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-实用小技巧" href="https://pavinberg.github.io/emacs-book/zh/tricks/">实用小技巧</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">笔记</a>
+<ul>
+<li><a href="#headline-2">Markdown</a>
+</li>
+<li><a href="#headline-3">LaTeX</a>
+</li>
+<li><a href="#headline-4">中文支持</a>
+</li>
+<li><a href="#headline-5">org-mode</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-6">计算器</a>
+</li>
+<li><a href="#headline-7">Emacs server</a>
+</li>
+<li><a href="#headline-8">ChatGPT</a>
+</li>
+<li><a href="#headline-9">google-this</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/zh/orgmode/">org-mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">基础结构</a>
+</li>
+<li><a href="#headline-2">Zettelkasten 笔记法</a>
+</li>
+<li><a href="#headline-3">任务管理</a>
+<ul>
+<li><a href="#headline-4">简介</a>
+</li>
+<li><a href="#headline-5">配置</a>
+</li>
+<li><a href="#headline-6">快速添加任务</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">论文笔记</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link"><a id="docs-ai-集成" href="https://pavinberg.github.io/emacs-book/zh/ai/">AI 集成</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">前置操作</a>
+</li>
+<li><a href="#headline-2">对话</a>
+</li>
+<li><a href="#headline-3">深度集成</a>
+</li>
+</ul>
+</nav>
+        <h3 class="section_link active"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
+</li>
+</ul>
+</nav>
   <section class="section aside_inner">
-    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
+    <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
       </section>
   </section>
 </aside>
 
   <main class="content">
-    <h1>404 Page not found</h1>
-    <div class="pager pager_lean">
+    <h1>错误调试</h1>
+<p>
+使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 <code>*Message*</code> buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。</p>
+<div id="outline-container-headline-1" class="outline-3">
+<h3 id="headline-1">
+函数 debug
+</h3>
+<div id="outline-text-headline-1" class="outline-text-3">
+<p>
+我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 <code>C-x b</code> <code>scratch</code> <code>&lt;RET&gt;</code> 切换到 <code>*scratch*</code> buffer，我们编写一个用于开根的函数，但加入一个 bug：</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">demo-sqrt</span> <span class="p">(</span><span class="nv">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="p">(</span><span class="nb">interactive</span> <span class="s">&#34;nGoing to calculate sqrt(x), please enter x: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nf">&lt;=</span> <span class="nv">x</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">        <span class="p">(</span><span class="ne">error</span> <span class="p">(</span><span class="nf">format</span> <span class="s">&#34;cannot calculate sqrt(%d) because the number is negative&#34;</span> <span class="nv">x</span><span class="p">)))</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nf">message</span> <span class="s">&#34;sqrt(%d)=%d&#34;</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">sqrt</span> <span class="nv">x</span><span class="p">)))</span></span></span></code></pre></div>
+</div>
+<p>
+这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 <code>M-x eval-buffer</code> 让函数生效，调用 <code>M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt;</code> ，输出 &#34;sqrt(16)=4&#34;。</p>
+<p>
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： <code>M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt;</code> ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 <code>*Message*</code> 中）。 这就是这个函数的一个 bug。</p>
+<p>
+想要 debug 这个函数，我们首先加入一个函数断点： <code>M-x debug-on-entry &lt;RET&gt; demo-sqrt &lt;RET&gt;</code> 。表示在调用 <code>demo-sqrt</code> 这个函数时，进入 debugger。这时我们再次调用 <code>M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt;~，会发现进入了 ~*Backtrace*</code> buffer 中。</p>
+<p><img src="../../images/emacs-book/debug/backtrace-demo-sqrt.png" alt="../../images/emacs-book/debug/backtrace-demo-sqrt.png" title="../../images/emacs-book/debug/backtrace-demo-sqrt.png" /></p>
+<p>
+ <code>*Backtrace*</code> 中每一行就是一级调用（frame）。按下 <code>?</code> 可以打开帮助页面。其中写了几个主要操作。我们常用的有：</p>
+<ol>
+<li><code>n</code> ( <code>backtrace-forward-frame</code> ) 光标向下移动一个 frame，和 <code>C-n</code> 相同，只是简化了操作。</li>
+<li><code>p</code> ( <code>backtrace-backward-frame</code> ) 光标向上移动一个 frame，和 <code>C-p</code> 相同，只是简化了操作。</li>
+<li><code>c</code> ( <code>debugger-continue</code> ) 类似于常规 debugger 的 step over，会让光标所在位置的语句运行结束。</li>
+<li><code>d</code> ( <code>debuger-step-through</code> ) 类似于常规 debugger 的 step in，可进入函数内调试内部逻辑。</li>
+<li><code>e</code> ( <code>eval-expression</code> ) 和常规 debbugger 的 evaluate 相同，可以运行一个自定义语句。</li>
+<li><code>q</code> ( <code>debugger-quit</code> ) 退出。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+运行报错 debug
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>
+如果在调用一个函数时内部的某处逻辑发生了报错，默认情况下，并不会显示函数调用栈，因此较难定位问题。例如，我们编写这样的示例代码：</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">demo-error-happens</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="p">(</span><span class="ne">error</span> <span class="s">&#34;Hello but some error happens&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  <span class="p">(</span><span class="nb">defun</span> <span class="nv">demo-hello-error</span> <span class="p">()</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="p">(</span><span class="nb">interactive</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="p">(</span><span class="nv">demo-error-happens</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+让函数生效 <code>M-x eval-buffer</code> 后，调用： <code>M-x demo-hello-error</code> ，这时下方的 Echo Area 显示 &#34;Hello but some error happens&#34; 。同时打开 <code>*Message*</code> 可以看到一条信息：&#34;demo-error-happens: Hello but some error happens&#34; 。尽管显示了调用函数的名字，但如果调用栈很深很复杂，仍无法快速找到报错位置了。</p>
+<p>
+为了能够 debug 这个函数，我们可以让 Emacs 在报错时进入 debug 模式: <code>M-x toggle-debug-on-error</code> ，Echo Area 显示 &#34;Debug on Error enabled globally&#34;，此时再次调用这个报错函数 <code>M-x demo-hello-error</code> ，会显示完整的调用栈 <code>*Backtrace*</code> 。为了便于解释，笔者添加了行号，而其本身是没有行号的：</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="ln"> 1</span><span class="cl">  <span class="mi">1</span>  <span class="nv">Debugger</span> <span class="nv">entered--Lisp</span> <span class="nv">error:</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&#34;Hello but some error happens&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  <span class="mi">2</span>  <span class="ne">signal</span><span class="p">(</span><span class="ne">error</span> <span class="p">(</span><span class="s">&#34;Hello but some error happens&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="mi">3</span>  <span class="ne">error</span><span class="p">(</span><span class="s">&#34;Hello but some error happens&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="mi">4</span>  <span class="nv">demo-error-happens</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  <span class="mi">5</span>  <span class="nv">demo-hello-error</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  <span class="mi">6</span>  <span class="nf">funcall-interactively</span><span class="p">(</span><span class="nv">demo-hello-error</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  <span class="mi">7</span>  <span class="nf">call-interactively</span><span class="p">(</span><span class="nv">demo-hello-error</span> <span class="nv">record</span> <span class="no">nil</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">  <span class="mi">8</span>  <span class="nv">command-execute</span><span class="p">(</span><span class="nv">demo-hello-error</span> <span class="nv">record</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="mi">9</span>  <span class="nv">counsel-M-x-action</span><span class="p">(</span><span class="s">&#34;demo-hello-error&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">  <span class="c1">;; ...</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="mi">10</span> <span class="nv">command-execute</span><span class="p">(</span><span class="nv">counsel-M-x</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+可以看到，根据前面的教程，笔者安装了 <code>counsel</code> ，所以 <code>M-x</code> 其实调用的是 <code>counsel-M-x</code> 这个函数，然后这个函数最终调用了我们定义的 <code>demo-hello-error</code> 函数（第 9 行）。由于 <code>counsel</code> 有一些封装，实际直到第 5 行我们的函数才真正开始执行。在执行到 <code>demo-error-happens</code> 函数时（第 4 行），发生了第 3 行的报错信息。</p>
+<p>
+每一行 Backtrace 都可以直接链接到源码。但此处由于我们是在 <code>*scratch*</code> 中编写的函数，Emacs 不会做跳转。其它正常在配置文件和插件（即常规 <code>.el</code> 文件）中定义的函数都是可以直接跳转的。由此我们就可以排查问题。</p>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+初始化报错 debug
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<p>
+有时我们在编写 <code>~/.emacs.d/init.el</code> 、初始化配置或安装了部分插件时，可能会出现报错导致配置项无法正确加载。此时我们有多种方式可以快速定位。</p>
+<p>
+同样的，我们在 <code>~/.emacs.d/init.el</code> 中植入一个报错，在任何位置添加：</p>
+<div class="src src-emacs-lisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="p">(</span><span class="ne">error</span> <span class="s">&#34;Error happens on init&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+随后与上文类似，我们可以打开 debug 模式。在启动 Emacs 时添加一个命令行参数：</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln">1</span><span class="cl">  $ emacs --debug-init</span></span></code></pre></div>
+</div>
+<p>
+这时遇到报错时，同样会显示完整的调用栈。然后就可以正常 debug。</p>
+<p>
+为了能够便于隔离问题、解决并验证问题，我们可以编写一个单独的 <code>tmp-init.el</code> 文件，然后使用这个文件作为初始化文件：</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln">1</span><span class="cl">  $ emacs -q --load tmp-init.el</span></span></code></pre></div>
+</div>
+<p>
+<code>-q</code> 表示不要加载正常的初始化文件（也就是 <code>~/.emacs.d/init.el</code> 、 <code>~/.emacs</code> 等文件），~–load~ 表示随后加载另一个 Emacs Lisp 文件。这样，我们就可以在 <code>tmp-init.el</code> 中自由地尝试。</p>
+<p>
+也可指定一个新的目录 <code>/path/to/another/emacs.d</code> 作为初始化目录，而不是 <code>~/.emacs.d/</code> ：</p>
+<div class="src src-shell">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="ln">1</span><span class="cl">  $ emacs --init-directory<span class="o">=</span>/path/to/another/emacs.d</span></span></code></pre></div>
+</div>
+</div>
+</div>
+
+    <div class="pager">
+  
+    
+    <div class="pager_item prev">
+      <a href="https://pavinberg.github.io/emacs-book/zh/ai/" class="pager_link button" title="AI 集成" rel="prev">
+        <span class="pager_label">AI 集成</span>
+      </a>
+    </div>
+    
   
 
   
@@ -207,7 +582,7 @@
 <footer class="pt-2 pb-2">
   <div class="wrap">
     <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
-    <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
+    <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>
 <svg width="0" height="0" class="hidden">

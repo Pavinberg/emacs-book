@@ -1,0 +1,100 @@
+#+TITLE: 错误调试
+#+WEIGHT: 12
+
+使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 ~*Message*~ buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
+** 函数 debug
+
+我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 ~C-x b~ ~scratch~ ~<RET>~ 切换到 ~*scratch*~ buffer，我们编写一个用于开根的函数，但加入一个 bug：
+
+#+begin_src emacs-lisp
+  (defun demo-sqrt (x)
+    (interactive "nGoing to calculate sqrt(x), please enter x: ")
+    (if (<= x 0)
+        (error (format "cannot calculate sqrt(%d) because the number is negative" x)))
+    (message "sqrt(%d)=%d" x (sqrt x)))
+#+end_src
+
+这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 ~M-x eval-buffer~ 让函数生效，调用 ~M-x demo-sqrt <RET> 16 <RET>~ ，输出 "sqrt(16)=4"。
+
+但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： ~M-x demo-sqrt <RET> 0 <RET>~ ，输出为 "cannot calculate sqrt(0) because the number is negative" （同时这个信息也会显示在 ~*Message*~ 中）。 这就是这个函数的一个 bug。
+
+想要 debug 这个函数，我们首先加入一个函数断点： ~M-x debug-on-entry <RET> demo-sqrt <RET>~ 。表示在调用 ~demo-sqrt~ 这个函数时，进入 debugger。这时我们再次调用 ~M-x demo-sqrt <RET> 0 <RET>~，会发现进入了 ~*Backtrace*~ buffer 中。
+
+#+NAME: debug-backtrace-demo-sqrt
+[[../../images/emacs-book/debug/backtrace-demo-sqrt.png]]
+
+ ~*Backtrace*~ 中每一行就是一级调用（frame）。按下 ~?~ 可以打开帮助页面。其中写了几个主要操作。我们常用的有：
+
+1. ~n~ ( ~backtrace-forward-frame~ ) 光标向下移动一个 frame，和 ~C-n~ 相同，只是简化了操作。
+2. ~p~ ( ~backtrace-backward-frame~ ) 光标向上移动一个 frame，和 ~C-p~ 相同，只是简化了操作。
+3. ~c~ ( ~debugger-continue~ ) 类似于常规 debugger 的 step over，会让光标所在位置的语句运行结束。
+4. ~d~ ( ~debuger-step-through~ ) 类似于常规 debugger 的 step in，可进入函数内调试内部逻辑。
+5. ~e~ ( ~eval-expression~ ) 和常规 debbugger 的 evaluate 相同，可以运行一个自定义语句。
+6. ~q~ ( ~debugger-quit~ ) 退出。
+
+** 运行报错 debug
+
+如果在调用一个函数时内部的某处逻辑发生了报错，默认情况下，并不会显示函数调用栈，因此较难定位问题。例如，我们编写这样的示例代码：
+
+#+begin_src emacs-lisp
+  (defun demo-error-happens ()
+    (error "Hello but some error happens"))
+
+  (defun demo-hello-error ()
+    (interactive)
+    (demo-error-happens))
+#+end_src
+
+让函数生效 ~M-x eval-buffer~ 后，调用： ~M-x demo-hello-error~ ，这时下方的 Echo Area 显示 "Hello but some error happens" 。同时打开 ~*Message*~ 可以看到一条信息："demo-error-happens: Hello but some error happens" 。尽管显示了调用函数的名字，但如果调用栈很深很复杂，仍无法快速找到报错位置了。
+
+为了能够 debug 这个函数，我们可以让 Emacs 在报错时进入 debug 模式: ~M-x toggle-debug-on-error~ ，Echo Area 显示 "Debug on Error enabled globally"，此时再次调用这个报错函数 ~M-x demo-hello-error~ ，会显示完整的调用栈 ~*Backtrace*~ 。为了便于解释，笔者添加了行号，而其本身是没有行号的：
+
+#+begin_src emacs-lisp
+  1  Debugger entered--Lisp error: (error "Hello but some error happens")
+  2  signal(error ("Hello but some error happens"))
+  3  error("Hello but some error happens")
+  4  demo-error-happens()
+  5  demo-hello-error()
+  6  funcall-interactively(demo-hello-error)
+  7  call-interactively(demo-hello-error record nil)
+  8  command-execute(demo-hello-error record)
+  9  counsel-M-x-action("demo-hello-error")
+  ;; ...
+  10 command-execute(counsel-M-x)
+#+end_src
+
+可以看到，根据前面的教程，笔者安装了 ~counsel~ ，所以 ~M-x~ 其实调用的是 ~counsel-M-x~ 这个函数，然后这个函数最终调用了我们定义的 ~demo-hello-error~ 函数（第 9 行）。由于 ~counsel~ 有一些封装，实际直到第 5 行我们的函数才真正开始执行。在执行到 ~demo-error-happens~ 函数时（第 4 行），发生了第 3 行的报错信息。
+
+每一行 Backtrace 都可以直接链接到源码。但此处由于我们是在 ~*scratch*~ 中编写的函数，Emacs 不会做跳转。其它正常在配置文件和插件（即常规 ~.el~ 文件）中定义的函数都是可以直接跳转的。由此我们就可以排查问题。
+
+** 初始化报错 debug
+
+有时我们在编写 ~~/.emacs.d/init.el~ 、初始化配置或安装了部分插件时，可能会出现报错导致配置项无法正确加载。此时我们有多种方式可以快速定位。
+
+同样的，我们在 ~~/.emacs.d/init.el~ 中植入一个报错，在任何位置添加：
+
+#+begin_src emacs-lisp
+  (error "Error happens on init")
+#+end_src
+
+随后与上文类似，我们可以打开 debug 模式。在启动 Emacs 时添加一个命令行参数：
+
+#+begin_src shell
+  $ emacs --debug-init
+#+end_src
+
+这时遇到报错时，同样会显示完整的调用栈。然后就可以正常 debug。
+
+为了能够便于隔离问题、解决并验证问题，我们可以编写一个单独的 ~tmp-init.el~ 文件，然后使用这个文件作为初始化文件：
+
+#+begin_src shell
+  $ emacs -q --load tmp-init.el
+#+end_src
+
+~-q~ 表示不要加载正常的初始化文件（也就是 ~~/.emacs.d/init.el~ 、 ~~/.emacs~ 等文件），~--load~ 表示随后加载另一个 Emacs Lisp 文件。这样，我们就可以在 ~tmp-init.el~ 中自由地尝试。
+
+也可指定一个新的目录 ~/path/to/another/emacs.d~ 作为初始化目录，而不是 ~~/.emacs.d/~ ：
+
+#+begin_src shell
+  $ emacs --init-directory=/path/to/another/emacs.d
+#+end_src

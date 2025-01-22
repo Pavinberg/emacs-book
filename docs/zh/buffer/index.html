@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -18,20 +18,20 @@
   <meta property="og:title" content="多文件与模式">
   <meta property="og:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。下图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 tmm-menu ）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在基本配置中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
   <meta property="og:locale" content="zh">
   <meta property="og:type" content="article">
 
   <meta itemprop="name" content="多文件与模式">
   <meta itemprop="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
-  <meta itemprop="wordCount" content="716">
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。下图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 tmm-menu ）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在基本配置中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+  <meta itemprop="wordCount" content="726">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="多文件与模式">
   <meta name="twitter:description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。下图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 tmm-menu ）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在基本配置中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -39,9 +39,10 @@ Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口�
 
 
 
-  <meta name="description" content="本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
+  <meta name="description" content=" 本篇介绍 Emacs 的界面术语、如何管理多个文件，如何分割显示等等。同样的，本文更多介绍概念，具体操作起来是有插件可以方便我们进行操作的。结尾的附录包含了本文涉及的所有快捷键。
 初识界面 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。
-Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &amp;lt;f10&amp;gt; 。此外还有一个 M-\tilde{} 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在后续教程中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。">
+Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。下图都是一个 Frame。 Menu bar ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 menu-bar-open 命令打开，对应快捷键 &lt;f10&gt; 。此外还有一个 M-\tilde{} 键（对应命令 tmm-menu ）可以从下方展开互动界面打开菜单。 Tool bar ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在上一篇教程中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 (tool-bar-mode -1) （如何编辑配置文件将在基本配置中详细介绍）。 Echo Area ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 C-h C-a ，上一篇教程中也提及了这一命令。 Window ：Tool bar 以下（如果有）、Echo area 以上这一整个区域，就是 Window，即窗口。 可以看到 Emacs 的窗口和我们日常使用电脑所说的窗口不是一个东西，一定要注意，不然在配置、调用命令或者在网上搜索信息时会搞错。我们日常称为窗口的在 Emacs 中被称为 Frame，而 Frame 内的核心区域才被称为 Window。 Mode line*：Window 最下方灰色的一行即为“模式行”（即显示 -UUU:%%–F1 *GNU Emacs 的部分）。这里会显示当前 Buffer 的一些信息（什么是 Buffer 见下文）大概包括了文件编码、是否修改、当前 Buffer 名、光标所在位置占全文百分比、行号（L1 表示第一行）等等。它的内容可以自定义，也可以使用 smart-mode-line 插件进行管理，后文将会更多介绍。 Scroll bar ：图形界面时 Window 的最右侧有一滚动条。事实上在 Emacs 中根本不需要用滚动条，所以笔者也直接关闭了它，让界面更清爽，在配置中加入 (when (display-graphic-p) (toggle-scroll-bar -1)) 表示在是用图形界面时关闭滚动条。 Cursor ：光标。光标是一个 1 字符宽的方块，但其真正表达的位置是其左侧的长边，即两字符之间。文档中有一些关于其显示效果的设置，例如可以换成大家日常更习惯的小竖线（bar），但其实笔者觉得还是方块（box）比较显眼，看习惯也挺好。 Point ：光标所在的位置称为 Point。区别于光标的是，光标有且只有一个，但 Point 是针对 Buffer 的，每个 Buffer 都有一个 Point。许多命令的触发都要读取 Point 信息。 文件与 Buffer 前面多次提到的 Buffer 到底是什么呢？接下来我们通过打开多个文件来展现 Buffer 的作用。
+">
 
 
 </head>
@@ -431,6 +432,16 @@ Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口�
 </li>
 </ul>
 </nav>
+        <h3 class="section_link"><a id="docs-错误调试" href="https://pavinberg.github.io/emacs-book/zh/debug/">错误调试</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">函数 debug</a>
+</li>
+<li><a href="#headline-2">运行报错 debug</a>
+</li>
+<li><a href="#headline-3">初始化报错 debug</a>
+</li>
+</ul>
+</nav>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/zh/donate/" class="group"></a></h2>
   </section>
@@ -450,9 +461,9 @@ Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口�
 <p>
 首先我们需要了解 Emacs 界面的一些术语。了解术语更多是为了在网上搜资料、看文档、配置时能够更准确地抓住关键。</p>
 <ul>
-<li><strong>Frame</strong> ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。上图都是一个 Frame。</li>
-<li><strong>Menu bar</strong> ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-\tilde{}</code> 键（对应命令 ~ tmm-menu`）可以从下方展开互动界面打开菜单。</li>
-<li><strong>Tool bar</strong> ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在后续教程中详细介绍）。</li>
+<li><strong>Frame</strong> ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口被称为 Frame，如果打开了多个窗口就有多个 Frame；如果在终端内打开 Emacs，那么 Emacs 所占据的整个终端的界面被称为 Frame。下图都是一个 Frame。</li>
+<li><strong>Menu bar</strong> ：即菜单栏，在 Frame 的最上方。默认包括了 File、Edit……等等下拉菜单。在终端中不能用鼠标时，需要用 <code>menu-bar-open</code> 命令打开，对应快捷键 <code>&lt;f10&gt;</code> 。此外还有一个 <code>M-\tilde{}</code> 键（对应命令 <code>tmm-menu</code> ）可以从下方展开互动界面打开菜单。</li>
+<li><strong>Tool bar</strong> ：即工具栏。只在图形界面时可以使用，就是上面第二张图中那一些图标。由于它十分丑陋且功能又很基本，在<a href="../basic">上一篇教程</a>中已完全涉及，所以正常笔者会关掉工具栏——在配置文件中加入代码 <code>(tool-bar-mode -1)</code> （如何编辑配置文件将在<a href="../configurations">基本配置</a>中详细介绍）。</li>
 <li><strong>Echo Area</strong> ：整个界面下方的一行就是“回显区”，用以打印各种简短的信息。例如上面第二张图就打印了如果你想获取帮助就按 <code>C-h C-a</code> ，上一篇教程中也提及了这一命令。</li>
 </ul>
 <p><img src="../../images/emacs-book/buffer/emacs-gui.png" alt="../../images/emacs-book/buffer/emacs-gui.png" title="../../images/emacs-book/buffer/emacs-gui.png" /></p>
@@ -478,13 +489,13 @@ Frame ：如果用图形界面打开 Emacs 程序，那么一整个程序窗口�
 </h4>
 <div id="outline-text-headline-3" class="outline-text-4">
 <p>
-之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code> （ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 &lt;tab&gt; 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
+之前我们是在命令行中使用 <code>emacs &lt;filename&gt;</code> 的方式来打开文件。而想要在 Emacs 内打开一个文件，按下 <code>C-x C-f</code> （ <code>find-file</code> ），此时 Echo area 会出现 “Find file: “，后面为一个路径，输入文件对应的路径即可打开相应文件。如果想新建文件，只需要输入一个不存在的文件名即可。输入时可以使用 <code>&lt;tab&gt;</code> 键自动补全，就和 Linux 中类似。插件 <a href="https://github.com/abo-abo/swiper">ivy</a> 或 <a href="https://emacs-helm.github.io/helm/">helm</a> 可以辅助这一过程，后面详细介绍。</p>
 <p>
 保存文件对应命令 <code>C-x C-s</code> 。</p>
 <p>
 
 <div class="tip">
-  开文件并只读不改：~C-x C-r~ 。 打开另一相近文件：~C-x C-v~ ，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式：~C-x C-q~ 。
+  开文件并只读不改： <code>C-x C-r</code> 。 打开另一相近文件： <code>C-x C-v</code> ，此时下面的路径会自动以当前文件全名作为初始路径（而不是目录的路径），这样方便稍微修改一些文件名打开另一文件。 已打开的文件切换为只读模式： <code>C-x C-q</code> 。
 </div>
 </p>
 <p>
@@ -501,16 +512,16 @@ Buffer 的切换
 <p>
 切换 Buffer 有三类方法，简短的方法是使用 <code>C-x b</code> ，输入 Buffer 的名字后按回车即可切换。 Echo area 中会提示你，如果什么也不输直接按回车，可以跳转到当前默认的 Buffer 中，这样方便在两个文件中来回切换。</p>
 <p>
-显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法，~C-x C-b~ ，此时会弹出一个 Window，名为 &#34;<strong>Buffer List</strong>&#34; ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “*Messages*” 是 Emacs 的一些输出信息。“*scratch*” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
+显然这样如果 Buffer 多了会记不住名字也不便于管理，于是可以使用第二个方法， <code>C-x C-b</code> ，此时会弹出一个 Window，名为 “*Buffer List*” ，列出了当前所打开的所有 Buffer。其中可以看到多个以星号（*） 开头结尾的 Buffer，那些都是 Emacs 用于输出一些信息的 Buffer，并不是由于打开文件而产生。例如 “*Messages*” 是 Emacs 的一些输出信息。“*scratch*” 是可以编写一些 Elisp 代码的地方。Buffer 开头如果是 %，表示这个 Buffer 被修改过而没有保存。</p>
 <p>
 
 <div class="tip">
-  如果当前光标没有在 &#34;<strong>Buffer List</strong>&#34; 中可以用 <code>C-x o</code> 键切换过去。
+  如果当前光标没有在 “*Buffer List*” 中可以用 <code>C-x o</code> 键切换过去。
 </div>
 </p>
 <p><img src="../../images/emacs-book/buffer/buffer-list.png" alt="../../images/emacs-book/buffer/buffer-list.png" title="../../images/emacs-book/buffer/buffer-list.png" /></p>
 <p>
-可以通过光标选择切换到某个 Buffer。同时在这个 &#34;<strong>Buffer List</strong>&#34; 中有很多功能可以使用。按问号（~?~ ）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭，~s~ 标记一个 Buffer 打算保存，~u~ 取消标记，~x~ 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code> ，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
+可以通过光标选择切换到某个 Buffer。同时在这个 &#34;*Buffer List*&#34; 中有很多功能可以使用。按问号（ <code>?</code> ）可以显示帮助。常见的操作例如 <code>q</code> 退出， <code>d</code> 标记一个 Buffer 打算关闭， <code>s</code> 标记一个 Buffer 打算保存， <code>u</code> 取消标记， <code>x</code> 执行刚刚标记过的删除和保存操作。事实上，在这里上下移动光标也不需要 <code>C-p</code> 和 <code>C-n</code> ，直接按 <code>p</code> 和 <code>n</code> 即可。</p>
 <p>
 想要关闭当前的 Buffer？直接在当前的 Buffer 处按下 <code>C-x k</code> 即可。</p>
 <p>
@@ -518,7 +529,7 @@ Buffer 的切换
 <p>
 
 <div class="tip">
-  事实上，在输入 <code>M-x</code> 后、~C-x b~ 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
+  事实上，在输入 <code>M-x</code> 后、 <code>C-x b</code> 后在 Echo area 显示的等待输入的区域被称为 Minibuffer， 所以它们的输入方式是共通的，都可以用相同的补全机制等。
 </div>
 </p>
 </div>
@@ -529,7 +540,7 @@ Buffer 的切换
 </h4>
 <div id="outline-text-headline-5" class="outline-text-4">
 <p>
-使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code> ， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置：~(setq make-backup-files nil)~ ）。</p>
+使用 Emacs 打开文件后，会发现目录下会多一个和打开的文件同名但是后面多了个 <code>~</code> 字符的文件，例如打开了 <code>names.txt</code> 后会出现 <code>names.txt~</code> ， 这是 Emacs 的备份机制，防止程序或系统崩溃，或是用户误操作破坏了文件。可以设置关闭或文件数量上限等等，详见文档。（关闭备份需要设置： <code>(setq make-backup-files nil)</code> ）。</p>
 </div>
 </div>
 </div>
@@ -835,7 +846,7 @@ Dired 基本操作逻辑为，通过光标上下移动（此时不需要按 <cod
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=回到顶部></a>
   </div>
 </footer>

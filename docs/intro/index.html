@@ -5,7 +5,7 @@
   data-mode="auto"
 >
 <head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.126.3">
+<meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Hugo 0.140.2">
 <link rel="apple-touch-icon" sizes="180x180" href='https://pavinberg.github.io/emacs-book/favicons/apple-touch-icon.png'>
 <link rel="icon" type="image/png" sizes="32x32" href='https://pavinberg.github.io/emacs-book/favicons/favicon-32x32.png'>
 <link rel="icon" type="image/png" sizes="16x16" href='https://pavinberg.github.io/emacs-book/favicons/favicon-16x16.png'>
@@ -17,18 +17,18 @@
   <meta property="og:site_name" content="Pavinberg&#39;s Emacs Book">
   <meta property="og:title" content="Introduction">
   <meta property="og:description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &#34;Emacs&#34; comes from &#34;Editor MACroS&#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.
-Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &#34;list&#34; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting meme that shows how hard it is:">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
 
   <meta itemprop="name" content="Introduction">
   <meta itemprop="description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &#34;Emacs&#34; comes from &#34;Editor MACroS&#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.
-Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &#34;list&#34; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting meme that shows how hard it is:">
   <meta itemprop="wordCount" content="491">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Introduction">
   <meta name="twitter:description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &#34;Emacs&#34; comes from &#34;Editor MACroS&#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.
-Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &#34;list&#34; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting meme that shows how hard it is:">
 
 
 <link rel="stylesheet" href="https://pavinberg.github.io/emacs-book/css/styles.dc4c8f974ada01927a573d2450683b4adea1c727316dbe2bda7187de6281b3df3d98995a3d04261ddc37d105f5a24e552f51eec13101c948ecd3ebf1557d142a.css" integrity="sha512-3EyPl0raAZJ6Vz0kUGg7St6hxycxbb4r2nGH3mKBs989mJlaPQQmHdw30QX1ok5VL1HuwTEByUjs0&#43;vxVX0UKg==">
@@ -36,8 +36,9 @@ Emacs is originally designed to use with only keyboard and has a lot of shortcut
 
 
 
-  <meta name="description" content="Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &amp;#34;Emacs&amp;#34; comes from &amp;#34;Editor MACroS&amp;#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.
-Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency.">
+  <meta name="description" content=" Why Emacs Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to GNU Emacs, which is also the Emacs in this book. The name &#34;Emacs&#34; comes from &#34;Editor MACroS&#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.
+Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &#34;list&#34; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting meme that shows how hard it is:
+">
 
 
 </head>
@@ -175,13 +176,27 @@ Emacs is originally designed to use with only keyboard and has a lot of shortcut
 </li>
 </ul>
 </nav>
-        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3>
+        <h3 class="section_link"><a id="docs-buffer-and-mode" href="https://pavinberg.github.io/emacs-book/buffer/">Buffer and mode</a></h3><nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Emacs Terminology</a>
+</li>
+<li><a href="#headline-2">File and buffer</a>
+<ul>
+<li><a href="#headline-3">Open multiple files</a>
+</li>
+<li><a href="#headline-4">Buffer management</a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
         <h3 class="section_link"><a id="docs-configurations" href="https://pavinberg.github.io/emacs-book/configurations/">Configurations</a></h3>
         <h3 class="section_link"><a id="docs-improve-the-native-operations" href="https://pavinberg.github.io/emacs-book/optimization/">Improve the native operations</a></h3>
         <h3 class="section_link"><a id="docs-optimize-the-workflow" href="https://pavinberg.github.io/emacs-book/enhancement/">Optimize the workflow</a></h3>
         <h3 class="section_link"><a id="docs-ide-like-features" href="https://pavinberg.github.io/emacs-book/development/">IDE-like features</a></h3>
         <h3 class="section_link"><a id="docs-org-mode" href="https://pavinberg.github.io/emacs-book/orgmode/">Org-mode</a></h3>
         <h3 class="section_link"><a id="docs-ai-integrated" href="https://pavinberg.github.io/emacs-book/ai/">AI integrated</a></h3>
+        <h3 class="section_link"><a id="docs-debugging" href="https://pavinberg.github.io/emacs-book/debug/">Debugging</a></h3>
   <section class="section aside_inner">
     <h2 class="section_title"><a  href="https://pavinberg.github.io/emacs-book/donate/" class="group"></a></h2>
   </section>
@@ -267,7 +282,7 @@ There is also a distribution integrated with macOS named <a href="https://aquama
   
 <footer class="pt-2 pb-2">
   <div class="wrap">
-    <p>&copy; <span class="year">2024</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
+    <p>&copy; <span class="year">2025</span> <a href ="https://github.com/Pavinberg" target="_blank" rel="noopener">Pavinberg</a></p>
     <a href="#pagetop" id="toTop" title=Back&#32;to&#32;top></a>
   </div>
 </footer>
