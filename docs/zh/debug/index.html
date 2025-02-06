@@ -28,7 +28,7 @@
 函数 debug 我们可以定义一个示例函数用于学习 Emacs 的 debugger。按下 C-x b scratch &lt;RET&gt; 切换到 *scratch* buffer，我们编写一个用于开根的函数，但加入一个 bug：
 1 (defun demo-sqrt (x) 2 (interactive &#34;nGoing to calculate sqrt(x), please enter x: &#34;) 3 (if (&lt;= x 0) 4 (error (format &#34;cannot calculate sqrt(%d) because the number is negative&#34; x))) 5 (message &#34;sqrt(%d)=%d&#34; x (sqrt x))) 这个函数的期望功能是：接收用户输入的一个数字，如果这个数字是非负数，就打印出它的开根，否则报错。例如，我们按下 M-x eval-buffer 让函数生效，调用 M-x demo-sqrt &lt;RET&gt; 16 &lt;RET&gt; ，输出 &#34;sqrt(16)=4&#34;。
 但第三行中，对非负数的判断有误，导致输入 0 时，也会报错。即如果输入为： M-x demo-sqrt &lt;RET&gt; 0 &lt;RET&gt; ，输出为 &#34;cannot calculate sqrt(0) because the number is negative&#34; （同时这个信息也会显示在 *Message* 中）。 这就是这个函数的一个 bug。">
-  <meta itemprop="wordCount" content="371">
+  <meta itemprop="wordCount" content="383">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="错误调试">
   <meta name="twitter:description" content="使用 Emacs 时难免会遇到插件不完善、不兼容导致的报错。报错默认只会在 *Message* buffer 中显示报错信息，不会显示报错位置和调用栈，因此很难找到头绪。同时我们可能也会自己编写函数，编写的过程中同样需要进行 debug。本文简单介绍几个遇到问题的 debug 手法。
@@ -488,6 +488,11 @@
 <li><code>e</code> ( <code>eval-expression</code> ) 和常规 debbugger 的 evaluate 相同，可以运行一个自定义语句。</li>
 <li><code>q</code> ( <code>debugger-quit</code> ) 退出。</li>
 </ol>
+<p>只需要一直按 <code>d</code> 去单步调试，即可寻找到问题。</p>
+<p>
+debug 结束后，调用 <code>cancel-debug-on-entry</code> 来取消函数断点。</p>
+<p>
+类似的，也有 <code>debug-on-variable-change</code> 来 watch 一个变量。</p>
 </div>
 </div>
 <div id="outline-container-headline-2" class="outline-3">

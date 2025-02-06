@@ -32,6 +32,12 @@
 5. ~e~ ( ~eval-expression~ ) 和常规 debbugger 的 evaluate 相同，可以运行一个自定义语句。
 6. ~q~ ( ~debugger-quit~ ) 退出。
 
+只需要一直按 ~d~ 去单步调试，即可寻找到问题。
+
+debug 结束后，调用 ~cancel-debug-on-entry~ 来取消函数断点。
+
+类似的，也有 ~debug-on-variable-change~ 来 watch 一个变量。
+
 ** 运行报错 debug
 
 如果在调用一个函数时内部的某处逻辑发生了报错，默认情况下，并不会显示函数调用栈，因此较难定位问题。例如，我们编写这样的示例代码：
