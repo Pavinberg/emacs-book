@@ -30,7 +30,11 @@
 
  ~ivy-pop-view~ ：删除保存了的窗口状态。在上一篇教程的配置中绑定为快捷键 ~C-c V~ 。
 
-** which-key（可选）
+** which-key
+
+{{< tip >}}
+从 Emacs 30 开始，自带 ~which-key~ 功能。无需安装直接使用。
+{{< /tip >}}
 
 [[https://github.com/justbur/emacs-which-key][主页]]
 
@@ -45,7 +49,7 @@
 
 #+begin_src elisp  
 (use-package which-key
- :ensure t
+ :ensure t ; Emacs 30+ 此行不必须
  :init (which-key-mode))
 #+end_src
 
