@@ -1,0 +1,16 @@
+<div class="video">
+  {{- $videoid := .Get 0 -}}
+  {{- $img := .Get 1 -}}
+  {{- $params := .Get 2 -}}
+  {{ $bkImg := "" }}
+  {{ if .IsNamedParams }}
+    {{ $videoid = .Get "videoid" }}
+    {{ $img = .Get "img" }}
+    {{ $bkImg = "" }}
+    {{ $params = .Get "params" }}
+  {{ end }}
+  {{ with $img }}
+    {{ $bkImg := absURL (printf "images/%s" .) }}
+  {{ end }}
+  <lite-youtube videoid="{{ $videoid }}"{{ with $bkImg }} style="background-image: url({{ . }})"{{ end }}{{ with $params }} params="{{ . }}"{{ end }}></lite-youtube>
+</div>

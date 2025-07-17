@@ -9,7 +9,7 @@
 
 ** 安装
 
-截止本文更新日期（2024.6.6）Emacs 的稳定版本为 29.3。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
+截止本文更新日期（2025.7.17）Emacs 的稳定版本为 30.1。建议使用新一些的版本，最好是 Emacs 26 以上，因为一些插件需要 Emacs 更高版本的支持。
 
 特别的，Emacs 28 版本新增使用 GCC JIT 对 Emacs Lisp 字节码的执行进行加速，可以显著提高 Emacs 的运行速度。推荐大家安装最新的版本。
 
@@ -20,7 +20,7 @@
 macOS:
 
 #+begin_src bash
-$ brew install --cask emacs
+$ brew install emacs-app
 #+end_src
 
 Debian/Ubuntu:
@@ -75,7 +75,7 @@ Emacs 中有五个功能键： ~Control~ 、 ~Meta~ 、 ~Shift~ 、 ~Super~ 、 
 
 {{< tip >}}
 尽管 ~Hyper~ 键已经消失了，但是 Emacs 依然可以使用这个功能键，例如如果读者手上的键盘有一些不常用的按键，可以考虑设定为 ~Hyper~ 键，拓宽快捷键，这部分读者自行探索吧。
-事实上 Emacs 中也有 ~Alt~ 键，但现在键盘上的 Alt 键都是被映射为 ~Meta~ ，~Alt~ 键也几乎不去使用了，为避免混淆就没有放到正文中介绍。
+事实上 Emacs 中也有 ~Alt~ 键，但现在键盘上的 Alt 键都是被映射为 ~Meta~ ， ~Alt~ 键也几乎不去使用了，为避免混淆就没有放到正文中介绍。
 {{< /tip >}}
 
 {{< tip >}}

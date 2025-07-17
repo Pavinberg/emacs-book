@@ -14,6 +14,21 @@ The book is still ongoing.
 
 If you have anything to discuss, make a question, or have any ideas on this book, feel free to discuss at the [[https://github.com/Pavinberg/emacs-book/discussions][GitHub Discussions]].
 
+** Build the book
+
+1. Install Hugo according to [[https://gohugo.io/installation/][official website]].
+2. Preview this book with Hugo and visit http://localhost:1313/emacs-book/:
+
+   #+begin_src bash
+     $ hugo server
+   #+end_src
+   
+3. Build this book
+
+   #+begin_src bash
+     $ hugo build
+   #+end_src
+
 **  Acknowledgement
 
 Thanks [[https://gohugo.io][Hugo]] and the [[https://github.com/onweru/compose][compose]] theme. 
