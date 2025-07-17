@@ -2,12 +2,12 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <sitemap>
-    <loc>http://localhost:1313/emacs-book/en/sitemap.xml</loc>
+    <loc>https://pavinberg.github.io/emacs-book/en/sitemap.xml</loc>
     
   </sitemap>
   
   <sitemap>
-    <loc>http://localhost:1313/emacs-book/zh/sitemap.xml</loc>
+    <loc>https://pavinberg.github.io/emacs-book/zh/sitemap.xml</loc>
     
   </sitemap>
   

@@ -2,172 +2,172 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/emacs-book/intro/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/intro/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/intro/"
+                href="https://pavinberg.github.io/emacs-book/zh/intro/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/intro/"
+                href="https://pavinberg.github.io/emacs-book/intro/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/"
+                href="https://pavinberg.github.io/emacs-book/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/"
+                href="https://pavinberg.github.io/emacs-book/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/basic/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/basic/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/basic/"
+                href="https://pavinberg.github.io/emacs-book/zh/basic/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/basic/"
+                href="https://pavinberg.github.io/emacs-book/basic/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/buffer/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/buffer/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/buffer/"
+                href="https://pavinberg.github.io/emacs-book/zh/buffer/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/buffer/"
+                href="https://pavinberg.github.io/emacs-book/buffer/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/configurations/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/configurations/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/configurations/"
+                href="https://pavinberg.github.io/emacs-book/zh/configurations/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/configurations/"
+                href="https://pavinberg.github.io/emacs-book/configurations/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/optimization/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/optimization/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/optimization/"
+                href="https://pavinberg.github.io/emacs-book/zh/optimization/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/optimization/"
+                href="https://pavinberg.github.io/emacs-book/optimization/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/enhancement/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/enhancement/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/enhancement/"
+                href="https://pavinberg.github.io/emacs-book/zh/enhancement/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/enhancement/"
+                href="https://pavinberg.github.io/emacs-book/enhancement/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/development/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/development/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/development/"
+                href="https://pavinberg.github.io/emacs-book/zh/development/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/development/"
+                href="https://pavinberg.github.io/emacs-book/development/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/orgmode/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/orgmode/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/orgmode/"
+                href="https://pavinberg.github.io/emacs-book/zh/orgmode/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/orgmode/"
+                href="https://pavinberg.github.io/emacs-book/orgmode/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/ai/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/ai/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/ai/"
+                href="https://pavinberg.github.io/emacs-book/zh/ai/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/ai/"
+                href="https://pavinberg.github.io/emacs-book/ai/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/debug/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/debug/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/debug/"
+                href="https://pavinberg.github.io/emacs-book/zh/debug/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/debug/"
+                href="https://pavinberg.github.io/emacs-book/debug/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/donate/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/donate/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/donate/"
+                href="https://pavinberg.github.io/emacs-book/zh/donate/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/donate/"
+                href="https://pavinberg.github.io/emacs-book/donate/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/categories/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/categories/"
+                href="https://pavinberg.github.io/emacs-book/zh/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/categories/"
+                href="https://pavinberg.github.io/emacs-book/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/emacs-book/tags/</loc>
+    <loc>https://pavinberg.github.io/emacs-book/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/emacs-book/zh/tags/"
+                href="https://pavinberg.github.io/emacs-book/zh/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/emacs-book/tags/"
+                href="https://pavinberg.github.io/emacs-book/tags/"
                 />
   </url>
 </urlset>

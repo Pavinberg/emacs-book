@@ -2,79 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pavinberg&#39;s Emacs Book</title>
-    <link>http://localhost:1313/emacs-book/</link>
+    <link>https://pavinberg.github.io/emacs-book/</link>
     <description>Recent content on Pavinberg&#39;s Emacs Book</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="http://localhost:1313/emacs-book/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pavinberg.github.io/emacs-book/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Introduction</title>
-      <link>http://localhost:1313/emacs-book/intro/</link>
+      <link>https://pavinberg.github.io/emacs-book/intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/intro/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/intro/</guid>
       <description>&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-1&#34;&gt;&#xA;Why Emacs&#xA;&lt;/h3&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-3&#34;&gt;&#xA;&lt;p&gt;&#xA;Emacs is one of the oldest text editors in the world which is more than 50 years old. Emacs usually refers to &lt;a href=&#34;https://www.gnu.org/software/emacs/&#34;&gt;GNU Emacs&lt;/a&gt;, which is also the Emacs in this book. The name &amp;#34;Emacs&amp;#34; comes from &amp;#34;Editor MACroS&amp;#34; and it includes the first letter of the five function keys, `Esc`, `Meta`, `Alt`, `Ctrl` and `Shift`.&lt;/p&gt;&#xA;&lt;p&gt;&#xA;Emacs is originally designed to use with only keyboard and has a lot of shortcuts to improve the editing efficiency. As a result, it takes a while to become proficient in it. Emacs Lisp, a dialect of Lisp language, was created to develop Emacs. Lisp is the second oldest high-level programming language born in 1958 with &amp;#34;list&amp;#34; as the syntax and powerful macros. The syntax of Emacs Lisp can be hard to understand for beginners which also makes it hard to learn Emacs. Here is an interesting &lt;a href=&#34;https://www.reddit.com/r/ProgrammerHumor/comments/9d3j49/text_editor_learning_curves/&#34;&gt;meme&lt;/a&gt; that shows how hard it is:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Basic operations</title>
-      <link>http://localhost:1313/emacs-book/basic/</link>
+      <link>https://pavinberg.github.io/emacs-book/basic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/basic/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/basic/</guid>
       <description>&lt;p&gt;&#xA;This chapter introduces the basic knowledge and operations of GNU Emacs. It is only meant to give readers a first look at Emacs operations, which should require daily practice over time to master. As a result, the latter part of this chapter is more geared towards future reference. On the other hand, many operations are somewhat complicated and hard to remember. The following chapters of this tutrial will introduce some extensions which can greatly alleviate these problems, so if readers encounter anything obscure, there&amp;#39;s no need to worry too much or memorize them by rote.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Buffer and mode</title>
-      <link>http://localhost:1313/emacs-book/buffer/</link>
+      <link>https://pavinberg.github.io/emacs-book/buffer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/buffer/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/buffer/</guid>
       <description>&lt;p&gt;&#xA;This chapter introduces Emacs&amp;#39; terminology, management of multiple files, and window display. This chapter also aims to introduce concepts for readers. There are also extensions that can improve the efficiency. The appendix at the end lists all the shortcuts covered in the article.&lt;/p&gt;&#xA;&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-3&#34;&gt;&#xA;&lt;h3 id=&#34;headline-1&#34;&gt;&#xA;Emacs Terminology&#xA;&lt;/h3&gt;&#xA;&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-3&#34;&gt;&#xA;&lt;p&gt;&#xA;The &lt;a href=&#34;https://wikemacs.org/wiki/Emacs_Terminology&#34;&gt;wiki&lt;/a&gt; contains a full list of Emacs terminology. This chapter tries to introduce it in a more intuitive way. Terminology is essential for the users to learn and search on the Internet.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Configurations</title>
-      <link>http://localhost:1313/emacs-book/configurations/</link>
+      <link>https://pavinberg.github.io/emacs-book/configurations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/configurations/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/configurations/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>Improve the native operations</title>
-      <link>http://localhost:1313/emacs-book/optimization/</link>
+      <link>https://pavinberg.github.io/emacs-book/optimization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/optimization/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/optimization/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>Optimize the workflow</title>
-      <link>http://localhost:1313/emacs-book/enhancement/</link>
+      <link>https://pavinberg.github.io/emacs-book/enhancement/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/enhancement/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/enhancement/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>IDE-like features</title>
-      <link>http://localhost:1313/emacs-book/development/</link>
+      <link>https://pavinberg.github.io/emacs-book/development/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/development/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/development/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>Org-mode</title>
-      <link>http://localhost:1313/emacs-book/orgmode/</link>
+      <link>https://pavinberg.github.io/emacs-book/orgmode/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/orgmode/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/orgmode/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>AI integrated</title>
-      <link>http://localhost:1313/emacs-book/ai/</link>
+      <link>https://pavinberg.github.io/emacs-book/ai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/ai/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/ai/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debugging</title>
-      <link>http://localhost:1313/emacs-book/debug/</link>
+      <link>https://pavinberg.github.io/emacs-book/debug/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/emacs-book/debug/</guid>
+      <guid>https://pavinberg.github.io/emacs-book/debug/</guid>
       <description>&lt;p&gt;&#xA;To be translated…&lt;/p&gt;</description>
     </item>
   </channel>
