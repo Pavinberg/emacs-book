@@ -112,7 +112,8 @@ Emacs 的主题非常多，读者只需要在搜索引擎中搜索 “Emacs 主�
 
 ** 配置图标
 
-图形界面的 Emacs 可以安装一个 [[https://github.com/domtronn/all-the-icons.el][all-the-icons]] 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来说如果终端能够支持这些图标字体，也是可以使用的。首先添加配置：
+图形界面的 Emacs 可以安装一个 [all-the-icons](https://github.com/domtronn/all-the-
+icons.el) 插件来为 Emacs 提供图标的支持，对于命令行 Emacs 来说如果终端能够支持这些图标字体，也是可以使用的。首先添加配置：
 
 #+begin_src elisp
 (use-package all-the-icons
